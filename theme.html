@@ -7,75 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="wonk.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #080808;
-      --cream: #f0ead8;
-      --acid: #c6ff2f;
-      --rust: #d4542a;
-      --border: #222;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--cream);
-      font-family: 'Lora', Georgia, serif;
-      font-size: 17px;
-      line-height: 1.65;
-      cursor: crosshair;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.35;
-    }
-
-    /* NAV */
-    .site-strip {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2.5rem;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(8,8,8,0.92);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-    }
-
-    .site-strip .wordmark {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-      color: var(--acid);
-      text-decoration: none;
-    }
-
-    .site-strip .back {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--cream);
-      text-decoration: none;
-      opacity: 0.5;
-      transition: opacity 0.2s;
-    }
-
-    .site-strip .back:hover { opacity: 1; }
-
-    /* INTRO */
+    /* ---- intro ---- */
     .intro {
       display: grid;
       grid-template-columns: 3fr 2fr;
@@ -92,27 +26,23 @@
     }
 
     .intro-kicker {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       color: var(--acid);
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.1s ease forwards;
     }
 
     .intro-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 900;
       font-size: clamp(2.5rem, 5vw, 5.5rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
     }
 
     .intro-title .accent { color: var(--acid); }
-    .intro-title .rust { color: var(--rust); font-style: italic; font-weight: 300; }
+    .intro-title .rust   { color: var(--rust); font-style: italic; font-weight: 300; }
 
     .intro-right {
       padding: 6rem 3.5rem;
@@ -120,22 +50,20 @@
       flex-direction: column;
       justify-content: center;
       gap: 2rem;
-      opacity: 0;
-      animation: fadeIn 1s 0.4s ease forwards;
     }
 
     .intro-copy {
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 1.1rem;
       line-height: 1.85;
       opacity: 0.75;
     }
 
-    .intro-copy em { font-style: italic; color: var(--acid); }
+    .intro-copy em     { font-style: italic; color: var(--acid); }
     .intro-copy strong { font-weight: 600; }
 
     .intro-disclaimer {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.68rem;
       letter-spacing: 0.05em;
       opacity: 0.35;
@@ -144,30 +72,7 @@
       padding-top: 1.5rem;
     }
 
-    /* SECTION HEADERS */
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-      padding: 3rem 4rem 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-header h2 {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      color: var(--acid);
-    }
-
-    .section-header .section-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* COLOR GRID */
+    /* ---- color grid ---- */
     .color-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -183,14 +88,13 @@
 
     .swatch-block {
       height: 220px;
-      position: relative;
       display: flex;
       align-items: flex-end;
       padding: 1.5rem;
     }
 
     .swatch-hex {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
       letter-spacing: 0.05em;
       mix-blend-mode: difference;
@@ -204,7 +108,7 @@
     }
 
     .swatch-name {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 0.85rem;
       margin-bottom: 0.6rem;
@@ -212,7 +116,7 @@
     }
 
     .swatch-role {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.6rem;
       letter-spacing: 0.1em;
       color: var(--acid);
@@ -220,15 +124,10 @@
       margin-bottom: 1rem;
     }
 
-    .swatch-story {
-      font-size: 0.85rem;
-      line-height: 1.65;
-      opacity: 0.65;
-    }
-
+    .swatch-story { font-size: 0.85rem; line-height: 1.65; opacity: 0.65; }
     .swatch-story em { font-style: italic; }
 
-    /* FONT BLOCKS */
+    /* ---- font blocks ---- */
     .font-section { border-bottom: 1px solid var(--border); }
 
     .font-block {
@@ -248,7 +147,7 @@
     }
 
     .font-name {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: -0.01em;
@@ -256,7 +155,7 @@
     }
 
     .font-classif {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.6rem;
       letter-spacing: 0.12em;
       color: var(--acid);
@@ -264,16 +163,11 @@
       margin-bottom: 1.5rem;
     }
 
-    .font-story {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      opacity: 0.65;
-    }
-
+    .font-story { font-size: 0.88rem; line-height: 1.7; opacity: 0.65; }
     .font-story em { font-style: italic; }
 
     .font-used-for {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.6rem;
       letter-spacing: 0.08em;
       opacity: 0.4;
@@ -290,7 +184,7 @@
     }
 
     .specimen-unbounded-hero {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 900;
       font-size: clamp(3rem, 6vw, 6rem);
       line-height: 0.9;
@@ -298,7 +192,7 @@
     }
 
     .specimen-unbounded-light {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 300;
       font-size: 1.8rem;
       font-style: italic;
@@ -307,7 +201,7 @@
     }
 
     .specimen-lora-body {
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 1.15rem;
       line-height: 1.85;
       opacity: 0.75;
@@ -315,7 +209,7 @@
     }
 
     .specimen-lora-italic {
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 1.4rem;
       font-style: italic;
       opacity: 0.55;
@@ -324,7 +218,7 @@
     }
 
     .specimen-mono {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.85rem;
       letter-spacing: 0.08em;
       opacity: 0.6;
@@ -332,101 +226,44 @@
     }
 
     .specimen-mono-label {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.6rem;
       letter-spacing: 0.18em;
       opacity: 0.35;
     }
 
-    /* PRINCIPLES */
+    /* ---- principles ---- */
     .principles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       border-bottom: 1px solid var(--border);
     }
 
-    .principle {
-      padding: 3.5rem 3rem;
-      border-right: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .principle:last-child { border-right: none; }
-
-    .principle::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--acid);
-      transform: translateY(101%);
-      transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-      z-index: 0;
-    }
-
-    .principle:hover::before { transform: translateY(0); }
-
-    .principle:hover .p-num,
-    .principle:hover .p-title,
-    .principle:hover .p-body { color: var(--black); }
+    .principles .flood-card:last-child { border-right: none; }
 
     .p-num {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.6rem;
       letter-spacing: 0.12em;
       opacity: 0.3;
       margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
     }
 
     .p-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 1rem;
       line-height: 1.2;
       margin-bottom: 0.8rem;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
     }
 
-    .p-body {
-      font-size: 0.88rem;
-      line-height: 1.65;
-      opacity: 0.6;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
-    }
+    .p-body { font-size: 0.88rem; line-height: 1.65; opacity: 0.6; }
+    .p-body em { font-style: italic; }
 
-    /* FOOTER */
-    footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 3rem;
-    }
-
-    footer .wordmark { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 0.85rem; color: var(--acid); }
-    footer .note { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; opacity: 0.3; }
-    footer a { color: var(--cream); opacity: 0.35; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; transition: opacity 0.2s; }
-    footer a:hover { opacity: 1; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
+    /* ---- responsive ---- */
     @media (max-width: 900px) {
       .intro { grid-template-columns: 1fr; }
-      .intro-left { padding: 4rem 2rem 2rem; }
+      .intro-left { padding: 4rem 2rem 2rem; border-right: none; }
       .intro-right { border-top: 1px solid var(--border); padding: 3rem 2rem; }
       .color-grid { grid-template-columns: 1fr 1fr; }
       .color-swatch:nth-child(2n) { border-right: none; }
@@ -434,8 +271,7 @@
       .font-block { grid-template-columns: 1fr; }
       .font-meta { border-right: none; border-bottom: 1px solid var(--border); }
       .principles { grid-template-columns: 1fr; }
-      .principle { border-right: none; border-bottom: 1px solid var(--border); }
-      .section-header { padding: 2.5rem 2rem 1.5rem; }
+      .principles .flood-card { border-right: none; }
     }
   </style>
 </head>
@@ -443,21 +279,20 @@
 
   <header class="site-strip">
     <a href="/" class="wordmark">wonk.blog</a>
-    <a href="/" class="back">← back to the actual site</a>
+    <a href="/" class="nav-back">← back to the actual site</a>
   </header>
 
-  <!-- INTRO -->
   <section class="intro">
     <div class="intro-left">
-      <p class="intro-kicker">style guide — because you asked</p>
-      <h1 class="intro-title">
+      <p class="intro-kicker anim-fade-up anim-delay-1">style guide — because you asked</p>
+      <h1 class="intro-title anim-fade-up anim-delay-2">
         ok fine,<br />
         it <span class="rust">is</span><br />
         pretty<br />
         <span class="accent">sexy.</span>
       </h1>
     </div>
-    <div class="intro-right">
+    <div class="intro-right anim-fade-in anim-delay-3">
       <p class="intro-copy">
         so you liked the design of wonk.blog and you want to know how it was made.
         flattering. genuinely. <em>here you go.</em><br /><br />
@@ -474,14 +309,12 @@
     </div>
   </section>
 
-  <!-- COLORS -->
   <div class="section-header">
     <h2>the colors</h2>
     <div class="section-rule"></div>
   </div>
 
   <div class="color-grid">
-
     <div class="color-swatch">
       <div class="swatch-block" style="background:#080808;">
         <span class="swatch-hex">#080808</span>
@@ -489,15 +322,9 @@
       <div class="swatch-info">
         <p class="swatch-name">almost-black</p>
         <p class="swatch-role">background / void</p>
-        <p class="swatch-story">
-          not #000000. never #000000. pure black is for people who haven't thought about it.
-          this is the color of a cinema at 2 a.m. after everyone's left. it's warm in a way
-          you can't quite explain. <em>designers call this "softening the void." i call it not
-          being a psychopath.</em>
-        </p>
+        <p class="swatch-story">not #000000. never #000000. pure black is for people who haven't thought about it. this is the color of a cinema at 2 a.m. after everyone's left. it's warm in a way you can't quite explain. <em>designers call this "softening the void." i call it not being a psychopath.</em></p>
       </div>
     </div>
-
     <div class="color-swatch">
       <div class="swatch-block" style="background:#f0ead8;">
         <span class="swatch-hex" style="color:#080808;">#f0ead8</span>
@@ -505,15 +332,9 @@
       <div class="swatch-info">
         <p class="swatch-name">vellum</p>
         <p class="swatch-role">body text / primary foreground</p>
-        <p class="swatch-story">
-          this is the color of old paper. specifically, the paper in a 16th-century venetian
-          printing house. the kind gutenberg's descendants were using to spread ideas that got
-          people in trouble. <em>we are continuing that tradition.</em> also, white text on black
-          backgrounds gives people headaches. this doesn't.
-        </p>
+        <p class="swatch-story">the color of old paper. specifically, the paper in a 16th-century venetian printing house. the kind gutenberg's descendants were using to spread ideas that got people in trouble. <em>we are continuing that tradition.</em> also, white text on black backgrounds gives people headaches. this doesn't.</p>
       </div>
     </div>
-
     <div class="color-swatch">
       <div class="swatch-block" style="background:#c6ff2f;">
         <span class="swatch-hex" style="color:#080808;">#c6ff2f</span>
@@ -521,15 +342,9 @@
       <div class="swatch-info">
         <p class="swatch-name">acid green</p>
         <p class="swatch-role">accent / emphasis / "look here"</p>
-        <p class="swatch-story">
-          chartreuse is the only color named after a liqueur made by monks in the french alps
-          since 1737. it's also the color used on high-visibility safety vests, rave flyers,
-          and early-2000s web design that was ahead of its time. <em>this shade is that color
-          but angrier.</em> it means business. it's the color of a correct argument.
-        </p>
+        <p class="swatch-story">chartreuse is the only color named after a liqueur made by monks in the french alps since 1737. it's also the color used on high-visibility safety vests, rave flyers, and early-2000s web design that was ahead of its time. <em>this shade is that color but angrier.</em> it means business. it's the color of a correct argument.</p>
       </div>
     </div>
-
     <div class="color-swatch">
       <div class="swatch-block" style="background:#d4542a;">
         <span class="swatch-hex">#d4542a</span>
@@ -537,15 +352,9 @@
       <div class="swatch-info">
         <p class="swatch-name">rust</p>
         <p class="swatch-role">secondary accent / warmth / italics</p>
-        <p class="swatch-story">
-          terracotta. the color of roman roof tiles. of the clay pots that the mediterranean
-          world shipped olive oil in for a thousand years. if acid green is the sharp argument,
-          rust is the long historical view — the "people have been getting this wrong for
-          millennia" energy. <em>it keeps the page from looking like a hacker's monitor.</em>
-        </p>
+        <p class="swatch-story">terracotta. the color of roman roof tiles. of the clay pots that the mediterranean world shipped olive oil in for a thousand years. if acid green is the sharp argument, rust is the long historical view — the "people have been getting this wrong for millennia" energy. <em>it keeps the page from looking like a hacker's monitor.</em></p>
       </div>
     </div>
-
     <div class="color-swatch">
       <div class="swatch-block" style="background:#222;">
         <span class="swatch-hex">#222222</span>
@@ -553,44 +362,24 @@
       <div class="swatch-info">
         <p class="swatch-name">graphite</p>
         <p class="swatch-role">borders / structural lines</p>
-        <p class="swatch-story">
-          you know how a good suit has contrast stitching that you only notice on close
-          inspection? that's this. it's not a color that demands attention. it's doing
-          pure structural work — dividing space, suggesting hierarchy, making the grid
-          visible without being loud about it. <em>the unsung hero of the whole palette.</em>
-        </p>
+        <p class="swatch-story">you know how a good suit has contrast stitching that you only notice on close inspection? that's this. it's not a color that demands attention. it's doing pure structural work — dividing space, suggesting hierarchy, making the grid visible without being loud about it. <em>the unsung hero of the whole palette.</em></p>
       </div>
     </div>
-
   </div>
 
-  <!-- FONTS -->
   <div class="section-header">
     <h2>the fonts</h2>
     <div class="section-rule"></div>
   </div>
 
   <div class="font-section">
-
-    <!-- UNBOUNDED -->
     <div class="font-block">
       <div class="font-meta">
         <div>
           <p class="font-name">unbounded</p>
           <p class="font-classif">geometric sans-serif / display</p>
-          <p class="font-story">
-            designed by masha cairo for google fonts, released 2022. it's named "unbounded"
-            because the letters have no descenders and extend upward without constraint —
-            like an argument that keeps escalating at thanksgiving dinner.<br /><br />
-            the <em>real</em> reason it's here: it looks like a font that would be on the
-            cover of a soviet-era technical manual about optimal collective farm output
-            allocation, but make it fashion. bauhaus meets brutalism meets "i have opinions
-            about land value taxation."
-          </p>
-          <p class="font-used-for">
-            used for: wordmark · headings · topic cards · stats<br />
-            weights: 300 (light italic) · 700 (bold) · 900 (black)
-          </p>
+          <p class="font-story">designed by masha cairo for google fonts, released 2022. it's named "unbounded" because the letters have no descenders and extend upward without constraint — like an argument that keeps escalating at thanksgiving dinner.<br /><br />the <em>real</em> reason it's here: it looks like a font that would be on the cover of a soviet-era technical manual about optimal collective farm output allocation, but make it fashion. bauhaus meets brutalism meets "i have opinions about land value taxation."</p>
+          <p class="font-used-for">used for: wordmark · headings · topic cards · stats<br />weights: 300 (light italic) · 700 (bold) · 900 (black)</p>
         </div>
       </div>
       <div class="font-specimen">
@@ -599,24 +388,13 @@
       </div>
     </div>
 
-    <!-- LORA -->
     <div class="font-block">
       <div class="font-meta">
         <div>
           <p class="font-name">lora</p>
           <p class="font-classif">contemporary serif / body text</p>
-          <p class="font-story">
-            designed by olga karpushina, lora was built specifically for reading on screens —
-            not scanned from a metal type specimen, but drawn from scratch with pixel grids
-            in mind. it has calligraphic roots (think: someone who actually studied penmanship)
-            but it's been optimized for a medium that didn't exist when serifs were invented.<br /><br />
-            <em>the long arc of typographic history bending toward legibility.</em>
-            also the italic is extremely beautiful and i would die for it.
-          </p>
-          <p class="font-used-for">
-            used for: body copy · manifesto text · blockquotes · this very sentence<br />
-            weights: 400 (regular) · 400i (italic) · 600 (semibold)
-          </p>
+          <p class="font-story">designed by olga karpushina, lora was built specifically for reading on screens — not scanned from a metal type specimen, but drawn from scratch with pixel grids in mind. it has calligraphic roots but optimized for a medium that didn't exist when serifs were invented.<br /><br /><em>the long arc of typographic history bending toward legibility.</em> also the italic is extremely beautiful and i would die for it.</p>
+          <p class="font-used-for">used for: body copy · manifesto text · blockquotes · this very sentence<br />weights: 400 (regular) · 400i (italic) · 600 (semibold)</p>
         </div>
       </div>
       <div class="font-specimen">
@@ -625,25 +403,13 @@
       </div>
     </div>
 
-    <!-- JETBRAINS MONO -->
     <div class="font-block">
       <div class="font-meta">
         <div>
           <p class="font-name">jetbrains mono</p>
           <p class="font-classif">monospace / data / metadata</p>
-          <p class="font-story">
-            literally made by the company that makes i.d.e.s for programmers. it was designed
-            after jetbrains analyzed how developers actually read code — and added subtle
-            ligatures and increased x-height specifically to reduce eye strain at 2 a.m. when
-            you're debugging something stupid.<br /><br />
-            on this site it plays a different role: <em>it's the voice of the data, the labels,
-            the slightly-too-earnest metadata.</em> the font that says "i measured this and
-            here is the number." which, given the whole thesis of the site, feels right.
-          </p>
-          <p class="font-used-for">
-            used for: eyebrows · stat labels · nav links · tags · this parenthetical<br />
-            weights: 400 · 700
-          </p>
+          <p class="font-story">literally made by the company that makes i.d.e.s for programmers. designed after jetbrains analyzed how developers actually read code — adding ligatures and increased x-height to reduce eye strain at 2 a.m. when you're debugging something stupid.<br /><br />on this site it plays a different role: <em>it's the voice of the data, the labels, the slightly-too-earnest metadata.</em> the font that says "i measured this and here is the number."</p>
+          <p class="font-used-for">used for: eyebrows · stat labels · nav links · tags<br />weights: 400 · 700</p>
         </div>
       </div>
       <div class="font-specimen">
@@ -657,27 +423,25 @@
         <p class="specimen-mono" style="letter-spacing:0.12em;">topics · about · electionbyjury.org</p>
       </div>
     </div>
-
   </div>
 
-  <!-- PRINCIPLES -->
   <div class="section-header">
     <h2>the principles (hover for emphasis)</h2>
     <div class="section-rule"></div>
   </div>
 
   <div class="principles">
-    <div class="principle">
+    <div class="flood-card">
       <p class="p-num">01</p>
       <h3 class="p-title">everything lowercase</h3>
       <p class="p-body">capitalization is a power move. it implies that some words are more important than others based on their position in a sentence rather than their actual content. <em>we disagree with this ontologically.</em> initialisms get periods because i.r.v. looks more human than IRV and we are, allegedly, humans.</p>
     </div>
-    <div class="principle">
+    <div class="flood-card">
       <p class="p-num">02</p>
       <h3 class="p-title">grid as argument</h3>
       <p class="p-body">the hard-edged grid isn't just aesthetic — it's the visual equivalent of a logical structure. borders don't blur. columns don't drift. everything is where it says it is. <em>this is what policy arguments should look like too</em>, but that's a longer essay.</p>
     </div>
-    <div class="principle">
+    <div class="flood-card">
       <p class="p-num">03</p>
       <h3 class="p-title">noise and warmth</h3>
       <p class="p-body">the grain texture overlay, the off-black background, the cream text — these exist to prevent the page from feeling like a u.i. kit. screens are cold. ideas are warm. <em>the job of the design is to not get in the way of the ideas</em>, and pure cold black-and-white absolutely gets in the way.</p>
@@ -686,8 +450,10 @@
 
   <footer>
     <span class="wordmark">wonk.blog</span>
-    <span class="note">style guide — you asked, i answered</span>
-    <a href="/">← back to the actual ideas</a>
+    <span class="copyright">style guide — you asked, i answered</span>
+    <div class="footer-links">
+      <a href="/">← back to the actual ideas</a>
+    </div>
   </footer>
 
 </body>
