@@ -182,6 +182,93 @@
     </div>
   </div>
 
+  <div class="section-header">
+    <h2>document components</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <!-- demo: document page components -->
+  <div class="doc-section">
+    <div class="container">
+      <p class="section-label">— used on essay / article pages</p>
+      <p class="u-mono u-muted">wrap content in <code>.container</code> for max-width centred layout. the four box types handle different rhetorical weights.</p>
+
+      <h4>boxes</h4>
+
+      <div class="box">
+        <p class="u-mono u-muted u-small">.box</p>
+        generic inset panel. for f.a.q. answers, supplementary content, anything that needs to breathe separately from the main prose without screaming at you.
+      </div>
+
+      <div class="box-highlight">
+        <strong>.box-highlight</strong>
+        the important thing you'd bold in a textbook. acid-green left border, faint acid wash background. use for conclusions, key assertions, the thing the reader should remember if they skim.
+      </div>
+
+      <div class="box-accent">
+        <h4>perfect investment incentives</h4>
+        <p class="u-muted u-small">.box-accent — for a cluster of related points. the ▪ marker is a css pseudo-element. pairs well with an h4 inside.</p>
+      </div>
+
+      <div class="box-labeled" data-label="example">
+        <p class="u-mono u-muted u-small">.box-labeled</p>
+        floating label rendered from the <code>data-label</code> attribute via css <code>content: attr(data-label)</code>. no extra markup needed.
+      </div>
+
+      <h4>steps</h4>
+
+      <div class="steps">
+        <div class="step">
+          <strong>first thing</strong>
+          <p class="u-muted u-small">.steps + .step. the → is a pure css pseudo-element. use for sequential processes where order matters.</p>
+        </div>
+        <div class="step">
+          <strong>second thing</strong>
+          <p class="u-muted u-small">nest a ul inside for sub-items.</p>
+        </div>
+        <div class="step">
+          <strong>third thing</strong>
+          <ul class="u-muted u-small">
+            <li>sub-item one</li>
+            <li>sub-item two</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4>tables</h4>
+
+      <table class="wonk-table">
+        <thead>
+          <tr>
+            <th>component</th>
+            <th>class</th>
+            <th>rhetorical weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>generic panel</td><td><code>.box</code></td><td>low — supplementary</td></tr>
+          <tr><td>callout</td><td><code>.box-highlight</code></td><td>high — conclusion / key claim</td></tr>
+          <tr><td>feature entry</td><td><code>.box-accent</code></td><td>medium — one point in a set</td></tr>
+          <tr><td>worked example</td><td><code>.box-labeled</code></td><td>medium — named instance</td></tr>
+          <tr><td>process</td><td><code>.steps / .step</code></td><td>sequential — ordered argument</td></tr>
+        </tbody>
+      </table>
+
+      <h4>utilities</h4>
+
+      <p>
+        <span class="u-mono">u-mono — jetbrains mono at 0.85em</span><br />
+        <span class="u-accent">u-accent — acid green text</span><br />
+        <span class="u-rust">u-rust — rust text</span><br />
+        <span class="u-muted">u-muted — 70% opacity</span><br />
+        <span class="u-small">u-small — 0.85em</span><br />
+        <span class="u-large">u-large — 1.4em</span><br />
+        <span class="u-italic">u-italic — italic</span>
+      </p>
+
+    </div>
+  </div>
+
   <footer>
     <span class="wordmark">wonk.blog</span>
     <span class="copyright">style guide — you asked, i answered</span>
