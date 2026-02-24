@@ -7,75 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="wonk.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black: #080808;
-      --cream: #f0ead8;
-      --acid: #c6ff2f;
-      --rust: #d4542a;
-      --border: #222;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--cream);
-      font-family: 'Lora', Georgia, serif;
-      font-size: 17px;
-      line-height: 1.65;
-      cursor: crosshair;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.35;
-    }
-
-    .site-strip {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 2.5rem;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(8,8,8,0.92);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-    }
-
-    .site-strip .wordmark {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-      color: var(--acid);
-      text-decoration: none;
-    }
-
-    .site-strip nav { display: flex; gap: 2rem; }
-
-    .site-strip nav a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--cream);
-      text-decoration: none;
-      opacity: 0.5;
-      transition: opacity 0.2s;
-    }
-
-    .site-strip nav a:hover { opacity: 1; }
-
+    /* ---- hero ---- */
     .hero {
       min-height: 92vh;
       display: grid;
@@ -90,7 +24,7 @@
       position: absolute;
       bottom: -1.5rem;
       left: -1rem;
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 900;
       font-size: clamp(5rem, 14vw, 16rem);
       color: transparent;
@@ -107,29 +41,24 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 5rem 3rem 4rem 3rem;
+      padding: 5rem 3rem 4rem;
       border-right: 1px solid var(--border);
     }
 
     .hero-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       color: var(--acid);
       margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.1s ease forwards;
     }
 
     .hero-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 900;
       font-size: clamp(4rem, 8vw, 9rem);
       line-height: 0.92;
       letter-spacing: -0.04em;
-      color: var(--cream);
-      opacity: 0;
-      animation: fadeUp 0.9s 0.25s ease forwards;
     }
 
     .hero-title .accent { color: var(--acid); }
@@ -138,10 +67,7 @@
     .hero-sub {
       margin-top: 2.5rem;
       font-size: 1.05rem;
-      color: var(--cream);
-      opacity: 0;
       max-width: 38ch;
-      animation: fadeUp 0.9s 0.45s ease forwards;
     }
 
     .hero-sub em { font-style: italic; color: var(--acid); }
@@ -153,20 +79,17 @@
       flex-direction: column;
       justify-content: center;
       padding: 5rem 3rem;
-      opacity: 0;
-      animation: fadeIn 1.2s 0.6s ease forwards;
     }
 
     .manifesto {
-      font-family: 'Lora', serif;
+      font-family: var(--font-body);
       font-size: 1.25rem;
       line-height: 1.8;
-      color: var(--cream);
       opacity: 0.75;
       max-width: 50ch;
     }
 
-    .manifesto strong { font-weight: 600; color: var(--cream); }
+    .manifesto strong { font-weight: 600; }
 
     .hero-bottom {
       grid-column: 1;
@@ -177,90 +100,31 @@
       align-items: center;
       gap: 3rem;
       padding: 1.5rem 3rem;
-      opacity: 0;
-      animation: fadeIn 1s 0.9s ease forwards;
     }
 
-    .stat { display: flex; flex-direction: column; }
-
-    .stat-num {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--acid);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.08em;
-      opacity: 0.4;
-      margin-top: 0.3rem;
-    }
-
+    /* ---- topics grid ---- */
     .topics { display: grid; grid-template-columns: repeat(4, 1fr); }
-
-    .topic-card {
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .topic-card:last-child { border-right: none; }
-
-    .topic-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--acid);
-      transform: translateY(101%);
-      transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-      z-index: 0;
-    }
-
-    .topic-card:hover::before { transform: translateY(0); }
-    .topic-card:hover .topic-num,
-    .topic-card:hover .topic-title,
-    .topic-card:hover .topic-body { color: var(--black); }
+    .topics .flood-card:last-child { border-right: none; }
 
     .topic-num {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.62rem;
       letter-spacing: 0.1em;
       opacity: 0.35;
       margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
     }
 
     .topic-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 1.1rem;
       line-height: 1.2;
       margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
     }
 
-    .topic-body {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      opacity: 0.6;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
-    }
+    .topic-body { font-size: 0.88rem; line-height: 1.6; opacity: 0.6; }
 
+    /* ---- feature section ---- */
     .feature {
       display: grid;
       grid-template-columns: 3fr 2fr;
@@ -269,16 +133,8 @@
 
     .feature-main { padding: 5rem 4rem; border-right: 1px solid var(--border); }
 
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--acid);
-      margin-bottom: 2.5rem;
-    }
-
     .feature-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: clamp(1.8rem, 3.5vw, 3rem);
       line-height: 1.1;
@@ -289,55 +145,14 @@
     .feature-body { font-size: 1rem; line-height: 1.8; opacity: 0.7; max-width: 58ch; }
     .feature-body + .feature-body { margin-top: 1rem; }
 
-    .read-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      margin-top: 2.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--acid);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(198,255,47,0.3);
-      padding-bottom: 0.2rem;
-      transition: border-color 0.2s, gap 0.2s;
-    }
-
-    .read-link:hover { border-color: var(--acid); gap: 1.1rem; }
-
-    .feature-aside { padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: space-between; }
-
-    .aside-quote {
-      font-family: 'Lora', serif;
-      font-size: 1.4rem;
-      font-style: italic;
-      line-height: 1.6;
-      color: var(--cream);
-      border-left: 2px solid var(--rust);
-      padding-left: 1.5rem;
-    }
-
-    .aside-links { display: flex; flex-direction: column; margin-top: 3rem; }
-
-    .aside-link {
+    .feature-aside {
+      padding: 5rem 3rem;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      padding: 1.1rem 0;
-      border-top: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--cream);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
     }
 
-    .aside-link:hover { color: var(--acid); }
-    .aside-link .arrow { opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
-    .aside-link:hover .arrow { opacity: 1; transform: translateX(4px); }
-
+    /* ---- about section ---- */
     .about {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
@@ -352,22 +167,10 @@
       justify-content: flex-end;
     }
 
-    .about-rotated {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: 0.9rem;
-      letter-spacing: 0.15em;
-      color: var(--acid);
-      opacity: 0.25;
-    }
-
     .about-main { padding: 4rem; border-right: 1px solid var(--border); }
 
     .about-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 1.4rem;
       margin-bottom: 1.5rem;
@@ -378,73 +181,19 @@
 
     .about-right { padding: 4rem 3rem; display: flex; flex-direction: column; gap: 2rem; }
 
-    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.06em;
-      padding: 0.35rem 0.7rem;
-      border: 1px solid var(--border);
-      color: var(--cream);
-      opacity: 0.5;
-      transition: opacity 0.2s, border-color 0.2s, color 0.2s;
-    }
-
-    .tag:hover { opacity: 1; border-color: var(--acid); color: var(--acid); }
-
-    footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 3rem;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    footer .wordmark { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 0.85rem; color: var(--acid); }
-
-    footer .copyright { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; opacity: 0.3; }
-
-    footer .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-
-    footer .social-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      color: var(--cream);
-      opacity: 0.35;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    footer .social-links a:hover { opacity: 1; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
+    /* ---- responsive ---- */
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 4rem 2rem 2rem; }
       .hero-right { grid-column: 1; grid-row: 2; border-top: 1px solid var(--border); }
       .hero-bottom { grid-row: 3; border-right: none; }
-      .hero-left { padding: 4rem 2rem 2rem; }
       .topics { grid-template-columns: 1fr 1fr; }
-      .topic-card:nth-child(2) { border-right: none; }
+      .topics .flood-card:nth-child(2) { border-right: none; }
       .feature { grid-template-columns: 1fr; }
       .feature-aside { border-top: 1px solid var(--border); }
       .about { grid-template-columns: 1fr; }
       .about-label-col, .about-right { display: none; }
       .about-main { border-right: none; }
-      .site-strip nav { display: none; }
-      footer { flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1rem; }
-      footer .social-links { flex-direction: column; gap: 0.6rem; }
     }
   </style>
 </head>
@@ -464,19 +213,19 @@
     <div class="hero-label">wonk</div>
 
     <div class="hero-left">
-      <p class="hero-eyebrow">policy · elections · economics · clay shentrup</p>
-      <h1 class="hero-title">
+      <p class="hero-eyebrow anim-fade-up anim-delay-1">policy · elections · economics · clay shentrup</p>
+      <h1 class="hero-title anim-fade-up anim-delay-2">
         fixing<br />
         <span class="italic">broken</span><br />
         <span class="accent">systems.</span>
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub anim-fade-up anim-delay-3">
         evidence-based arguments for electoral reform, land value taxation, marketarian economics, and charter cities.
         <em>ideas that are obvious in hindsight and ignored in the present.</em>
       </p>
     </div>
 
-    <div class="hero-right">
+    <div class="hero-right anim-fade-in anim-delay-4">
       <p class="manifesto">
         most political disagreement is a <strong>category error</strong> — conflating
         empirical questions about mechanism efficiency with normative questions about
@@ -486,7 +235,7 @@
       </p>
     </div>
 
-    <div class="hero-bottom">
+    <div class="hero-bottom anim-fade-in anim-delay-5">
       <div class="stat">
         <span class="stat-num">64%</span>
         <span class="stat-label">fargo, n.d. — approval voting (c.e.s.)</span>
@@ -503,22 +252,22 @@
   </section>
 
   <section class="topics" id="topics">
-    <a class="topic-card" href="https://www.electionbyjury.org" target="_blank">
+    <a class="flood-card" href="https://www.electionbyjury.org" target="_blank">
       <p class="topic-num">01 / primary project</p>
       <h2 class="topic-title">election<br />by jury</h2>
       <p class="topic-body">randomly selected citizen juries replace lay voters — not politicians. candidates still compete; a compelled jury deliberates, questions them directly, and votes using score voting.</p>
     </a>
-    <a class="topic-card" href="#">
+    <a class="flood-card" href="#">
       <p class="topic-num">02 / electoral reform</p>
       <h2 class="topic-title">approval<br />voting</h2>
       <p class="topic-body">why plurality voting is a catastrophic mistake and how score-based methods measurably increase voter satisfaction. co-founded c.e.s. to advance this work.</p>
     </a>
-    <a class="topic-card" href="#">
+    <a class="flood-card" href="#">
       <p class="topic-num">03 / economics</p>
       <h2 class="topic-title">market&shy;arianism</h2>
       <p class="topic-body">separating mechanism efficiency from redistribution level. you can optimize the former without settling the ethics of the latter first.</p>
     </a>
-    <a class="topic-card" href="#">
+    <a class="flood-card" href="#">
       <p class="topic-num">04 / land &amp; tax</p>
       <h2 class="topic-title">land value<br />taxation</h2>
       <p class="topic-body">georgist l.v.t. captures unearned rent, eliminates deadweight loss, and can fund u.b.i. without punishing productivity. the economists all agree.</p>
@@ -535,26 +284,21 @@
     </div>
 
     <div class="feature-aside">
-      <blockquote class="aside-quote">
+      <blockquote class="pull-quote">
         "voter satisfaction efficiency doesn't care about your feelings about i.r.v. it's a number."
       </blockquote>
-
-      <div class="aside-links">
-        <a href="https://www.electionbyjury.org" target="_blank" class="aside-link">
-          <span>election by jury</span>
-          <span class="arrow">↗</span>
+      <div class="link-list">
+        <a href="https://www.electionbyjury.org" target="_blank" class="link-list-item">
+          <span>election by jury</span><span class="arrow">↗</span>
         </a>
-        <a href="https://scorevoting.net" target="_blank" class="aside-link">
-          <span>scorevoting.net</span>
-          <span class="arrow">↗</span>
+        <a href="https://scorevoting.net" target="_blank" class="link-list-item">
+          <span>scorevoting.net</span><span class="arrow">↗</span>
         </a>
-        <a href="https://electionscience.org" target="_blank" class="aside-link">
-          <span>center for election science</span>
-          <span class="arrow">↗</span>
+        <a href="https://electionscience.org" target="_blank" class="link-list-item">
+          <span>center for election science</span><span class="arrow">↗</span>
         </a>
-        <a href="https://github.com/clayshentrup" target="_blank" class="aside-link">
-          <span>github</span>
-          <span class="arrow">↗</span>
+        <a href="https://github.com/clayshentrup" target="_blank" class="link-list-item">
+          <span>github</span><span class="arrow">↗</span>
         </a>
       </div>
     </div>
@@ -562,19 +306,17 @@
 
   <section class="about" id="about">
     <div class="about-label-col">
-      <span class="about-rotated">about</span>
+      <span class="rotated-label">about</span>
     </div>
-
     <div class="about-main">
       <h3 class="about-title">clay shentrup</h3>
       <p class="about-body">
         software engineer, electoral reform advocate, policy obsessive.
         co-founded the center for election science (c.e.s.) around 2010–11, which ran successful approval voting ballot initiatives in fargo, n.d. (64%) and st. louis, m.o. (68%).<br /><br />
-        current main project: election by jury — a framework for replacing candidate elections with randomly selected citizen panels using score voting. pursuing h.o.a. implementations in portland as a starting point, alongside citizens' initiative review adoption in portland city government.<br /><br />
+        current main project: election by jury — a framework for replacing lay voters with randomly selected citizen panels using score voting. pursuing h.o.a. implementations in portland as a starting point, alongside citizens' initiative review adoption in portland city government.<br /><br />
         also writes about marketarian economics, georgist land taxation, charter cities, and the general project of fixing systems that are obviously broken.
       </p>
     </div>
-
     <div class="about-right">
       <div>
         <p class="section-label">— areas</p>
@@ -599,7 +341,7 @@
   <footer>
     <span class="wordmark">wonk.blog</span>
     <span class="copyright">clay shentrup — portland, o.r.</span>
-    <div class="social-links">
+    <div class="footer-links">
       <a href="https://www.electionbyjury.org" target="_blank">www.electionbyjury.org</a>
       <a href="https://scorevoting.net" target="_blank">scorevoting.net</a>
       <a href="theme.html">site theme</a>
