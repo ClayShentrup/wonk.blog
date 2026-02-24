@@ -3,1051 +3,301 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>wonk.blog — clay shentrup</title>
+  <title>wonk.blog — ok fine, here's the style guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <style>/*
- * wonk.css
- * semantic design tokens → base → layout → components → page: index → page: theme → responsive
- *
- * TO REBRAND: change the values in :root only. no HTML changes needed.
- */
-
-
-/* ========================================
-   TOKENS
-   ======================================== */
-
-:root {
-  /* brand palette — change these values to rebrand, nothing else needs to change */
-  --color-bg:            #1c1a17;
-  --color-surface:       #252219;
-  --color-surface-alpha: rgba(37, 34, 25, 0.6);
-  --color-border:        #2e2b25;
-  --color-text:          #f0ece3;
-  --color-text-muted:    rgba(240, 236, 227, 0.55);
-  --color-text-faint:    rgba(240, 236, 227, 0.28);
-  --color-accent:        #c49a3c;
-  --color-accent-bg:     rgba(196, 154, 60, 0.07);
-  --color-accent-border: rgba(196, 154, 60, 0.18);
-  --color-emphasis:      #8ab5c8;
-
-  /* typography */
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Lora', Georgia, serif;
-  --font-label:   'DM Sans', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
-
-  /* font-size scale */
-  --font-size-xs:   0.72em;
-  --font-size-sm:   0.85em;
-  --font-size-base: 1em;
-  --font-size-md:   1.1em;
-  --font-size-lg:   1.35em;
-  --font-size-xl:   1.5em;
-  --font-size-2xl:  2.4em;
-  --font-size-3xl:  3.5em;
-
-  /* font-weight scale */
-  --font-weight-light:    300;
-  --font-weight-normal:   400;
-  --font-weight-medium:   500;
-  --font-weight-semibold: 600;
-  --font-weight-bold:     700;
-
-  /* line-height */
-  --line-height-tight:  1.1;
-  --line-height-normal: 1.75;
-
-  /* letter-spacing */
-  --letter-spacing-tight:  -0.02em;
-  --letter-spacing-wide:    0.08em;
-  --letter-spacing-wider:   0.14em;
-
-  /* spacing (px) */
-  --space-xs:  8px;
-  --space-sm:  16px;
-  --space-md:  28px;
-  --space-lg:  40px;
-  --space-xl:  56px;
-  --space-2xl: 72px;
-  --space-3xl: 96px;
-
-  /* border widths */
-  --border-thin:    1px;
-  --border-medium:  2px;
-  --border-thick:   3px;
-  --border-thicker: 4px;
-
-  /* document layout */
-  --container-width:   740px;
-  --container-padding: 32px;
-}
-
-
-/* ========================================
-   BASE RESET
-   ======================================== */
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: var(--line-height-normal);
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.015) 2px, rgba(255,255,255,.015) 4px),
-    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.015) 2px, rgba(255,255,255,.015) 4px);
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.4;
-}
-
-::selection { background: var(--color-accent); color: var(--color-bg); }
-
-
-/* ========================================
-   DOCUMENT LAYOUT
-   ======================================== */
-
-.container {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
-  position: relative;
-  z-index: 2;
-}
-
-.doc-header {
-  border-bottom: var(--border-medium) solid var(--color-border);
-  padding: var(--space-3xl) var(--container-padding) var(--space-2xl);
-  position: relative;
-}
-
-.doc-header::after {
-  content: '';
-  position: absolute;
-  bottom: calc(-1 * var(--border-thicker));
-  left: 0;
-  width: 160px;
-  height: var(--border-thicker);
-  background: var(--color-accent);
-}
-
-.doc-header h1 {
-  font-family: var(--font-display);
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-light);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
-  color: var(--color-text);
-  margin-bottom: var(--space-md);
-}
-
-.doc-header .subtitle {
-  font-family: var(--font-body);
-  font-size: var(--font-size-lg);
-  color: var(--color-emphasis);
-  font-style: italic;
-  max-width: 600px;
-  font-weight: var(--font-weight-light);
-}
-
-.doc-section {
-  padding: var(--space-3xl) var(--container-padding);
-  border-bottom: var(--border-thin) solid var(--color-border);
-}
-
-.doc-section:last-of-type { border-bottom: none; }
-
-.doc-section h2 {
-  font-family: var(--font-display);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-light);
-  letter-spacing: var(--letter-spacing-tight);
-  color: var(--color-accent);
-  margin-bottom: var(--space-xl);
-}
-
-.doc-section h3 {
-  font-family: var(--font-display);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text);
-  margin: var(--space-xl) 0 var(--space-md);
-}
-
-.doc-section h4 {
-  font-family: var(--font-label);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-accent);
-  text-transform: lowercase;
-  margin-bottom: var(--space-sm);
-}
-
-.doc-section p           { margin-bottom: var(--space-md); font-size: var(--font-size-md); }
-.doc-section em          { font-style: italic; color: var(--color-emphasis); }
-.doc-section strong      { font-weight: var(--font-weight-semibold); color: var(--color-text); }
-.doc-section ul,
-.doc-section ol          { margin-left: 24px; }
-.doc-section li          { margin: var(--space-xs) 0; }
-
-.doc-section code {
-  font-family: var(--font-mono);
-  background: var(--color-accent-bg);
-  padding: 2px 7px;
-  border: var(--border-thin) solid var(--color-accent-border);
-  color: var(--color-accent);
-  font-size: 0.88em;
-}
-
-.doc-section a {
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: var(--border-thin) solid var(--color-accent-border);
-  transition: border-color 0.2s;
-}
-
-.doc-section a:hover { border-color: var(--color-accent); }
-
-.doc-footer {
-  padding: var(--space-2xl) var(--container-padding);
-  border-top: var(--border-thin) solid var(--color-border);
-}
-
-.doc-footer p { font-size: var(--font-size-sm); color: var(--color-text-muted); }
-.doc-footer a { font-family: var(--font-mono); font-size: var(--font-size-sm); color: var(--color-accent); text-decoration: none; border-bottom: var(--border-thin) solid var(--color-accent-border); }
-
-/* fork — two-column contrast box for opposing arguments */
-.fork {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--color-border);
-  border: var(--border-medium) solid var(--color-border);
-  margin: var(--space-xl) 0;
-}
-
-.fork-side           { background: var(--color-surface-alpha); padding: var(--space-lg); }
-
-.fork-side h4 {
-  font-family: var(--font-label);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-accent);
-  text-transform: lowercase;
-  margin-bottom: var(--space-sm);
-}
-
-.fork-side p         { font-size: 0.9rem; line-height: 1.75; color: var(--color-text-muted); margin-bottom: 0; }
-
-@media (max-width: 600px) { .fork { grid-template-columns: 1fr; } }
-
-
-/* ========================================
-   NAVIGATION
-   ======================================== */
-
-.site-strip {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2.5rem;
-  border-bottom: var(--border-thin) solid var(--color-border);
-  position: sticky;
-  top: 0;
-  background: rgba(28, 26, 23, 0.94);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-}
-
-.wordmark {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-semibold);
-  font-size: 1.1rem;
-  letter-spacing: 0.01em;
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: none;
-}
-
-.site-strip nav { display: flex; gap: 2rem; }
-
-.site-strip nav a,
-.nav-back {
-  font-family: var(--font-label);
-  font-size: 0.72rem;
-  font-weight: var(--font-weight-normal);
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-text-muted);
-  text-decoration: none;
-  border-bottom: none;
-  transition: color 0.2s;
-}
-
-.site-strip nav a:hover,
-.nav-back:hover { color: var(--color-text); }
-
-
-/* ========================================
-   TYPOGRAPHY HELPERS
-   ======================================== */
-
-.section-label {
-  font-family: var(--font-label);
-  font-size: 0.68rem;
-  font-weight: var(--font-weight-normal);
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-accent);
-  margin-bottom: 2rem;
-}
-
-.section-header {
-  display: flex;
-  align-items: baseline;
-  gap: 1.5rem;
-  padding: 2.5rem 3rem 2rem;
-  border-bottom: var(--border-thin) solid var(--color-border);
-}
-
-.section-header h2 {
-  font-family: var(--font-label);
-  font-weight: var(--font-weight-medium);
-  font-size: 0.72rem;
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-accent);
-  white-space: nowrap;
-  text-transform: lowercase;
-}
-
-.section-rule { flex: 1; height: 1px; background: var(--color-border); }
-
-.pull-quote {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-light);
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--color-text-muted);
-  border-left: var(--border-medium) solid var(--color-emphasis);
-  padding-left: 1.75rem;
-  margin: var(--space-lg) 0;
-}
-
-/* inline text helpers — purpose-named, survive rebrand */
-.text-accent   { color: var(--color-accent); }
-.text-emphasis { color: var(--color-emphasis); font-style: italic; }
-
-
-/* ========================================
-   FLOOD CARD
-   ======================================== */
-
-.flood-card {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  border-right: var(--border-thin) solid var(--color-border);
-  border-bottom: var(--border-thin) solid var(--color-border);
-  padding: 2.5rem;
-}
-
-.flood-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--color-accent);
-  transform: translateY(101%);
-  transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
-  z-index: 0;
-}
-
-.flood-card:hover::before { transform: translateY(0); }
-.flood-card > * { position: relative; z-index: 1; transition: color 0.3s; }
-.flood-card:hover > * { color: var(--color-bg); }
-
-
-/* ========================================
-   STATS
-   ======================================== */
-
-.stat { display: flex; flex-direction: column; }
-
-.stat-num {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-semibold);
-  font-size: 1.8rem;
-  color: var(--color-accent);
-  line-height: 1;
-  letter-spacing: -0.01em;
-}
-
-.stat-label {
-  font-family: var(--font-label);
-  font-size: 0.62rem;
-  font-weight: var(--font-weight-normal);
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-text-faint);
-  margin-top: 0.35rem;
-}
-
-
-/* ========================================
-   LINK LIST
-   ======================================== */
-
-.link-list { display: flex; flex-direction: column; }
-
-.link-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-top: var(--border-thin) solid var(--color-border);
-  border-bottom: none;
-  text-decoration: none;
-  color: var(--color-text-muted);
-  font-family: var(--font-label);
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
-  transition: color 0.2s;
-}
-
-.link-list-item:hover { color: var(--color-text); }
-.link-list-item .arrow { opacity: 0.4; transition: opacity 0.2s, transform 0.2s; }
-.link-list-item:hover .arrow { opacity: 1; transform: translateX(3px); }
-
-.read-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 2rem;
-  font-family: var(--font-label);
-  font-size: 0.78rem;
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: var(--border-thin) solid var(--color-accent-border);
-  padding-bottom: 0.2rem;
-  transition: gap 0.2s, border-color 0.2s;
-}
-
-.read-link:hover { gap: 1rem; border-color: var(--color-accent); }
-
-
-/* ========================================
-   TAGS
-   ======================================== */
-
-.tag-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
-
-.tag {
-  font-family: var(--font-label);
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  padding: 0.3rem 0.65rem;
-  border: var(--border-thin) solid var(--color-border);
-  color: var(--color-text-faint);
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.tag:hover { color: var(--color-text); border-color: var(--color-accent-border); }
-
-
-/* ========================================
-   ROTATED LABEL
-   ======================================== */
-
-.rotated-label {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-semibold);
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
-  color: var(--color-accent);
-  opacity: 0.2;
-}
-
-
-/* ========================================
-   BOXES
-   ======================================== */
-
-.box {
-  padding: var(--space-lg);
-  margin: var(--space-xl) 0;
-  background: var(--color-surface-alpha);
-  border: var(--border-medium) solid var(--color-border);
-}
-
-.box-highlight {
-  background: var(--color-accent-bg);
-  border-left: var(--border-thicker) solid var(--color-accent);
-  border-right: var(--border-thin) solid var(--color-border);
-  border-top: var(--border-thin) solid var(--color-border);
-  border-bottom: var(--border-thin) solid var(--color-border);
-  padding: var(--space-lg);
-  margin: var(--space-xl) 0;
-  font-size: var(--font-size-md);
-}
-
-
-
-.box-accent {
-  background: var(--color-surface-alpha);
-  padding: var(--space-lg);
-  margin: var(--space-md) 0;
-  border-left: var(--border-thick) solid var(--color-accent);
-  border-right: var(--border-thin) solid var(--color-border);
-  border-top: var(--border-thin) solid var(--color-border);
-  border-bottom: var(--border-thin) solid var(--color-border);
-  position: relative;
-}
-
-.box-accent::before {
-  content: '▪';
-  position: absolute;
-  left: -10px;
-  top: var(--space-lg);
-  font-size: 1.4em;
-  color: var(--color-accent);
-}
-
-.box-labeled {
-  background: var(--color-surface-alpha);
-  padding: var(--space-xl);
-  margin: var(--space-xl) 0;
-  border: var(--border-medium) solid var(--color-border);
-  position: relative;
-}
-
-.box-labeled[data-label]::before {
-  content: attr(data-label);
-  position: absolute;
-  top: -11px;
-  left: var(--container-padding);
-  background: var(--color-bg);
-  padding: 0 var(--space-sm);
-  font-family: var(--font-label);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wider);
-  text-transform: lowercase;
-  color: var(--color-accent);
-}
-
-
-/* ========================================
-   STEPS
-   ======================================== */
-
-.steps {
-  background: var(--color-surface-alpha);
-  border: var(--border-medium) solid var(--color-border);
-  padding: var(--space-xl);
-  margin: var(--space-xl) 0;
-}
-
-.step { margin: var(--space-md) 0; padding-left: 48px; position: relative; }
-
-.step::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  top: -2px;
-  font-size: 1.8em;
-  color: var(--color-accent);
-  font-weight: var(--font-weight-light);
-}
-
-.step strong {
-  display: block;
-  margin-bottom: 8px;
-  font-family: var(--font-label);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-accent);
-}
-
-.step ul { margin-top: var(--space-sm); }
-
-
-/* ========================================
-   TABLES
-   ======================================== */
-
-.wonk-table {
-  width: 100%;
-  margin: var(--space-xl) 0;
-  border-collapse: collapse;
-  background: var(--color-surface-alpha);
-  border: var(--border-medium) solid var(--color-border);
-}
-
-.wonk-table th,
-.wonk-table td { padding: 18px 20px; text-align: left; border-bottom: var(--border-thin) solid var(--color-border); }
-
-.wonk-table th {
-  background: var(--color-border);
-  color: var(--color-accent);
-  font-family: var(--font-label);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: lowercase;
-}
-
-.wonk-table tr:last-child td { border-bottom: none; }
-
-
-/* ========================================
-   UTILITIES
-   ======================================== */
-
-.u-label    { font-family: var(--font-label); font-size: var(--font-size-sm); }
-.u-mono     { font-family: var(--font-mono);  font-size: var(--font-size-sm); }
-.u-accent   { color: var(--color-accent); }
-.u-emphasis { color: var(--color-emphasis); font-style: italic; }
-.u-muted    { opacity: 0.6; }
-.u-faint    { opacity: 0.3; }
-.u-small    { font-size: var(--font-size-sm); }
-.u-large    { font-size: var(--font-size-lg); }
-.u-italic   { font-style: italic; }
-
-
-/* ========================================
-   FOOTER
-   ======================================== */
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 2.5rem;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  border-top: var(--border-thin) solid var(--color-border);
-}
-
-footer .wordmark { font-size: 0.95rem; }
-
-footer .copyright {
-  font-family: var(--font-label);
-  font-size: 0.65rem;
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-text-faint);
-}
-
-footer .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-
-footer .footer-links a {
-  font-family: var(--font-label);
-  font-size: 0.65rem;
-  letter-spacing: var(--letter-spacing-wide);
-  color: var(--color-text-faint);
-  text-decoration: none;
-  border-bottom: none;
-  transition: color 0.2s;
-}
-
-footer .footer-links a:hover { color: var(--color-text); }
-
-
-/* ========================================
-   PAGE: index.html
-   ======================================== */
-
-.hero {
-  min-height: 92vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto;
-  border-bottom: var(--border-thin) solid var(--color-border);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-label {
-  position: absolute;
-  bottom: -1.5rem;
-  left: -1rem;
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
-  font-size: clamp(5rem, 14vw, 16rem);
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(196, 154, 60, 0.05);
-  line-height: 1;
-  pointer-events: none;
-  white-space: nowrap;
-  user-select: none;
-}
-
-.hero-left {
-  grid-column: 1;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 5rem 3rem 4rem;
-  border-right: var(--border-thin) solid var(--color-border);
-}
-
-.hero-eyebrow {
-  font-family: var(--font-label);
-  font-size: 0.68rem;
-  font-weight: var(--font-weight-normal);
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-accent);
-  margin-bottom: 2rem;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-light);
-  font-size: clamp(3.5rem, 7vw, 8rem);
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-}
-
-.hero-title .text-accent   { color: var(--color-accent); font-style: normal; }
-.hero-title .text-emphasis { font-style: italic; font-weight: var(--font-weight-light); color: var(--color-emphasis); }
-
-.hero-sub { margin-top: 2rem; font-size: 1rem; max-width: 40ch; color: var(--color-text-muted); line-height: 1.8; }
-.hero-sub em { font-style: italic; color: var(--color-emphasis); }
-
-.hero-right {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5rem 3.5rem;
-}
-
-.manifesto { font-family: var(--font-body); font-size: 1.2rem; line-height: 1.85; color: var(--color-text-muted); max-width: 50ch; }
-.manifesto strong { font-weight: var(--font-weight-semibold); color: var(--color-text); }
-
-.hero-bottom {
-  grid-column: 1;
-  grid-row: 2;
-  border-top: var(--border-thin) solid var(--color-border);
-  border-right: var(--border-thin) solid var(--color-border);
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  padding: 1.5rem 3rem;
-  flex-wrap: wrap;
-}
-
-.topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-.topics .flood-card:last-child { border-right: none; }
-
-.topic-num   { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-faint); margin-bottom: 1.5rem; }
-.topic-title { font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: 1.35rem; line-height: 1.2; margin-bottom: 1rem; }
-.topic-body  { font-family: var(--font-body); font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted); }
-
-.feature { display: grid; grid-template-columns: 3fr 2fr; border-bottom: var(--border-thin) solid var(--color-border); }
-.feature-main  { padding: 4.5rem 4rem; border-right: var(--border-thin) solid var(--color-border); }
-.feature-aside { padding: 4.5rem 3rem; display: flex; flex-direction: column; justify-content: space-between; }
-
-.feature-title {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-light);
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.75rem;
-}
-
-.feature-body { font-size: 1rem; line-height: 1.85; color: var(--color-text-muted); max-width: 58ch; }
-.feature-body + .feature-body { margin-top: 1rem; }
-
-.about { display: grid; grid-template-columns: 1fr 2fr 1fr; border-bottom: var(--border-thin) solid var(--color-border); }
-
-.about-label-col { padding: 4rem 3rem; border-right: var(--border-thin) solid var(--color-border); display: flex; flex-direction: column; justify-content: flex-end; }
-.about-main      { padding: 4rem; border-right: var(--border-thin) solid var(--color-border); }
-.about-right     { padding: 4rem 3rem; display: flex; flex-direction: column; gap: 2rem; }
-
-.about-title { font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: 1.5rem; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
-.about-body  { font-size: 0.95rem; line-height: 1.9; color: var(--color-text-muted); max-width: 60ch; }
-
-
-/* ========================================
-   PAGE: theme.html
-   ======================================== */
-
-.intro { display: grid; grid-template-columns: 3fr 2fr; border-bottom: var(--border-thin) solid var(--color-border); min-height: 60vh; }
-.intro-left  { padding: 6rem 4rem; border-right: var(--border-thin) solid var(--color-border); display: flex; flex-direction: column; justify-content: flex-end; }
-.intro-right { padding: 6rem 3.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2rem; }
-
-.intro-kicker { font-family: var(--font-label); font-size: 0.68rem; letter-spacing: var(--letter-spacing-wider); color: var(--color-accent); margin-bottom: 2rem; }
-
-.intro-title { font-family: var(--font-display); font-weight: var(--font-weight-light); font-size: clamp(2.5rem, 5vw, 5.5rem); line-height: 1.05; letter-spacing: -0.03em; }
-.intro-title .text-accent   { color: var(--color-accent); }
-.intro-title .text-emphasis { color: var(--color-emphasis); font-style: italic; font-weight: var(--font-weight-light); }
-
-.intro-copy            { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.85; color: var(--color-text-muted); }
-.intro-copy em         { font-style: italic; color: var(--color-emphasis); }
-.intro-copy strong     { font-weight: var(--font-weight-semibold); color: var(--color-text); }
-.intro-disclaimer      { font-family: var(--font-label); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--color-text-faint); line-height: 1.7; border-top: var(--border-thin) solid var(--color-border); padding-top: 1.5rem; }
-
-.color-grid                    { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: var(--border-thin) solid var(--color-border); }
-.color-swatch                  { border-right: var(--border-thin) solid var(--color-border); overflow: hidden; }
-.color-swatch:last-child       { border-right: none; }
-.swatch-block                  { height: 200px; display: flex; align-items: flex-end; padding: 1.25rem; }
-.swatch-hex                    { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.75); }
-.swatch-info                   { padding: 1.75rem 1.5rem 2.25rem; border-top: var(--border-thin) solid var(--color-border); }
-.swatch-name                   { font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: 0.9rem; margin-bottom: 0.5rem; }
-.swatch-role                   { font-family: var(--font-label); font-size: 0.6rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-accent); margin-bottom: 0.85rem; }
-.swatch-story                  { font-size: 0.85rem; line-height: 1.65; color: var(--color-text-muted); }
-.swatch-story em               { font-style: italic; }
-
-.font-section                  { border-bottom: var(--border-thin) solid var(--color-border); }
-.font-block                    { display: grid; grid-template-columns: 1fr 2fr; border-bottom: var(--border-thin) solid var(--color-border); }
-.font-block:last-child         { border-bottom: none; }
-.font-meta                     { padding: 4rem 3rem; border-right: var(--border-thin) solid var(--color-border); display: flex; flex-direction: column; justify-content: space-between; }
-.font-name                     { font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: 1rem; margin-bottom: 0.4rem; }
-.font-classif                  { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-accent); margin-bottom: 1.25rem; }
-.font-story                    { font-size: 0.88rem; line-height: 1.7; color: var(--color-text-muted); }
-.font-story em                 { font-style: italic; }
-.font-used-for                 { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--color-text-faint); margin-top: 1.75rem; line-height: 1.7; }
-.font-specimen                 { padding: 4rem 3.5rem; display: flex; flex-direction: column; justify-content: center; gap: 2rem; }
-
-.specimen-display-hero         { font-family: var(--font-display); font-weight: var(--font-weight-light); font-size: clamp(2.5rem, 5vw, 5rem); line-height: 1.05; letter-spacing: -0.03em; }
-.specimen-display-light        { font-family: var(--font-display); font-weight: var(--font-weight-light); font-size: 1.7rem; font-style: italic; opacity: 0.55; }
-.specimen-body                 { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.85; color: var(--color-text-muted); max-width: 52ch; }
-.specimen-body-italic          { font-family: var(--font-body); font-size: 1.3rem; font-style: italic; color: var(--color-text-muted); line-height: 1.6; max-width: 44ch; }
-.specimen-label                { font-family: var(--font-label); font-size: 0.8rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); line-height: 1.8; }
-.specimen-label-sm             { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--letter-spacing-wider); color: var(--color-text-faint); }
-.specimen-mono                 { font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.06em; color: var(--color-text-muted); line-height: 1.8; }
-.specimen-mono-sm              { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: var(--letter-spacing-wider); color: var(--color-text-faint); }
-
-.principles                    { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: var(--border-thin) solid var(--color-border); }
-.principles .flood-card:last-child { border-right: none; }
-.p-num                         { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-faint); margin-bottom: 1.25rem; }
-.p-title                       { font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: 1.1rem; line-height: 1.25; margin-bottom: 0.75rem; }
-.p-body                        { font-size: 0.88rem; line-height: 1.65; color: var(--color-text-muted); }
-.p-body em                     { font-style: italic; }
-
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-
-@media (max-width: 900px) {
-  .site-strip nav { display: none; }
-  .section-header { padding: 2rem 1.5rem 1.5rem; }
-
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 4rem 2rem 2rem; border-right: none; }
-  .hero-right { grid-column: 1; grid-row: 2; border-top: var(--border-thin) solid var(--color-border); padding: 3rem 2rem; }
-  .hero-bottom { grid-row: 3; border-right: none; }
-  .feature { grid-template-columns: 1fr; }
-  .feature-aside { border-top: var(--border-thin) solid var(--color-border); }
-  .about { grid-template-columns: 1fr; }
-  .about-label-col, .about-right { display: none; }
-  .about-main { border-right: none; }
-
-  .intro { grid-template-columns: 1fr; }
-  .intro-left { padding: 4rem 2rem 2rem; border-right: none; }
-  .intro-right { border-top: var(--border-thin) solid var(--color-border); padding: 3rem 2rem; }
-  .color-grid { grid-template-columns: 1fr 1fr; }
-  .color-swatch:nth-child(2n) { border-right: none; }
-  .color-swatch:nth-child(5)  { border-right: none; }
-  .font-block { grid-template-columns: 1fr; }
-  .font-meta  { border-right: none; border-bottom: var(--border-thin) solid var(--color-border); }
-  .principles { grid-template-columns: 1fr; }
-  .principles .flood-card { border-right: none; }
-
-  footer { flex-direction: column; align-items: flex-start; padding: 2rem; gap: 0.75rem; }
-  footer .footer-links { flex-direction: column; gap: 0.5rem; }
-
-  :root { --container-padding: 20px; }
-  .doc-section { padding: var(--space-2xl) 20px; }
-  .box, .box-labeled { padding: var(--space-md); }
-}
-</style>
+  <link rel="stylesheet" href="wonk.css" />
 </head>
 <body>
 
   <header class="site-strip">
     <a href="/" class="wordmark">wonk.blog</a>
-    <nav>
-      <a href="#topics">topics</a>
-      <a href="#about">about</a>
-      <a href="https://www.electionbyjury.org" target="_blank">www.electionbyjury.org</a>
-      <a href="https://scorevoting.net" target="_blank">scorevoting.net</a>
-    </nav>
+    <a href="/" class="nav-back">← back to the actual site</a>
   </header>
 
-  <section class="hero">
-    <div class="hero-label">wonk</div>
-
-    <div class="hero-left">
-      <p class="hero-eyebrow">policy · elections · economics · clay shentrup</p>
-      <h1 class="hero-title">
-        fixing<br />
-        <span class="text-emphasis">broken</span><br />
-        <span class="text-accent">systems.</span>
+  <section class="intro">
+    <div class="intro-left">
+      <p class="intro-kicker">style guide — because you asked</p>
+      <h1 class="intro-title">
+        ok fine,<br />
+        it <span class="text-emphasis">is</span><br />
+        pretty<br />
+        <span class="text-accent">good.</span>
       </h1>
-      <p class="hero-sub">
-        evidence-based arguments for electoral reform, land value taxation, marketarian economics, and charter cities.
-        <em>ideas that are obvious in hindsight and ignored in the present.</em>
-      </p>
     </div>
-
-    <div class="hero-right">
-      <p class="manifesto">
-        most political disagreement is a <strong>category error</strong> — conflating
-        empirical questions about mechanism efficiency with normative questions about
-        redistribution. separate those two things and most of the fighting disappears.<br /><br />
-        the rest is just <strong>fixing the voting system</strong> so the people in charge
-        aren't chosen by a broken algorithm.
+    <div class="intro-right">
+      <p class="intro-copy">
+        so you liked the design of wonk.blog and you want to know how it was made.
+        flattering. genuinely. <em>here you go.</em><br /><br />
+        every color, every font, every decision is documented below with a completely
+        real but also kind of unhinged backstory. because good design
+        has a <strong>reason</strong>, even when the reason is "it just felt right and
+        i needed to justify it after the fact."
       </p>
-    </div>
-
-    <div class="hero-bottom">
-      <div class="stat">
-        <span class="stat-num">64%</span>
-        <span class="stat-label">fargo, n.d. — approval voting (c.e.s.)</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">68%</span>
-        <span class="stat-label">st. louis, m.o. — approval voting (c.e.s.)</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">~20yr</span>
-        <span class="stat-label">electoral reform</span>
-      </div>
+      <p class="intro-disclaimer">
+        note: no a.i. was consulted on the aesthetic opinions expressed herein.<br />
+        any resemblance to actual graphic design school curriculum is coincidental.<br />
+        please don't start a substack about this.
+      </p>
     </div>
   </section>
 
-  <section class="topics" id="topics">
-    <a class="flood-card" href="https://www.electionbyjury.org" target="_blank">
-      <p class="topic-num">01 / primary project</p>
-      <h2 class="topic-title">election<br />by jury</h2>
-      <p class="topic-body">randomly selected citizen juries replace lay voters — not politicians. candidates still compete; a compelled jury deliberates, questions them directly, and votes using score voting.</p>
-    </a>
-    <a class="flood-card" href="#">
-      <p class="topic-num">02 / electoral reform</p>
-      <h2 class="topic-title">approval<br />voting</h2>
-      <p class="topic-body">why plurality voting is a catastrophic mistake and how score-based methods measurably increase voter satisfaction. co-founded c.e.s. to advance this work.</p>
-    </a>
-    <a class="flood-card" href="#">
-      <p class="topic-num">03 / economics</p>
-      <h2 class="topic-title">market&shy;arianism</h2>
-      <p class="topic-body">separating mechanism efficiency from redistribution level. you can optimize the former without settling the ethics of the latter first.</p>
-    </a>
-    <a class="flood-card" href="/lvt/">
-      <p class="topic-num">04 / land &amp; tax</p>
-      <h2 class="topic-title">land value<br />taxation</h2>
-      <p class="topic-body">georgist l.v.t. captures unearned rent, eliminates deadweight loss, and can fund u.b.i. without punishing productivity. the economists all agree.</p>
-    </a>
-    <a class="flood-card" href="/ethics/">
-      <p class="topic-num">05 / philosophy</p>
-      <h2 class="topic-title">what is<br />ethics?</h2>
-      <p class="topic-body">preference sovereignty, instrumental convergence, and the biological foundations of morality. a unified account of what ethics actually is and where it comes from.</p>
-    </a>
-  </section>
+  <div class="section-header">
+    <h2>the colors</h2>
+    <div class="section-rule"></div>
+  </div>
 
-  <section class="feature" id="writing">
-    <div class="feature-main">
-      <p class="section-label">— featured project</p>
-      <h2 class="feature-title">election by jury: democracy without lay voters</h2>
-      <p class="feature-body">candidates still exist. what's replaced is the mass of uninformed lay voters casting ballots with minimal information, under the influence of money and a.i.-powered disinformation. instead, a randomly selected citizen jury — compelled to serve the way trial jurors are — spends weeks deliberating, questioning candidates directly, and voting using score voting.</p>
-      <p class="feature-body">the result is a system with near-perfect demographic alignment, structured resistance to money and manipulation, and decision quality that mass elections simply can't match. starting at the h.o.a. scale, because that's where you can actually implement something today.</p>
-      <a href="https://www.electionbyjury.org" target="_blank" class="read-link">www.electionbyjury.org →</a>
-    </div>
-
-    <div class="feature-aside">
-      <blockquote class="pull-quote">
-        "voter satisfaction efficiency doesn't care about your feelings about i.r.v. it's a number."
-      </blockquote>
-      <div class="link-list">
-        <a href="https://www.electionbyjury.org" target="_blank" class="link-list-item">
-          <span>election by jury</span><span class="arrow">↗</span>
-        </a>
-        <a href="https://scorevoting.net" target="_blank" class="link-list-item">
-          <span>scorevoting.net</span><span class="arrow">↗</span>
-        </a>
-        <a href="https://electionscience.org" target="_blank" class="link-list-item">
-          <span>center for election science</span><span class="arrow">↗</span>
-        </a>
-        <a href="https://github.com/clayshentrup" target="_blank" class="link-list-item">
-          <span>github</span><span class="arrow">↗</span>
-        </a>
-        <a href="/ethics/" class="link-list-item">
-          <span>what is ethics?</span><span class="arrow">→</span>
-        </a>
+  <div class="color-grid">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#1c1a17;">
+        <span class="swatch-hex">#1c1a17</span>
+      </div>
+      <div class="swatch-info">
+        <p class="swatch-name">background</p>
+        <p class="swatch-role">--color-bg / canvas</p>
+        <p class="swatch-story">not #000000. not even #080808 anymore. this is the warmest near-black you can get away with — the color of a cinema at 2 a.m. with the house lights barely on. screens are cold. this one isn't. <em>it is doing a lot of work quietly.</em></p>
       </div>
     </div>
-  </section>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#f0ece3;">
+        <span class="swatch-hex" style="color:#1c1a17;">#f0ece3</span>
+      </div>
+      <div class="swatch-info">
+        <p class="swatch-name">text</p>
+        <p class="swatch-role">--color-text / primary foreground</p>
+        <p class="swatch-story">old vellum. the color of the page in a 16th-century venetian printing house. people spreading ideas that got them in trouble. <em>we are continuing that tradition.</em> white text on dark backgrounds gives people headaches. this doesn't.</p>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#c49a3c;">
+        <span class="swatch-hex" style="color:#1c1a17;">#c49a3c</span>
+      </div>
+      <div class="swatch-info">
+        <p class="swatch-name">accent</p>
+        <p class="swatch-role">--color-accent / emphasis / "look here"</p>
+        <p class="swatch-story">amber. old gold. the color of lamplight on a manuscript page. it says "here is the important thing" without shouting it. <em>it is the color of the argument that has been tested and survived.</em> not flashy. patient.</p>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#8ab5c8;">
+        <span class="swatch-hex" style="color:#1c1a17;">#8ab5c8</span>
+      </div>
+      <div class="swatch-info">
+        <p class="swatch-name">emphasis</p>
+        <p class="swatch-role">--color-emphasis / secondary / cool contrast</p>
+        <p class="swatch-story">cyan-blue slate. the color of the sky over the north sea at noon, or ink on old blueprint paper. where amber is warm and patient, this is cool and precise — the color of the argument that has been checked against the data. <em>keeps the palette honest.</em></p>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#2e2b25;">
+        <span class="swatch-hex">#2e2b25</span>
+      </div>
+      <div class="swatch-info">
+        <p class="swatch-name">border</p>
+        <p class="swatch-role">--color-border / structure</p>
+        <p class="swatch-story">a good suit has contrast stitching you only notice on close inspection. that's this. it divides space and suggests hierarchy without demanding attention. <em>the unsung hero of the whole palette.</em></p>
+      </div>
+    </div>
+  </div>
 
-  <section class="about" id="about">
-    <div class="about-label-col">
-      <span class="rotated-label">about</span>
-    </div>
-    <div class="about-main">
-      <h3 class="about-title">clay shentrup</h3>
-      <p class="about-body">
-        software engineer, electoral reform advocate, policy obsessive.
-        co-founded the center for election science (c.e.s.) around 2010–11, which ran successful approval voting ballot initiatives in fargo, n.d. (64%) and st. louis, m.o. (68%).<br /><br />
-        current main project: election by jury — a framework for replacing lay voters with randomly selected citizen panels using score voting. pursuing h.o.a. implementations in portland as a starting point, alongside citizens' initiative review adoption in portland city government.<br /><br />
-        also writes about marketarian economics, georgist land taxation, charter cities, and the general project of fixing systems that are obviously broken.
-      </p>
-    </div>
-    <div class="about-right">
-      <div>
-        <p class="section-label">— areas</p>
-        <div class="tag-cloud">
-          <span class="tag">election by jury</span>
-          <span class="tag">approval voting</span>
-          <span class="tag">score voting</span>
-          <span class="tag">v.s.e.</span>
-          <span class="tag">c.e.s.</span>
-          <span class="tag">l.v.t.</span>
-          <span class="tag">u.b.i.</span>
-          <span class="tag">marketarianism</span>
-          <span class="tag">charter cities</span>
-          <span class="tag">citizens' assembly</span>
-          <span class="tag">georgism</span>
-          <span class="tag">social choice theory</span>
+  <div class="section-header">
+    <h2>the fonts</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="font-section">
+    <div class="font-block">
+      <div class="font-meta">
+        <div>
+          <p class="font-name">cormorant garamond</p>
+          <p class="font-classif">display serif / headings</p>
+          <p class="font-story">a revival of claude garamond's 16th-century french typefaces, redrawn by christian thalmann for screens. it has the narrow elegance of old-style serifs but with optical weights designed for modern display sizes. at 300 weight it is almost calligraphic.<br /><br /><em>the font that says "i have thought carefully about this for a long time and i am ready to explain it."</em> which is exactly the register we want.</p>
+          <p class="font-used-for">used for: wordmark · headings · topic cards · pull quotes<br />weights: 300 light · 400 regular · 600 semibold · italics of each</p>
         </div>
       </div>
+      <div class="font-specimen">
+        <div class="specimen-display-hero">fixing<br />broken<br />systems.</div>
+        <div class="specimen-display-light">the light italic is for when you want to be emphatic but also a little wistful about it</div>
+      </div>
     </div>
-  </section>
+
+    <div class="font-block">
+      <div class="font-meta">
+        <div>
+          <p class="font-name">lora</p>
+          <p class="font-classif">contemporary serif / body text</p>
+          <p class="font-story">designed by olga karpushina, lora was built specifically for reading on screens — not scanned from metal type, but drawn from scratch with pixel grids in mind. it has calligraphic roots but optimized for a medium that didn't exist when serifs were invented.<br /><br /><em>the long arc of typographic history bending toward legibility.</em> also the italic is extremely beautiful.</p>
+          <p class="font-used-for">used for: body copy · manifesto text · blockquotes<br />weights: 400 regular · 400 italic · 600 semibold</p>
+        </div>
+      </div>
+      <div class="font-specimen">
+        <p class="specimen-body">most political disagreement is a category error — conflating empirical questions about mechanism efficiency with normative questions about redistribution. separate those two things and most of the fighting disappears.</p>
+        <p class="specimen-body-italic">"voter satisfaction efficiency doesn't care about your feelings about i.r.v. it's a number."</p>
+      </div>
+    </div>
+
+    <div class="font-block">
+      <div class="font-meta">
+        <div>
+          <p class="font-name">dm sans</p>
+          <p class="font-classif">geometric sans-serif / labels &amp; ui</p>
+          <p class="font-story">designed by colophon foundry for google fonts. clean, slightly humanist geometry — readable at small sizes where a serif would collapse. it plays the supporting role: nav links, section labels, stat annotations, tags.<br /><br /><em>the font that says "here is the metadata about the thing." not the thing itself.</em></p>
+          <p class="font-used-for">used for: nav · eyebrows · labels · tags · stat labels<br />weights: 300 light · 400 regular · 500 medium</p>
+        </div>
+      </div>
+      <div class="font-specimen">
+        <p class="specimen-label">section label treatment</p>
+        <p class="specimen-label-sm">— featured argument</p>
+        <br />
+        <p class="specimen-label">stat label treatment</p>
+        <p class="specimen-label-sm">64% · fargo, n.d. — approval voting (c.e.s.)</p>
+        <br />
+        <p class="specimen-label">nav link treatment</p>
+        <p class="specimen-label-sm" style="letter-spacing:0.12em;">topics · about · electionbyjury.org</p>
+      </div>
+    </div>
+
+    <div class="font-block">
+      <div class="font-meta">
+        <div>
+          <p class="font-name">jetbrains mono</p>
+          <p class="font-classif">monospace / code &amp; data</p>
+          <p class="font-story">literally made by the company that makes i.d.e.s. designed after jetbrains analyzed how developers actually read code — ligatures, increased x-height, reduced eye strain at 2 a.m. debugging something stupid.<br /><br /><em>on this site: the voice of the data.</em> the font that says "i measured this and here is the number." inline code, footnotes, hex values.</p>
+          <p class="font-used-for">used for: inline code · hex values · doc metadata<br />weights: 400 regular · 700 bold</p>
+        </div>
+      </div>
+      <div class="font-specimen">
+        <p class="specimen-mono">--color-accent: #c49a3c;</p>
+        <p class="specimen-mono">--font-display: 'Cormorant Garamond';</p>
+        <br />
+        <p class="specimen-mono-sm">voter satisfaction efficiency · n = 10,000 simulations</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2>the principles</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="principles">
+    <div class="flood-card">
+      <p class="p-num">01</p>
+      <h3 class="p-title">everything lowercase</h3>
+      <p class="p-body">capitalization is a power move. it implies some words matter more based on position rather than content. <em>we disagree with this ontologically.</em> initialisms get periods because i.r.v. looks more human than IRV and we are, allegedly, humans.</p>
+    </div>
+    <div class="flood-card">
+      <p class="p-num">02</p>
+      <h3 class="p-title">grid as argument</h3>
+      <p class="p-body">the hard-edged grid isn't just aesthetic — it's the visual equivalent of logical structure. borders don't blur. columns don't drift. everything is where it says it is. <em>this is what policy arguments should look like too</em>, but that's a longer essay.</p>
+    </div>
+    <div class="flood-card">
+      <p class="p-num">03</p>
+      <h3 class="p-title">warmth over flash</h3>
+      <p class="p-body">the warm near-black, the amber accent, the vellum text — these prevent the page from feeling like a u.i. kit. screens are cold. ideas are warm. <em>the design's job is not to get in the way of the argument</em>, and cold high-contrast aesthetics absolutely do.</p>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2>document components</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="doc-section">
+    <div class="container">
+      <p class="section-label">— used on essay / article pages</p>
+      <p class="u-mono u-muted">wrap content in <code>.container</code> for max-width centred layout. the four box types handle different rhetorical weights.</p>
+
+      <h4>boxes</h4>
+
+      <div class="box">
+        <p class="u-mono u-muted u-small">.box</p>
+        generic inset panel. for f.a.q. answers, supplementary content, anything that needs to breathe separately from the main prose without screaming at you.
+      </div>
+
+      <div class="box-highlight">
+        <p class="section-label">.box-highlight</p>
+        the important thing you'd bold in a textbook. accent-coloured left border, faint accent-wash background. use for conclusions, key assertions, the thing the reader should remember if they skim.
+      </div>
+
+      <div class="box-accent">
+        <h4>perfect investment incentives</h4>
+        <p class="u-muted u-small">.box-accent — for a cluster of related points. the ▪ marker is a css pseudo-element. pairs well with an h4 inside.</p>
+      </div>
+
+      <div class="box-labeled" data-label="example">
+        <p class="u-mono u-muted u-small">.box-labeled</p>
+        floating label rendered from the <code>data-label</code> attribute via css <code>content: attr(data-label)</code>. no extra markup needed.
+      </div>
+
+      <h4>steps</h4>
+
+      <div class="steps">
+        <div class="step">
+          <strong>first thing</strong>
+          <p class="u-muted u-small">.steps + .step. the → is a pure css pseudo-element. use for sequential processes where order matters.</p>
+        </div>
+        <div class="step">
+          <strong>second thing</strong>
+          <p class="u-muted u-small">nest a ul inside for sub-items.</p>
+        </div>
+        <div class="step">
+          <strong>third thing</strong>
+          <ul class="u-muted u-small">
+            <li>sub-item one</li>
+            <li>sub-item two</li>
+          </ul>
+        </div>
+      </div>
+
+      <h4>tables</h4>
+
+      <table class="wonk-table">
+        <thead>
+          <tr>
+            <th>component</th>
+            <th>class</th>
+            <th>rhetorical weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>generic panel</td><td><code>.box</code></td><td>low — supplementary</td></tr>
+          <tr><td>callout</td><td><code>.box-highlight</code></td><td>high — conclusion / key claim</td></tr>
+          <tr><td>feature entry</td><td><code>.box-accent</code></td><td>medium — one point in a set</td></tr>
+          <tr><td>worked example</td><td><code>.box-labeled</code></td><td>medium — named instance</td></tr>
+          <tr><td>process</td><td><code>.steps / .step</code></td><td>sequential — ordered argument</td></tr>
+        </tbody>
+      </table>
+
+      <h4>utilities</h4>
+
+      <p>
+        <span class="u-mono">u-mono — jetbrains mono at 0.85em</span><br />
+        <span class="u-accent">u-accent — accent color text</span><br />
+        <span class="u-emphasis">u-emphasis — emphasis color, italic</span><br />
+        <span class="u-muted">u-muted — 60% opacity</span><br />
+        <span class="u-small">u-small — 0.85em</span><br />
+        <span class="u-large">u-large — 1.35em</span><br />
+        <span class="u-italic">u-italic — italic</span>
+      </p>
+
+      <h4>inline spans (for headings &amp; titles)</h4>
+
+      <p>
+        use <code>.text-accent</code> and <code>.text-emphasis</code> for colored words in display headings.
+        these are purpose-named — if the brand palette changes, only the css <code>:root</code> values change.
+        no html edits needed.
+      </p>
+
+    </div>
+  </div>
 
   <footer>
     <span class="wordmark">wonk.blog</span>
-    <span class="copyright">clay shentrup — portland, o.r.</span>
+    <span class="copyright">style guide — you asked, i answered</span>
     <div class="footer-links">
-      <a href="https://www.electionbyjury.org" target="_blank">www.electionbyjury.org</a>
-      <a href="https://scorevoting.net" target="_blank">scorevoting.net</a>
-      <a href="theme.html">site theme</a>
+      <a href="/">← back to the actual ideas</a>
     </div>
   </footer>
 
