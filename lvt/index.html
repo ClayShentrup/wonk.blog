@@ -21,7 +21,7 @@
             
             <p>so why hasn't it been implemented at scale?</p>
             
-            <div class="highlight-box">
+            <div class="box-highlight">
                 <strong>the assessment problem</strong>
                 bureaucrats can't separate land value from improvements. it's expensive, imprecise, politically contentious. every assessment leads to disputes and litigation.
             </div>
@@ -67,7 +67,7 @@
                 </div>
             </div>
 
-            <div class="example">
+            <div class="box-labeled" data-label="example">
                 <p><strong>alice:</strong> land $1.0m, improvements $1.3m → total $2.3m <em>(wins)</em></p>
                 <p><strong>bob:</strong> land $1.5m, improvements $0.7m → total $2.2m</p>
                 <p><strong>charlie:</strong> land $0.9m, improvements $1.0m → total $1.9m</p>
@@ -86,27 +86,27 @@
         <div class="container">
             <h2>why this works</h2>
 
-            <div class="benefit">
+            <div class="box-accent">
                 <h4>perfect investment incentives</h4>
                 <p>when you improve property (add $150k value), competitive bidding raises the second-highest total. you capture that value when selling. the land tax acts as a lump sum that doesn't affect marginal returns — same investment incentives as fee simple ownership.</p>
             </div>
 
-            <div class="benefit">
+            <div class="box-accent">
                 <h4>government captures market land value</h4>
                 <p>government receives second-highest land bid — true market valuation revealed through competitive bidding. when subway gets built nearby and land values rise $1m, government's share rises by $1m. land appreciation flows to public, not private owners.</p>
             </div>
 
-            <div class="benefit">
+            <div class="box-accent">
                 <h4>no bureaucratic assessment</h4>
                 <p>competitive bidding reveals both land and improvement values directly. no assessors, no appeals, no valuation disputes. the market discovers prices through auction mechanism.</p>
             </div>
 
-            <div class="benefit">
+            <div class="box-accent">
                 <h4>honest bidding enforced by game theory</h4>
                 <p>vickrey second-price makes truthful total bidding optimal. the bare land auction fallback creates incentive for honest component bidding — you might win just the land, and your stated land value matters for that contingency.</p>
             </div>
 
-            <div class="benefit">
+            <div class="box-accent">
                 <h4>solves the 145-year assessment problem</h4>
                 <p>since henry george in 1879, l.v.t. couldn't be implemented because bureaucrats can't separate land from improvements. this mechanism solves it through market competition rather than bureaucratic estimation.</p>
             </div>
@@ -166,33 +166,33 @@
         <div class="container">
             <h2>frequently asked questions</h2>
 
-            <div class="faq">
+            <div class="box">
                 <h3>what if i build a house and a developer tears it down?</h3>
                 <p>developer bids: land $2m, improvements $0, total $2m. you get improvement payment based on remainder after government takes land value. this teardown risk is identical to fee simple — if market shifts to higher-value use, you lose your improvement investment. the mechanism doesn't eliminate risk, it replicates fee simple risk while redirecting land appreciation to public revenue.</p>
             </div>
 
-            <div class="faq">
+            <div class="box">
                 <h3>why would i bid my components honestly?</h3>
                 <p><strong>total bidding:</strong> standard vickrey logic — you pay second-price regardless, so truthful bidding is optimal.</p>
                 <p><strong>component bidding:</strong> if you don't win total property and incumbent refuses other offers, bare land goes to auction. you might win that bare land auction. your stated land value determines your payment there. vickrey logic applies — honest land bidding is optimal for that contingency.</p>
             </div>
 
-            <div class="faq">
+            <div class="box">
                 <h3>how often would bidding occur?</h3>
                 <p>continuous bidding (monthly or quarterly rounds). if you're outbid, you get 30 days notice to find another property or recruit a competing bidder. system uses 30-year treasury rate to convert between monthly rent (flow) and present value (stock).</p>
             </div>
 
-            <div class="faq">
+            <div class="box">
                 <h3>what prevents collusion or gaming?</h3>
                 <p>vickrey auctions are strategy-proof — truthful bidding is dominant strategy regardless of what others do. the bare land fallback creates mutually assured destruction dynamics: incumbent can recruit competing bidders if winner lowballs. both parties prefer honest dealing.</p>
             </div>
 
-            <div class="faq">
+            <div class="box">
                 <h3>how much revenue would this generate?</h3>
                 <p>gaffney (2009) estimates u.s. land value at $23 trillion. at 5% annual return: $1.15 trillion/year. that's 6% of g.d.p. — enough to fund substantial u.b.i., replace distortionary taxes, or invest in infrastructure.</p>
             </div>
 
-            <div class="faq">
+            <div class="box">
                 <h3>how is this different from harberger taxation?</h3>
                 <p>harberger: self-assess total property value, pay percentage tax (bureaucrat-chosen rate), anyone force-purchases at your stated price. problems: taxes improvements, requires choosing tax rate.</p>
                 <p>our mechanism: bid components separately, pay second-price, only market-determined values (plus treasury rate for technical conversion). explicitly separates land from improvements.</p>
@@ -210,7 +210,7 @@
 
             <p>the tools are simple: vickrey auctions (1961), mutually assured destruction dynamics, and present value calculations (econ 101). nothing exotic. just careful thinking about incentives and efficiency.</p>
 
-            <div class="highlight-box">
+            <div class="box-highlight">
                 <strong>the result</strong>
                 pure georgist l.v.t. with no bureaucratic assessment. government captures market land value. investment incentives preserved. best of both worlds.
             </div>
