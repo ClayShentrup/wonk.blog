@@ -398,13 +398,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 2rem 3rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
     footer .wordmark { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 0.85rem; color: var(--acid); }
 
     footer .copyright { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; opacity: 0.3; }
 
-    footer .social-links { display: flex; gap: 1.5rem; }
+    footer .social-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 
     footer .social-links a {
       font-family: 'JetBrains Mono', monospace;
@@ -441,6 +443,8 @@
       .about-label-col, .about-right { display: none; }
       .about-main { border-right: none; }
       .site-strip nav { display: none; }
+      footer { flex-direction: column; align-items: flex-start; padding: 2rem; gap: 1rem; }
+      footer .social-links { flex-direction: column; gap: 0.6rem; }
     }
   </style>
 </head>
@@ -502,7 +506,7 @@
     <a class="topic-card" href="https://www.electionbyjury.org" target="_blank">
       <p class="topic-num">01 / primary project</p>
       <h2 class="topic-title">election<br />by jury</h2>
-      <p class="topic-body">randomly selected citizen panels using score voting to evaluate candidates. starting with h.o.a. governance as a proof of concept.</p>
+      <p class="topic-body">randomly selected citizen juries replace lay voters — not politicians. candidates still compete; a compelled jury deliberates, questions them directly, and votes using score voting.</p>
     </a>
     <a class="topic-card" href="#">
       <p class="topic-num">02 / electoral reform</p>
@@ -524,9 +528,9 @@
   <section class="feature" id="writing">
     <div class="feature-main">
       <p class="section-label">— featured project</p>
-      <h2 class="feature-title">election by jury: democracy without politicians</h2>
-      <p class="feature-body">what if instead of choosing between pre-selected candidates in a broken plurality election, a randomly selected citizen panel evaluated all candidates using score voting — the way a jury evaluates evidence?</p>
-      <p class="feature-body">the result is a system that's resistant to money, immune to spoilers, and produces winners with genuine majority support. starting at the h.o.a. scale, because that's where you can actually implement something today.</p>
+      <h2 class="feature-title">election by jury: democracy without lay voters</h2>
+      <p class="feature-body">candidates still exist. what's replaced is the mass of uninformed lay voters casting ballots with minimal information, under the influence of money and a.i.-powered disinformation. instead, a randomly selected citizen jury — compelled to serve the way trial jurors are — spends weeks deliberating, questioning candidates directly, and voting using score voting.</p>
+      <p class="feature-body">the result is a system with near-perfect demographic alignment, structured resistance to money and manipulation, and decision quality that mass elections simply can't match. starting at the h.o.a. scale, because that's where you can actually implement something today.</p>
       <a href="https://www.electionbyjury.org" target="_blank" class="read-link">www.electionbyjury.org →</a>
     </div>
 
@@ -537,7 +541,7 @@
 
       <div class="aside-links">
         <a href="https://www.electionbyjury.org" target="_blank" class="aside-link">
-          <span>www.electionbyjury.org</span>
+          <span>election by jury</span>
           <span class="arrow">↗</span>
         </a>
         <a href="https://scorevoting.net" target="_blank" class="aside-link">
