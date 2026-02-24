@@ -225,6 +225,32 @@ body::before {
 .doc-footer p { font-size: var(--font-size-sm); color: var(--color-text-muted); }
 .doc-footer a { font-family: var(--font-mono); font-size: var(--font-size-sm); color: var(--color-accent); text-decoration: none; border-bottom: var(--border-thin) solid var(--color-accent-border); }
 
+/* fork — two-column contrast box for opposing arguments */
+.fork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--color-border);
+  border: var(--border-medium) solid var(--color-border);
+  margin: var(--space-xl) 0;
+}
+
+.fork-side           { background: var(--color-surface-alpha); padding: var(--space-lg); }
+
+.fork-side h4 {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-accent);
+  text-transform: lowercase;
+  margin-bottom: var(--space-sm);
+}
+
+.fork-side p         { font-size: 0.9rem; line-height: 1.75; color: var(--color-text-muted); margin-bottom: 0; }
+
+@media (max-width: 600px) { .fork { grid-template-columns: 1fr; } }
+
 
 /* ========================================
    NAVIGATION
@@ -479,16 +505,7 @@ body::before {
   font-size: var(--font-size-md);
 }
 
-.box-highlight strong {
-  font-family: var(--font-label);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wider);
-  text-transform: lowercase;
-  display: block;
-  margin-bottom: var(--space-sm);
-  color: var(--color-accent);
-}
+
 
 .box-accent {
   background: var(--color-surface-alpha);
