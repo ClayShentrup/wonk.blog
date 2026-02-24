@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>what is ethics? — clay shentrup</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #f4f1eb;
+    --cream: #ebe7df;
+    --parchment: #d9d3c7;
+    --ink: #1a1916;
+    --ink-light: #2d2b26;
+    --ink-faded: #5c584f;
+    --ink-ghost: #8a857a;
+    --amber: #c4923a;
+    --amber-dim: rgba(196, 146, 58, 0.15);
+    --amber-glow: rgba(196, 146, 58, 0.08);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  ::selection {
+    background: var(--amber);
+    color: var(--ivory);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+  }
+
+  body {
+    background: var(--ink);
+    color: var(--ivory);
+    font-family: var(--serif);
+    line-height: 1.75;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ NOISE TEXTURE OVERLAY ═══ */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 4rem 2rem;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ink-ghost), transparent);
+  }
+
+  .hero-ornament {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--amber);
+    text-transform: lowercase;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeDown 1.2s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-weight: 300;
+    line-height: 1.05;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: var(--ivory);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .hero-subtitle {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--ink-ghost);
+    text-align: center;
+    max-width: 600px;
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.8s forwards;
+  }
+
+  .hero-author {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-ghost);
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.1s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--ink-ghost);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.5s forwards;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--ink-ghost), transparent);
+    margin: 0.75rem auto 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* ═══ NAVIGATION SIDEBAR ═══ */
+  .nav-sidebar {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .nav-sidebar.visible { opacity: 1; }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink-ghost);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-dot:hover,
+  .nav-dot.active {
+    background: var(--amber);
+    transform: scale(1.5);
+  }
+
+  .nav-dot::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-ghost);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .nav-dot:hover::before { opacity: 1; }
+
+  /* ═══ SECTIONS ═══ */
+  .section {
+    padding: 8rem 2rem;
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-wide {
+    max-width: 960px;
+  }
+
+  .section-number {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    color: var(--ivory);
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(244, 241, 235, 0.85);
+    margin-bottom: 1.75rem;
+  }
+
+  p strong {
+    font-weight: 500;
+    color: var(--ivory);
+  }
+
+  /* ═══ EPIGRAPHS & PULL QUOTES ═══ */
+  .epigraph {
+    border-left: 2px solid var(--amber);
+    padding: 1.5rem 0 1.5rem 2rem;
+    margin: 3rem 0 3rem 1rem;
+    position: relative;
+  }
+
+  .epigraph p {
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: rgba(244, 241, 235, 0.7);
+    margin-bottom: 0.5rem;
+  }
+
+  .epigraph cite {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    color: var(--ink-ghost);
+  }
+
+  .pull-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--amber);
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+    position: relative;
+  }
+
+  .pull-quote::before,
+  .pull-quote::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--amber);
+    margin: 0 auto;
+    opacity: 0.4;
+  }
+
+  .pull-quote::before { margin-bottom: 2rem; }
+  .pull-quote::after { margin-top: 2rem; }
+
+  /* ═══ THOUGHT EXPERIMENTS ═══ */
+  .thought-experiment {
+    background: linear-gradient(135deg, rgba(196, 146, 58, 0.06), rgba(196, 146, 58, 0.02));
+    border: 1px solid rgba(196, 146, 58, 0.12);
+    padding: 2.5rem;
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .thought-experiment::before {
+    content: 'thought experiment';
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+    position: absolute;
+    top: -0.5rem;
+    left: 2rem;
+    background: var(--ink);
+    padding: 0 0.75rem;
+  }
+
+  .thought-experiment p {
+    font-size: 1.05rem;
+    color: rgba(244, 241, 235, 0.8);
+  }
+
+  /* ═══ PRINCIPLE BOXES ═══ */
+  .principle {
+    border: 1px solid var(--amber);
+    padding: 3rem;
+    margin: 4rem 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .principle-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+
+  .principle p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ivory);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* ═══ FORK DIAGRAMS ═══ */
+  .fork {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .fork-branch {
+    padding: 2rem;
+    border: 1px solid rgba(244, 241, 235, 0.08);
+    position: relative;
+  }
+
+  .fork-branch.rejected {
+    opacity: 0.5;
+    border-color: rgba(244, 241, 235, 0.05);
+  }
+
+  .fork-branch.rejected::after {
+    content: '✕';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--ink-ghost);
+    font-size: 0.8rem;
+  }
+
+  .fork-branch.accepted::after {
+    content: '✓';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--amber);
+    font-size: 0.8rem;
+  }
+
+  .fork-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  .fork-branch p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* ═══ SECTION DIVIDERS ═══ */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196, 146, 58, 0.2));
+  }
+
+  .divider::after {
+    background: linear-gradient(90deg, rgba(196, 146, 58, 0.2), transparent);
+  }
+
+  .divider-symbol {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--amber);
+    padding: 0 2rem;
+    opacity: 0.4;
+  }
+
+  /* ═══ INTERLUDE SECTIONS ═══ */
+  .interlude {
+    background: linear-gradient(180deg, transparent, rgba(196, 146, 58, 0.03), transparent);
+    padding: 6rem 2rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .interlude p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(244, 241, 235, 0.6);
+  }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    padding: 6rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(244, 241, 235, 0.05);
+  }
+
+  .footer p {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--ink-ghost);
+    letter-spacing: 0.1em;
+  }
+
+  .footer a {
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  /* ═══ LINKS ═══ */
+  a {
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196, 146, 58, 0.3);
+    transition: border-color 0.3s ease;
+  }
+
+  a:hover {
+    border-color: var(--amber);
+  }
+
+  /* ═══ REVEAL ANIMATION ═══ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ═══ KEYFRAMES ═══ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    html { font-size: 16px; }
+    .section { padding: 5rem 1.5rem; }
+    .fork { grid-template-columns: 1fr; }
+    .nav-sidebar { display: none; }
+    .epigraph { margin-left: 0; }
+    .thought-experiment { padding: 2rem 1.5rem; }
+    .principle { padding: 2rem 1.5rem; }
+  }
+
+  /* ═══ SUBTLE AMBIENT GLOW ═══ */
+  .glow-point {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 146, 58, 0.03), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    top: 30%;
+    left: -10%;
+  }
+
+  .glow-point-2 {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 146, 58, 0.02), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    bottom: 10%;
+    right: -10%;
+  }
+
+  /* ═══ TABLE OF CONTENTS ═══ */
+  .toc {
+    padding: 4rem 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(244, 241, 235, 0.04);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .toc-item:hover {
+    padding-left: 0.5rem;
+    border-bottom-color: rgba(196, 146, 58, 0.2);
+  }
+
+  .toc-num {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    min-width: 2rem;
+  }
+
+  .toc-label {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(244, 241, 235, 0.6);
+    transition: color 0.3s ease;
+  }
+
+  .toc-item:hover .toc-label {
+    color: var(--ivory);
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-point"></div>
+<div class="glow-point-2"></div>
+
+<!-- navigation dots -->
+<nav class="nav-sidebar" id="navSidebar">
+  <div class="nav-dot" data-label="prologue" data-target="prologue"></div>
+  <div class="nav-dot" data-label="veil" data-target="veil"></div>
+  <div class="nav-dot" data-label="sovereignty" data-target="sovereignty"></div>
+  <div class="nav-dot" data-label="origins" data-target="origins"></div>
+  <div class="nav-dot" data-label="altruism" data-target="altruism"></div>
+  <div class="nav-dot" data-label="convergence" data-target="convergence"></div>
+  <div class="nav-dot" data-label="psychopaths" data-target="psychopaths"></div>
+  <div class="nav-dot" data-label="heuristics" data-target="heuristics"></div>
+  <div class="nav-dot" data-label="is–ought" data-target="isought"></div>
+  <div class="nav-dot" data-label="epilogue" data-target="epilogue"></div>
+</nav>
+
+<!-- ════════════════════════════════════ HERO ════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-ornament">a unified theory</div>
+  <h1 class="hero-title">what is <em>ethics</em>?</h1>
+  <p class="hero-subtitle">on preference sovereignty, instrumental convergence, and the biological foundations of morality</p>
+  <p class="hero-author">clay shentrup</p>
+  <div class="hero-scroll">scroll</div>
+</header>
+
+<!-- ═══ TABLE OF CONTENTS ═══ -->
+<nav class="toc reveal">
+  <a class="toc-item" href="#prologue"><span class="toc-num">i</span><span class="toc-label">the subjective animal</span></a>
+  <a class="toc-item" href="#veil"><span class="toc-num">ii</span><span class="toc-label">behind the veil</span></a>
+  <a class="toc-item" href="#sovereignty"><span class="toc-num">iii</span><span class="toc-label">the preference sovereignty principle</span></a>
+  <a class="toc-item" href="#origins"><span class="toc-num">iv</span><span class="toc-label">four billion years of selfishness</span></a>
+  <a class="toc-item" href="#altruism"><span class="toc-num">v</span><span class="toc-label">the two altruisms</span></a>
+  <a class="toc-item" href="#convergence"><span class="toc-num">vi</span><span class="toc-label">instrumental convergence</span></a>
+  <a class="toc-item" href="#psychopaths"><span class="toc-num">vii</span><span class="toc-label">psychopath island</span></a>
+  <a class="toc-item" href="#heuristics"><span class="toc-num">viii</span><span class="toc-label">rules, virtues, and other heuristics</span></a>
+  <a class="toc-item" href="#isought"><span class="toc-num">ix</span><span class="toc-label">the dissolution of is–ought</span></a>
+  <a class="toc-item" href="#epilogue"><span class="toc-num">x</span><span class="toc-label">epilogue</span></a>
+</nav>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ I. PROLOGUE ════════════════════════════════════ -->
+<section class="section" id="prologue">
+  <span class="section-number reveal">i.</span>
+  <h2 class="section-title reveal">the <em>subjective</em> animal</h2>
+
+  <p class="reveal">remarkably few people seem to fully understand ethics, including most moral philosophers. this is a strong claim, so let me be precise about what i mean and why i believe it.</p>
+
+  <p class="reveal">when we see a bird tending to its egg at great personal cost, or stags engaging in ritualized dominance contests rather than fighting to the death, or humans instinctively rushing to help someone having a medical emergency, these are all biological phenomena. we can understand them in the same way we understand why moths are attracted to light or why we crave sugar. there is no metaphysical mystery here — only biology, game theory, and the mathematics of natural selection.</p>
+
+  <p class="reveal">what follows is an attempt to synthesize insights from evolutionary biology, decision theory, welfare economics, and contractualist philosophy into a unified account of what ethics actually is, where it comes from, and why traditional moral philosophy has been asking the wrong questions. the framework i'll develop — <strong>utilitarian contractualism</strong>, grounded in what i call the <strong>preference sovereignty principle</strong> — is not merely another entry in the catalogue of ethical theories. it is an attempt to show that the catalogue itself rests on a confusion.</p>
+
+  <div class="epigraph reveal">
+    <p>the whole edifice of ethics is just a tautology filtered through the complexity of social environments where cooperation often beats defection.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ II. THE VEIL ════════════════════════════════════ -->
+<section class="section" id="veil">
+  <span class="section-number reveal">ii.</span>
+  <h2 class="section-title reveal">behind the <em>veil</em></h2>
+
+  <p class="reveal">to see how fundamentally subjective ethics is, start with the trolley problem. a runaway trolley is about to kill five people. you can pull a lever to divert it onto a sidetrack where it will kill one. most people recoil at the idea of actively causing someone's death, even to save more lives.</p>
+
+  <div class="thought-experiment reveal">
+    <p>now consider the trolley problem from behind john rawls's "veil of ignorance". you are one of the six people who will be tied to the tracks, but you don't yet know whether you'll be the lone person on the sidetrack or one of the five on the main track. before you learn your position, you must vote on the rule: should bystanders be permitted to pull the lever?</p>
+    <p style="margin-top:1rem;">the answer becomes obvious. you'd vote for "pull the lever" because you have a 5-in-6 chance of being among the five saved versus only a 1-in-6 chance of being the one killed. any rational person, not knowing their position, would choose the rule that maximizes their expected survival.</p>
+  </div>
+
+  <p class="reveal">the math is trivial. and the moral intuition that seemed so compelling — <em>don't actively cause a death</em> — suddenly looks like an irrational bias. this illustrates the core insight of utilitarian contractualism: ethical principles are those that rational people would agree to from behind a veil of ignorance about their own position.</p>
+
+  <p class="reveal">rawls famously developed this framework but made a critical error. he proposed that people behind the veil would adopt "maximin" — always choosing to protect the worst-off position. this is demonstrably false. people routinely accept small risks of bad outcomes in exchange for better expected value. they buy some insurance but not against every conceivable risk. they accept jobs with variable compensation. they make countless decisions that reveal a preference for expected utility maximization over worst-case avoidance.</p>
+
+  <p class="reveal">maximin is <strong>empirically falsified by revealed preference</strong>. and revealed preference is revealed preference whether it occurs in nature or in a controlled experiment designed by a researcher.</p>
+
+  <p class="reveal">economist john harsanyi got this right: rational people behind the veil would maximize expected utility, not minimize worst-case outcomes. this isn't a philosophical conjecture — it's what people actually do, observably and measurably, across every domain of decision-making under uncertainty.</p>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ III. PREFERENCE SOVEREIGNTY ════════════════════════════════════ -->
+<section class="section" id="sovereignty">
+  <span class="section-number reveal">iii.</span>
+  <h2 class="section-title reveal">the preference <em>sovereignty</em> principle</h2>
+
+  <p class="reveal">we can now identify the specific principle that makes this framework work.</p>
+
+  <div class="principle reveal">
+    <div class="principle-label">the preference sovereignty principle</div>
+    <p>no outcome can be considered unethical if those subject to it would freely choose it when fully informed — even in hindsight.</p>
+  </div>
+
+  <p class="reveal">this is what distinguishes utilitarian contractualism from other versions. it's not about what people could "reasonably" reject (scanlon), or what an impartial observer would choose (rawls), but about what people would actually prefer for themselves, selfishly, under uncertainty about their position. unanimous selfish preference under uncertainty just <em>is</em> what "ethical" means.</p>
+
+  <p class="reveal">this formulation has a crucial advantage: it is <strong>empirically testable</strong>. whether everyone would prefer a given outcome for themselves is, in principle, a numerical question. we'd all take a 10% chance of death over a 20% chance. we can measure revealed preferences. "reasonableness," by contrast, is vague and unquantifiable — an untenable basis for ethics.</p>
+
+  <div class="pull-quote reveal">an ideal ethical framework becomes indistinguishable from pure selfishness when viewed from behind a veil of ignorance about one's identity.</div>
+
+  <p class="reveal">a crucial distinction follows from this: ethics divides into <strong>intrinsic</strong> and <strong>instrumental</strong> components. intrinsic ethics are our basic preferences — what we ultimately want or value. these are purely subjective. instrumental ethics are about how to achieve those preferences — the intermediate goals we pursue in service of what we actually want. instrumental ethics can be evaluated objectively, through evidence and reason, even when uncertainty about outcomes is irreducible.</p>
+
+  <p class="reveal">the gap between our intrinsic preferences and the instrumental choices we make to satisfy them — caused by imperfect knowledge — is not a flaw in this framework. it's simply the human condition. a doctor who follows the best available evidence and loses the patient anyway was not acting unethically. the ethical thing, in the systemic sense, is the heuristic that makes you most likely to satisfy your actual preferences — going on the best available evidence using the scientific method, even if it occasionally leads to the wrong result. the underlying rule and the particular accuracy of any given judgment are different things.</p>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ IV. ORIGINS ════════════════════════════════════ -->
+<section class="section" id="origins">
+  <span class="section-number reveal">iv.</span>
+  <h2 class="section-title reveal">four billion years of <em>selfishness</em></h2>
+
+  <p class="reveal">to understand why ethics works this way, we need to understand where it came from. four billion years ago, molecular replicators emerged with two crucial properties: they could copy themselves, and those copies could contain mutations. everything else — from the beaks of finches to our deepest moral intuitions — flows from this.</p>
+
+  <p class="reveal">as richard dawkins articulated in <em>the selfish gene</em>, genes are the fundamental unit of selection. they exist in proportion to their ability to get themselves copied. when we say genes "try" to get themselves copied or act "selfishly," we're using a helpful metaphor. genes aren't conscious agents making decisions; those that happen to have properties leading to more copies of themselves simply become more prevalent. pure mathematics and chemistry, not conscious intent. but the result is that genes behave <em>as if</em> they were trying to maximize copies of themselves.</p>
+
+  <p class="reveal">this isn't a theory — it's a tautology. genes that make more copies become more prevalent. that's just what "selection" means.</p>
+
+  <p class="reveal">and since our brains are built by genes, our preferences — including our moral intuitions — are downstream of that selection pressure. we want to maximize our expected utility because we're built by replicators that were selected for their propensity to maximize expected copies of themselves. utility maximization isn't an arbitrary axiom we impose on ethics; it follows directly from the logic of selection.</p>
+
+  <div class="epigraph reveal">
+    <p>the evolutionary story here is illustrative rather than load-bearing. it doesn't prove that preference sovereignty is correct — it shows why the framework is consistent with everything we know about where preferences come from. the stronger argument is the conceptual one: you simply cannot call something unethical if people would choose it for themselves.</p>
+  </div>
+
+  <p class="reveal">note what this does <em>not</em> imply. explaining the evolutionary origins of moral intuitions does not commit the genetic fallacy — doesn't claim that origins determine validity. evolution gave us depth perception, which tracks real spatial relationships. whether moral intuitions similarly track something "real" is exactly the question at issue, and the evolutionary genealogy alone doesn't settle it. but the case for moral anti-realism rests on independent grounds: the sheer diversity of moral intuitions across cultures, the lack of any plausible mechanism by which "moral facts" could causally influence our beliefs, and the fact that every putatively objective moral truth dissolves into either a subjective preference or an empirical claim about consequences when examined closely enough.</p>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ V. ALTRUISM ════════════════════════════════════ -->
+<section class="section" id="altruism">
+  <span class="section-number reveal">v.</span>
+  <h2 class="section-title reveal">the two <em>altruisms</em></h2>
+
+  <p class="reveal">there are two fundamental types of apparent altruism in nature, and both are perfectly explained by genetic self-interest.</p>
+
+  <p class="reveal">the first is <strong>kin altruism</strong>. when a bird tends its egg, we're witnessing genes protecting probable copies of themselves. this is why california ground squirrels sound alarm calls when they spot a predator, even at personal risk — the squirrels that hear the warning likely carry the same genes for alarm-calling. if the warning saves at least two close relatives, the "call" genes come out ahead even if the caller gets eaten. (veritasium has <a href="https://youtu.be/XX7PdJIGiCw?t=1180">an excellent explanation of kin selection</a>.)</p>
+
+  <p class="reveal">the second is <strong>reciprocal altruism</strong>, which is fundamentally an instance of the iterated prisoner's dilemma. in our ancestral environment, we lived in small groups where we repeatedly interacted with the same people. helping others often meant helping yourself because they would likely reciprocate. our brains evolved to facilitate this cooperation through emotions like gratitude, guilt, and moral outrage.</p>
+
+  <p class="reveal">recent work in evolutionary psychology has formalized this further. researchers like jean-baptiste andré and nicolas baumard have shown that human moral cognition is well-described by nash bargaining — maximizing the product of both parties' gains in any interaction. evolution built us to intuitively calculate not just our own benefit but others' benefits and opportunity costs, because people who signal cooperation get selected as partners while defectors get excluded.</p>
+
+  <p class="reveal">the implications are profound: moral philosophy has largely proceeded in ignorance of evolutionary biology, debating the properties of moral intuitions without asking where those intuitions came from. once you take evolution seriously, deontological rules start to look like what they are — heuristics our brains use to approximate utility maximization, not discoveries of eternal truths.</p>
+
+  <div class="interlude reveal">
+    <p>in a <a href="https://youtu.be/GYYNY2oKVWU?t=16m18s">conversation between dawkins and peter singer</a>, dawkins made a brilliant observation. people still copulate while using prophylactics — from a purely genetic perspective, a complete waste of time. similarly, we have what he calls a "lust to be nice" — an irrational drive to help others even when there's no possibility of reciprocation. our evolved circuitry for empathy misfires in modern contexts, like cuckoo birds exploiting the "if there's an egg in your nest, sit on it" instinct of other species.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ VI. CONVERGENCE ════════════════════════════════════ -->
+<section class="section section-wide" id="convergence">
+  <span class="section-number reveal">vi.</span>
+  <h2 class="section-title reveal">instrumental <em>convergence</em></h2>
+
+  <p class="reveal">a common objection to moral subjectivism runs like this: "if ethics is purely subjective, why would alien civilizations independently develop laws against murder? doesn't that convergence prove morality is objective?" this is a confusion between two fundamentally different levels of the ethical landscape, and a concept from decision theory called <strong>instrumental convergence</strong> resolves it completely.</p>
+
+  <p class="reveal">instrumental convergence is the observation that almost any agent with almost any terminal goals will converge on certain intermediate strategies — self-preservation, resource acquisition, maintaining social cooperation — because these are prerequisites for achieving virtually any goal whatsoever. the convergence is in the game theory, not in some moral fabric of the universe.</p>
+
+  <div class="fork reveal">
+    <div class="fork-branch rejected">
+      <div class="fork-label">the objectivist's claim</div>
+      <p>aliens would have laws against murder → therefore "murder is wrong" is an objective moral fact written into the structure of reality.</p>
+    </div>
+    <div class="fork-branch accepted">
+      <div class="fork-label">what's actually happening</div>
+      <p>murder-prohibition is an instrumentally convergent solution to a coordination problem that any social species with subjective preferences will independently discover — just as any species that needs to cross rivers will independently discover bridges.</p>
+    </div>
+  </div>
+
+  <p class="reveal">aliens having laws against murder no more proves that "murder is objectively wrong" than aliens building bridges proves that "bridges are objectively good". it proves that certain game-theoretic problems have stable solutions. the actual subjective preferences underneath — i like chocolate, you like vanilla, the alien likes electromagnetic radiation — remain irreducibly particular and unique. but when it comes to meta-level coordination mechanisms like fair division protocols, insurance products, or laws against murder, any social species will converge on similar solutions because <em>being murdered prevents you from achieving any of your goals regardless of what those goals are</em>.</p>
+
+  <p class="reveal">and here is the devastating corollary that reveals the confusion: <strong>some people actually want to be killed</strong>. voluntary euthanasia, assisted suicide, martyrdom — if "murder is wrong" were an objective moral fact baked into the universe, there couldn't be exceptions. but there obviously are, because the preference against being killed is subjective. it's just <em>nearly universal</em>, which is exactly what instrumental convergence predicts. a coordination norm that serves 99.9% of agents' goals gets codified as a rule. the rule isn't the moral fact. the preferences underneath it are.</p>
+
+  <div class="principle reveal">
+    <div class="principle-label">the convergence test</div>
+    <p>any moral rule that appears "universal" should be examined for whether it is genuinely intrinsic or merely instrumentally convergent. if there exist informed agents who would prefer its violation, it is a heuristic — not a truth.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ VII. PSYCHOPATH ISLAND ════════════════════════════════════ -->
+<section class="section" id="psychopaths">
+  <span class="section-number reveal">vii.</span>
+  <h2 class="section-title reveal"><em>psychopath</em> island</h2>
+
+  <p class="reveal">consider an island inhabited entirely by psychopaths — individuals who are completely selfish and lack any capacity for empathy. you would still find laws against theft and murder, a court system, and even a system of taxation.</p>
+
+  <p class="reveal">why? because these things benefit the psychopaths themselves. a law against theft reduces the risk of their property being stolen. a court system ensures disputes don't escalate into costly vendettas. a redistributive tax system that funds infrastructure, law enforcement, and defense protects them from external threats and prevents societal collapse.</p>
+
+  <p class="reveal">psychopath island demonstrates that even in a society of purely self-interested individuals, cooperation and shared rules naturally arise. what affects others ultimately affects us. we don't support laws and social systems out of altruism but because they maximize our own well-being when we account for the fact that we live among other people who can also harm or benefit us.</p>
+
+  <p class="reveal">this same logic explains why even rationally selfish individuals might support wealth redistribution. while a wealthy individual may oppose a social safety net if they are certain they'll never need it, such certainty is rare. and even when one's position is known, policies that reduce inequality and instability protect everyone from costly conflicts and societal collapse. redistributive systems are simply a more efficient way of avoiding outcomes like violent uprising. avoiding bloodshed and preserving stability benefits everyone, selfish or not.</p>
+
+  <div class="pull-quote reveal">none of this requires true altruism — just rational self-interest playing out under different levels of uncertainty about our position.</div>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ VIII. HEURISTICS ════════════════════════════════════ -->
+<section class="section" id="heuristics">
+  <span class="section-number reveal">viii.</span>
+  <h2 class="section-title reveal">rules, virtues, and other <em>heuristics</em></h2>
+
+  <p class="reveal">this framework allows us to properly evaluate every competing ethical system. take rule ethics and virtue ethics. these aren't fundamental measures of what's ethical; they're heuristic tools that can be evaluated by how well they respect preference sovereignty — by how well they approximate what rational people would choose behind the veil.</p>
+
+  <p class="reveal">any rule or virtue that could override informed preferences must be fundamentally flawed. virtues are effectively rules themselves, and both can be evaluated by their utility efficiency. our tendency to rely on such heuristics makes evolutionary sense; every second spent calculating optimal decisions is a second you could be eaten by a predator. brains evolved to balance decision quality against computational cost.</p>
+
+  <div class="fork reveal">
+    <div class="fork-branch rejected">
+      <div class="fork-label">rules as fundamentals</div>
+      <p>a rule like "do not lie" is intrinsically ethical. violations are wrong regardless of consequences.</p>
+    </div>
+    <div class="fork-branch accepted">
+      <div class="fork-label">rules as instruments</div>
+      <p>a rule like "do not lie" is a computationally cheap heuristic that produces good outcomes most of the time. when it doesn't, the rule is wrong, not the situation.</p>
+    </div>
+  </div>
+
+  <p class="reveal">this brings us to consequentialism, which gets closer to the truth by focusing on outcomes. of course people care about consequences. it doesn't matter if you were killed intentionally or accidentally; you're still dead. the only extent to which intent matters is practical: someone who intentionally kills might be more likely to be a repeat offender, and the correctional system should treat them accordingly. but even this requires nuance. a 90-year-old myopic, demented driver who accidentally plows into a school crosswalk may pose a greater ongoing threat than a violent 20-year-old whose fights have never resulted in more than bruises.</p>
+
+  <p class="reveal">we can treat a malevolent person the same way we treat a defective household robot that goes on a killing spree. conscious intent is irrelevant; only outcomes matter. the key is evaluating any policy based on its total utility effects.</p>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ IX. IS–OUGHT ════════════════════════════════════ -->
+<section class="section" id="isought">
+  <span class="section-number reveal">ix.</span>
+  <h2 class="section-title reveal">the dissolution of <em>is–ought</em></h2>
+
+  <p class="reveal">david hume identified what he called the is–ought problem: the idea that you can't derive statements about what "ought" to be from statements about what "is". but this entire problem dissolves once we realize there is no such thing as "ought" or "should" in any objective sense.</p>
+
+  <p class="reveal">when someone says "you shouldn't kill people," they're not making a metaphysical claim about the universe. they're expressing a preference: "i would prefer a world where people don't kill each other". once we see this, is–ought isn't a deep philosophical puzzle. it's a category error that arises from treating preferences as though they were facts.</p>
+
+  <p class="reveal">emotivism, the philosophical position that ethical statements are expressions of emotion rather than truth claims, gets tantalizingly close to this insight. in a <a href="https://youtu.be/_pprQXq1eCA?si=iAUPH1S-fb6fN2ST">conversation between sam harris and emotivist philosopher alex o'connor</a>, o'connor argues that saying "murder is wrong" is essentially saying "boo, murder" — a command or expression of distaste rather than a truth claim. this is almost right, but the whole framework of emotivism becomes superfluous once we realize the basic truth it's gesturing at. it's like creating a special category called "hunger-ism" to explain why people eat food.</p>
+
+  <p class="reveal">harris, for his part, struggles because he fails to distinguish between intrinsic and instrumental ethics. he correctly points out that there are objective facts about how to achieve certain states of well-being. but he misses that the underlying preferences for those states are purely subjective. the is–ought gap isn't bridged; it was never there. there are only preferences, and strategies for satisfying them.</p>
+
+  <p class="reveal">some argue that ethics must come from god. but this leads to euthyphro's dilemma: either ethical principles are inherent and god is merely their messenger, or god arbitrarily decided on them. in either case, this has nothing to do with what we actually mean by good or bad. any divine command that violates preference sovereignty — that demands what informed people would reject even with full knowledge and hindsight — cannot be truly ethical. even if the universe or god declared that killing babies was good, this wouldn't change the fact that most humans are hardwired to be averse to infanticide. we would still shudder at the thought. the entire notion of objective ethics, whether derived from physics or a deity, is incongruous with everything about the human conception of ethics.</p>
+
+  <div class="principle reveal">
+    <div class="principle-label">the dissolution</div>
+    <p>when people disagree about ethics, they are either disagreeing about empirical facts — about what policies will lead to better outcomes — or they are expressing genuinely different preferences shaped by their genes and experiences. they are never disagreeing about "moral facts," because there are no moral facts.</p>
+  </div>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ X. INTERPERSONAL UTILITY ════════════════════════════════════ -->
+<section class="section" id="utility">
+  <span class="section-number reveal">appendix.</span>
+  <h2 class="section-title reveal">on interpersonal <em>utility</em></h2>
+
+  <p class="reveal">a common objection to utilitarian frameworks is that we cannot compare utility across individuals — that your suffering and my suffering are incommensurable. this objection dissolves upon examination.</p>
+
+  <p class="reveal">at the most fundamental level, the universe is physics. suffering is a physical process — patterns of neural activation, neurochemical cascades, measurable and comparable in principle. the entire practice of medical triage rests on the fact that we <em>can</em> make rough interpersonal comparisons: a broken femur is worse than a paper cut, and everyone knows it.</p>
+
+  <p class="reveal">but even setting aside the materialist argument, there is a more elegant resolution. imagine two bags containing notes of various currencies — yen, euros, dollars. you must pick a random bill from one bag, knowing only their average bill size. you would choose the bag with the higher average, even though the currencies are incommensurable. it <em>does not matter</em> that you cannot convert yen to euros at a precise rate. the choice works <em>in expectation</em>, because statistically, a randomly selected bill from the higher-average bag is more likely to be worth more to you.</p>
+
+  <p class="reveal">this is harsanyi's insight applied to social welfare. if you are equally likely to be any person, your expected utility is the average utility across all people. you don't need a perfect conversion function across individuals. you need only the reasonable assumption — the same assumption underlying every restaurant review and product rating — that humans are similar enough that higher average utility is more likely to benefit a randomly selected individual. interpersonal utility comparison isn't a philosophical impossibility. it's something we do every day.</p>
+</section>
+
+<div class="divider"><span class="divider-symbol">§</span></div>
+
+<!-- ════════════════════════════════════ EPILOGUE ════════════════════════════════════ -->
+<section class="section" id="epilogue">
+  <span class="section-number reveal">x.</span>
+  <h2 class="section-title reveal"><em>epilogue</em></h2>
+
+  <p class="reveal">this framework — utilitarian contractualism, grounded in preference sovereignty — resolves the traditional paradoxes of utilitarianism. the repugnant conclusion, which suggests we should kill anyone less happy than average to raise the mean, doesn't arise because we're evaluating from the perspective of an individual behind the veil, not from a god's-eye view optimizing an abstract quantity. the mere addition paradox, which suggests we should fill the universe with minimally happy beings, similarly dissolves. we are simply rational to be as selfish as possible; it's just that this selfishness, filtered through uncertainty about our position, often manifests as apparent altruism.</p>
+
+  <p class="reveal">as for future generations — they will have preferences when they exist. until then, the only preferences in play are those of existing people. existing people often care deeply about their descendants and the world they'll inhabit, so concern for the future is already captured as a preference of currently existing agents. there is no orphaned moral obligation floating in the void, waiting for future people to claim it.</p>
+
+  <p class="reveal">in the end, ethics isn't about discovering eternal truths or divine commands. it's a biological phenomenon that emerges from genetic selection and manifests as subjective preferences. once we see this clearly, the traditional philosophical debates dissolve into straightforward questions: what do people actually want, and what are the most effective means of getting it? these questions are often enormously complex. but we are, at last, asking them in the right way.</p>
+
+  <div class="pull-quote reveal">there are only preferences, and strategies for satisfying them.</div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <p>clay shentrup · 2025</p>
+  <p style="margin-top: 0.5rem; font-size: 0.65rem; letter-spacing: 0.15em;">
+    <a href="https://clayshentrup.medium.com">medium</a>
+  </p>
+</footer>
+
+<script>
+// ═══ SCROLL REVEAL ═══
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// ═══ NAV SIDEBAR ═══
+const nav = document.getElementById('navSidebar');
+const sections = document.querySelectorAll('section[id]');
+const dots = document.querySelectorAll('.nav-dot');
+
+window.addEventListener('scroll', () => {
+  // show/hide nav
+  nav.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5);
+
+  // active section
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - window.innerHeight * 0.4;
+    if (window.scrollY >= top) current = section.id;
+  });
+  dots.forEach(dot => {
+    dot.classList.toggle('active', dot.dataset.target === current);
+  });
+});
+
+// dot click navigation
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    const target = document.getElementById(dot.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
