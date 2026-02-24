@@ -754,7 +754,7 @@ footer .footer-links a:hover { color: var(--color-text); }
   flex-wrap: wrap;
 }
 
-.topics { display: grid; grid-template-columns: repeat(4, 1fr); }
+.topics { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 .topics .flood-card:last-child { border-right: none; }
 
 .topic-num   { font-family: var(--font-label); font-size: 0.62rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-faint); margin-bottom: 1.5rem; }
@@ -810,7 +810,7 @@ footer .footer-links a:hover { color: var(--color-text); }
 .color-swatch                  { border-right: var(--border-thin) solid var(--color-border); overflow: hidden; }
 .color-swatch:last-child       { border-right: none; }
 .swatch-block                  { height: 200px; display: flex; align-items: flex-end; padding: 1.25rem; }
-.swatch-hex                    { font-family: var(--font-mono); font-size: 0.72rem; mix-blend-mode: difference; color: white; opacity: 0.55; }
+.swatch-hex                    { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.75); }
 .swatch-info                   { padding: 1.75rem 1.5rem 2.25rem; border-top: var(--border-thin) solid var(--color-border); }
 .swatch-name                   { font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: 0.9rem; margin-bottom: 0.5rem; }
 .swatch-role                   { font-family: var(--font-label); font-size: 0.6rem; letter-spacing: var(--letter-spacing-wide); color: var(--color-accent); margin-bottom: 0.85rem; }
@@ -857,8 +857,6 @@ footer .footer-links a:hover { color: var(--color-text); }
   .hero-left { padding: 4rem 2rem 2rem; border-right: none; }
   .hero-right { grid-column: 1; grid-row: 2; border-top: var(--border-thin) solid var(--color-border); padding: 3rem 2rem; }
   .hero-bottom { grid-row: 3; border-right: none; }
-  .topics { grid-template-columns: 1fr 1fr; }
-  .topics .flood-card:nth-child(2) { border-right: none; }
   .feature { grid-template-columns: 1fr; }
   .feature-aside { border-top: var(--border-thin) solid var(--color-border); }
   .about { grid-template-columns: 1fr; }
