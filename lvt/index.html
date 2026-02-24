@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>harberger land value taxation — wonk.blog</title>
+  <title>land value taxation — wonk.blog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -18,8 +18,8 @@
 
   <div class="doc-header container">
     <p class="section-label">— economics · land &amp; tax</p>
-    <h1>harberger land value<br />taxation</h1>
-    <p class="subtitle">solving the 145-year assessment problem through competitive bidding</p>
+    <h1>land value<br />taxation</h1>
+    <p class="subtitle">solving the 145-year assessment problem through the credible threat of destruction</p>
   </div>
 
   <div class="doc-section">
@@ -27,16 +27,16 @@
 
       <h2>the problem</h2>
 
-      <p>since henry george in 1879, economists have agreed: tax land values, not improvements. land value tax (l.v.t.) could fund public goods without deadweight loss.</p>
+      <p>since henry george in 1879, economists have agreed: tax land values, not improvements. land value tax (l.v.t.) eliminates deadweight loss, captures unearned rent, and can fund public goods and u.b.i. without punishing productivity.</p>
 
       <p>so why hasn't it been implemented at scale?</p>
 
       <div class="box-highlight">
         <p class="section-label">the assessment problem</p>
-        bureaucrats can't separate land value from improvements. it's expensive, imprecise, politically contentious. every assessment leads to disputes and litigation.
+        bureaucrats can't reliably separate land value from improvement value. assessments are expensive, imprecise, politically contentious, and generate endless litigation. without a clean way to measure land value alone, l.v.t. can't be implemented correctly.
       </div>
 
-      <p>competitive bidding solves this. the market discovers land values directly. no assessors needed.</p>
+      <p>the solution isn't a better assessor. it's a mechanism that makes landowners reveal their own land values honestly — by making dishonesty costly.</p>
 
     </div>
   </div>
@@ -44,77 +44,42 @@
   <div class="doc-section">
     <div class="container">
 
-      <h2>how it works</h2>
+      <h2>the key insight: threatened destruction</h2>
 
-      <div class="steps">
-        <div class="step">
-          <strong>bidders submit two components</strong>
-          <p>land value: how much they value the bare land<br />
-          improvement value: how much they value existing structures</p>
+      <p>the mechanism works as follows. a property owner declares a land value and an improvement value separately. the government taxes the declared land value. anyone can challenge the declared land value by offering to buy the bare land at that price.</p>
+
+      <p>if challenged, the owner faces a choice: accept the buyout of the land, or have the improvements destroyed and lose the land anyway. this isn't punitive — it's the mechanism that makes the declaration credible.</p>
+
+      <div class="box-labeled" data-label="the logic">
+        <p>if you understate your land value, someone will call your bluff and buy it cheaply. if you overstate it, you pay too much tax. the only rational declaration is the true market value. the threat of destruction is what enforces honesty — not a tax rate, not an assessor.</p>
+      </div>
+
+      <p>note what this does <em class="text-emphasis">not</em> require: no bureaucratic appraisal, no appeals process, no politically-negotiated valuation. the market discovers the land value directly, because the owner has skin in the game on both sides of the number.</p>
+
+    </div>
+  </div>
+
+  <div class="doc-section">
+    <div class="container">
+
+      <h2>harberger vs. vickrey: a false distinction</h2>
+
+      <p>this mechanism is sometimes framed as "harberger taxation" and sometimes as a vickrey auction. the distinction is largely superficial, and understanding why clarifies the core logic.</p>
+
+      <div class="fork">
+        <div class="fork-side">
+          <h4>harberger framing</h4>
+          <p>owner self-assesses land value continuously. pays a percentage tax on that declared value. anyone can force a sale at the declared price at any time. incentive to declare honestly: overstate and you pay too much tax; understate and you lose the land.</p>
         </div>
-        <div class="step">
-          <strong>highest total bidder wins</strong>
-          <p>land + improvements = total bid</p>
-        </div>
-        <div class="step">
-          <strong>winner pays second-highest total</strong>
-          <p>vickrey auction mechanism makes truthful bidding the dominant strategy</p>
-        </div>
-        <div class="step">
-          <strong>payment splits two ways</strong>
-          <p>government receives the second-highest <em>land</em> bid — market land value<br />
-          incumbent receives the remainder</p>
-        </div>
-        <div class="step">
-          <strong>if incumbent refuses</strong>
-          <p>improvements are destroyed, bare land auctioned to highest land bidder at second-highest land price</p>
+        <div class="fork-side">
+          <h4>vickrey framing</h4>
+          <p>periodic auction where bidders submit land values and improvement values separately. highest total bidder wins. second-price rule makes truthful bidding dominant. destruction fallback enforces honest component separation.</p>
         </div>
       </div>
 
-      <h3>worked example</h3>
+      <p>these look different but produce the same equilibrium. here's why: under harberger, if someone calls your underbid and ousts you, <strong>you can immediately bid back in at a higher price</strong>. the forced sale doesn't strand you — it just resets the declared value to market. the ouster is credible only because the threat is real, not because it actually happens in equilibrium. rational owners declare honestly and the mechanism never fires.</p>
 
-      <table class="wonk-table">
-        <thead>
-          <tr>
-            <th>bidder</th>
-            <th>land value</th>
-            <th>improvement value</th>
-            <th>total</th>
-            <th>result</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>alice</strong></td>
-            <td>$1.0m</td>
-            <td>$1.3m</td>
-            <td>$2.3m</td>
-            <td class="u-accent"><strong>wins</strong></td>
-          </tr>
-          <tr>
-            <td>bob</td>
-            <td>$1.5m</td>
-            <td>$0.7m</td>
-            <td>$2.2m</td>
-            <td class="u-muted">second-highest</td>
-          </tr>
-          <tr>
-            <td>charlie</td>
-            <td>$0.9m</td>
-            <td>$1.0m</td>
-            <td>$1.9m</td>
-            <td class="u-muted">third</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="box">
-        <p class="u-mono u-small u-muted" style="margin-bottom:0.75rem;">outcome</p>
-        alice wins, pays <span class="u-mono u-accent">$2.2m</span> (second-highest total)<br /><br />
-        government receives <span class="u-mono u-accent">$1.5m</span> — bob's land bid, second-highest land value<br /><br />
-        incumbent receives <span class="u-mono u-accent">$0.7m</span> — remainder after government takes land value<br /><br />
-        <em>government captures true market land value through competitive bidding</em>
-      </div>
+      <p>the auction format is an implementation question. the truth-revelation engine is the destruction threat, not the specific price rule.</p>
 
     </div>
   </div>
@@ -126,27 +91,22 @@
 
       <div class="box-accent">
         <h4>perfect investment incentives</h4>
-        <p>when you improve property (add $150k value), competitive bidding raises the second-highest total. you capture that value when selling. the land tax acts as a lump sum that doesn't affect marginal returns — same investment incentives as fee simple ownership.</p>
+        <p>because the tax falls only on land value — not improvements — you capture the full return on anything you build. adding $150k of improvements raises your property's value by $150k and your tax bill by zero. same marginal incentives as fee simple ownership.</p>
       </div>
 
       <div class="box-accent">
-        <h4>government captures market land value</h4>
-        <p>government receives second-highest land bid — true market valuation revealed through competitive bidding. when a subway gets built nearby and land values rise $1m, government's share rises by $1m. land appreciation flows to public, not private owners.</p>
+        <h4>government captures land appreciation</h4>
+        <p>when a subway gets built nearby and land values rise $1m, the owner's declared land value must rise or they face a cheap buyout. that rise flows to public revenue. land appreciation — which is socially created, not earned by the owner — goes to the public.</p>
       </div>
 
       <div class="box-accent">
         <h4>no bureaucratic assessment</h4>
-        <p>competitive bidding reveals both land and improvement values directly. no assessors, no appeals, no valuation disputes. the market discovers prices through auction mechanism.</p>
+        <p>the owner does the assessment under adversarial conditions. anyone who thinks the declared value is too low can act on that belief. no appeals, no valuation disputes, no politically-captured assessors. the market discovers prices through the threat mechanism.</p>
       </div>
 
       <div class="box-accent">
-        <h4>honest bidding enforced by game theory</h4>
-        <p>vickrey second-price makes truthful total bidding optimal. the bare land auction fallback creates incentive for honest component bidding — you might win just the land, and your stated land value matters for that contingency.</p>
-      </div>
-
-      <div class="box-accent">
-        <h4>solves the 145-year assessment problem</h4>
-        <p>since henry george in 1879, l.v.t. couldn't be implemented because bureaucrats can't separate land from improvements. this mechanism solves it through market competition rather than bureaucratic estimation.</p>
+        <h4>solves the 145-year problem</h4>
+        <p>the historic barrier to l.v.t. was separating land value from improvement value. this mechanism forces that separation: the owner has to declare them independently, and the destruction fallback makes dishonest component allocation costly. the market does what bureaucrats couldn't.</p>
       </div>
 
     </div>
@@ -163,7 +123,7 @@
             <th>feature</th>
             <th>traditional l.v.t.</th>
             <th>fee simple</th>
-            <th>this mechanism</th>
+            <th>destruction-threat mechanism</th>
           </tr>
         </thead>
         <tbody>
@@ -186,7 +146,7 @@
             <td class="u-accent">✓</td>
           </tr>
           <tr>
-            <td>incentive-compatible bidding</td>
+            <td>incentive-compatible disclosure</td>
             <td class="u-faint">n/a</td>
             <td class="u-faint">n/a</td>
             <td class="u-accent">✓</td>
@@ -208,27 +168,20 @@
 
       <h2>frequently asked questions</h2>
 
-      <h3>what if i build a house and a developer tears it down?</h3>
-      <p>developer bids: land $2m, improvements $0, total $2m. you get improvement payment based on remainder after government takes land value. this teardown risk is identical to fee simple — if the market shifts to higher-value use, you lose your improvement investment. the mechanism doesn't eliminate that risk. it replicates fee simple risk while redirecting land appreciation to public revenue.</p>
+      <h3>what if i build a house and a developer ousts me?</h3>
+      <p>if a developer values the bare land more highly than you declared, they can buy it at your stated price. you receive the declared land value plus your improvement value — the same exposure you have under fee simple if the market shifts to higher-value use. the mechanism doesn't create new risk; it replicates fee simple risk while redirecting land appreciation to public revenue.</p>
 
-      <h3>why would i bid my components honestly?</h3>
-      <p><strong>total bidding:</strong> standard vickrey logic — you pay second-price regardless of your stated value, so truthful bidding is optimal.</p>
-      <p><strong>component bidding:</strong> if you don't win total property and incumbent refuses other offers, bare land goes to auction. you might win that auction. your stated land value determines your payment there. vickrey logic applies — honest land bidding is optimal for that contingency.</p>
+      <h3>why separate land and improvement values at all?</h3>
+      <p>because l.v.t. only works if you can tax land without taxing improvements. taxing improvements punishes productive investment — exactly the deadweight loss l.v.t. is designed to eliminate. forcing separate declarations under adversarial conditions is the only mechanism that produces honest component separation without bureaucratic appraisal.</p>
 
-      <h3>how often would bidding occur?</h3>
-      <p>continuous bidding (monthly or quarterly rounds). if you're outbid, you get 30 days notice to find another property or recruit a competing bidder. the system uses the 30-year treasury rate to convert between monthly rent (flow) and present value (stock).</p>
+      <h3>how often would assessments occur?</h3>
+      <p>continuous declaration (harberger style) or periodic auction rounds (vickrey style) both work. in the continuous model, the 30-year treasury rate converts between the flow value (annual rent) and the stock value (declared price). the math is econ 101; the implementation is a policy choice.</p>
 
-      <h3>what prevents collusion or gaming?</h3>
-      <p>vickrey auctions are strategy-proof — truthful bidding is dominant regardless of what others do. the bare land fallback creates mutually assured destruction dynamics: incumbent can recruit competing bidders if winner lowballs. both parties prefer honest dealing.</p>
+      <h3>what prevents gaming or collusion?</h3>
+      <p>the destruction threat is bilateral. if a challenger lowballs a forced acquisition, the incumbent can re-enter the market immediately and bid back in — so a predatory ouster just resets the price. if an incumbent understates land value, any party who believes the land is worth more can profitably acquire it. both sides have adversarial incentives toward honesty.</p>
 
       <h3>how much revenue would this generate?</h3>
-      <p>gaffney (2009) estimates u.s. land value at $23 trillion. at 5% annual return: $1.15 trillion per year. that's roughly 6% of g.d.p. — enough to fund substantial u.b.i., replace distortionary taxes, or invest in infrastructure.</p>
-
-      <h3>how is this different from harberger taxation?</h3>
-      <div class="box">
-        <p><strong>harberger:</strong> self-assess total property value, pay percentage tax (bureaucrat-chosen rate), anyone can force-purchase at your stated price. problems: taxes improvements, requires choosing a tax rate.</p>
-        <p style="margin-bottom:0;"><strong>this mechanism:</strong> bid components separately, pay second-price, only market-determined values (plus treasury rate for the present-value conversion). explicitly separates land from improvements.</p>
-      </div>
+      <p>gaffney (2009) estimates u.s. land value at $23 trillion. at 5% annual return: $1.15 trillion per year — roughly 6% of g.d.p. enough to fund substantial u.b.i., replace distortionary taxes on income and capital, or invest in public infrastructure.</p>
 
     </div>
   </div>
@@ -238,14 +191,12 @@
 
       <h2>the bigger picture</h2>
 
-      <p>this isn't just about land taxation. it's about mechanism design — using auction theory and game theory to solve problems bureaucratic systems can't.</p>
+      <p>this isn't primarily about land taxation. it's about mechanism design — using incentive structures to solve problems that bureaucratic systems can't. the 145-year failure of l.v.t. implementation wasn't a political failure; it was a measurement failure. bureaucrats genuinely cannot separate land from improvement value reliably.</p>
 
-      <p>we took a 145-year-old problem (separating land from improvements for assessment) and solved it through competitive bidding. vickrey auctions make honest bidding optimal. m.a.d. enforcement ensures rational acceptance. the market discovers all values directly.</p>
-
-      <p>the tools are simple: vickrey auctions (1961), mutually assured destruction dynamics, and present value calculations (econ 101). nothing exotic. just careful thinking about incentives and efficiency.</p>
+      <p>the destruction-threat mechanism solves this by replacing administrative judgment with adversarial incentives. the owner knows what their land is worth. the mechanism just makes it rational to say so.</p>
 
       <blockquote class="pull-quote">
-        pure georgist l.v.t. with no bureaucratic assessment. government captures market land value. investment incentives preserved. best of both worlds.
+        pure georgist l.v.t. with no bureaucratic assessment. government captures market land value. investment incentives fully preserved. the tools were available in 1961. the bottleneck was always the mechanism, not the math.
       </blockquote>
 
     </div>
@@ -253,4 +204,10 @@
 
   <div class="doc-footer">
     <div class="container">
-      <p>clay shentrup · <a href="/cdn-cgi/l/email-protection#593a2a313c372d2b2c29193e34383035773a3634"><span class="__cf_email__" data-cfemail="c5a6b6ada0abb1b7b0b585a2a8a4aca9eba6aaa8">[email&#160
+      <p>clay shentrup · <a href="mailto:cshentrup@gmail.com">cshentrup@gmail.com</a></p>
+      <p><a href="/">← wonk.blog</a></p>
+    </div>
+  </div>
+
+</body>
+</html>
