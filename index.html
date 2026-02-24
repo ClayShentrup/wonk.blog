@@ -1,234 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>harberger land value taxation</title>
-    <link rel="stylesheet" href="/wonk.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wonk.blog — clay shentrup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="wonk.css" />
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>harberger land value taxation</h1>
-            <p class="subtitle">solving the 145-year assessment problem through competitive bidding</p>
+
+  <header class="site-strip">
+    <a href="/" class="wordmark">wonk.blog</a>
+    <nav>
+      <a href="#topics">topics</a>
+      <a href="#about">about</a>
+      <a href="https://www.electionbyjury.org" target="_blank">www.electionbyjury.org</a>
+      <a href="https://scorevoting.net" target="_blank">scorevoting.net</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-label">wonk</div>
+
+    <div class="hero-left">
+      <p class="hero-eyebrow anim-fade-up anim-delay-1">policy · elections · economics · clay shentrup</p>
+      <h1 class="hero-title anim-fade-up anim-delay-2">
+        fixing<br />
+        <span class="italic">broken</span><br />
+        <span class="accent">systems.</span>
+      </h1>
+      <p class="hero-sub anim-fade-up anim-delay-3">
+        evidence-based arguments for electoral reform, land value taxation, marketarian economics, and charter cities.
+        <em>ideas that are obvious in hindsight and ignored in the present.</em>
+      </p>
+    </div>
+
+    <div class="hero-right anim-fade-in anim-delay-4">
+      <p class="manifesto">
+        most political disagreement is a <strong>category error</strong> — conflating
+        empirical questions about mechanism efficiency with normative questions about
+        redistribution. separate those two things and most of the fighting disappears.<br /><br />
+        the rest is just <strong>fixing the voting system</strong> so the people in charge
+        aren't chosen by a broken algorithm.
+      </p>
+    </div>
+
+    <div class="hero-bottom anim-fade-in anim-delay-5">
+      <div class="stat">
+        <span class="stat-num">64%</span>
+        <span class="stat-label">fargo, n.d. — approval voting (c.e.s.)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">68%</span>
+        <span class="stat-label">st. louis, m.o. — approval voting (c.e.s.)</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">~20yr</span>
+        <span class="stat-label">electoral reform</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="topics" id="topics">
+    <a class="flood-card" href="https://www.electionbyjury.org" target="_blank">
+      <p class="topic-num">01 / primary project</p>
+      <h2 class="topic-title">election<br />by jury</h2>
+      <p class="topic-body">randomly selected citizen juries replace lay voters — not politicians. candidates still compete; a compelled jury deliberates, questions them directly, and votes using score voting.</p>
+    </a>
+    <a class="flood-card" href="#">
+      <p class="topic-num">02 / electoral reform</p>
+      <h2 class="topic-title">approval<br />voting</h2>
+      <p class="topic-body">why plurality voting is a catastrophic mistake and how score-based methods measurably increase voter satisfaction. co-founded c.e.s. to advance this work.</p>
+    </a>
+    <a class="flood-card" href="#">
+      <p class="topic-num">03 / economics</p>
+      <h2 class="topic-title">market&shy;arianism</h2>
+      <p class="topic-body">separating mechanism efficiency from redistribution level. you can optimize the former without settling the ethics of the latter first.</p>
+    </a>
+    <a class="flood-card" href="#">
+      <p class="topic-num">04 / land &amp; tax</p>
+      <h2 class="topic-title">land value<br />taxation</h2>
+      <p class="topic-body">georgist l.v.t. captures unearned rent, eliminates deadweight loss, and can fund u.b.i. without punishing productivity. the economists all agree.</p>
+    </a>
+  </section>
+
+  <section class="feature" id="writing">
+    <div class="feature-main">
+      <p class="section-label">— featured project</p>
+      <h2 class="feature-title">election by jury: democracy without lay voters</h2>
+      <p class="feature-body">candidates still exist. what's replaced is the mass of uninformed lay voters casting ballots with minimal information, under the influence of money and a.i.-powered disinformation. instead, a randomly selected citizen jury — compelled to serve the way trial jurors are — spends weeks deliberating, questioning candidates directly, and voting using score voting.</p>
+      <p class="feature-body">the result is a system with near-perfect demographic alignment, structured resistance to money and manipulation, and decision quality that mass elections simply can't match. starting at the h.o.a. scale, because that's where you can actually implement something today.</p>
+      <a href="https://www.electionbyjury.org" target="_blank" class="read-link">www.electionbyjury.org →</a>
+    </div>
+
+    <div class="feature-aside">
+      <blockquote class="pull-quote">
+        "voter satisfaction efficiency doesn't care about your feelings about i.r.v. it's a number."
+      </blockquote>
+      <div class="link-list">
+        <a href="https://www.electionbyjury.org" target="_blank" class="link-list-item">
+          <span>election by jury</span><span class="arrow">↗</span>
+        </a>
+        <a href="https://scorevoting.net" target="_blank" class="link-list-item">
+          <span>scorevoting.net</span><span class="arrow">↗</span>
+        </a>
+        <a href="https://electionscience.org" target="_blank" class="link-list-item">
+          <span>center for election science</span><span class="arrow">↗</span>
+        </a>
+        <a href="https://github.com/clayshentrup" target="_blank" class="link-list-item">
+          <span>github</span><span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-label-col">
+      <span class="rotated-label">about</span>
+    </div>
+    <div class="about-main">
+      <h3 class="about-title">clay shentrup</h3>
+      <p class="about-body">
+        software engineer, electoral reform advocate, policy obsessive.
+        co-founded the center for election science (c.e.s.) around 2010–11, which ran successful approval voting ballot initiatives in fargo, n.d. (64%) and st. louis, m.o. (68%).<br /><br />
+        current main project: election by jury — a framework for replacing lay voters with randomly selected citizen panels using score voting. pursuing h.o.a. implementations in portland as a starting point, alongside citizens' initiative review adoption in portland city government.<br /><br />
+        also writes about marketarian economics, georgist land taxation, charter cities, and the general project of fixing systems that are obviously broken.
+      </p>
+    </div>
+    <div class="about-right">
+      <div>
+        <p class="section-label">— areas</p>
+        <div class="tag-cloud">
+          <span class="tag">election by jury</span>
+          <span class="tag">approval voting</span>
+          <span class="tag">score voting</span>
+          <span class="tag">v.s.e.</span>
+          <span class="tag">c.e.s.</span>
+          <span class="tag">l.v.t.</span>
+          <span class="tag">u.b.i.</span>
+          <span class="tag">marketarianism</span>
+          <span class="tag">charter cities</span>
+          <span class="tag">citizens' assembly</span>
+          <span class="tag">georgism</span>
+          <span class="tag">social choice theory</span>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <section>
-        <div class="container">
-            <h2>the problem</h2>
-            <p>since henry george in 1879, economists have agreed: tax land values, not improvements. land supply is perfectly inelastic → land value tax creates no deadweight loss. taxing improvements does create deadweight loss.</p>
-            
-            <p>so why hasn't land value taxation been implemented at scale?</p>
-            
-            <div class="box-highlight">
-                <strong>the assessment problem</strong>
-                bureaucrats can't separate land value from improvements. traditional assessment requires comparable sales analysis, expert appraisers, continuous re-evaluation. it's expensive, imprecise, and politically contentious. every assessment leads to disputes, appeals, litigation.
-            </div>
+  <footer>
+    <span class="wordmark">wonk.blog</span>
+    <span class="copyright">clay shentrup — portland, o.r.</span>
+    <div class="footer-links">
+      <a href="https://www.electionbyjury.org" target="_blank">www.electionbyjury.org</a>
+      <a href="https://scorevoting.net" target="_blank">scorevoting.net</a>
+      <a href="theme.html">site theme</a>
+    </div>
+  </footer>
 
-            <p>competitive bidding solves this. the market discovers land values directly through auction mechanisms. no bureaucratic assessment needed.</p>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2>how it works</h2>
-            
-            <div class="steps">
-                <div class="step">
-                    <strong>bidders submit two components</strong>
-                    <ul>
-                        <li><span class="mono">land value:</span> monthly rent willing to pay for bare land</li>
-                        <li><span class="mono">improvement value:</span> lump sum willing to pay for existing structures</li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <strong>convert to present value</strong>
-                    <p>use 30-year treasury rate to convert monthly land rent to net present value. total bid = land npv + improvement value.</p>
-                </div>
-
-                <div class="step">
-                    <strong>highest total bidder wins</strong>
-                    <p>winner pays second-highest total bid (vickrey auction)</p>
-                </div>
-
-                <div class="step">
-                    <strong>payment splits two ways</strong>
-                    <ul>
-                        <li>government receives: second-highest land bid</li>
-                        <li>incumbent receives: remainder (payment for improvements)</li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <strong>if incumbent refuses</strong>
-                    <p>improvements destroyed, bare land auctioned to highest land bidder at second-highest land price</p>
-                </div>
-            </div>
-
-            <div class="box-labeled" data-label="example">
-                <p><strong>alice:</strong> land $1.0m, improvements $1.3m → total $2.3m <em>(wins)</em></p>
-                <p><strong>bob:</strong> land $1.5m, improvements $0.7m → total $2.2m</p>
-                <p><strong>charlie:</strong> land $0.9m, improvements $1.0m → total $1.9m</p>
-                
-                <p style="margin-top: 30px;"><strong>outcome:</strong></p>
-                <p>alice wins, pays <code>$2.2m</code> (second-highest total)</p>
-                <p>government receives: <code>$1.5m</code> (bob's land, second-highest land bid)</p>
-                <p>incumbent receives: <code>$2.2m - $1.5m = $0.7m</code></p>
-                
-                <p style="margin-top: 25px; font-style: italic;">government captures true market land value revealed through competitive bidding</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2>why this works</h2>
-
-            <div class="box-accent">
-                <h4>perfect investment incentives</h4>
-                <p>when you improve property (add $150k value), competitive bidding raises the second-highest total by $150k. you capture that full value when selling. the land tax acts as a lump sum that doesn't affect marginal returns on improvements — identical investment incentives to fee simple ownership.</p>
-            </div>
-
-            <div class="box-accent">
-                <h4>government captures market land value</h4>
-                <p>government receives second-highest land bid — true market valuation revealed through competitive bidding. when subway gets built and land values rise $1m, government's share rises by $1m. incumbent's improvement payment stays constant. land appreciation flows to public revenue, not private owners.</p>
-            </div>
-
-            <div class="box-accent">
-                <h4>no bureaucratic assessment</h4>
-                <p>competitive bidding reveals both land and improvement values directly through market competition. no assessors, no appeals, no valuation disputes. the market discovers all values through the auction mechanism.</p>
-            </div>
-
-            <div class="box-accent">
-                <h4>honest bidding enforced by game theory</h4>
-                <p>vickrey second-price makes truthful total bidding a dominant strategy — you pay second-price regardless of your bid. the bare land auction fallback creates incentive for honest component bidding — you might win just the land, and your stated land value determines your payment there.</p>
-            </div>
-
-            <div class="box-accent">
-                <h4>solves the 145-year assessment problem</h4>
-                <p>since henry george in 1879, l.v.t. couldn't be implemented at scale because bureaucrats can't separate land from improvements. this mechanism solves it through competitive market mechanisms rather than administrative estimation.</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2>comparison to alternatives</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>feature</th>
-                        <th>bureaucratic l.v.t.</th>
-                        <th>fee simple</th>
-                        <th>our mechanism</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>captures land appreciation</td>
-                        <td>✓</td>
-                        <td>✗</td>
-                        <td>✓</td>
-                    </tr>
-                    <tr>
-                        <td>preserves investment incentives</td>
-                        <td>✗</td>
-                        <td>✓</td>
-                        <td>✓</td>
-                    </tr>
-                    <tr>
-                        <td>no bureaucratic assessment</td>
-                        <td>✗</td>
-                        <td>✓</td>
-                        <td>✓</td>
-                    </tr>
-                    <tr>
-                        <td>separates land from improvements</td>
-                        <td>✓ (via assessment)</td>
-                        <td>✗</td>
-                        <td>✓ (via bidding)</td>
-                    </tr>
-                    <tr>
-                        <td>implementation difficulty</td>
-                        <td>very high</td>
-                        <td>low (status quo)</td>
-                        <td>medium</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2>frequently asked questions</h2>
-
-            <div class="box">
-                <h3>what if i build a house and a developer tears it down?</h3>
-                <p>developer bids: land $2m, improvements $0 (teardown), total $2m. you receive remainder after government takes land value. if land value is $2m, you get $0 for your house.</p>
-                <p>this teardown risk is identical to fee simple ownership. if market shifts to higher-value use that doesn't want your improvements, you lose that investment value under any property system. the mechanism doesn't eliminate market risk — it replicates fee simple risk while redirecting land appreciation to public revenue.</p>
-            </div>
-
-            <div class="box">
-                <h3>why would i bid my components honestly?</h3>
-                <p><strong>total bidding:</strong> standard vickrey logic. you pay second-price regardless of your stated bid, so truthful bidding is optimal. understating → might lose when you should win. overstating → doesn't reduce payment.</p>
-                <p><strong>component bidding:</strong> if you don't win total property and incumbent refuses winner's offer, bare land goes to auction. you might win that bare land auction. your stated land value determines what you pay there (second-highest land bid). vickrey logic applies — honest land bidding is optimal for that contingency.</p>
-            </div>
-
-            <div class="box">
-                <h3>how often would bidding occur?</h3>
-                <p>continuous bidding rounds (monthly or quarterly). if you're outbid, you get 30-day notice to either: (a) find another property, (b) recruit competing bidders, or (c) negotiate with winner.</p>
-                <p>system uses 30-year treasury rate to convert between monthly rent (flow) and present value (stock). this rate is market-determined through bond markets, not bureaucrat-chosen.</p>
-            </div>
-
-            <div class="box">
-                <h3>what prevents collusion or gaming?</h3>
-                <p>vickrey auctions are strategy-proof — truthful bidding is dominant strategy regardless of what others do. the bare land fallback creates mutually assured destruction dynamics: if winner lowballs, incumbent can recruit competing bidders. both parties prefer honest dealing over destruction.</p>
-            </div>
-
-            <div class="box">
-                <h3>how much revenue would this generate?</h3>
-                <p>gaffney (2009) estimates u.s. land value at $23 trillion. at 5% annual return: $1.15 trillion/year. that's 6% of g.d.p. — enough to fund substantial universal basic income, replace distortionary taxes on labor and capital, or invest in public infrastructure.</p>
-            </div>
-
-            <div class="box">
-                <h3>vickrey vs harberger: why auction-based?</h3>
-                <p><strong>harberger taxation:</strong> continuous self-assessment. you state a value, pay ongoing tax (say 5% annually), anyone can force-purchase at your stated price. this works for any asset — you could apply it to land value only, just like our mechanism does.</p>
-                
-                <p><strong>the buyback problem:</strong> if you understate to save on taxes and someone buys the property, you can immediately buy it right back at a higher price. this creates a back-and-forth that effectively converges to second-price anyway. harberger becomes vickrey through revealed preference in sequential buybacks.</p>
-                
-                <p><strong>our choice:</strong> use vickrey directly (auction-based, pay second-highest bid). cleaner dynamics, no gaming through sequential buybacks. same economic outcome with less friction and clearer price discovery.</p>
-                
-                <p><strong>on interest rates:</strong> both approaches need a rate to convert between rent (monthly flow) and land value (present value stock). we use the 30-year treasury rate — this is market-determined through bond markets, not bureaucrat-chosen. it represents the risk-free return rate that markets themselves reveal.</p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2>the bigger picture</h2>
-            
-            <p>this isn't just about land taxation. it's about mechanism design — using auction theory and game theory to solve problems that administrative systems can't.</p>
-
-            <p>the 145-year-old problem: how do you separate land value from improvement value for assessment? traditional answer: hire bureaucrats to estimate. new answer: let the market reveal values through competitive bidding.</p>
-
-            <p>the tools are simple: vickrey auctions (1961), mutually assured destruction dynamics, and present value calculations (economics 101). nothing exotic. just careful thinking about incentives and efficiency.</p>
-
-            <div class="box-highlight">
-                <strong>the result</strong>
-                pure georgist land value taxation without bureaucratic assessment. government captures market land value. investment incentives preserved. efficient allocation plus public revenue from land appreciation. best of both worlds.
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>clay shentrup | <a href="mailto:cshentrup@gmail.com">cshentrup@gmail.com</a></p>
-            <p><a href="/">← wonk.blog</a></p>
-        </div>
-    </footer>
 </body>
 </html>
