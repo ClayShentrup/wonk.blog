@@ -6,7 +6,7 @@
   <title>wonk.blog — ok fine, here's the style guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="wonk.css" />
 </head>
 <body>
@@ -18,15 +18,15 @@
 
   <section class="intro">
     <div class="intro-left">
-      <p class="intro-kicker anim-fade-up anim-delay-1">style guide — because you asked</p>
-      <h1 class="intro-title anim-fade-up anim-delay-2">
+      <p class="intro-kicker">style guide — because you asked</p>
+      <h1 class="intro-title">
         ok fine,<br />
-        it <span class="rust">is</span><br />
+        it <span class="text-emphasis">is</span><br />
         pretty<br />
-        <span class="accent">sexy.</span>
+        <span class="text-accent">good.</span>
       </h1>
     </div>
-    <div class="intro-right anim-fade-in anim-delay-3">
+    <div class="intro-right">
       <p class="intro-copy">
         so you liked the design of wonk.blog and you want to know how it was made.
         flattering. genuinely. <em>here you go.</em><br /><br />
@@ -50,53 +50,53 @@
 
   <div class="color-grid">
     <div class="color-swatch">
-      <div class="swatch-block" style="background:#080808;">
-        <span class="swatch-hex">#080808</span>
+      <div class="swatch-block" style="background:#1c1a17;">
+        <span class="swatch-hex">#1c1a17</span>
       </div>
       <div class="swatch-info">
-        <p class="swatch-name">almost-black</p>
-        <p class="swatch-role">background / void</p>
-        <p class="swatch-story">not #000000. never #000000. pure black is for people who haven't thought about it. this is the color of a cinema at 2 a.m. after everyone's left. it's warm in a way you can't quite explain. <em>designers call this "softening the void." i call it not being a psychopath.</em></p>
+        <p class="swatch-name">background</p>
+        <p class="swatch-role">--color-bg / canvas</p>
+        <p class="swatch-story">not #000000. not even #080808 anymore. this is the warmest near-black you can get away with — the color of a cinema at 2 a.m. with the house lights barely on. screens are cold. this one isn't. <em>it is doing a lot of work quietly.</em></p>
       </div>
     </div>
     <div class="color-swatch">
-      <div class="swatch-block" style="background:#f0ead8;">
-        <span class="swatch-hex" style="color:#080808;">#f0ead8</span>
+      <div class="swatch-block" style="background:#f0ece3;">
+        <span class="swatch-hex" style="color:#1c1a17;">#f0ece3</span>
       </div>
       <div class="swatch-info">
-        <p class="swatch-name">vellum</p>
-        <p class="swatch-role">body text / primary foreground</p>
-        <p class="swatch-story">the color of old paper. specifically, the paper in a 16th-century venetian printing house. the kind gutenberg's descendants were using to spread ideas that got people in trouble. <em>we are continuing that tradition.</em> also, white text on black backgrounds gives people headaches. this doesn't.</p>
+        <p class="swatch-name">text</p>
+        <p class="swatch-role">--color-text / primary foreground</p>
+        <p class="swatch-story">old vellum. the color of the page in a 16th-century venetian printing house. people spreading ideas that got them in trouble. <em>we are continuing that tradition.</em> white text on dark backgrounds gives people headaches. this doesn't.</p>
       </div>
     </div>
     <div class="color-swatch">
-      <div class="swatch-block" style="background:#c6ff2f;">
-        <span class="swatch-hex" style="color:#080808;">#c6ff2f</span>
+      <div class="swatch-block" style="background:#c49a3c;">
+        <span class="swatch-hex" style="color:#1c1a17;">#c49a3c</span>
       </div>
       <div class="swatch-info">
-        <p class="swatch-name">acid green</p>
-        <p class="swatch-role">accent / emphasis / "look here"</p>
-        <p class="swatch-story">chartreuse is the only color named after a liqueur made by monks in the french alps since 1737. it's also the color used on high-visibility safety vests, rave flyers, and early-2000s web design that was ahead of its time. <em>this shade is that color but angrier.</em> it means business. it's the color of a correct argument.</p>
+        <p class="swatch-name">accent</p>
+        <p class="swatch-role">--color-accent / emphasis / "look here"</p>
+        <p class="swatch-story">amber. old gold. the color of lamplight on a manuscript page. it says "here is the important thing" without shouting it. <em>it is the color of the argument that has been tested and survived.</em> not flashy. patient.</p>
       </div>
     </div>
     <div class="color-swatch">
-      <div class="swatch-block" style="background:#d4542a;">
-        <span class="swatch-hex">#d4542a</span>
+      <div class="swatch-block" style="background:#b85c38;">
+        <span class="swatch-hex">#b85c38</span>
       </div>
       <div class="swatch-info">
-        <p class="swatch-name">rust</p>
-        <p class="swatch-role">secondary accent / warmth / italics</p>
-        <p class="swatch-story">terracotta. the color of roman roof tiles. of the clay pots that the mediterranean world shipped olive oil in for a thousand years. if acid green is the sharp argument, rust is the long historical view — the "people have been getting this wrong for millennia" energy. <em>it keeps the page from looking like a hacker's monitor.</em></p>
+        <p class="swatch-name">emphasis</p>
+        <p class="swatch-role">--color-emphasis / secondary / warmth</p>
+        <p class="swatch-story">terracotta. roman roof tiles. the clay pots the mediterranean world shipped olive oil in for a thousand years. if amber is the patient argument, this is the long historical view — the "people have been getting this wrong for millennia" energy. <em>keeps the palette grounded.</em></p>
       </div>
     </div>
     <div class="color-swatch">
-      <div class="swatch-block" style="background:#222;">
-        <span class="swatch-hex">#222222</span>
+      <div class="swatch-block" style="background:#2e2b25;">
+        <span class="swatch-hex">#2e2b25</span>
       </div>
       <div class="swatch-info">
-        <p class="swatch-name">graphite</p>
-        <p class="swatch-role">borders / structural lines</p>
-        <p class="swatch-story">you know how a good suit has contrast stitching that you only notice on close inspection? that's this. it's not a color that demands attention. it's doing pure structural work — dividing space, suggesting hierarchy, making the grid visible without being loud about it. <em>the unsung hero of the whole palette.</em></p>
+        <p class="swatch-name">border</p>
+        <p class="swatch-role">--color-border / structure</p>
+        <p class="swatch-story">a good suit has contrast stitching you only notice on close inspection. that's this. it divides space and suggests hierarchy without demanding attention. <em>the unsung hero of the whole palette.</em></p>
       </div>
     </div>
   </div>
@@ -110,15 +110,15 @@
     <div class="font-block">
       <div class="font-meta">
         <div>
-          <p class="font-name">unbounded</p>
-          <p class="font-classif">geometric sans-serif / display</p>
-          <p class="font-story">designed by masha cairo for google fonts, released 2022. it's named "unbounded" because the letters have no descenders and extend upward without constraint — like an argument that keeps escalating at thanksgiving dinner.<br /><br />the <em>real</em> reason it's here: it looks like a font that would be on the cover of a soviet-era technical manual about optimal collective farm output allocation, but make it fashion. bauhaus meets brutalism meets "i have opinions about land value taxation."</p>
-          <p class="font-used-for">used for: wordmark · headings · topic cards · stats<br />weights: 300 (light italic) · 700 (bold) · 900 (black)</p>
+          <p class="font-name">cormorant garamond</p>
+          <p class="font-classif">display serif / headings</p>
+          <p class="font-story">a revival of claude garamond's 16th-century french typefaces, redrawn by christian thalmann for screens. it has the narrow elegance of old-style serifs but with optical weights designed for modern display sizes. at 300 weight it is almost calligraphic.<br /><br /><em>the font that says "i have thought carefully about this for a long time and i am ready to explain it."</em> which is exactly the register we want.</p>
+          <p class="font-used-for">used for: wordmark · headings · topic cards · pull quotes<br />weights: 300 light · 400 regular · 600 semibold · italics of each</p>
         </div>
       </div>
       <div class="font-specimen">
-        <div class="specimen-unbounded-hero">fixing<br />broken<br />systems.</div>
-        <div class="specimen-unbounded-light">the light italic is for when you want to be emphatic but also a little wistful about it</div>
+        <div class="specimen-display-hero">fixing<br />broken<br />systems.</div>
+        <div class="specimen-display-light">the light italic is for when you want to be emphatic but also a little wistful about it</div>
       </div>
     </div>
 
@@ -127,13 +127,34 @@
         <div>
           <p class="font-name">lora</p>
           <p class="font-classif">contemporary serif / body text</p>
-          <p class="font-story">designed by olga karpushina, lora was built specifically for reading on screens — not scanned from a metal type specimen, but drawn from scratch with pixel grids in mind. it has calligraphic roots but optimized for a medium that didn't exist when serifs were invented.<br /><br /><em>the long arc of typographic history bending toward legibility.</em> also the italic is extremely beautiful and i would die for it.</p>
-          <p class="font-used-for">used for: body copy · manifesto text · blockquotes · this very sentence<br />weights: 400 (regular) · 400i (italic) · 600 (semibold)</p>
+          <p class="font-story">designed by olga karpushina, lora was built specifically for reading on screens — not scanned from metal type, but drawn from scratch with pixel grids in mind. it has calligraphic roots but optimized for a medium that didn't exist when serifs were invented.<br /><br /><em>the long arc of typographic history bending toward legibility.</em> also the italic is extremely beautiful.</p>
+          <p class="font-used-for">used for: body copy · manifesto text · blockquotes<br />weights: 400 regular · 400 italic · 600 semibold</p>
         </div>
       </div>
       <div class="font-specimen">
-        <p class="specimen-lora-body">most political disagreement is a category error — conflating empirical questions about mechanism efficiency with normative questions about redistribution. separate those two things and most of the fighting disappears.</p>
-        <p class="specimen-lora-italic">"voter satisfaction efficiency doesn't care about your feelings about i.r.v. it's a number."</p>
+        <p class="specimen-body">most political disagreement is a category error — conflating empirical questions about mechanism efficiency with normative questions about redistribution. separate those two things and most of the fighting disappears.</p>
+        <p class="specimen-body-italic">"voter satisfaction efficiency doesn't care about your feelings about i.r.v. it's a number."</p>
+      </div>
+    </div>
+
+    <div class="font-block">
+      <div class="font-meta">
+        <div>
+          <p class="font-name">dm sans</p>
+          <p class="font-classif">geometric sans-serif / labels &amp; ui</p>
+          <p class="font-story">designed by colophon foundry for google fonts. clean, slightly humanist geometry — readable at small sizes where a serif would collapse. it plays the supporting role: nav links, section labels, stat annotations, tags.<br /><br /><em>the font that says "here is the metadata about the thing." not the thing itself.</em></p>
+          <p class="font-used-for">used for: nav · eyebrows · labels · tags · stat labels<br />weights: 300 light · 400 regular · 500 medium</p>
+        </div>
+      </div>
+      <div class="font-specimen">
+        <p class="specimen-label">section label treatment</p>
+        <p class="specimen-label-sm">— featured argument</p>
+        <br />
+        <p class="specimen-label">stat label treatment</p>
+        <p class="specimen-label-sm">64% · fargo, n.d. — approval voting (c.e.s.)</p>
+        <br />
+        <p class="specimen-label">nav link treatment</p>
+        <p class="specimen-label-sm" style="letter-spacing:0.12em;">topics · about · electionbyjury.org</p>
       </div>
     </div>
 
@@ -141,26 +162,22 @@
       <div class="font-meta">
         <div>
           <p class="font-name">jetbrains mono</p>
-          <p class="font-classif">monospace / data / metadata</p>
-          <p class="font-story">literally made by the company that makes i.d.e.s for programmers. designed after jetbrains analyzed how developers actually read code — adding ligatures and increased x-height to reduce eye strain at 2 a.m. when you're debugging something stupid.<br /><br />on this site it plays a different role: <em>it's the voice of the data, the labels, the slightly-too-earnest metadata.</em> the font that says "i measured this and here is the number."</p>
-          <p class="font-used-for">used for: eyebrows · stat labels · nav links · tags<br />weights: 400 · 700</p>
+          <p class="font-classif">monospace / code &amp; data</p>
+          <p class="font-story">literally made by the company that makes i.d.e.s. designed after jetbrains analyzed how developers actually read code — ligatures, increased x-height, reduced eye strain at 2 a.m. debugging something stupid.<br /><br /><em>on this site: the voice of the data.</em> the font that says "i measured this and here is the number." inline code, footnotes, hex values.</p>
+          <p class="font-used-for">used for: inline code · hex values · doc metadata<br />weights: 400 regular · 700 bold</p>
         </div>
       </div>
       <div class="font-specimen">
-        <p class="specimen-mono-label">section label treatment</p>
-        <p class="specimen-mono">— featured argument</p>
+        <p class="specimen-mono">--color-accent: #c49a3c;</p>
+        <p class="specimen-mono">--font-display: 'Cormorant Garamond';</p>
         <br />
-        <p class="specimen-mono-label">stat label treatment</p>
-        <p class="specimen-mono">64%<br /><span style="opacity:0.4;font-size:0.75em;">fargo, n.d. — approval voting (c.e.s.)</span></p>
-        <br />
-        <p class="specimen-mono-label">nav link treatment</p>
-        <p class="specimen-mono" style="letter-spacing:0.12em;">topics · about · electionbyjury.org</p>
+        <p class="specimen-mono-sm">voter satisfaction efficiency · n = 10,000 simulations</p>
       </div>
     </div>
   </div>
 
   <div class="section-header">
-    <h2>the principles (hover for emphasis)</h2>
+    <h2>the principles</h2>
     <div class="section-rule"></div>
   </div>
 
@@ -168,17 +185,17 @@
     <div class="flood-card">
       <p class="p-num">01</p>
       <h3 class="p-title">everything lowercase</h3>
-      <p class="p-body">capitalization is a power move. it implies that some words are more important than others based on their position in a sentence rather than their actual content. <em>we disagree with this ontologically.</em> initialisms get periods because i.r.v. looks more human than IRV and we are, allegedly, humans.</p>
+      <p class="p-body">capitalization is a power move. it implies some words matter more based on position rather than content. <em>we disagree with this ontologically.</em> initialisms get periods because i.r.v. looks more human than IRV and we are, allegedly, humans.</p>
     </div>
     <div class="flood-card">
       <p class="p-num">02</p>
       <h3 class="p-title">grid as argument</h3>
-      <p class="p-body">the hard-edged grid isn't just aesthetic — it's the visual equivalent of a logical structure. borders don't blur. columns don't drift. everything is where it says it is. <em>this is what policy arguments should look like too</em>, but that's a longer essay.</p>
+      <p class="p-body">the hard-edged grid isn't just aesthetic — it's the visual equivalent of logical structure. borders don't blur. columns don't drift. everything is where it says it is. <em>this is what policy arguments should look like too</em>, but that's a longer essay.</p>
     </div>
     <div class="flood-card">
       <p class="p-num">03</p>
-      <h3 class="p-title">noise and warmth</h3>
-      <p class="p-body">the grain texture overlay, the off-black background, the cream text — these exist to prevent the page from feeling like a u.i. kit. screens are cold. ideas are warm. <em>the job of the design is to not get in the way of the ideas</em>, and pure cold black-and-white absolutely gets in the way.</p>
+      <h3 class="p-title">warmth over flash</h3>
+      <p class="p-body">the warm near-black, the amber accent, the vellum text — these prevent the page from feeling like a u.i. kit. screens are cold. ideas are warm. <em>the design's job is not to get in the way of the argument</em>, and cold high-contrast aesthetics absolutely do.</p>
     </div>
   </div>
 
@@ -187,7 +204,6 @@
     <div class="section-rule"></div>
   </div>
 
-  <!-- demo: document page components -->
   <div class="doc-section">
     <div class="container">
       <p class="section-label">— used on essay / article pages</p>
@@ -202,7 +218,7 @@
 
       <div class="box-highlight">
         <strong>.box-highlight</strong>
-        the important thing you'd bold in a textbook. acid-green left border, faint acid wash background. use for conclusions, key assertions, the thing the reader should remember if they skim.
+        the important thing you'd bold in a textbook. accent-coloured left border, faint accent-wash background. use for conclusions, key assertions, the thing the reader should remember if they skim.
       </div>
 
       <div class="box-accent">
@@ -258,12 +274,20 @@
 
       <p>
         <span class="u-mono">u-mono — jetbrains mono at 0.85em</span><br />
-        <span class="u-accent">u-accent — acid green text</span><br />
-        <span class="u-rust">u-rust — rust text</span><br />
-        <span class="u-muted">u-muted — 70% opacity</span><br />
+        <span class="u-accent">u-accent — accent color text</span><br />
+        <span class="u-emphasis">u-emphasis — emphasis color, italic</span><br />
+        <span class="u-muted">u-muted — 60% opacity</span><br />
         <span class="u-small">u-small — 0.85em</span><br />
-        <span class="u-large">u-large — 1.4em</span><br />
+        <span class="u-large">u-large — 1.35em</span><br />
         <span class="u-italic">u-italic — italic</span>
+      </p>
+
+      <h4>inline spans (for headings &amp; titles)</h4>
+
+      <p>
+        use <code>.text-accent</code> and <code>.text-emphasis</code> for colored words in display headings.
+        these are purpose-named — if the brand palette changes, only the css <code>:root</code> values change.
+        no html edits needed.
       </p>
 
     </div>
