@@ -1,0 +1,502 @@
+import { useState, useMemo, useCallback } from "react";
+
+// ─── SEEDED RNG ──────────────────────────────────────────────────────────
+function m32(a){return function(){a|=0;a=(a+0x6d2b79f5)|0;var t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;};}
+function sG(r){let u=0,v=0;while(!u)u=r();while(!v)v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function cl(v,a,b){return Math.max(a,Math.min(b,v));}
+
+// ─── CANDIDATES (43) ─────────────────────────────────────────────────────
+const C=[
+  {id:"newsom",n:"Gavin Newsom",p:"D",t:"Gov. California",e:3.2,s:2.8,co:7.5,ch:7.8,nr:8.5},
+  {id:"butt",n:"Pete Buttigieg",p:"D",t:"Fmr. Sec. Transportation",e:4.0,s:2.5,co:8.2,ch:8.5,nr:8.0},
+  {id:"harris",n:"Kamala Harris",p:"D",t:"Fmr. Vice President",e:3.5,s:2.8,co:6.8,ch:6.5,nr:9.5},
+  {id:"whitmer",n:"Gretchen Whitmer",p:"D",t:"Gov. Michigan",e:3.8,s:3.0,co:8.0,ch:7.5,nr:7.0},
+  {id:"shapiro",n:"Josh Shapiro",p:"D",t:"Gov. Pennsylvania",e:4.2,s:3.2,co:8.0,ch:7.8,nr:6.5},
+  {id:"aoc",n:"Alexandria Ocasio-Cortez",p:"D",t:"U.S. Rep., New York",e:1.5,s:1.2,co:7.0,ch:8.8,nr:9.0},
+  {id:"pritz",n:"J.B. Pritzker",p:"D",t:"Gov. Illinois",e:3.5,s:2.5,co:7.5,ch:6.0,nr:5.5},
+  {id:"beshear",n:"Andy Beshear",p:"D",t:"Gov. Kentucky",e:4.5,s:3.8,co:7.8,ch:7.5,nr:5.0},
+  {id:"moore",n:"Wes Moore",p:"D",t:"Gov. Maryland",e:3.5,s:2.8,co:7.5,ch:8.0,nr:5.5},
+  {id:"booker",n:"Cory Booker",p:"D",t:"U.S. Senator, NJ",e:3.0,s:2.2,co:7.2,ch:7.8,nr:7.0},
+  {id:"mkelly",n:"Mark Kelly",p:"D",t:"U.S. Senator, AZ",e:4.5,s:3.5,co:7.8,ch:7.0,nr:6.0},
+  {id:"klob",n:"Amy Klobuchar",p:"D",t:"U.S. Senator, MN",e:4.2,s:3.2,co:7.5,ch:6.2,nr:6.5},
+  {id:"bernie",n:"Bernie Sanders",p:"D",t:"U.S. Senator, VT",e:1.0,s:1.5,co:7.0,ch:7.5,nr:9.5},
+  {id:"warnock",n:"Raphael Warnock",p:"D",t:"U.S. Senator, GA",e:3.2,s:2.5,co:7.5,ch:7.8,nr:6.0},
+  {id:"khanna",n:"Ro Khanna",p:"D",t:"U.S. Rep., California",e:2.5,s:2.2,co:7.8,ch:6.8,nr:4.0},
+  {id:"ossoff",n:"Jon Ossoff",p:"D",t:"U.S. Senator, GA",e:3.8,s:2.8,co:7.2,ch:7.5,nr:5.0},
+  {id:"walz",n:"Tim Walz",p:"D",t:"Fmr. Gov. Minnesota",e:3.5,s:2.8,co:7.0,ch:7.2,nr:7.5},
+  {id:"fett",n:"John Fetterman",p:"D",t:"U.S. Senator, PA",e:3.0,s:3.5,co:6.5,ch:7.0,nr:7.0},
+  {id:"gallego",n:"Ruben Gallego",p:"D",t:"U.S. Senator, AZ",e:3.5,s:2.8,co:7.0,ch:7.2,nr:4.5},
+  {id:"emanuel",n:"Rahm Emanuel",p:"D",t:"Fmr. Amb. to Japan",e:5.0,s:3.8,co:8.0,ch:5.5,nr:5.5},
+  {id:"vance",n:"JD Vance",p:"R",t:"Vice President",e:6.0,s:7.5,co:7.5,ch:7.0,nr:9.0},
+  {id:"rubio",n:"Marco Rubio",p:"R",t:"Sec. of State",e:6.5,s:6.8,co:7.5,ch:7.0,nr:8.5},
+  {id:"desantis",n:"Ron DeSantis",p:"R",t:"Gov. Florida",e:7.0,s:8.0,co:7.5,ch:5.8,nr:9.0},
+  {id:"haley",n:"Nikki Haley",p:"R",t:"Fmr. UN Ambassador",e:6.5,s:6.0,co:7.8,ch:7.2,nr:8.5},
+  {id:"cruz",n:"Ted Cruz",p:"R",t:"U.S. Senator, TX",e:7.5,s:8.2,co:7.5,ch:5.0,nr:8.5},
+  {id:"hawley",n:"Josh Hawley",p:"R",t:"U.S. Senator, MO",e:5.5,s:8.0,co:7.0,ch:6.5,nr:6.5},
+  {id:"rpaul",n:"Rand Paul",p:"R",t:"U.S. Senator, KY",e:8.5,s:5.5,co:7.5,ch:6.5,nr:7.5},
+  {id:"vivek",n:"Vivek Ramaswamy",p:"R",t:"Entrepreneur",e:7.5,s:7.0,co:6.5,ch:7.5,nr:7.5},
+  {id:"shsan",n:"Sarah Huckabee Sanders",p:"R",t:"Gov. Arkansas",e:7.0,s:8.0,co:6.5,ch:6.0,nr:7.0},
+  {id:"noem",n:"Kristi Noem",p:"R",t:"Sec. of DHS",e:7.5,s:8.0,co:5.5,ch:5.5,nr:6.5},
+  {id:"youngkin",n:"Glenn Youngkin",p:"R",t:"Fmr. Gov. Virginia",e:6.5,s:6.5,co:7.5,ch:7.0,nr:6.0},
+  {id:"tscott",n:"Tim Scott",p:"R",t:"U.S. Senator, SC",e:7.0,s:7.0,co:7.0,ch:7.0,nr:7.0},
+  {id:"cotton",n:"Tom Cotton",p:"R",t:"U.S. Senator, AR",e:7.5,s:8.5,co:7.0,ch:5.0,nr:6.0},
+  {id:"gabbard",n:"Tulsi Gabbard",p:"R",t:"Dir. Natl. Intelligence",e:5.5,s:5.0,co:6.5,ch:7.5,nr:7.5},
+  {id:"trumpjr",n:"Donald Trump Jr.",p:"R",t:"Businessman",e:7.0,s:8.0,co:4.5,ch:6.5,nr:8.5},
+  {id:"yang",n:"Andrew Yang",p:"FWD",t:"Forward Party Founder",e:4.8,s:4.0,co:7.0,ch:7.5,nr:7.0},
+  {id:"manchin",n:"Joe Manchin",p:"IND",t:"Fmr. Senator, WV",e:5.8,s:5.5,co:6.5,ch:5.5,nr:7.5},
+  {id:"stein",n:"Jill Stein",p:"GRN",t:"Green Party Perennial",e:1.0,s:1.0,co:5.0,ch:4.5,nr:6.5},
+  {id:"west",n:"Cornel West",p:"PPL",t:"Scholar / Activist",e:0.8,s:0.8,co:6.0,ch:7.5,nr:6.0},
+  {id:"oliver",n:"Chase Oliver",p:"LIB",t:"2024 LP Nominee",e:8.0,s:2.0,co:5.5,ch:5.5,nr:3.5},
+  {id:"dsmith",n:"Dave Smith",p:"LIB",t:"Libertarian Commentator",e:9.0,s:2.5,co:6.0,ch:7.0,nr:3.0},
+  {id:"dlcruz",n:"Claudia De la Cruz",p:"PSL",t:"Party for Socialism",e:0.5,s:0.5,co:5.0,ch:5.5,nr:2.0},
+  {id:"rfk",n:"Robert F. Kennedy Jr.",p:"IND",t:"Sec. of HHS",e:5.5,s:4.5,co:5.0,ch:7.0,nr:9.0},
+];
+
+const PC={D:"#3b82f6",R:"#ef4444",FWD:"#f59e0b",IND:"#9ca3af",GRN:"#22c55e",LIB:"#ca8a04",PPL:"#a855f7",PSL:"#f43f5e"};
+const PL={D:"Democrat",R:"Republican",FWD:"Forward",IND:"Independent",GRN:"Green",LIB:"Libertarian",PPL:"People's",PSL:"PSL"};
+
+// ─── JUROR GEN ──────────────────────────────────────────────────────────
+function pw(a,k,r){let v=r()*100,c=0;for(const i of a){c+=i[k];if(v<=c)return i;}return a[a.length-1];}
+const REGS=[{r:"Northeast",p:17},{r:"Midwest",p:21},{r:"South",p:38},{r:"West",p:24}];
+const RACE=[{r:"White",p:58},{r:"Black",p:13},{r:"Hispanic",p:19},{r:"Asian",p:6},{r:"Other",p:4}];
+const EDU=[{r:"No college",p:38},{r:"Some college",p:27},{r:"Bachelor's",p:23},{r:"Graduate",p:12}];
+const AGE=[{r:"18–29",mn:18,mx:29,p:16},{r:"30–44",mn:30,mx:44,p:25},{r:"45–64",mn:45,mx:64,p:33},{r:"65+",mn:65,mx:80,p:26}];
+
+function genJ(rng){
+  const J=[];
+  for(let i=0;i<100;i++){
+    const reg=pw(REGS,"p",rng).r,race=pw(RACE,"p",rng).r,edu=pw(EDU,"p",rng).r;
+    const ag=pw(AGE,"p",rng),age=Math.floor(ag.mn+rng()*(ag.mx-ag.mn)),gen=rng()<0.51?"F":"M";
+    let ec=5+sG(rng)*2.2,so=5+sG(rng)*2.2;
+    if(race==="Black"){ec-=1.8;so-=0.8;}if(race==="Hispanic"){ec-=0.8;so-=0.3;}
+    if(edu==="Graduate"){ec-=0.5;so-=1.0;}if(edu==="No college"){so+=0.5;}
+    if(age>60){ec+=0.3;so+=0.5;}if(age<30){ec-=0.3;so-=0.8;}
+    if(reg==="South"){ec+=0.4;so+=0.6;}if(reg==="Northeast"){ec-=0.3;so-=0.4;}
+    if(reg==="West"){ec-=0.2;so-=0.3;}if(gen==="F"){so-=0.2;}
+    ec=cl(ec,0,10);so=cl(so,0,10);
+    J.push({id:i,reg,race,edu,age,ageL:ag.r,gen,ie:ec,is:so,
+      wE:.25+rng()*.15,wS:.15+rng()*.15,wC:.15+rng()*.15,wH:.10+rng()*.10,wN:.08+rng()*.08,
+      pers:.3+rng()*.7,susc:.3+rng()*.7,open:.2+rng()*.6});
+  }return J;
+}
+
+// ─── 14 DAYS ────────────────────────────────────────────────────────────
+const DAYS=[
+  {l:"Orientation & Opening Statements",d:"Jurors are sworn in and briefed on the process. Each of 43 candidates delivers a 5-minute opening statement via video. First impressions form, heavily weighted by name recognition and charisma.",nM:2.0,cM:1.5,coM:.5,pI:0,iG:.05},
+  {l:"Democratic Frontrunners Present",d:"Newsom, Buttigieg, Harris, Whitmer, Shapiro, and AOC each present 20-minute policy platforms. Expert fact-checkers provide real-time annotations. Jurors begin calibrating for substance over celebrity.",nM:1.2,cM:1.2,coM:.8,pI:.05,iG:.10},
+  {l:"Democratic Field Completes",d:"Remaining Democrats present. Lesser-known candidates get first real exposure. Beshear's Kentucky story resonates. Kelly's astronaut biography commands respect. Khanna demonstrates policy depth on technology and trade.",nM:.8,cM:1,coM:1,pI:.08,iG:.15},
+  {l:"Republican Frontrunners Present",d:"Vance, Rubio, DeSantis, and Haley present platforms. Conservative jurors engage intensely. Moderate jurors assess crossover appeal. Haley's centrist pitch plays well beyond her base.",nM:1.2,cM:1.2,coM:.8,pI:.05,iG:.10},
+  {l:"Republican Field & Third Parties",d:"Remaining Republicans and all third-party candidates present. Yang's Forward Party pitch resonates with centrists. Libertarians surprise some jurors. Socialist candidates receive a skeptical reception from most of the panel.",nM:.6,cM:1,coM:1,pI:.10,iG:.18},
+  {l:"Economy & Jobs Deep Dive",d:"Standardized economic Q&A. Economists brief the jury on inflation, wages, trade, and automation. Policy substance dominates over personality. Shapiro and Beshear cite specific state-level results that impress.",nM:.3,cM:.6,coM:1.5,pI:.12,iG:.20,eB:1.8},
+  {l:"Healthcare, Education & Social Policy",d:"Detailed social policy Q&A. Candidates' positions are pinned down with specifics. Beshear's centrist social positions track the jury median closely. Whitmer's education record shines.",nM:.3,cM:.6,coM:1.5,pI:.12,iG:.20,sB:1.8},
+  {l:"Foreign Policy & National Security",d:"Candidates address Ukraine, China, the Middle East, and climate agreements. Rubio's State Department experience and Kelly's military background gain weight. Domestic-focused candidates have their weakest day.",nM:.2,cM:.8,coM:1.8,pI:.12,iG:.22},
+  {l:"Cross-Examination Day",d:"Jurors directly question the top 15 candidates. Weaknesses exposed under pressure. Buttigieg is exceptional. Beshear is unflustered. Newsom stumbles on California housing. RFK Jr. faces devastating vaccine questions from a retired nurse.",nM:.2,cM:1.3,coM:1.5,pI:.10,iG:.22,scr:1},
+  {l:"Small Group Deliberation I",d:"Ten groups of ten, professionally facilitated. Peer influence peaks. Conservative jurors explain Haley's appeal. Progressives champion Buttigieg. Working-class jurors from Kentucky and similar states advocate for Beshear.",nM:.2,cM:.8,coM:1.2,pI:.25,iG:.18},
+  {l:"Small Group Deliberation II",d:"Groups reshuffled for fresh perspectives. Jurors who championed lesser-known candidates pitch them anew. Wes Moore gains as advocates describe his record. Consensus forming around 6–8 serious contenders.",nM:.2,cM:.8,coM:1.2,pI:.25,iG:.15},
+  {l:"Record & Governance Deep Dive",d:"Jurors hear detailed briefings on each candidate's actual governing record, legislative accomplishments, and policy implementation. Candidates with executive experience can point to concrete results. Those without governing records face tougher scrutiny on what they've actually done.",nM:.2,cM:.7,coM:2.0,pI:.15,iG:.12},
+  {l:"Final Presentations & Rebuttals",d:"Top 10 by current average give 10-minute closing arguments. Others get 3-minute statements. Shapiro and Buttigieg deliver commanding closings. Beshear is warm and specific.",nM:.2,cM:1.5,coM:1.2,pI:.10,iG:.08},
+  {l:"Final Deliberation & Secret Ballot",d:"Full jury reconvenes for final open discussion. Two weeks of intensive engagement culminate. Final scores submitted by secret ballot on a 0–5 scale.",nM:.1,cM:.8,coM:1.5,pI:.18,iG:.05,fin:1},
+];
+
+// ─── ENGINE ─────────────────────────────────────────────────────────────
+function snap(sc){const a={};C.forEach(c=>{let s=0;for(let j=0;j<100;j++)s+=sc[j][c.id];a[c.id]=s/100;});return a;}
+function topN(avg,n){return Object.entries(avg).sort((a,b)=>b[1]-a[1]).slice(0,n).map(e=>e[0]);}
+function initSc(j,c,rng){
+  const ef=1-Math.abs(j.ie-c.e)/10,sf=1-Math.abs(j.is-c.s)/10;
+  const tw=j.wE+j.wS+j.wC+j.wH+j.wN;
+  const raw=((ef*j.wE+sf*j.wS+(c.co/10)*j.wC+(c.ch/10)*j.wH+(c.nr/10)*j.wN*1.5)/tw)*5;
+  return cl(raw+sG(rng)*(0.4+(1-c.nr/10)*0.6),0,5);
+}
+
+function run(seed){
+  const rng=m32(seed),J=genJ(rng);
+  let sc=[];for(let j=0;j<100;j++){sc[j]={};C.forEach(c=>{sc[j][c.id]=initSc(J[j],c,rng);});}
+  const hist=[{day:0,l:"Pre-Deliberation",avg:snap(sc)}];
+  for(let di=0;di<DAYS.length;di++){
+    const ev=DAYS[di],prev=hist[hist.length-1].avg,t15=topN(prev,15);
+    const ns=sc.map(s=>({...s}));
+    C.forEach(c=>{
+      const isT=t15.includes(c.id);
+      for(let j=0;j<100;j++){
+        let cur=sc[j][c.id];const ju=J[j];
+        const eW=ju.wE*(ev.eB||1),sW=ju.wS*(ev.sB||1),cW=ju.wC*ev.coM,hW=ju.wH*ev.cM,nW=ju.wN*ev.nM;
+        const tw=eW+sW+cW+hW+nW;
+        const ef=1-Math.abs(ju.ie-c.e)/10,sf=1-Math.abs(ju.is-c.s)/10;
+        const anc=((ef*eW+sf*sW+(c.co/10)*cW+(c.ch/10)*hW+(c.nr/10)*nW)/tw)*5;
+        cur+=ev.iG*(1+ju.open*.5)*(anc-cur);
+        if(c.nr<5&&di>=2&&di<=5)cur+=(1-c.nr/10)*.15*ju.open*(anc-cur);
+        if(ev.pI>0){let wS=0,vS=0;for(let k=0;k<15;k++){const pi=Math.floor(rng()*100);if(pi===j)continue;
+          const p=J[pi],d=Math.sqrt((ju.ie-p.ie)**2+(ju.is-p.is)**2),pr=1/(1+.3*d),w=p.pers*pr;
+          vS+=w*sc[pi][c.id];wS+=w;}if(wS>0)cur+=ev.pI*ju.susc*(vS/wS-cur);}
+        if(ev.scr&&isT){cur+=.1*(anc-cur);cur-=.05*(1-c.co/10);}
+        
+        if(ev.fin)cur+=.15*(anc-cur);
+        cur+=sG(rng)*Math.max(.02,.12-di*.007);
+        ns[j][c.id]=cl(cur,0,5);
+      }
+    });
+    sc=ns;hist.push({day:di+1,l:ev.l,avg:snap(sc)});
+  }
+  const fb=sc.map(s=>{const r={};C.forEach(c=>{r[c.id]=Math.round(cl(s[c.id],0,5));});return r;});
+  return{J,hist,fb,fa:hist[hist.length-1].avg};
+}
+
+const SC=["#7f1d1d","#c2410c","#a16207","#4d7c0f","#15803d","#047857"];
+
+// ─── COMPONENT ──────────────────────────────────────────────────────────
+export default function App(){
+  const[seed,setSeed]=useState(42);
+  const[sel,setSel]=useState(null);
+  const[dayView,setDayView]=useState(null);
+  const[pf,setPf]=useState("ALL");
+  const[showN,setShowN]=useState(15);
+
+  const sim=useMemo(()=>run(seed),[seed]);
+
+  const sorted=useMemo(()=>{
+    return C.map(c=>{
+      const avg=sim.fa[c.id],dist=[0,0,0,0,0,0];
+      sim.fb.forEach(b=>{dist[b[c.id]]++;});
+      return{...c,avg,dist};
+    }).sort((a,b)=>b.avg-a.avg);
+  },[sim]);
+
+  const preSorted=useMemo(()=>{
+    const pre=sim.hist[0].avg;
+    return C.map(c=>({id:c.id,avg:pre[c.id]})).sort((a,b)=>b.avg-a.avg);
+  },[sim]);
+
+  const getPreRank=(id)=>preSorted.findIndex(x=>x.id===id)+1;
+  const filt=pf==="ALL"?sorted:sorted.filter(c=>c.p===pf);
+
+  // Compute biggest movers for narrative
+  const movers=useMemo(()=>{
+    return sorted.map((c,fi)=>{
+      const pi=getPreRank(c.id);
+      return{...c,preRank:pi,finRank:fi+1,delta:pi-(fi+1)};
+    });
+  },[sorted]);
+
+  const risers=movers.filter(m=>m.delta>0).sort((a,b)=>b.delta-a.delta).slice(0,5);
+  const fallers=movers.filter(m=>m.delta<0).sort((a,b)=>a.delta-b.delta).slice(0,5);
+
+  return(
+    <div style={{fontFamily:"'Palatino Linotype','Palatino','Book Antiqua','Georgia',serif",background:"#0a0f1a",color:"#d4c9b0",minHeight:"100vh"}}>
+      {/* ─── NAV ─── */}
+      <nav style={{position:"sticky",top:0,zIndex:100,background:"rgba(10,15,26,0.94)",backdropFilter:"blur(12px)",
+        borderBottom:"1px solid rgba(201,168,76,0.15)",padding:"0 20px",display:"flex",alignItems:"center",height:46}}>
+        <div style={{fontSize:10,letterSpacing:".25em",color:"#c9a84c",fontWeight:700,marginRight:16,textTransform:"uppercase",whiteSpace:"nowrap"}}>
+          EBJ 2028
+        </div>
+        <div style={{flex:1}} />
+        <button onClick={()=>{setSeed(s=>s+1);setSel(null);setShowN(15);}} style={{
+          background:"linear-gradient(135deg,#c9a84c,#a0842c)",color:"#0a0f1a",border:"none",padding:"6px 14px",
+          cursor:"pointer",fontSize:10,fontWeight:700,letterSpacing:".08em",textTransform:"uppercase",
+        }}>⟳ Reseat Jury · #{seed}</button>
+      </nav>
+
+      {/* ─── HERO ─── */}
+      <section style={{
+        minHeight:"85vh",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
+        textAlign:"center",padding:"60px 24px",position:"relative",overflow:"hidden",
+        background:"radial-gradient(ellipse at 25% 15%,rgba(201,168,76,0.06) 0%,transparent 50%),radial-gradient(ellipse at 75% 85%,rgba(59,130,246,0.04) 0%,transparent 50%),#0a0f1a",
+      }}>
+        <div style={{position:"absolute",inset:0,
+          backgroundImage:"repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(201,168,76,0.025) 80px,rgba(201,168,76,0.025) 81px),repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(201,168,76,0.025) 80px,rgba(201,168,76,0.025) 81px)"
+        }} />
+        <div style={{position:"relative",maxWidth:680}}>
+          <div style={{fontSize:10,letterSpacing:".4em",color:"#c9a84c",marginBottom:20,textTransform:"uppercase",fontWeight:600}}>
+            A Simulation · electionbyjury.org
+          </div>
+          <h1 style={{fontSize:"clamp(32px,6vw,58px)",fontWeight:400,margin:"0 0 12px",color:"#f5efe0",lineHeight:1.08}}>
+            What if 100 Citizens<br/>Chose the President?
+          </h1>
+          <div style={{width:72,height:2,background:"#c9a84c",margin:"20px auto"}} />
+          <p style={{fontSize:17,color:"#9a8e78",lineHeight:1.7,margin:"0 0 8px"}}>
+            43 candidates · 8 parties · 14 days of deliberation<br/>
+            Score voting 0–5 · One national jury of 100 Americans
+          </p>
+          <p style={{fontSize:13,color:"#5e5647",lineHeight:1.6,marginTop:16,maxWidth:560,marginLeft:"auto",marginRight:"auto"}}>
+            The Election by Jury process replaces mass elections with structured deliberation
+            by a randomly selected, demographically representative panel of citizens—producing
+            outcomes that reflect informed preferences rather than name recognition, campaign
+            spending, or partisan primary incentives.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── THE PROCESS ─── */}
+      <section style={{padding:"64px 24px",maxWidth:760,margin:"0 auto"}}>
+        <div style={{fontSize:10,letterSpacing:".3em",color:"#c9a84c",marginBottom:6,textTransform:"uppercase"}}>The Procedure</div>
+        <h2 style={{fontSize:28,fontWeight:400,color:"#f5efe0",margin:"0 0 20px"}}>14 Days of Deliberation</h2>
+        <p style={{fontSize:14,color:"#8a7d6a",lineHeight:1.8,marginBottom:28}}>
+          100 U.S. citizens are randomly summoned from a demographically stratified national sample.
+          Over two weeks they hear candidate presentations, receive expert briefings, conduct
+          cross-examinations, deliberate in small groups, and cast secret ballot scores on a 0–5 scale.
+        </p>
+        <div style={{display:"grid",gap:1}}>
+          {DAYS.map((day,i)=>{
+            const dayAvg=sim.hist[i+1]?.avg;
+            const top3=dayAvg?Object.entries(dayAvg).sort((a,b)=>b[1]-a[1]).slice(0,3):[];
+            return(
+              <div key={i} onClick={()=>setDayView(dayView===i?null:i)} style={{
+                display:"flex",gap:14,padding:"12px 14px",cursor:"pointer",transition:"background .2s",
+                background:dayView===i?"rgba(201,168,76,0.06)":i%2===0?"rgba(255,255,255,0.015)":"transparent",
+                borderLeft:"2px solid",
+                borderColor:i<2?"rgba(201,168,76,0.4)":i<5?"rgba(59,130,246,0.4)":i<8?"rgba(201,168,76,0.4)":i<12?"rgba(168,85,247,0.4)":"rgba(34,197,94,0.4)",
+              }}>
+                <div style={{width:40,flexShrink:0,textAlign:"center"}}>
+                  <div style={{fontSize:9,color:"#5e5647",letterSpacing:".1em"}}>DAY</div>
+                  <div style={{fontSize:20,color:"#c9a84c",fontWeight:300}}>{i+1}</div>
+                </div>
+                <div style={{flex:1,minWidth:0}}>
+                  <div style={{fontSize:13,color:"#f5efe0",fontWeight:600,marginBottom:1}}>{day.l}</div>
+                  {dayView===i&&(
+                    <div>
+                      <div style={{fontSize:12,color:"#8a7d6a",lineHeight:1.6,marginTop:4,marginBottom:8}}>{day.d}</div>
+                      {top3.length>0&&(
+                        <div style={{fontSize:11,color:"#5e5647"}}>
+                          Leaders: {top3.map(([id,sc],ti)=>{
+                            const cd=C.find(c=>c.id===id);
+                            return <span key={id} style={{color:ti===0?"#c9a84c":"#8a7d6a"}}>
+                              {cd?.n} ({sc.toFixed(2)}){ti<2?", ":""}
+                            </span>;
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div style={{fontSize:9,color:"#5e5647",alignSelf:"center"}}>{dayView===i?"▲":"▼"}</div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ─── JURY ─── */}
+      <section style={{padding:"64px 24px",background:"rgba(201,168,76,0.015)"}}>
+        <div style={{maxWidth:760,margin:"0 auto"}}>
+          <div style={{fontSize:10,letterSpacing:".3em",color:"#c9a84c",marginBottom:6,textTransform:"uppercase"}}>The Panel</div>
+          <h2 style={{fontSize:28,fontWeight:400,color:"#f5efe0",margin:"0 0 4px"}}>Jury Composition</h2>
+          <p style={{fontSize:12,color:"#5e5647",marginBottom:24}}>n = 100 · Seed #{seed} · Demographically stratified to approximate U.S. Census</p>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))",gap:20}}>
+            {[
+              {l:"Region",k:"reg",v:["Northeast","Midwest","South","West"],cl:["#60a5fa","#a78bfa","#f87171","#34d399"]},
+              {l:"Race / Ethnicity",k:"race",v:["White","Black","Hispanic","Asian","Other"],cl:["#d4c9b0","#60a5fa","#f59e0b","#34d399","#a78bfa"]},
+              {l:"Education",k:"edu",v:["No college","Some college","Bachelor's","Graduate"],cl:["#f87171","#f59e0b","#34d399","#60a5fa"]},
+              {l:"Age",k:"ageL",v:["18–29","30–44","45–64","65+"],cl:["#34d399","#60a5fa","#f59e0b","#f87171"]},
+              {l:"Gender",k:"gen",v:["F","M"],cl:["#f0abfc","#60a5fa"]},
+            ].map(cat=>{
+              const cn={};cat.v.forEach(v=>{cn[v]=0;});
+              sim.J.forEach(j=>{cn[j[cat.k]]=(cn[j[cat.k]]||0)+1;});
+              return(
+                <div key={cat.l}>
+                  <div style={{fontSize:10,color:"#c9a84c",marginBottom:6,letterSpacing:".1em",fontWeight:600,textTransform:"uppercase"}}>{cat.l}</div>
+                  <div style={{display:"flex",height:16,borderRadius:3,overflow:"hidden",marginBottom:5}}>
+                    {cat.v.map((v,vi)=><div key={v} style={{width:`${cn[v]}%`,background:cat.cl[vi],opacity:.6}} />)}
+                  </div>
+                  <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
+                    {cat.v.map((v,vi)=>(
+                      <div key={v} style={{fontSize:10,color:"#8a7d6a",display:"flex",alignItems:"center",gap:3}}>
+                        <div style={{width:7,height:7,borderRadius:1,background:cat.cl[vi],opacity:.6}} />
+                        {v} <span style={{color:"#c9a84c",fontWeight:700}}>{cn[v]}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{marginTop:28}}>
+            <div style={{fontSize:10,color:"#c9a84c",marginBottom:6,letterSpacing:".1em",fontWeight:600,textTransform:"uppercase"}}>
+              Economic Ideology Distribution
+            </div>
+            <div style={{display:"flex",alignItems:"flex-end",gap:2,height:56}}>
+              {Array.from({length:20},(_,i)=>{
+                const lo=i*.5,hi=lo+.5;
+                const cnt=sim.J.filter(j=>j.ie>=lo&&j.ie<hi).length;
+                const col=lo<3.5?"#3b82f6":lo<5.5?"#9a8e78":"#ef4444";
+                return <div key={i} style={{flex:1,height:cnt*6,minHeight:1,background:col,opacity:.55,borderRadius:"2px 2px 0 0"}}
+                  title={`${lo.toFixed(1)}–${hi.toFixed(1)}: ${cnt}`} />;
+              })}
+            </div>
+            <div style={{display:"flex",justifyContent:"space-between",fontSize:8,color:"#5e5647",marginTop:2}}>
+              <span>← Progressive</span><span>Center</span><span>Conservative →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── BIGGEST MOVERS ─── */}
+      <section style={{padding:"64px 24px",maxWidth:760,margin:"0 auto"}}>
+        <div style={{fontSize:10,letterSpacing:".3em",color:"#c9a84c",marginBottom:6,textTransform:"uppercase"}}>The Deliberation Effect</div>
+        <h2 style={{fontSize:28,fontWeight:400,color:"#f5efe0",margin:"0 0 20px"}}>What Two Weeks Changed</h2>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24}}>
+          <div>
+            <div style={{fontSize:11,color:"#22c55e",letterSpacing:".15em",fontWeight:700,marginBottom:10,textTransform:"uppercase"}}>Biggest Risers</div>
+            {risers.map((m,i)=>(
+              <div key={m.id} style={{display:"flex",alignItems:"center",gap:8,padding:"6px 0",borderBottom:"1px solid rgba(201,168,76,0.06)"}}>
+                <div style={{fontSize:18,fontWeight:700,color:"#22c55e",width:40,textAlign:"right"}}>↑{m.delta}</div>
+                <div>
+                  <div style={{fontSize:13,color:"#f5efe0"}}>{m.n}</div>
+                  <div style={{fontSize:10,color:"#5e5647"}}>#{m.preRank} → #{m.finRank}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div>
+            <div style={{fontSize:11,color:"#ef4444",letterSpacing:".15em",fontWeight:700,marginBottom:10,textTransform:"uppercase"}}>Biggest Fallers</div>
+            {fallers.map((m,i)=>(
+              <div key={m.id} style={{display:"flex",alignItems:"center",gap:8,padding:"6px 0",borderBottom:"1px solid rgba(201,168,76,0.06)"}}>
+                <div style={{fontSize:18,fontWeight:700,color:"#ef4444",width:40,textAlign:"right"}}>↓{Math.abs(m.delta)}</div>
+                <div>
+                  <div style={{fontSize:13,color:"#f5efe0"}}>{m.n}</div>
+                  <div style={{fontSize:10,color:"#5e5647"}}>#{m.preRank} → #{m.finRank}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FULL RESULTS ─── */}
+      <section style={{padding:"64px 24px",background:"rgba(201,168,76,0.015)"}}>
+        <div style={{maxWidth:760,margin:"0 auto"}}>
+          <div style={{fontSize:10,letterSpacing:".3em",color:"#c9a84c",marginBottom:6,textTransform:"uppercase"}}>Final Secret Ballot</div>
+          <h2 style={{fontSize:28,fontWeight:400,color:"#f5efe0",margin:"0 0 4px"}}>Complete Rankings</h2>
+          <p style={{fontSize:12,color:"#5e5647",marginBottom:14}}>
+            43 candidates scored by 100 jurors. Click any candidate for score distribution and trajectory.
+          </p>
+          <div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:16}}>
+            {["ALL","D","R","FWD","IND","GRN","LIB","PPL","PSL"].map(p=>(
+              <button key={p} onClick={()=>{setPf(p);setShowN(15);}} style={{
+                background:pf===p?(PC[p]||"#c9a84c"):"transparent",
+                color:pf===p?"#fff":"#5e5647",
+                border:`1px solid ${pf===p?(PC[p]||"#c9a84c"):"#2a2520"}`,
+                padding:"3px 10px",cursor:"pointer",fontSize:10,fontFamily:"inherit",letterSpacing:".05em",
+              }}>{p==="ALL"?"All":PL[p]||p}</button>
+            ))}
+          </div>
+          <div>
+            {filt.slice(0,showN).map((c,idx)=>{
+              const gr=sorted.indexOf(c)+1;
+              const ex=sel===c.id;
+              const preR=getPreRank(c.id);
+              const delta=preR-gr;
+              return(
+                <div key={c.id} onClick={()=>setSel(ex?null:c.id)} style={{
+                  background:ex?"rgba(201,168,76,0.06)":idx%2===0?"rgba(255,255,255,0.015)":"transparent",
+                  padding:"7px 12px",cursor:"pointer",borderLeft:`3px solid ${PC[c.p]}`,marginBottom:1,transition:"background .15s",
+                }}>
+                  <div style={{display:"flex",alignItems:"center",gap:8}}>
+                    <div style={{fontSize:14,fontWeight:700,color:"#c9a84c",width:22,textAlign:"right"}}>{gr}</div>
+                    <div style={{flex:1,minWidth:0}}>
+                      <span style={{fontSize:13,color:"#f5efe0",fontWeight:600}}>{c.n}</span>
+                      <span style={{fontSize:8,padding:"1px 4px",marginLeft:5,background:PC[c.p],color:"#fff",borderRadius:2,fontFamily:"sans-serif",verticalAlign:"middle"}}>{c.p}</span>
+                      <span style={{fontSize:10,color:"#5e5647",marginLeft:6}}>{c.t}</span>
+                    </div>
+                    <div style={{display:"flex",alignItems:"center",gap:5}}>
+                      <div style={{width:Math.max(10,(c.avg/5)*120),height:12,
+                        background:`linear-gradient(90deg,${PC[c.p]}55,${PC[c.p]})`,borderRadius:2}} />
+                      <div style={{fontSize:14,fontWeight:700,color:"#c9a84c",width:40,textAlign:"right",fontFamily:"'Courier New',monospace"}}>
+                        {c.avg.toFixed(2)}
+                      </div>
+                      <div style={{width:28,textAlign:"right",fontSize:10,
+                        color:delta>0?"#22c55e":delta<0?"#ef4444":"#555",
+                      }}>{delta>0?`↑${delta}`:delta<0?`↓${Math.abs(delta)}`:"—"}</div>
+                    </div>
+                  </div>
+                  {ex&&(
+                    <div style={{marginTop:8,marginLeft:30,paddingBottom:4}}>
+                      <div style={{display:"flex",gap:24,marginBottom:8}}>
+                        <div>
+                          <div style={{fontSize:10,color:"#5e5647",marginBottom:3}}>Score Distribution</div>
+                          <div style={{display:"flex",gap:6,alignItems:"flex-end"}}>
+                            {c.dist.map((cnt,si)=>(
+                              <div key={si} style={{textAlign:"center"}}>
+                                <div style={{fontSize:9,color:"#8a7d6a"}}>{cnt}</div>
+                                <div style={{width:20,height:Math.max(2,cnt*1.8),background:SC[si],borderRadius:"2px 2px 0 0"}} />
+                                <div style={{fontSize:11,color:SC[si],fontWeight:700,marginTop:1}}>{si}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div style={{flex:1}}>
+                          <div style={{fontSize:10,color:"#5e5647",marginBottom:3}}>Score Trajectory (14 days)</div>
+                          <div style={{display:"flex",alignItems:"flex-end",gap:1,height:36}}>
+                            {sim.hist.map((h,hi)=>{
+                              const v=h.avg[c.id];
+                              const pct=((v-2)/(3))*100;
+                              return <div key={hi} style={{flex:1,height:`${Math.max(4,cl(pct,0,100))}%`,
+                                background:hi===0?"#555":PC[c.p],opacity:.35+hi/sim.hist.length*.65,
+                                borderRadius:"1px 1px 0 0"}} title={`Day ${h.day}: ${v.toFixed(3)}`} />;
+                            })}
+                          </div>
+                          <div style={{display:"flex",justifyContent:"space-between",fontSize:7,color:"#444",marginTop:1}}>
+                            <span>Pre</span><span>Day 14</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div style={{display:"flex",gap:14,fontSize:10,color:"#5e5647"}}>
+                        <span>Pre-deliberation: <strong style={{color:"#c9a84c"}}>#{preR}</strong></span>
+                        <span>Final: <strong style={{color:"#c9a84c"}}>#{gr}</strong></span>
+                        <span style={{color:delta>0?"#22c55e":delta<0?"#ef4444":"#8a7d6a"}}>
+                          {delta>0?`↑${delta} positions`:delta<0?`↓${Math.abs(delta)} positions`:"unchanged"}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {showN<filt.length&&(
+            <button onClick={()=>setShowN(filt.length)} style={{
+              display:"block",margin:"12px auto",background:"none",border:"1px solid rgba(201,168,76,0.3)",
+              color:"#c9a84c",padding:"8px 24px",cursor:"pointer",fontSize:11,fontFamily:"inherit",letterSpacing:".1em",
+            }}>Show all {filt.length} candidates</button>
+          )}
+        </div>
+      </section>
+
+      {/* ─── INSIGHTS ─── */}
+      <section style={{padding:"64px 24px",maxWidth:720,margin:"0 auto"}}>
+        <div style={{fontSize:10,letterSpacing:".3em",color:"#c9a84c",marginBottom:6,textTransform:"uppercase"}}>Analysis</div>
+        <h2 style={{fontSize:28,fontWeight:400,color:"#f5efe0",margin:"0 0 28px"}}>What the Jury Reveals</h2>
+        {[
+          {t:"Deliberation transforms outcomes.",b:`Before deliberation, the top 5 was Buttigieg, Whitmer, Haley, Yang, and Newsom—largely a function of name recognition, charisma, and ideological proximity. After 14 days, the leaders are candidates chosen for substance, competence, and centrist appeal. Shapiro rose from #${getPreRank("shapiro")} to #${sorted.findIndex(x=>x.id==="shapiro")+1}. Beshear rose from #${getPreRank("beshear")} to #${sorted.findIndex(x=>x.id==="beshear")+1}. Wes Moore, virtually unknown to the jury on Day 1, rose ${getPreRank("moore")-(sorted.findIndex(x=>x.id==="moore")+1)} places. This is the core argument for Election by Jury.`},
+          {t:"Score voting finds the center.",b:`With a demographically representative sample, score voting functions as a centroid-finding mechanism. The winners aren't candidates who excite a partisan base—they're the ones with broad, cross-ideological appeal. Governors who won in swing or opposition-party states (Beshear in deep-red Kentucky, Shapiro in purple Pennsylvania) outperform senators with bigger national profiles but thinner records.`},
+          {t:"Name recognition is a wasting asset.",b:`Harris entered at #${getPreRank("harris")} and finished at #${sorted.findIndex(x=>x.id==="harris")+1}—a ${getPreRank("harris")-(sorted.findIndex(x=>x.id==="harris")+1)>0?"rise":"drop of "+Math.abs(getPreRank("harris")-(sorted.findIndex(x=>x.id==="harris")+1))+" positions"}. RFK Jr. fell from #${getPreRank("rfk")} to #${sorted.findIndex(x=>x.id==="rfk")+1}. In a standard election, celebrity alone can survive a primary. Two weeks of structured deliberation with cross-examination and expert briefings makes that impossible.`},
+          {t:"The crossover effect.",b:`Nikki Haley's final placement illustrates something impossible in a partisan primary. She draws strong scores from moderate Democrats and solid scores from centrist Republicans. Her score reflects genuine cross-ideological appeal that our current primary system—which forces candidates to appeal to their base—systematically destroys.`},
+          {t:"Third parties compete on substance.",b:`Andrew Yang started at #${getPreRank("yang")} on the strength of his centrist positioning and finished at #${sorted.findIndex(x=>x.id==="yang")+1}. Without the distorting lens of "electability"—which is irrelevant in an EBJ process where the jury IS the electorate—third-party candidates are evaluated purely on their substance and ideological fit, just like everyone else.`},
+          {t:"Polarizing candidates underperform.",b:`AOC dropped from #${getPreRank("aoc")} to #${sorted.findIndex(x=>x.id==="aoc")+1}. Sanders fell from #${getPreRank("bernie")} to #${sorted.findIndex(x=>x.id==="bernie")+1}. DeSantis dropped from #${getPreRank("desantis")} to #${sorted.findIndex(x=>x.id==="desantis")+1}. These candidates are beloved by their ideological base and rejected by the opposition. Score voting makes this polarization transparent and rewards consensus—information that plurality voting hides entirely.`},
+        ].map((item,i)=>(
+          <div key={i} style={{marginBottom:24,paddingLeft:18,borderLeft:"2px solid rgba(201,168,76,0.18)"}}>
+            <h3 style={{fontSize:16,color:"#c9a84c",fontWeight:600,margin:"0 0 4px"}}>{item.t}</h3>
+            <p style={{fontSize:13,color:"#8a7d6a",lineHeight:1.7,margin:0}}>{item.b}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* ─── FOOTER ─── */}
+      <footer style={{padding:"36px 24px",borderTop:"1px solid rgba(201,168,76,0.12)",textAlign:"center"}}>
+        <div style={{maxWidth:580,margin:"0 auto"}}>
+          <div style={{fontSize:9,letterSpacing:".2em",color:"#c9a84c",marginBottom:6,textTransform:"uppercase"}}>Methodology</div>
+          <p style={{fontSize:10,color:"#3d362c",lineHeight:1.7}}>
+            Election by Jury simulation per electionbyjury.org. 100 citizens randomly selected from
+            a demographically stratified national sample (region, race, education, age, gender proportional
+            to U.S. Census). 14-day structured deliberation with candidate presentations, expert briefings,
+            cross-examination, small-group deliberation, and final secret ballot. Score voting 0–5.
+            Ideology modeled on 2D economic/social axis. Deliberation dynamics: information gain (declining
+            name-recognition bias), peer influence (weighted by ideological proximity and persuasiveness),
+            and scrutiny effects. Candidate attribute estimates per March 2026 analysis.
+          </p>
+          <div style={{marginTop:16,fontSize:12,color:"#c9a84c",letterSpacing:".2em"}}>
+            electionbyjury.org
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
