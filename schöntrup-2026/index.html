@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHENTRUP 2026 — Portland City Council, District 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral: #FF6B5A;
+  --coral-light: #FF897C;
+  --salmon: #FFA69E;
+  --peach: #FFE0DB;
+  --mustard: #F2C744;
+  --mustard-light: #FFF0B8;
+  --teal: #2EC4B6;
+  --teal-dark: #1A9E92;
+  --teal-light: #B8F0EA;
+  --sky: #5EB1EF;
+  --lavender: #B39DDB;
+  --mint: #81C995;
+  --forest: #2D6A4F;
+  --cream: #FFF9F0;
+  --warm-white: #FFFCF7;
+  --ink: #1E1E2E;
+  --ink-soft: #3A3A4A;
+  --ink-muted: #6B6B7B;
+  --paper: #F5F0E8;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--mustard); color: var(--ink); }
+
+.container { max-width: 1140px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* ─── NAV ─────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--ink);
+  padding: 0.9rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.nav-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--mustard);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-pills { list-style: none; display: flex; gap: 0.5rem; align-items: center; }
+
+.nav-pills a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+.nav-pills a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+/* ─── HERO ────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px 0 60px;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 15% 85%, var(--coral) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, var(--teal) 0%, transparent 35%),
+    radial-gradient(circle at 50% 50%, var(--lavender) 0%, transparent 50%);
+  opacity: 0.18;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--mustard);
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0; animation: popIn 0.6s 0.2s forwards;
+}
+
+.hero-badge .dot {
+  width: 8px; height: 8px;
+  background: var(--teal);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.hero-badge span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(3.2rem, 7.5vw, 6rem);
+  font-weight: 900;
+  line-height: 1.0;
+  color: #fff;
+  margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
+}
+
+.hero h1 .accent-coral { color: var(--coral); }
+.hero h1 .accent-teal { color: var(--teal); }
+.hero h1 .accent-mustard { color: var(--mustard); }
+
+.hero-sub {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  max-width: 600px;
+  line-height: 1.8;
+  opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+}
+
+.hero-sub strong { color: #fff; font-weight: 600; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ─── MANIFESTO STRIP ─────────────────────── */
+.manifesto-strip {
+  background: var(--mustard);
+  padding: 2.8rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.manifesto-strip::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--coral), var(--mustard), var(--teal), var(--lavender), var(--coral));
+}
+
+.manifesto-strip p {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-weight: 500;
+  color: var(--ink);
+  max-width: 820px;
+  margin: 0 auto;
+  line-height: 1.55;
+  padding: 0 2rem;
+}
+
+.manifesto-strip strong { font-weight: 900; }
+
+/* ─── SECTION SHARED ──────────────────────── */
+section { padding: 5.5rem 0; }
+
+.section-chip {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+.chip-coral { background: var(--peach); color: var(--coral); }
+.chip-teal { background: var(--teal-light); color: var(--teal-dark); }
+.chip-mustard { background: var(--mustard-light); color: #8B6914; }
+.chip-lavender { background: #EDE7F6; color: #7E57C2; }
+.chip-mint { background: #E0F2E9; color: var(--forest); }
+.chip-sky { background: #E3F2FD; color: #1976D2; }
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.section-title .hl-coral { color: var(--coral); }
+.section-title .hl-teal { color: var(--teal-dark); }
+.section-title .hl-mustard { color: #B8941E; }
+
+.section-body {
+  font-size: 1.02rem;
+  color: var(--ink-muted);
+  line-height: 1.8;
+  max-width: 700px;
+}
+.section-body strong { color: var(--ink); font-weight: 600; }
+.section-body + .section-body { margin-top: 1rem; }
+
+/* ─── EQUATION BOX ────────────────────────── */
+.equation-box {
+  background: var(--ink);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  margin: 2.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.equation-box::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, var(--teal) 0%, transparent 70%);
+  opacity: 0.08;
+}
+
+.eq-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+}
+
+.eq-note {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 1rem;
+}
+
+/* ─── TAX TABLE ───────────────────────────── */
+.table-wrap {
+  margin: 2.5rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+}
+
+.tax-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tax-table thead { background: var(--ink); }
+
+.tax-table th {
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mustard);
+  padding: 1rem 1.4rem;
+}
+
+.tax-table td {
+  padding: 0.85rem 1.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid rgba(30,30,46,0.07);
+}
+
+.tax-table tbody tr { background: var(--warm-white); }
+.tax-table tbody tr:nth-child(even) { background: var(--paper); }
+.tax-table tbody tr:hover { background: var(--mustard-light); }
+
+.tax-table .eff { color: var(--coral); font-weight: 700; }
+
+/* ─── POLICY CARDS ────────────────────────── */
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2.5rem;
+}
+
+.policy-card {
+  background: var(--warm-white);
+  border: 2px solid rgba(30,30,46,0.06);
+  border-radius: 16px;
+  padding: 2rem 1.8rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,30,46,0.08);
+  border-color: rgba(30,30,46,0.12);
+}
+
+.policy-card .card-color {
+  width: 40px; height: 5px;
+  border-radius: 3px;
+  margin-bottom: 1.2rem;
+}
+
+.color-coral { background: var(--coral); }
+.color-teal { background: var(--teal); }
+.color-mustard { background: var(--mustard); }
+.color-lavender { background: var(--lavender); }
+.color-mint { background: var(--mint); }
+.color-sky { background: var(--sky); }
+
+.policy-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.policy-card p {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+}
+
+.dwl-pill {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+
+.pill-green { background: #E8F5E9; color: #2E7D32; }
+.pill-blue { background: #E3F2FD; color: #1565C0; }
+.pill-gold { background: var(--mustard-light); color: #8B6914; }
+.pill-red { background: #FFEBEE; color: #C62828; }
+
+/* ─── ALT BACKGROUND SECTIONS ─────────────── */
+.bg-paper { background: var(--paper); }
+.bg-ink {
+  background: var(--ink);
+  color: var(--cream);
+}
+.bg-ink .section-title { color: #fff; }
+.bg-ink .section-body { color: rgba(255,255,255,0.6); }
+.bg-ink .section-body strong { color: #fff; }
+
+.bg-teal {
+  background: var(--teal-dark);
+  color: #fff;
+}
+.bg-teal .section-title { color: #fff; }
+.bg-teal .section-body { color: rgba(255,255,255,0.75); }
+.bg-teal .section-body strong { color: #fff; }
+
+/* ─── POSITIONS LIST ──────────────────────── */
+.positions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0;
+  margin-top: 2.5rem;
+}
+
+.pos-item {
+  padding: 1.6rem 1.8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; gap: 1rem; align-items: start;
+}
+
+.pos-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+}
+
+.pos-item h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.pos-item p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+}
+
+/* ─── BIO ─────────────────────────────────── */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.bio-card {
+  background: var(--warm-white);
+  border: 2px solid rgba(30,30,46,0.06);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+}
+
+.bio-fact {
+  margin-bottom: 1.4rem;
+}
+
+.bio-fact-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 0.15rem;
+}
+
+.bio-fact-value {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.bio-narrative {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  line-height: 1.85;
+}
+.bio-narrative strong { color: var(--ink); font-weight: 600; }
+.bio-narrative p + p { margin-top: 1.2rem; }
+
+.bio-quote {
+  margin-top: 2rem;
+  padding: 1.8rem 2rem;
+  background: var(--ink);
+  border-radius: 12px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--mustard);
+  line-height: 1.5;
+}
+
+/* ─── FOOTER ──────────────────────────────── */
+footer {
+  background: var(--ink);
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 4px solid var(--coral);
+}
+
+footer p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+}
+
+footer .footer-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  color: var(--mustard);
+  font-size: 0.85rem;
+}
+
+footer .joke {
+  margin-top: 0.4rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.72rem;
+}
+
+/* ─── RESPONSIVE ──────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0.8rem 1.5rem; }
+  .nav-pills { display: none; }
+  .container { padding: 0 1.5rem; }
+  .bio-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .positions-grid { grid-template-columns: 1fr; }
+  .policy-grid { grid-template-columns: 1fr; }
+  .equation-box { padding: 2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Shentrup 2026</a>
+  <ul class="nav-pills">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#taxes">Taxes</a></li>
+    <li><a href="#policies">Policies</a></li>
+    <li><a href="#democracy">Democracy</a></li>
+    <li><a href="#positions">Positions</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="dot"></div>
+        <span>Portland City Council · District 3 · 2026</span>
+      </div>
+      <h1>
+        Less <span class="accent-coral">waste.</span><br>
+        More <span class="accent-teal">Portland.</span><br>
+        All the <span class="accent-mustard">wonk.</span>
+      </h1>
+      <p class="hero-sub">
+        I'm a neoliberal running for city council. I say that <strong>proudly</strong>. Land value taxes. Universal basic income. Carbon pricing. Bike lanes everywhere. Abolish public parking. Pro-capitalism, pro-density, pro-transit, pro-getting-the-prices-right. Every policy on this page is optimized for one thing: <strong>minimizing deadweight loss</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO STRIP -->
+<div class="manifesto-strip">
+  <div class="container">
+    <p>
+      Markets are the most powerful engine for human flourishing ever invented. Government's job isn't to replace them — it's to <strong>fix market failures</strong> and <strong>share the gains universally</strong>. Not through bureaucracies. Through getting the prices right and giving people cash.
+    </p>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container" style="max-width: 780px;">
+    <span class="section-chip chip-coral">The Framework</span>
+    <h2 class="section-title">Deadweight loss scales with <span class="hl-coral">t²</span></h2>
+    <p class="section-body">
+      That's the most important fact in public policy, and almost no one in city hall knows it. A 60% marginal tax rate doesn't create twice the waste of a 30% rate — it creates <strong>four times</strong> the waste per dollar raised. This single equation demolishes the case for progressive marginal tax rates, means-tested benefits, and most of what passes for "progressive" economic policy.
+    </p>
+
+    <div class="equation-box">
+      <div class="eq-line">DWL ≈ ½ · ε · t² · Q</div>
+      <div class="eq-line" style="margin-top: 1rem; color: var(--mustard);">→ Tax inelastic things (land, carbon, congestion)</div>
+      <div class="eq-line" style="color: var(--coral);">→ Redistribute via lump-sum cash (no phase-outs)</div>
+      <div class="eq-line" style="color: var(--lavender);">→ Same progressivity, radically less waste</div>
+      <div class="eq-note">This is not complicated. It's Econ 101 applied to city government.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TAXES -->
+<section id="taxes" class="bg-paper">
+  <div class="container" style="max-width: 780px;">
+    <span class="section-chip chip-mustard">Revenue &amp; Redistribution</span>
+    <h2 class="section-title">Progressive <span class="hl-mustard">effective</span> rates from flat <span class="hl-mustard">marginal</span> rates</h2>
+    <p class="section-body">
+      People confuse these constantly. We want the rich to pay a higher <strong>share</strong> — that's the effective rate. We don't need escalating <strong>marginal</strong> rates to get there. A flat 30% tax plus a $15K universal transfer produces beautiful progressivity with zero cliffs, zero phase-outs, and zero poverty traps. You always keep 70 cents of every new dollar earned.
+    </p>
+
+    <div class="table-wrap">
+      <table class="tax-table">
+        <thead>
+          <tr>
+            <th>Income</th>
+            <th>Tax (30%)</th>
+            <th>UBI</th>
+            <th>Net</th>
+            <th>Effective Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$0</td><td>$0</td><td>$15K</td><td>−$15K</td><td class="eff">−∞%</td></tr>
+          <tr><td>$30K</td><td>$9K</td><td>$15K</td><td>−$6K</td><td class="eff">−20%</td></tr>
+          <tr><td>$50K</td><td>$15K</td><td>$15K</td><td>$0</td><td class="eff">0%</td></tr>
+          <tr><td>$100K</td><td>$30K</td><td>$15K</td><td>$15K</td><td class="eff">15%</td></tr>
+          <tr><td>$500K</td><td>$150K</td><td>$15K</td><td>$135K</td><td class="eff">27%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="section-body">
+      The current system stacks income taxes, payroll taxes, SNAP phase-outs, Medicaid cliffs, and housing assistance phase-outs into combined marginal rates that routinely hit <strong>60–80% for working families</strong>. That's not progressive. That's a poverty trap with a progressive bumper sticker.
+    </p>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies">
+  <div class="container">
+    <span class="section-chip chip-teal">The Policy Stack</span>
+    <h2 class="section-title">Every policy graded on <span class="hl-teal">one metric</span></h2>
+
+    <div class="policy-grid">
+
+      <div class="policy-card">
+        <div class="card-color color-teal"></div>
+        <h3>Land Value Tax, Not Property Tax</h3>
+        <p>Land supply is perfectly inelastic — taxing it creates zero deadweight loss. Here's how it works within Oregon law: take whatever property tax you're paying right now and convert it entirely to a land-value-only basis. Going forward, it can still climb each year by whatever Measures 5 and 50 allow — but it can never go up because you added improvements. Build an ADU, renovate your kitchen, add a floor — your bill doesn't budge. Over time, rates drift toward a true land value tax. Speculation gets penalized. Building gets rewarded. And it's fully legal under existing state law.</p>
+        <span class="dwl-pill pill-blue">DWL: Zero</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-mint"></div>
+        <h3>Carbon Tax + Universal Dividend</h3>
+        <p>Carbon emissions are a negative externality priced at zero. A carbon tax doesn't distort the market — it un-distorts it. Revenue goes to a per-capita dividend. Not a slush fund. Not cap-and-trade with loopholes. A clean price signal that lets markets decarbonize faster than any mandate.</p>
+        <span class="dwl-pill pill-green">DWL: Negative (corrective)</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-mustard"></div>
+        <h3>Universal Basic Income</h3>
+        <p>In-kind benefits are the gift card fallacy at scale. Free parking worth $100 to the city but $70 to you? That's $30 of waste per person per month. SNAP, Section 8, Medicaid — all the same problem, compounded by phase-outs that create 60–80% implicit marginal tax rates. Replace them with cash. No phase-out. No bureaucracy. No poverty trap.</p>
+        <span class="dwl-pill pill-red">DWL: Eliminated vs. status quo</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-coral"></div>
+        <h3>Legalize All the Housing</h3>
+        <p>Single-family zoning is a wealth transfer from future residents to current homeowners. It's exclusionary, carbon-intensive, and racist in effect. By-right ADUs everywhere. Missing middle on every arterial. No parking minimums. No design review delays. Tokyo built its way to affordable housing. Portland can too.</p>
+        <span class="dwl-pill pill-gold">DWL: Reduced</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-lavender"></div>
+        <h3>Abolish Public Parking</h3>
+        <p>Every free space is a regressive in-kind subsidy to car owners paid for by everyone — including the barista who bikes to work. Japan doesn't have public parking. Market-price every space. Use revenue for universal cash transfers. The employee who valued that $100 spot at $70 gets $90 cash instead — a strict Pareto improvement.</p>
+        <span class="dwl-pill pill-red">DWL: Eliminated</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-sky"></div>
+        <h3>Congestion Pricing</h3>
+        <p>Road space at peak hours is a scarce resource priced at zero. The result: overconsumption, gridlock, wasted time, wasted fuel. Price it at marginal social cost. Use revenue for transit. This isn't anti-car — it's anti-subsidy. Drivers should pay for the delay they impose on everyone behind them.</p>
+        <span class="dwl-pill pill-green">DWL: Negative (corrective)</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-teal"></div>
+        <h3>All-In on Bikes, Buses, and Rail</h3>
+        <p>Protected bike lanes. Expanded bus rapid transit. Grade-separated rail where density justifies it. When you price roads and parking correctly, demand for transit and cycling follows naturally. Portland's geography is ideal. We just need to stop subsidizing the wrong mode and start investing in the right ones.</p>
+        <span class="dwl-pill pill-gold">DWL: Reduced</span>
+      </div>
+
+      <div class="policy-card">
+        <div class="card-color color-mint"></div>
+        <h3>Renewable Energy &amp; Electrification</h3>
+        <p>My wife works in renewable energy policy. This isn't abstract for our family. But decarbonization doesn't require mandates and bans — it requires getting the prices right. A carbon tax makes renewables cost-competitive without picking winners. Streamline permitting. Electrify buildings. Electrify transit. Let the price signal work.</p>
+        <span class="dwl-pill pill-green">DWL: Negative (corrective)</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEMOCRACY -->
+<section id="democracy" class="bg-teal">
+  <div class="container" style="max-width: 780px;">
+    <span class="section-chip" style="background: rgba(255,255,255,0.15); color: #fff;">Democratic Innovation</span>
+    <h2 class="section-title">Better democracy = better policy</h2>
+    <p class="section-body">
+      I co-founded the <strong>Center for Election Science</strong> and spent nearly 20 years on electoral reform — since summer 2006. We passed approval voting by ballot initiative in Fargo (64%) and St. Louis (68%). I know how to get reform done. Not through white papers. Through campaigns that win.
+    </p>
+    <p class="section-body">
+      Portland needs two democratic upgrades. First: <strong>fund the Citizens' Initiative Review</strong>. Oregon already has CIR on the books — randomly selected citizen panels that deliberate on ballot measures. It's unfunded. My proposal: reduce required signatures by ~$200K worth, and redirect that $200K to fund a CIR jury. Same barrier to frivolous measures, dramatically better information. Political science research shows CIR verdicts move public opinion 5–10%.
+    </p>
+    <p class="section-body">
+      Second: <strong>Election by Jury</strong>. Randomly selected citizen panels using score voting to evaluate candidates. Georgia already appoints officials through grand juries. Oregon has the CIR template. Propaganda can't microtarget a jury whose composition is unknown until selection. AI-generated disinformation loses its leverage when candidates are evaluated in person by deliberating citizens.
+    </p>
+  </div>
+</section>
+
+<!-- ALL POSITIONS -->
+<section id="positions" class="bg-ink">
+  <div class="container">
+    <span class="section-chip" style="background: rgba(255,255,255,0.08); color: var(--mustard);">The Full Platform</span>
+    <h2 class="section-title" style="color: #fff;">Every position. No hedging.</h2>
+
+    <div class="positions-grid">
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--teal);"></div>
+        <div>
+          <h4>Land Value Tax</h4>
+          <p>Convert Portland's property tax to a land-value-only basis at today's rate. Annual increases stay within Measures 5 and 50 limits, drifting toward a true LVT — but improvements never increase your bill. Zero DWL. Fully legal under existing state law.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--mustard);"></div>
+        <div>
+          <h4>Universal Basic Income</h4>
+          <p>Replace means-tested in-kind benefits with universal cash. No phase-outs, no cliffs. Progressive effective rates through flat marginal rates plus lump-sum transfers.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--mint);"></div>
+        <div>
+          <h4>Carbon Tax + Universal Dividend</h4>
+          <p>Price carbon at marginal social cost. Return revenue as a per-capita dividend. Negative deadweight loss.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--coral);"></div>
+        <div>
+          <h4>Abolish Single-Family Zoning</h4>
+          <p>By-right ADUs, duplexes, missing middle everywhere. No parking minimums. No design review theater.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--lavender);"></div>
+        <div>
+          <h4>Abolish Public Parking</h4>
+          <p>Market-price every space. Use revenue for universal cash transfers. End this regressive in-kind subsidy.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--sky);"></div>
+        <div>
+          <h4>Protected Bike Infrastructure</h4>
+          <p>World-class protected bike network. Stop designing streets around the assumption that everyone drives.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--coral);"></div>
+        <div>
+          <h4>Congestion Pricing</h4>
+          <p>Price road use at marginal social cost. Fund transit expansion with revenue. Anti-subsidy, not anti-car.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--mint);"></div>
+        <div>
+          <h4>Renewable Energy &amp; Electrification</h4>
+          <p>Streamline permitting. Electrify buildings and transit. Let carbon pricing make renewables win on price.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--teal);"></div>
+        <div>
+          <h4>Expanded Public Transit</h4>
+          <p>BRT on major corridors. Grade-separated rail where density supports it. Frequent, reliable, competitive with cars.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--coral);"></div>
+        <div>
+          <h4>End Rent Control</h4>
+          <p>Reduces supply, misallocates units, transfers wealth from future to current tenants. Textbook populist economics. Build more and give people cash instead.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--mustard);"></div>
+        <div>
+          <h4>End All Means-Testing</h4>
+          <p>Phase-outs are implicit taxes. Stacking them hits 60–80% combined marginal rates. With UBI, means-testing adds only deadweight loss.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--sky);"></div>
+        <div>
+          <h4>Pro-Trade, Anti-Tariff</h4>
+          <p>Free trade is the closest thing to a free lunch in economics. Tariffs are regressive consumption taxes. Oppose protectionism from both parties.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--lavender);"></div>
+        <div>
+          <h4>Support for Israel</h4>
+          <p>A liberal democracy in a region of authoritarianism. This is unpopular in Portland. I hold it anyway.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--teal);"></div>
+        <div>
+          <h4>Fund the Citizens' Initiative Review</h4>
+          <p>Fewer required signatures (~$200K savings) redirected to fund CIR juries. Same barrier, better information.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--mustard);"></div>
+        <div>
+          <h4>Election by Jury</h4>
+          <p>Randomly selected panels with score voting. Propaganda-resistant. Deliberation-based. Georgia already does it.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--coral);"></div>
+        <div>
+          <h4>Approval Voting</h4>
+          <p>Vote for every candidate you approve of. Eliminates spoilers and strategic voting. Passed it in Fargo and St. Louis. Portland is next.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--mint);"></div>
+        <div>
+          <h4>Occupational Licensing Reform</h4>
+          <p>Most licenses are barriers to entry that protect incumbents and raise consumer prices. Restrict to genuine safety concerns.</p>
+        </div>
+      </div>
+
+      <div class="pos-item">
+        <div class="pos-dot" style="background: var(--sky);"></div>
+        <div>
+          <h4>Housing First</h4>
+          <p>No sobriety requirements. No ID. No preconditions. Get people housed, then address everything else. Fund with LVT.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <span class="section-chip chip-coral">The Candidate</span>
+    <h2 class="section-title">Clay Shentrup</h2>
+
+    <div class="bio-grid" style="margin-top: 2rem;">
+      <div class="bio-card">
+        <div class="bio-fact">
+          <div class="bio-fact-label">Home</div>
+          <div class="bio-fact-value">Upper Laurelhurst, Portland</div>
+        </div>
+        <div class="bio-fact">
+          <div class="bio-fact-label">Family</div>
+          <div class="bio-fact-value">Spouse Andréa Marie Torres (renewable energy policy). Two kids at Beverly Cleary Elementary.</div>
+        </div>
+        <div class="bio-fact">
+          <div class="bio-fact-label">Day Job</div>
+          <div class="bio-fact-value">Software engineer at Swoop.com. Rails.</div>
+        </div>
+        <div class="bio-fact">
+          <div class="bio-fact-label">Electoral Reform</div>
+          <div class="bio-fact-value">Co-founded Center for Election Science (~2011). 20 years in reform. Passed approval voting in Fargo (64%) and St. Louis (68%). Founded Election by Jury.</div>
+        </div>
+        <div class="bio-fact">
+          <div class="bio-fact-label">Policy</div>
+          <div class="bio-fact-value">Publishes at wonk.blog and Medium. Developed tax reform materials for WA Rep. Jessica Bateman. Oregon Real Raise Act author.</div>
+        </div>
+        <div class="bio-fact">
+          <div class="bio-fact-label">Music</div>
+          <div class="bio-fact-value">Performs as "Broken Ladder" — dark acoustic/rock. Elliott Smith meets Soundgarden. Recorded at Hyde Street, SF (2012).</div>
+        </div>
+      </div>
+
+      <div class="bio-narrative">
+        <p>
+          I've spent two decades trying to fix democracy from outside government. I co-founded an organization that passed voting reform in two cities. I've written policy for state legislators, filed ballot measures, built campaign websites, and argued with strangers on Reddit about land value taxation until 2 AM.
+        </p>
+        <p>
+          Here's what I've learned: <strong>the people making decisions in city hall don't know what deadweight loss is.</strong> They don't know that means-testing creates implicit marginal rates of 80%. They don't know that rent control reduces supply. They don't know that free parking is a regressive subsidy. They aren't bad people. They just don't have the framework.
+        </p>
+        <p>
+          I do. I'm a <strong>market equitist</strong> — someone who believes competitive markets produce the most prosperity, and that the gains should be shared universally through efficient redistribution. Not through bureaucratic in-kind programs with cliffs and phase-outs. Not through price controls that create shortages. Through getting the prices right and giving people cash.
+        </p>
+        <p>
+          My kids walk to Beverly Cleary. My wife works in renewable energy. I bike on Portland's streets. I'm not theorizing about what this city needs. I'm applying the economics I've spent 20 years studying — relentlessly, unapologetically, with a calculator in one hand and a ballot initiative in the other.
+        </p>
+
+        <div class="bio-quote">
+          Portland deserves a council member who can explain why their policy works — not just that it feels right.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p><span class="footer-name">Clay Shentrup</span> · Portland City Council · District 3 · 2026</p>
+    <p class="joke">Paid for by the Committee to Minimize Deadweight Loss</p>
+  </div>
+</footer>
+
+</body>
+</html>
