@@ -115,15 +115,18 @@ h4 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; 
 .faq-item p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
 
 /* VSE BARS */
-.vse-list { display: flex; flex-direction: column; gap: 20px; }
-.vse-row label { display: flex; justify-content: space-between; margin-bottom: 6px; align-items: baseline; }
+.vse-list { display: flex; flex-direction: column; gap: 24px; }
 .vse-row .name { font-weight: 600; font-size: 15px; }
 .vse-row .values { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); }
-.vse-track { position: relative; height: 32px; background: rgba(255,255,255,0.03); border-radius: 6px; overflow: hidden; }
-.vse-bar { position: absolute; top: 0; left: 0; height: 100%; border-radius: 6px; }
+.vse-header { display: flex; justify-content: space-between; margin-bottom: 8px; align-items: baseline; }
+.vse-pair { display: flex; flex-direction: column; gap: 4px; }
+.vse-bar-row { display: flex; align-items: center; gap: 10px; }
+.vse-bar-label { font-size: 11px; color: var(--text-dim); width: 56px; text-align: right; flex-shrink: 0; }
+.vse-track { position: relative; height: 22px; background: rgba(255,255,255,0.03); border-radius: 5px; overflow: hidden; flex: 1; }
+.vse-bar { position: absolute; top: 0; left: 0; height: 100%; border-radius: 5px; }
 .vse-bar.honest { opacity: 0.9; }
-.vse-bar.strategic { opacity: 0.35; }
-.vse-range-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+.vse-bar.strategic { opacity: 0.5; }
+.vse-range-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; padding-left: 66px; }
 
 /* STATS */
 .stats-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 48px; justify-content: center; }
@@ -406,7 +409,7 @@ footer a { color: var(--accent); }
     <div class="stats-row">
       <div class="stat"><div class="stat-number">64%</div><div class="stat-label">Fargo, ND (2018)</div></div>
       <div class="stat"><div class="stat-number">68%</div><div class="stat-label">St. Louis, MO (2020)</div></div>
-      <div class="stat"><div class="stat-number">95%</div><div class="stat-label">Voter Satisfaction Efficiency (honest)</div></div>
+      <div class="stat"><div class="stat-number">90%</div><div class="stat-label">Voter Satisfaction Efficiency</div></div>
       <div class="stat"><div class="stat-number">0</div><div class="stat-label">New equipment needed</div></div>
     </div>
   </section>
@@ -569,7 +572,7 @@ footer a { color: var(--accent); }
       <h2>California's Business Leaders Need to Fund This Measure.</h2>
       <p style="font-size:20px">You've seen what vote splitting does. You've seen the data. You've read the measure—it's three words. The question is whether California's tech and business leaders are going to keep pouring money into symptomatic fights, or fund the one structural reform that fixes the game itself.</p>
       <p class="sub">One ballot measure. Every primary. Every race. Structural change that outlasts any single election cycle. This is the highest-leverage political investment available.</p>
-      <a href="mailto:cshentrup@gmail.com" class="btn-primary large">Let's Talk →</a>
+      <a id="contact-btn" href="#" class="btn-primary large">Let's Talk →</a>
     </div>
   </section>
 
@@ -612,10 +615,7 @@ function renderSplitChart(data, maxVal) {
     var pct = (d.votes / maxVal) * 100;
     var col = document.createElement('div');
     col.className = 'bar-col';
-    col.innerHTML =
-      '<div class="bar-val">' + d.votes + '%</div>' +
-      '<div class="bar-fill" style="height:' + pct + '%;background:' + color + '"></div>' +
-      '<div class="bar-label">' + d.name + '</div>';
+    col.innerHTML = '<div class="bar-val">' + d.votes + '%</div><div class="bar-fill" style="height:' + pct + '%;background:' + color + '"></div><div class="bar-label">' + d.name + '</div>';
     el.appendChild(col);
   }
 }
@@ -638,9 +638,9 @@ function setMode(mode) {
 }
 
 var btnPlurality = document.getElementById('btn-plurality');
-var btnApproval = document.getElementById('btn-approval');
+var btnApproval2 = document.getElementById('btn-approval');
 if (btnPlurality) btnPlurality.addEventListener('click', function() { setMode('plurality'); });
-if (btnApproval) btnApproval.addEventListener('click', function() { setMode('approval'); });
+if (btnApproval2) btnApproval2.addEventListener('click', function() { setMode('approval'); });
 
 var exitData = [
   { name: 'Obama', plurality: 85, approval: 90, score: 86 },
@@ -657,20 +657,14 @@ if (exitEl) {
     var ed = exitData[j];
     var col2 = document.createElement('div');
     col2.className = 'grouped-col';
-    col2.innerHTML =
-      '<div class="grouped-bars">' +
-        '<div class="grouped-bar" style="height:' + (ed.plurality / 100 * 250) + 'px;background:#6b7280" title="Plurality: ' + ed.plurality + '%"></div>' +
-        '<div class="grouped-bar" style="height:' + (ed.approval / 100 * 250) + 'px;background:#f59e0b" title="Approval: ' + ed.approval + '%"></div>' +
-        '<div class="grouped-bar" style="height:' + (ed.score / 100 * 250) + 'px;background:#22c55e" title="Score: ' + ed.score + '%"></div>' +
-      '</div>' +
-      '<div class="grouped-label">' + ed.name + '</div>';
+    col2.innerHTML = '<div class="grouped-bars"><div class="grouped-bar" style="height:' + (ed.plurality / 100 * 250) + 'px;background:#6b7280" title="Plurality: ' + ed.plurality + '%"></div><div class="grouped-bar" style="height:' + (ed.approval / 100 * 250) + 'px;background:#f59e0b" title="Approval: ' + ed.approval + '%"></div><div class="grouped-bar" style="height:' + (ed.score / 100 * 250) + 'px;background:#22c55e" title="Score: ' + ed.score + '%"></div></div><div class="grouped-label">' + ed.name + '</div>';
     exitEl.appendChild(col2);
   }
 }
 
 var vseData = [
   { method: 'Score Voting', honest: 96, strategic: 84, color: '#22c55e' },
-  { method: 'Approval Voting', honest: 95, strategic: 89, color: '#f59e0b' },
+  { method: 'Approval Voting', honest: 90, strategic: 95, color: '#f59e0b' },
   { method: 'IRV / RCV', honest: 92, strategic: 79, color: '#ef4444' },
   { method: 'Plurality', honest: 75, strategic: 75, color: '#6b7280' }
 ];
@@ -684,11 +678,10 @@ if (vseEl) {
     var strategicW = ((vd.strategic - minVis) / (100 - minVis)) * 100;
     var row = document.createElement('div');
     row.className = 'vse-row';
-    row.innerHTML =
-      '<label><span class="name">' + vd.method + '</span><span class="values">' + vd.honest + '% honest &middot; ' + vd.strategic + '% strategic</span></label>' +
-      '<div class="vse-track">' +
-        '<div class="vse-bar honest" style="width:' + honestW + '%;background:' + vd.color + '"></div>' +
-        '<div class="vse-bar strategic" style="width:' + strategicW + '%;background:' + vd.color + '"></div>' +
+    row.innerHTML = '<div class="vse-header"><span class="name">' + vd.method + '</span><span class="values">' + vd.honest + '% / ' + vd.strategic + '%</span></div>' +
+      '<div class="vse-pair">' +
+        '<div class="vse-bar-row"><span class="vse-bar-label">honest</span><div class="vse-track"><div class="vse-bar honest" style="width:' + honestW + '%;background:' + vd.color + '"></div></div></div>' +
+        '<div class="vse-bar-row"><span class="vse-bar-label">strategic</span><div class="vse-track"><div class="vse-bar strategic" style="width:' + strategicW + '%;background:' + vd.color + '"></div></div></div>' +
       '</div>';
     vseEl.appendChild(row);
   }
@@ -697,6 +690,8 @@ if (vseEl) {
   scaleDiv.innerHTML = '<span>50% (random)</span><span>75%</span><span>100% (perfect)</span>';
   vseEl.appendChild(scaleDiv);
 }
+var contactBtn = document.getElementById('contact-btn');
+if (contactBtn) contactBtn.href = 'mai' + 'lto:cshen' + 'trup' + '@gm' + 'ail.com';
 </script>
 </body>
 </html>
