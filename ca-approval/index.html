@@ -172,6 +172,25 @@ h4 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; 
 footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; }
 footer p { font-size: 14px; color: var(--text-dim); }
 footer a { color: var(--accent); }
+
+/* PLAN SECTION */
+.plan-phase { background: var(--surface); border-radius: 14px; padding: 28px 28px; border: 1px solid var(--border); margin-bottom: 20px; }
+.plan-phase h4 { font-size: 20px; margin-bottom: 4px; }
+.plan-phase .phase-goal { font-size: 14px; color: var(--accent); font-style: italic; margin-bottom: 16px; font-family: 'Source Sans 3', sans-serif; }
+.plan-phase p, .plan-phase li { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+.plan-phase ul { list-style: none; padding: 0; margin: 0 0 12px 0; }
+.plan-phase li { padding: 4px 0 4px 20px; position: relative; }
+.plan-phase li::before { content: "\2022"; color: var(--accent); position: absolute; left: 0; }
+.plan-sub { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin: 16px 0 8px; }
+.budget-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.budget-row:last-child { border-bottom: none; }
+.budget-row .budget-item { color: var(--text-muted); }
+.budget-row .budget-cost { color: var(--text); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.budget-total { display: flex; justify-content: space-between; padding: 12px 0 0; margin-top: 8px; border-top: 2px solid var(--accent); font-size: 15px; font-weight: 700; }
+.plan-author { text-align: center; padding: 32px 0 0; border-top: 1px solid var(--border); margin-top: 32px; }
+.plan-author .name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
+.plan-author .role { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.plan-author .email { font-size: 14px; color: var(--accent); margin-top: 4px; }
 .chart-source { font-size: 13px; color: var(--text-dim); margin-top: 12px; text-align: center; }
 .chart-source a { color: var(--accent); }
 
@@ -195,6 +214,7 @@ footer a { color: var(--accent); }
       <a href="#problem">Problem</a>
       <a href="#measure">The Measure</a>
       <a href="#evidence">Evidence</a>
+      <a href="#plan">The Plan</a>
       <a href="#fund">Fund It</a>
     </div>
   </div>
@@ -221,8 +241,8 @@ footer a { color: var(--accent); }
 
     <div class="card">
       <div class="toggle-group">
-        <button class="toggle-btn active" id="btn-plurality" onclick="setMode('plurality')">Plurality (Current)</button>
-        <button class="toggle-btn" id="btn-approval" onclick="setMode('approval')">Approval Voting</button>
+        <button class="toggle-btn active" id="btn-plurality">Plurality (Current)</button>
+        <button class="toggle-btn" id="btn-approval">Approval Voting</button>
       </div>
       <div class="bar-chart" id="splitChart"></div>
       <div class="bar-axis-label" id="splitAxisLabel">% of vote</div>
@@ -418,13 +438,138 @@ footer a { color: var(--accent); }
     </div>
   </section>
 
+  <!-- THE PLAN -->
+  <section id="plan" style="padding-top:80px;padding-bottom:60px">
+    <div class="label">The Plan</div>
+    <h2>How We Win</h2>
+    <p class="body-text" style="margin-bottom:40px">A California statewide ballot measure is a serious undertaking. Here's what it takes, phase by phase.</p>
+
+    <div class="plan-phase">
+      <h4>Phase 1: Foundation</h4>
+      <div class="phase-goal">Months 1–4 · Build the team, draft the measure, establish the legal and organizational framework.</div>
+      <div class="plan-sub">Legal</div>
+      <ul>
+        <li>Engage a California election law attorney to draft the statutory amendment language</li>
+        <li>File the initiative with the California Attorney General's office</li>
+        <li>Obtain the official title and summary; establish a ballot measure committee (FPPC filing)</li>
+      </ul>
+      <div class="plan-sub">Team</div>
+      <ul>
+        <li>Campaign manager with California ballot measure experience</li>
+        <li>Communications director, digital strategist, fundraising lead</li>
+        <li>Legal counsel (retained) and coalition coordinator</li>
+      </ul>
+      <div class="plan-sub">Research & Messaging</div>
+      <ul>
+        <li>Commission polling on specific ballot language and messaging frames</li>
+        <li>Test messaging with both Democratic and Republican voters</li>
+        <li>Develop the core pitch deck for funders; build the campaign website</li>
+      </ul>
+    </div>
+
+    <div class="plan-phase">
+      <h4>Phase 2: Fundraising & Coalition Building</h4>
+      <div class="phase-goal">Months 3–8 · Raise the initial $2–3M needed for signature gathering and secure endorsements across the political spectrum.</div>
+      <div class="plan-sub">Funder Targets</div>
+      <p>The pitch to business and tech leaders: this is the highest-leverage structural reform available. One ballot measure changes the incentive structure of every primary election in the state. Targets include the Y Combinator network, GrowSF and affiliated donors, Reid Hoffman's foundations, tech executives frustrated with CA governance on housing and permitting, and the Center for Election Science for institutional support.</p>
+      <div class="plan-sub">Coalition Endorsements</div>
+      <p>The reform must not be perceived as a corporate takeover of elections. It genuinely isn't—but perception matters. Endorsements should span the spectrum: good-government organizations (League of Women Voters, Common Cause), progressive reform groups (demonstrating that it helps third parties), Republican reformers (the minority-party moderation argument), academic endorsements from voting theorists, and local elected officials who've experienced vote splitting firsthand.</p>
+    </div>
+
+    <div class="plan-phase">
+      <h4>Phase 3: Signature Gathering</h4>
+      <div class="phase-goal">Months 6–12 · Collect the required signatures to qualify for the ballot.</div>
+      <p>California requires signatures equal to 5% of votes cast in the last gubernatorial election—roughly 550,000–600,000 signatures. Standard practice is to collect 150–200% of the requirement to account for invalid signatures.</p>
+      <p style="margin-top:12px">This is the single largest campaign expense: $3–5 per signature × 900,000–1,000,000 signatures = <strong style="color:var(--text)">$2.7M–$5M</strong>. Volunteer supplementation helps but cannot replace paid gathering at statewide scale.</p>
+    </div>
+
+    <div class="plan-phase">
+      <h4>Phase 4: Campaign</h4>
+      <div class="phase-goal">Months 10–18 · Win at the ballot box.</div>
+      <div class="plan-sub">Three Messaging Pillars</div>
+      <ul>
+        <li><strong style="color:var(--text)">The problem is visible and bipartisan.</strong> Vote splitting is happening right now in the governor's race, and happened in SD-4 in 2022. Both parties have been hurt.</li>
+        <li><strong style="color:var(--text)">The fix is absurdly simple.</strong> Three words: "vote for one or more." No new machines, no complex rankings. Show people the measure text and let the simplicity speak for itself.</li>
+        <li><strong style="color:var(--text)">It's already working elsewhere.</strong> Fargo and St. Louis adopted it by supermajority. The data proves it works.</li>
+      </ul>
+      <div class="plan-sub">Opposition We Anticipate</div>
+      <ul>
+        <li><strong style="color:var(--text)">FairVote / RCV advocates</strong> will claim "bullet voting." St. Louis CVR data refutes this—a third of voters approved multiple candidates.</li>
+        <li><strong style="color:var(--text)">"This helps moderates / hurts progressives"</strong>—the exit poll shows Stein went from 3% to 52%. It helps everyone not benefiting from vote splitting.</li>
+        <li><strong style="color:var(--text)">Party insiders</strong> may prefer the status quo. Counter: it's only predictable when backroom coordination works. When it fails, results are catastrophic.</li>
+        <li><strong style="color:var(--text)">"Fargo repealed it"</strong>—driven by a specific local political dynamic, not voter dissatisfaction. St. Louis continues to use it successfully.</li>
+      </ul>
+    </div>
+
+    <!-- BUDGET -->
+    <h3 style="margin-top:48px">Budget</h3>
+    <div class="district-cards" style="margin-bottom:24px">
+      <div class="district-card" style="border-top:3px solid var(--accent)">
+        <h4>Lean Scenario</h4>
+        <div class="stat-number" style="font-size:36px;margin:8px 0">~$6M</div>
+        <p>Signature gathering ($3M) + minimal campaign ($2M) + foundation/legal/team ($1M). Viable if the measure faces no organized opposition and the political environment is favorable. Relies heavily on earned media and the simplicity of the pitch.</p>
+      </div>
+      <div class="district-card" style="border-top:3px solid var(--accent)">
+        <h4>Competitive Scenario</h4>
+        <div class="stat-number" style="font-size:36px;margin:8px 0">~$10–12M</div>
+        <p>Signature gathering ($4M) + full campaign ($5–6M) + foundation ($1.5M). Required if RCV advocates or party insiders mount an opposition campaign. Standard for a contested California ballot measure.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Campaign Budget Breakdown</h4>
+      <div style="margin-top:16px">
+        <div class="budget-row"><span class="budget-item">Paid signature gathering</span><span class="budget-cost">$2.7M–$5M</span></div>
+        <div class="budget-row"><span class="budget-item">Digital advertising</span><span class="budget-cost">$500K–$1.5M</span></div>
+        <div class="budget-row"><span class="budget-item">Staff and overhead</span><span class="budget-cost">$400K–$800K</span></div>
+        <div class="budget-row"><span class="budget-item">Direct mail</span><span class="budget-cost">$300K–$800K</span></div>
+        <div class="budget-row"><span class="budget-item">Field operations</span><span class="budget-cost">$200K–$500K</span></div>
+        <div class="budget-row"><span class="budget-item">Earned media / PR</span><span class="budget-cost">$200K–$400K</span></div>
+        <div class="budget-row"><span class="budget-item">Polling and focus groups</span><span class="budget-cost">$150K–$300K</span></div>
+        <div class="budget-row"><span class="budget-item">Legal and compliance</span><span class="budget-cost">$100K–$200K</span></div>
+        <div class="budget-row"><span class="budget-item">Signature validation / challenge defense</span><span class="budget-cost">$50K–$100K</span></div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <h3 style="margin-top:48px">Timeline</h3>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>Option A: November 2026 Ballot</h4>
+        <p>Aggressive. Requires immediate fundraising and a compressed signature gathering window. The advantage is that the governor's race vote-splitting disaster is fresh in voters' minds. The risk is insufficient time to build a coalition and raise enough money to survive opposition.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Option B: November 2028 Ballot</h4>
+        <p>More realistic. Allows 18+ months for fundraising, coalition building, and signature gathering. The 2026 governor's race outcome provides a case study. Aligns with the presidential election cycle, which means higher turnout and a more representative electorate.</p>
+      </div>
+      <div class="faq-item" style="border-left-color:var(--green)">
+        <h4>Recommendation</h4>
+        <p>Begin foundation work immediately targeting the November 2028 ballot, but remain open to accelerating to 2026 if fundraising exceeds expectations. <strong style="color:var(--text)">The 2026 governor's race is the marketing—the 2028 ballot is the product.</strong></p>
+      </div>
+    </div>
+
+    <!-- THE ASK -->
+    <div class="callout" style="margin-top:48px">
+      <h4 style="margin-bottom:12px">The Ask</h4>
+      <p><strong style="color:var(--text)">Seed funding ($500K–$1M):</strong> Legal drafting, team hiring, polling, and campaign infrastructure. This is the phase where the measure becomes real—a filed initiative with an official title, a professional team, and polling data that proves it can win.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Signature gathering ($3–5M):</strong> The mechanical cost of qualifying for the ballot. Known, predictable expense with established vendors.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Campaign ($2–6M):</strong> The cost of winning. Scales with opposition intensity.</p>
+    </div>
+
+    <div class="plan-author">
+      <div class="name">Clay Shentrup</div>
+      <div class="role">Co-founder and former board member, Center for Election Science · Founder, Election by Jury</div>
+      <div class="role">Nearly 20 years in electoral reform</div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section id="fund" style="padding-top:80px;padding-bottom:120px">
     <div class="cta-box">
       <h2>California's Business Leaders Need to Fund This Measure.</h2>
       <p style="font-size:20px">You've seen what vote splitting does. You've seen the data. You've read the measure—it's three words. The question is whether California's tech and business leaders are going to keep pouring money into symptomatic fights, or fund the one structural reform that fixes the game itself.</p>
       <p class="sub">One ballot measure. Every primary. Every race. Structural change that outlasts any single election cycle. This is the highest-leverage political investment available.</p>
-      <a href="mailto:clay@electionbyjury.org" class="btn-primary large">Let's Talk →</a>
+      <a href="mailto:cshentrup@gmail.com" class="btn-primary large">Let's Talk →</a>
     </div>
   </section>
 
@@ -435,113 +580,123 @@ footer a { color: var(--accent); }
 
 </div>
 
+
 <script>
-// ========== VOTE SPLITTING CHART (pure CSS bars) ==========
-const pluralityData = [
+var pluralityData = [
   { name: 'Hartley<br>(Extremist)', votes: 22, faction: 'populist' },
   { name: 'Voss<br>(Demagogue)', votes: 20, faction: 'populist' },
   { name: 'Chen<br>(Pragmatist)', votes: 18, faction: 'reform' },
   { name: 'Okafor<br>(Builder)', votes: 15, faction: 'reform' },
   { name: 'Reeves<br>(Innovator)', votes: 14, faction: 'reform' },
-  { name: 'Park<br>(Technocrat)', votes: 11, faction: 'reform' },
+  { name: 'Park<br>(Technocrat)', votes: 11, faction: 'reform' }
 ];
-const approvalData = [
+var approvalData = [
   { name: 'Chen<br>(Pragmatist)', votes: 61, faction: 'reform' },
   { name: 'Okafor<br>(Builder)', votes: 55, faction: 'reform' },
   { name: 'Reeves<br>(Innovator)', votes: 52, faction: 'reform' },
   { name: 'Park<br>(Technocrat)', votes: 44, faction: 'reform' },
   { name: 'Hartley<br>(Extremist)', votes: 32, faction: 'populist' },
-  { name: 'Voss<br>(Demagogue)', votes: 28, faction: 'populist' },
+  { name: 'Voss<br>(Demagogue)', votes: 28, faction: 'populist' }
 ];
 
 function renderSplitChart(data, maxVal) {
-  const el = document.getElementById('splitChart');
+  var el = document.getElementById('splitChart');
+  if (!el) return;
   el.innerHTML = '';
-  data.forEach((d, i) => {
-    const isTopTwo = i < 2;
-    let color;
-    if (d.faction === 'reform') color = isTopTwo ? '#3b82f6' : '#1e3a5f';
-    else color = isTopTwo ? '#ef4444' : '#991b1b';
-    const pct = (d.votes / maxVal) * 100;
-    const col = document.createElement('div');
+  for (var i = 0; i < data.length; i++) {
+    var d = data[i];
+    var isTopTwo = i < 2;
+    var color;
+    if (d.faction === 'reform') { color = isTopTwo ? '#3b82f6' : '#1e3a5f'; }
+    else { color = isTopTwo ? '#ef4444' : '#991b1b'; }
+    var pct = (d.votes / maxVal) * 100;
+    var col = document.createElement('div');
     col.className = 'bar-col';
     col.innerHTML =
       '<div class="bar-val">' + d.votes + '%</div>' +
       '<div class="bar-fill" style="height:' + pct + '%;background:' + color + '"></div>' +
       '<div class="bar-label">' + d.name + '</div>';
     el.appendChild(col);
-  });
+  }
 }
 
 renderSplitChart(pluralityData, 70);
 
 function setMode(mode) {
-  const data = mode === 'plurality' ? pluralityData : approvalData;
-  const maxVal = mode === 'plurality' ? 70 : 70;
-  renderSplitChart(data, maxVal);
-  document.getElementById('splitAxisLabel').textContent = mode === 'plurality' ? '% of vote' : '% of voters approving';
-  document.getElementById('btn-plurality').classList.toggle('active', mode === 'plurality');
-  document.getElementById('btn-approval').classList.toggle('active', mode === 'approval');
-  document.getElementById('result-plurality').style.display = mode === 'plurality' ? 'block' : 'none';
-  document.getElementById('result-approval').style.display = mode === 'approval' ? 'block' : 'none';
+  var data = mode === 'plurality' ? pluralityData : approvalData;
+  renderSplitChart(data, 70);
+  var axisLabel = document.getElementById('splitAxisLabel');
+  if (axisLabel) axisLabel.textContent = mode === 'plurality' ? '% of vote' : '% of voters approving';
+  var btnP = document.getElementById('btn-plurality');
+  var btnA = document.getElementById('btn-approval');
+  if (btnP) { btnP.className = mode === 'plurality' ? 'toggle-btn active' : 'toggle-btn'; }
+  if (btnA) { btnA.className = mode === 'approval' ? 'toggle-btn active' : 'toggle-btn'; }
+  var resP = document.getElementById('result-plurality');
+  var resA = document.getElementById('result-approval');
+  if (resP) resP.style.display = mode === 'plurality' ? 'block' : 'none';
+  if (resA) resA.style.display = mode === 'approval' ? 'block' : 'none';
 }
 
-// ========== EXIT POLL CHART (grouped CSS bars) ==========
-const exitData = [
+var btnPlurality = document.getElementById('btn-plurality');
+var btnApproval = document.getElementById('btn-approval');
+if (btnPlurality) btnPlurality.addEventListener('click', function() { setMode('plurality'); });
+if (btnApproval) btnApproval.addEventListener('click', function() { setMode('approval'); });
+
+var exitData = [
   { name: 'Obama', plurality: 85, approval: 90, score: 86 },
   { name: 'Romney', plurality: 8.5, approval: 13, score: 25 },
   { name: 'Stein', plurality: 3, approval: 52, score: 54 },
   { name: 'Johnson', plurality: 1.5, approval: 27, score: 39 },
   { name: 'Lindsay', plurality: 0.7, approval: 31, score: 42 },
-  { name: 'Goode', plurality: 0.3, approval: 17, score: 34 },
+  { name: 'Goode', plurality: 0.3, approval: 17, score: 34 }
 ];
 
-(function renderExitPoll() {
-  const el = document.getElementById('exitPollChart');
-  exitData.forEach(d => {
-    const col = document.createElement('div');
-    col.className = 'grouped-col';
-    const maxH = 100;
-    col.innerHTML =
+var exitEl = document.getElementById('exitPollChart');
+if (exitEl) {
+  for (var j = 0; j < exitData.length; j++) {
+    var ed = exitData[j];
+    var col2 = document.createElement('div');
+    col2.className = 'grouped-col';
+    col2.innerHTML =
       '<div class="grouped-bars">' +
-        '<div class="grouped-bar" style="height:' + (d.plurality / maxH * 250) + 'px;background:#6b7280" title="Plurality: ' + d.plurality + '%"></div>' +
-        '<div class="grouped-bar" style="height:' + (d.approval / maxH * 250) + 'px;background:#f59e0b" title="Approval: ' + d.approval + '%"></div>' +
-        '<div class="grouped-bar" style="height:' + (d.score / maxH * 250) + 'px;background:#22c55e" title="Score: ' + d.score + '%"></div>' +
+        '<div class="grouped-bar" style="height:' + (ed.plurality / 100 * 250) + 'px;background:#6b7280" title="Plurality: ' + ed.plurality + '%"></div>' +
+        '<div class="grouped-bar" style="height:' + (ed.approval / 100 * 250) + 'px;background:#f59e0b" title="Approval: ' + ed.approval + '%"></div>' +
+        '<div class="grouped-bar" style="height:' + (ed.score / 100 * 250) + 'px;background:#22c55e" title="Score: ' + ed.score + '%"></div>' +
       '</div>' +
-      '<div class="grouped-label">' + d.name + '</div>';
-    el.appendChild(col);
-  });
-})();
+      '<div class="grouped-label">' + ed.name + '</div>';
+    exitEl.appendChild(col2);
+  }
+}
 
-// ========== VSE BARS ==========
-const vseData = [
+var vseData = [
   { method: 'Score Voting', honest: 96, strategic: 84, color: '#22c55e' },
   { method: 'Approval Voting', honest: 95, strategic: 89, color: '#f59e0b' },
   { method: 'IRV / RCV', honest: 92, strategic: 79, color: '#ef4444' },
-  { method: 'Plurality', honest: 75, strategic: 75, color: '#6b7280' },
+  { method: 'Plurality', honest: 75, strategic: 75, color: '#6b7280' }
 ];
 
-(function renderVSE() {
-  const vc = document.getElementById('vseBars');
+var vseEl = document.getElementById('vseBars');
+if (vseEl) {
   var minVis = 50;
-  vseData.forEach(function(d) {
-    var honestW = ((d.honest - minVis) / (100 - minVis)) * 100;
-    var strategicW = ((d.strategic - minVis) / (100 - minVis)) * 100;
+  for (var k = 0; k < vseData.length; k++) {
+    var vd = vseData[k];
+    var honestW = ((vd.honest - minVis) / (100 - minVis)) * 100;
+    var strategicW = ((vd.strategic - minVis) / (100 - minVis)) * 100;
     var row = document.createElement('div');
     row.className = 'vse-row';
     row.innerHTML =
-      '<label><span class="name">' + d.method + '</span><span class="values">' + d.honest + '% honest · ' + d.strategic + '% strategic</span></label>' +
+      '<label><span class="name">' + vd.method + '</span><span class="values">' + vd.honest + '% honest &middot; ' + vd.strategic + '% strategic</span></label>' +
       '<div class="vse-track">' +
-        '<div class="vse-bar honest" style="width:' + honestW + '%;background:' + d.color + '"></div>' +
-        '<div class="vse-bar strategic" style="width:' + strategicW + '%;background:' + d.color + '"></div>' +
+        '<div class="vse-bar honest" style="width:' + honestW + '%;background:' + vd.color + '"></div>' +
+        '<div class="vse-bar strategic" style="width:' + strategicW + '%;background:' + vd.color + '"></div>' +
       '</div>';
-    vc.appendChild(row);
-  });
+    vseEl.appendChild(row);
+  }
   var scaleDiv = document.createElement('div');
   scaleDiv.className = 'vse-range-labels';
   scaleDiv.innerHTML = '<span>50% (random)</span><span>75%</span><span>100% (perfect)</span>';
-  vc.appendChild(scaleDiv);
-})();
+  vseEl.appendChild(scaleDiv);
+}
 </script>
 </body>
 </html>
