@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upgrade Your Party's Democratic OS — Election by Jury &amp; Score Voting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0d0b;
+    --paper: #f5f0e8;
+    --gold: #b8962e;
+    --gold-light: #d4af50;
+    --rust: #8b3a2a;
+    --dim: #5a5649;
+    --rule: #c8c0ac;
+    --pale: #ede8dc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 3px double var(--rule);
+    padding: 1.2rem 0 1rem;
+    text-align: center;
+  }
+
+  .masthead-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .masthead-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .masthead-rule hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--rule);
+  }
+
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .masthead-site {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 2rem 4.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rust), var(--gold), var(--rust));
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero h1 em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: #c8c0b0;
+    max-width: 620px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-meta {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-meta-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: #8a8070;
+    text-transform: uppercase;
+  }
+
+  .hero-meta-item strong {
+    display: block;
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 0.1rem;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── SECTION HEADS ── */
+  .section {
+    padding: 4rem 0 2rem;
+    border-top: 1px solid var(--rule);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .section.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .section:first-of-type {
+    border-top: none;
+    padding-top: 4rem;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section h2 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  p strong {
+    font-weight: 600;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    margin: 2.5rem 0;
+    padding: 0.5rem 0 0.5rem 2rem;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .pull-quote cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--dim);
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* ── MECHANISM CARDS ── */
+  .mechanism-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 2.5rem 0;
+    border: 2px solid var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .mechanism-grid { grid-template-columns: 1fr; }
+  }
+
+  .mechanism-card {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.5rem 2rem;
+  }
+
+  .mechanism-card:nth-child(even) {
+    background: var(--paper);
+    color: var(--ink);
+    border-left: 2px solid var(--ink);
+  }
+
+  @media (max-width: 640px) {
+    .mechanism-card:nth-child(even) {
+      border-left: none;
+      border-top: 2px solid var(--ink);
+    }
+  }
+
+  .mechanism-card .card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .mechanism-card:nth-child(even) .card-num {
+    color: var(--rust);
+  }
+
+  .mechanism-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .mechanism-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    opacity: 0.85;
+    margin-bottom: 0;
+  }
+
+  /* ── VSE BAR CHART ── */
+  .chart-section {
+    background: var(--pale);
+    border: 1px solid var(--rule);
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .chart-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    width: 110px;
+    flex-shrink: 0;
+    color: var(--dim);
+    text-align: right;
+  }
+
+  .bar-track {
+    flex: 1;
+    background: var(--rule);
+    height: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    width: 0;
+    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+  }
+
+  .bar-fill.gold { background: var(--gold); }
+  .bar-fill.rust { background: var(--rust); }
+  .bar-fill.dim  { background: #888; }
+
+  .bar-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: white;
+    white-space: nowrap;
+  }
+
+  .chart-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--dim);
+    margin-top: 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── EVIDENCE BOXES ── */
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 2.5rem 0;
+    border: 2px solid var(--rule);
+  }
+
+  @media (max-width: 640px) {
+    .evidence-grid { grid-template-columns: 1fr; }
+  }
+
+  .evidence-box {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .evidence-box:last-child { border-right: none; }
+
+  .evidence-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .evidence-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .evidence-desc {
+    font-size: 0.9rem;
+    color: var(--dim);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .steps {
+    counter-reset: steps;
+    margin: 2rem 0;
+  }
+
+  .step {
+    counter-increment: steps;
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    text-align: right;
+  }
+
+  .step-num::before { content: counter(steps); }
+
+  .step-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-body p {
+    font-size: 0.95rem;
+    color: var(--dim);
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  /* ── ABOUT ── */
+  .about-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .about-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--gold), var(--rust));
+  }
+
+  .about-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--gold-light);
+  }
+
+  .about-box p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #c8c0b0;
+  }
+
+  .cred-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+
+  .cred-list li {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 0;
+  }
+
+  .cred-list li::before {
+    content: '→  ';
+    color: var(--rust);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    margin-top: 4rem;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rust), var(--gold), var(--rust));
+  }
+
+  .cta-inner { max-width: 620px; margin: 0 auto; }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 1.2rem;
+    line-height: 1.15;
+  }
+
+  .cta-section p {
+    color: #b0a898;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-link {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .cta-link:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid #333;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-bottom: 0;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ── DIVIDER ── */
+  .ornament {
+    text-align: center;
+    color: var(--rule);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    margin: 2.5rem 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── COMPARE TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .compare-table th {
+    background: var(--ink);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.8rem 1rem;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .compare-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 300;
+    vertical-align: top;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--pale); }
+
+  .compare-table td:first-child {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .bad { color: var(--rust); }
+  .good { color: #2a7a3a; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #333;
+  }
+
+  .nav-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: #888;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  @media (max-width: 560px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">wonk.blog/ebj-party</a>
+    <ul class="nav-links">
+      <li><a href="#problem">The Problem</a></li>
+      <li><a href="#mechanism">The Fix</a></li>
+      <li><a href="#evidence">Evidence</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-rule">
+      <hr><span class="masthead-label">A proposal for forward-thinking parties in PR systems</span><hr>
+    </div>
+    <div class="masthead-site">wonk.blog/ebj-party</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Democratic Operating System · Upgrade Proposal</p>
+    <h1>Your party selects candidates<br>with <em>broken tools.</em><br>Here is the fix.</h1>
+    <p class="hero-sub">Closed-list proportional representation gives parties enormous power — and enormous responsibility. The mechanism you use to rank that list determines everything. Most parties still use the same blunt instruments that have always produced mediocre results. Score voting and Election by Jury are better. Demonstrably, mathematically better.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Proof of concept<strong>Fargo, ND · St. Louis, MO</strong></div>
+      <div class="hero-meta-item">Academic foundation<strong>Harvard · Princeton · MIT</strong></div>
+      <div class="hero-meta-item">Voter Satisfaction Efficiency<strong>Score/Approval: ~91%</strong></div>
+      <div class="hero-meta-item">vs. Plurality voting<strong>~56% VSE</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <!-- PROBLEM -->
+  <section class="section" id="problem">
+    <p class="eyebrow">§ 1 — The Problem</p>
+    <h2>Closed-list PR concentrates power.<br>Most parties waste it.</h2>
+
+    <p>In a closed-list proportional representation system, <strong>the party list is the consequential decision.</strong> Whoever ranks first goes to parliament. The public votes for your party — but your internal process decides who actually governs.</p>
+
+    <p>Most parties make this decision through some combination of leadership fiat, committee horse-trading, or internal plurality votes. These mechanisms have a documented, quantifiable flaw: they systematically select candidates who are preferred by the largest faction rather than candidates who produce the best outcomes for the broadest coalition.</p>
+
+    <div class="pull-quote">
+      <p>"Plurality voting finds the candidate most acceptable to a large bloc. Score voting finds the candidate most acceptable to everyone."</p>
+      <cite>Jameson Quinn — Harvard Statistics PhD, VSE Framework Author</cite>
+    </div>
+
+    <p>The result is predictable: internal party democracy that looks democratic but functions like a factional spoils system. The party that innovates on this mechanism gains a durable advantage — better candidates, broader internal legitimacy, and a story to tell voters about how you actually do politics differently.</p>
+
+    <div class="ornament">— ✦ —</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem;">What the current system actually optimizes for</h3>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Decision Factor</th>
+          <th>Plurality / Committee Vote</th>
+          <th>Score Voting + Sortition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Who wins</td>
+          <td class="bad">Largest faction's favorite</td>
+          <td class="good">Broadest consensus candidate</td>
+        </tr>
+        <tr>
+          <td>Strategic behavior</td>
+          <td class="bad">Bloc voting, horse-trading</td>
+          <td class="good">Minimal — no tactical advantage</td>
+        </tr>
+        <tr>
+          <td>Minority voice</td>
+          <td class="bad">Systematically suppressed</td>
+          <td class="good">Captured in scoring intensity</td>
+        </tr>
+        <tr>
+          <td>Legitimacy signal</td>
+          <td class="bad">Whoever showed up that day</td>
+          <td class="good">Deliberative, representative panel</td>
+        </tr>
+        <tr>
+          <td>Resistance to capture</td>
+          <td class="bad">Low — concentrated in committee</td>
+          <td class="good">High — randomized, scored</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- MECHANISM -->
+  <section class="section" id="mechanism">
+    <p class="eyebrow">§ 2 — The Mechanism</p>
+    <h2>Two innovations. Either alone<br>is an upgrade. Together they are<br><em>transformative.</em></h2>
+
+    <div class="mechanism-grid">
+      <div class="mechanism-card">
+        <span class="card-num">01 — Score Voting</span>
+        <h3>Rate every candidate.<br>Average wins.</h3>
+        <p>Each voting member assigns a score of 0–5 to every candidate for each list position. The candidate with the highest average score wins. No ranking, no strategic bullet-voting, no spoiler effects. A minor faction with intense preferences registers those preferences proportionally — and a broadly acceptable candidate beats a narrowly beloved one every time.</p>
+      </div>
+      <div class="mechanism-card">
+        <span class="card-num">02 — Election by Jury</span>
+        <h3>Randomly selected members<br>deliberate and decide.</h3>
+        <p>A citizen jury of randomly selected party members — demographically representative — hears from each candidate, deliberates in small groups, and scores using the same 0–5 mechanism. Randomness defeats organized faction capture. Deliberation produces informed decisions. The result is a list that reflects the whole party, not just who showed up to the caucus with the most bodies.</p>
+      </div>
+    </div>
+
+    <p>These can be deployed separately or together. <strong>Score voting alone</strong> is a significant upgrade to any internal vote. <strong>Election by Jury alone</strong> defeats organized bloc control. Combining them produces a system that is mathematically resistant to the failure modes that plague every conventional internal party election.</p>
+
+    <div class="pull-quote">
+      <p>"Election by Jury is sortition applied to the consequential decision. The randomly selected deliberative body is, by construction, representative of the party as a whole — not of whichever faction mobilized most effectively."</p>
+      <cite>Clay Shentrup — co-founder, Center for Election Science · electionbyjury.org</cite>
+    </div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1rem; margin-top: 2rem;">How it works in practice</h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Candidates submit profiles and answer standardized questions</h4>
+          <p>The jury receives written materials, video statements, and structured Q&amp;A. Everyone works from the same information set — no advantage for whoever has the most charisma in a room.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>A randomly selected jury of 20–30 party members deliberates</h4>
+          <p>Selected by stratified random sampling to reflect the party's demographic composition. They meet for one to three days, in person or hybrid. Small-group deliberation before scoring.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Each juror scores every candidate 0–5</h4>
+          <p>Simultaneously and independently. Average scores determine list order. The result is published with full transparency — every juror's scores, every candidate's average, the deliberation summary.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>The party ratifies and the list is set</h4>
+          <p>Leadership reviews for compliance with any statutory or party-rule constraints, then ratifies. The deliberative record is public. Any challenge must engage with the actual scores and deliberation — not just the outcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVIDENCE -->
+  <section class="section" id="evidence">
+    <p class="eyebrow">§ 3 — The Evidence</p>
+    <h2>This is not theory.<br>It has been done.</h2>
+
+    <div class="evidence-grid">
+      <div class="evidence-box">
+        <div class="evidence-num">63%</div>
+        <div class="evidence-label">Fargo, North Dakota · 2018</div>
+        <p class="evidence-desc">First U.S. city to adopt approval voting by ballot initiative. Passed on the first attempt with a comfortable majority.</p>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-num">68%</div>
+        <div class="evidence-label">St. Louis, Missouri · 2020</div>
+        <p class="evidence-desc">Approval voting passed in a major American city. Two-thirds majority. The result was not close.</p>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-num">20yr</div>
+        <div class="evidence-label">Electoral Reform Work</div>
+        <p class="evidence-desc">The researcher behind this proposal has been working on this since 2006. This is not a thought experiment.</p>
+      </div>
+    </div>
+
+    <div class="chart-section" id="chartSection">
+      <div class="chart-title">Voter Satisfaction Efficiency — Comparative Performance</div>
+
+      <div class="bar-row">
+        <div class="bar-label">Score Voting</div>
+        <div class="bar-track">
+          <div class="bar-fill gold" data-width="91">
+            <span class="bar-pct">~91%</span>
+          </div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Approval</div>
+        <div class="bar-track">
+          <div class="bar-fill gold" data-width="88" style="opacity:0.75">
+            <span class="bar-pct">~88%</span>
+          </div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">IRV / STV</div>
+        <div class="bar-track">
+          <div class="bar-fill rust" data-width="72">
+            <span class="bar-pct">~72%</span>
+          </div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Plurality</div>
+        <div class="bar-track">
+          <div class="bar-fill dim" data-width="56">
+            <span class="bar-pct">~56%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-source">Source: Jameson Quinn (Harvard Statistics), Voter Satisfaction Efficiency framework. Warren D. Smith (Princeton, Conway Prize), Bayesian regret calculations. Published: Gaming the Vote, William Poundstone, Hill &amp; Wang, 2008.</div>
+    </div>
+
+    <p>VSE measures what fraction of the theoretically possible voter satisfaction a given method captures. The gap between score voting and plurality is not marginal — <strong>it is the difference between a mechanism that works and one that systematically fails.</strong></p>
+
+    <p>The academic foundation here is unusually strong. Jameson Quinn's VSE framework is the field's standard comparative benchmark. Warren D. Smith's Bayesian regret calculations underpin <em>Gaming the Vote</em>, the definitive popular treatment of the subject. These are not fringe researchers — this is the mathematical consensus on voting systems, simply not yet translated into party practice.</p>
+  </section>
+
+  <!-- WHO -->
+  <section class="section" id="who">
+    <p class="eyebrow">§ 4 — Why This Matters for Your Party</p>
+    <h2>The party that does this first<br>owns the story.</h2>
+
+    <p>In a PR system, voters already understand that the party list is where power lives. A party that can credibly say <em>"we select our candidates through a deliberative citizen jury using score voting"</em> is making a claim that no other party can match — and one that is essentially impossible to attack, because the mechanism is transparently more democratic than the alternative.</p>
+
+    <div class="two-col">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:0.8rem;">The internal benefit</h3>
+        <p style="font-size:0.95rem;">Factions that lose under the current system cannot claim the result was rigged when the scores are published and the jury was randomly selected. Legitimacy is built into the mechanism. Internal cohesion improves because the losers participated in a process they cannot dispute.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:0.8rem;">The external benefit</h3>
+        <p style="font-size:0.95rem;">Voters in every PR country are skeptical of party list manipulation. A party that has demonstrably solved this problem — with a verifiable, transparent mechanism — has a genuine differentiator. Not a slogan. A process.</p>
+      </div>
+    </div>
+
+    <div class="ornament">— ✦ —</div>
+
+    <p>This proposal is not asking the party to risk anything on an untested idea in a public election. <strong>Internal party rules are entirely within your own authority to change.</strong> No referendum, no legislature, no permission required. You simply decide to run your next candidate selection this way — and then tell the story of what happened.</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <p class="eyebrow">§ 5 — The Researcher</p>
+    <h2>Nearly two decades of<br><em>actual results.</em></h2>
+
+    <div class="about-box">
+      <h3>Clay Shentrup</h3>
+      <p>Electoral reform advocate, co-founder of the Center for Election Science, and founder of Election by Jury. Has been working on voting system reform since 2006 — beginning well before the current wave of interest in the subject. Led the successful ballot initiative campaigns that produced the only two instances of approval voting adoption in U.S. municipal history.</p>
+      <ul class="cred-list">
+        <li>Co-founder, Center for Election Science (501(c)(3), United States)</li>
+        <li>Led Fargo, ND approval voting campaign — passed 63.5%, 2018</li>
+        <li>Led St. Louis, MO approval voting campaign — passed 68%, 2020</li>
+        <li>Founder, Election by Jury — electionbyjury.org</li>
+        <li>Collaborator with Jameson Quinn (VSE framework) and Warren D. Smith (Bayesian regret)</li>
+        <li>Personal relationship with Kenneth Arrow (Arrow's Impossibility Theorem)</li>
+        <li>20 years working in social choice theory and practical electoral reform</li>
+      </ul>
+      <p style="margin-top:1rem; font-size:0.9rem;">This is not a think-tank proposal. These reforms have been designed, campaigned for, and won at the ballot box under real political conditions against real opposition. The researcher is available to consult with your team at no cost on implementation design.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <p class="eyebrow" style="color:var(--gold); font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:1rem;">§ 6 — Next Step</p>
+    <h2>One conversation.<br>No commitment.</h2>
+    <p>If your party is interested in piloting this for your next candidate selection — or simply wants to understand the mechanism better — reach out. Implementation consulting is offered at no cost for the initial pilot. The only ask is that you run the process transparently and share what you learn.</p>
+    <a class="cta-link" href="mailto:cshentrup@gmail.com">Contact</a>
+    <p style="margin-top:1.5rem; font-size:0.85rem; color:#555;">
+      Also: <a href="https://www.electionbyjury.org" style="color:var(--gold);">www.electionbyjury.org</a> &nbsp;·&nbsp;
+      <a href="https://wonk.blog" style="color:var(--gold);">wonk.blog</a> &nbsp;·&nbsp;
+      <a href="https://scoreVoting.net" style="color:var(--gold);">ScoreVoting.net</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>wonk.blog/ebj-party &nbsp;·&nbsp; Election by Jury &nbsp;·&nbsp; Center for Election Science &nbsp;·&nbsp;
+    <a href="mailto:cshentrup@gmail.com">cshentrup@gmail.com</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll-triggered section reveals
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  sections.forEach(s => observer.observe(s));
+
+  // Bar chart animation on scroll
+  const chartSection = document.getElementById('chartSection');
+  let chartsAnimated = false;
+  const chartObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !chartsAnimated) {
+        chartsAnimated = true;
+        document.querySelectorAll('.bar-fill').forEach(bar => {
+          const target = bar.dataset.width;
+          setTimeout(() => { bar.style.width = target + '%'; }, 200);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  chartObserver.observe(chartSection);
+</script>
+</body>
+</html>
