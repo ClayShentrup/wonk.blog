@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 800 Plan — proportional.uk</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Source Sans 3','Helvetica Neue',Arial,sans-serif;color:#0b0c0c;background:#fff;line-height:1.5}
+.crown{background:#0b0c0c;padding:6px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:#fff}
+.sitenav{background:#003078;border-bottom:10px solid #1d70b8}
+.navw{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sitetitle{font-family:'Noto Serif',Georgia,serif;font-size:1.2rem;font-weight:600;color:#fff;text-decoration:none}
+.sitetitle .tld{color:#ffdd00}
+.navlist{list-style:none;display:flex;flex-wrap:wrap}
+.navlist a{display:block;color:#fff;text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-bottom:4px solid transparent;transition:border-color .1s,background .1s}
+.navlist a:hover{border-bottom-color:#ffdd00;background:rgba(255,255,255,.08)}
+.hero{background:#1d70b8;padding:52px 16px 48px}
+.herow{max-width:960px;margin:0 auto;display:grid;grid-template-columns:3fr 2fr;gap:44px;align-items:center}
+.hero-kick{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#ffdd00;font-weight:600;margin-bottom:12px}
+.hero h1{font-family:'Noto Serif',Georgia,serif;font-size:2.4rem;font-weight:400;color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:#ffdd00}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.9);line-height:1.65;margin-bottom:26px}
+.hero-sub strong{color:#fff}
+.btn-y{display:inline-block;background:#ffdd00;color:#0b0c0c;font-size:14px;font-weight:600;padding:10px 20px;text-decoration:none}
+.btn-y:hover{filter:brightness(.93)}
+.statpanel{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-left:5px solid #ffdd00;padding:26px;display:flex;flex-direction:column;gap:18px}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat-n{font-family:'Noto Serif',Georgia,serif;font-size:2.6rem;font-weight:600;color:#ffdd00;line-height:1}
+.stat-l{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65)}
+.stat-hr{border:none;border-top:1px solid rgba(255,255,255,.15)}
+.bc{background:#f3f2f1;border-bottom:1px solid #c8c8c8;padding:8px 16px;font-size:13px;color:#505a5f}
+.bcw{max-width:960px;margin:0 auto}
+.bc a{color:#1d70b8;text-decoration:none}
+.bc a:hover{text-decoration:underline}
+.pagew{max-width:960px;margin:0 auto;padding:40px 16px 80px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
+.section{margin-bottom:44px}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#1d70b8;font-weight:600;margin-bottom:8px}
+h2{font-family:'Noto Serif',Georgia,serif;font-size:1.7rem;font-weight:400;color:#0b0c0c;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+h3{font-family:'Noto Serif',Georgia,serif;font-size:1.1rem;font-weight:600;margin-top:26px;margin-bottom:10px}
+p{font-size:15px;line-height:1.7;color:#111;margin-bottom:14px}
+.lede{font-family:'Noto Serif',Georgia,serif;font-size:1.05rem;font-weight:300;font-style:italic;line-height:1.65;border-left:5px solid #1d70b8;padding-left:16px;margin-bottom:22px;color:#0b0c0c}
+hr.rule{border:none;border-top:1px solid #c8c8c8;margin:40px 0}
+.dtable{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0}
+.dtable th{background:#003078;color:#fff;text-align:left;padding:9px 14px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.dtable td{padding:10px 14px;border-bottom:1px solid #d8d8d8;vertical-align:top;line-height:1.5}
+.dtable tr:nth-child(even) td{background:#f3f2f1}
+.nc{color:#505a5f}
+.ch{color:#00703c;font-weight:600}
+.callout{border-left:5px solid #1d70b8;background:#d2e2f1;padding:14px 18px;margin:20px 0}
+.callout.green{background:#d4edda;border-left-color:#00703c}
+.callout.yellow{background:#fff8c4;border-left-color:#f0b429}
+.callout.blue{background:#d2e2f1;border-left-color:#1d70b8}
+.callout p{font-size:14px;margin:0;line-height:1.6}
+blockquote{border-left:5px solid #ffdd00;background:#fffbdb;padding:14px 18px;margin:22px 0}
+blockquote p{font-family:'Noto Serif',Georgia,serif;font-size:1rem;font-style:italic;margin:0;line-height:1.6}
+blockquote cite{display:block;font-style:normal;font-size:12px;color:#505a5f;margin-top:8px}
+.timeline{padding-left:26px;border-left:3px solid #d2e2f1;margin:22px 0}
+.tli{position:relative;margin-bottom:26px}
+.tldot{position:absolute;left:-35px;top:3px;width:12px;height:12px;border-radius:50%;background:#1d70b8;border:2px solid #fff;box-shadow:0 0 0 2px #1d70b8}
+.tllabel{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#1d70b8;font-weight:600;margin-bottom:3px}
+.tltitle{font-weight:600;font-size:15px;margin-bottom:4px}
+.tldesc{font-size:13px;color:#505a5f;line-height:1.55}
+.dial{background:#f3f2f1;border:1px solid #c8c8c8;padding:18px 20px;margin:22px 0}
+.dial h4{font-family:'Noto Serif',Georgia,serif;font-size:1rem;font-weight:600;margin-bottom:14px}
+.dial-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:14px}
+.dial-n{font-family:'Noto Serif',Georgia,serif;font-weight:600;font-size:1.1rem;min-width:36px;color:#003078}
+.dial-bar-wrap{flex:1;background:#d8d8d8;height:8px;border-radius:2px}
+.dial-bar{background:#1d70b8;height:8px;border-radius:2px}
+.dial-note{font-size:12px;color:#505a5f;min-width:0}
+.dial-row.rec .dial-n{color:#00703c}
+.dial-row.rec .dial-note{color:#00703c;font-weight:600}
+details.faq{border-bottom:1px solid #d8d8d8}
+details.faq summary{padding:13px 0;font-size:15px;font-weight:600;color:#1d70b8;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;user-select:none}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:'▼';font-size:10px;flex-shrink:0;margin-left:12px;transition:transform .2s;display:inline-block}
+details.faq[open] summary::after{transform:rotate(180deg)}
+details.faq summary:hover{color:#003078}
+.faqbody{padding:0 0 14px;font-size:14px;color:#333;line-height:1.65}
+.sidebar{position:sticky;top:24px;display:flex;flex-direction:column;gap:18px}
+.sbblock{border:1px solid #d8d8d8;padding:16px}
+.sbblock h4{font-family:'Noto Serif',Georgia,serif;font-size:.95rem;font-weight:600;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #f3f2f1}
+.sbblock ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.sbblock li{font-size:13px;color:#505a5f;padding-left:10px;border-left:3px solid #d2e2f1;line-height:1.4}
+.sbblock li a{color:#1d70b8;text-decoration:none}
+.sbblock li a:hover{text-decoration:underline}
+.sbfeat{background:#003078;padding:16px}
+.sbfeat h4{font-family:'Noto Serif',Georgia,serif;font-size:.95rem;color:#ffdd00;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.15)}
+.sbfeat p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;margin-bottom:12px}
+.sbfeat a{display:block;background:#ffdd00;color:#0b0c0c;text-align:center;padding:9px;font-size:13px;font-weight:600;text-decoration:none}
+.sbfeat a:hover{filter:brightness(.93)}
+.footer{background:#0b0c0c;color:rgba(255,255,255,.6);padding:34px 16px;font-size:13px}
+.footerw{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:34px}
+.footer h5{color:#fff;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.footer ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.footer a{color:rgba(255,255,255,.5);text-decoration:none}
+.footer a:hover{color:#fff;text-decoration:underline}
+.footer p{color:rgba(255,255,255,.42);line-height:1.6}
+.footerbot{max-width:960px;margin:20px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;color:rgba(255,255,255,.28);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media(max-width:720px){
+  .herow,.pagew,.footerw{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .navlist{display:none}
+  .hero h1{font-size:1.8rem}
+  h2{font-size:1.35rem}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.herow>*{animation:fadeUp .5s ease both}
+.herow>*:nth-child(2){animation-delay:.1s}
+</style>
+</head>
+<body>
+
+<div class="crown">
+  <svg width="24" height="16" viewBox="0 0 26 18" fill="white" aria-hidden="true"><polygon points="1,17 3.5,7 8,12 13,2 18,12 22.5,7 25,17"/><rect x="1" y="17" width="24" height="1.5"/></svg>
+  A civil society initiative — not a government publication
+</div>
+
+<nav class="sitenav">
+  <div class="navw">
+    <a class="sitetitle" href="#">proportional<span class="tld">.uk</span></a>
+    <ul class="navlist">
+      <li><a href="#proposal">The Proposal</a></li>
+      <li><a href="#howitworks">How It Works</a></li>
+      <li><a href="#parties">For Parties</a></li>
+      <li><a href="#picture">Bigger Picture</a></li>
+      <li><a href="#faq">Questions</a></li>
+      <li><a href="#">Rate the Plans</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="herow">
+    <div>
+      <p class="hero-kick">The 800 Plan · Electoral Reform · United Kingdom</p>
+      <h1>Just vote.<br><em>Everything else is optional.</em></h1>
+      <p class="hero-sub">Add 150 nationally-elected seats to the existing 650. <strong>Most voters need not change a thing</strong> — your local vote automatically counts for the national list too. Only mark the national section if you want to support a different party nationally. The ballot paper looks the same.</p>
+      <a class="btn-y" href="#proposal">Read the proposal ↓</a>
+    </div>
+    <div class="statpanel">
+      <div class="stat"><span class="stat-n">650</span><span class="stat-l">Existing constituency seats — untouched</span></div>
+      <hr class="stat-hr">
+      <div class="stat"><span class="stat-n">+150</span><span class="stat-l">New national seats — our recommended starting point</span></div>
+      <hr class="stat-hr">
+      <div class="stat"><span class="stat-n">800</span><span class="stat-l">Total seats — the same size as the House of Lords</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="bc"><div class="bcw"><a href="#">Home</a> &rsaquo; <a href="#">Reform Proposals</a> &rsaquo; The 800 Plan</div></div>
+
+<div class="pagew">
+<main>
+
+  <section class="section" id="problem">
+    <p class="kicker">The Case for Change</p>
+    <h2>The current system is not failing — it is working as designed. The design is the problem.</h2>
+    <p class="lede">First Past the Post was built for a two-party country. Britain is no longer a two-party country. A party winning government on under 30% of the vote is not a hypothetical; it is an approaching reality.</p>
+    <p>In the 2024 general election, Labour won a commanding parliamentary majority on 33.7% of the vote — the lowest share ever recorded for a majority government. The system does not produce unstable results by accident. It systematically amplifies small vote-share differences into vast seat differentials, rewarding geographical concentration and punishing dispersed support.</p>
+    <p>The consequence is a legislature that does not reflect the country, governments that do not represent their voters, and an opposition that cannot hold power to account. This is not a partisan critique. It is a mechanical one.</p>
+    <div class="callout yellow">
+      <p><strong>The 2011 referendum on the Alternative Vote</strong> was defeated not because the arguments for reform were wrong, but because the Alternative Vote was genuinely difficult to explain and easy to caricature. The most effective opposition advertising simply showed someone attempting to describe how the counting worked. Round after round, preference after preference, it explained itself into absurdity. The lesson is not that Britain does not want reform. It is that reform must be simple enough to be unassailable. The 800 Plan is.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section" id="proposal">
+    <p class="kicker">The Proposal</p>
+    <h2>Add 150 national seats. Change nothing else.</h2>
+    <p class="lede">This proposal does not ask voters to learn a new system, constituencies to be redrawn, or any existing seat to be removed. For most voters, nothing changes at all.</p>
+
+    <div class="callout green">
+      <p><strong>Just vote as you always have.</strong> Your local vote automatically flows to the national party list via a simple cascade: first to whatever party your local candidate has designated, then to their party membership if they made no designation, and unallocated only if they are a genuine independent with no party affiliation. Voters who want to actively back a different party nationally — say, supporting a Labour candidate locally while backing the Greens nationally — simply mark the optional national section of the ballot. Everyone else ignores it entirely. The complexity is invisible. The ballot paper looks the same.</p>
+    </div>
+
+    <table class="dtable">
+      <thead><tr><th>Element</th><th>Under the 800 Plan</th></tr></thead>
+      <tbody>
+        <tr><td>650 constituency seats</td><td class="nc">Unchanged. Same boundaries, same voting method.</td></tr>
+        <tr><td>How you vote locally</td><td class="nc">Unchanged. Mark one candidate, exactly as now.</td></tr>
+        <tr><td>Your local MP</td><td class="nc">Unchanged. Still elected by your constituency.</td></tr>
+        <tr><td>Total seats in Parliament</td><td class="ch">800. Fixed. Known before polling day. Always.</td></tr>
+        <tr><td>National party vote</td><td class="ch">Optional. Your local vote flows to your candidate's designated party by default. Only mark this to support a different party nationally.</td></tr>
+        <tr><td>150 new national seats</td><td class="ch">Allocated by party vote share using Sainte-Laguë.</td></tr>
+        <tr><td>List ordering (default)</td><td class="ch">Closed list, ordered by the party. Optional: open list via membership election, administered by the Electoral Commission at the party's request and on its own terms.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Why 800?</h3>
+    <p>150 national seats yields a total of exactly 800 — the same size as the House of Lords. That symmetry is hard to waste. It is very difficult to argue that a House of Commons the same size as the existing upper chamber is bloated or radical. At 19% of the chamber, 150 seats also begins to meaningfully constrain the most extreme FPTP distortions rather than merely correcting at the margins.</p>
+
+    <div class="dial">
+      <h4>National seats: the range of options</h4>
+      <div class="dial-row">
+        <span class="dial-n">100</span>
+        <div class="dial-bar-wrap"><div class="dial-bar" style="width:33%"></div></div>
+        <span class="dial-note">750 total · 13% proportional · conservative opening position · easiest to pass</span>
+      </div>
+      <div class="dial-row rec">
+        <span class="dial-n">150</span>
+        <div class="dial-bar-wrap"><div class="dial-bar" style="width:50%;background:#00703c"></div></div>
+        <span class="dial-note">800 total · same size as House of Lords · 19% proportional · our recommended starting point</span>
+      </div>
+      <div class="dial-row">
+        <span class="dial-n">200</span>
+        <div class="dial-bar-wrap"><div class="dial-bar" style="width:67%"></div></div>
+        <span class="dial-note">850 total · 24% proportional · substantial correction · stronger reform coalition required</span>
+      </div>
+      <p style="font-size:12px;color:#505a5f;margin-top:12px;margin-bottom:0">See <a href="#" style="color:#1d70b8">plans.proportional.uk</a> for full modelling of each threshold against recent UK election results.</p>
+    </div>
+
+    <h3>Why Sainte-Laguë?</h3>
+    <p>Sainte-Laguë is the seat allocation method used in Germany, New Zealand, Norway, Sweden, and more than a dozen established democracies. It divides each party's vote total by an increasing series of odd numbers (1, 3, 5, 7…) and awards seats to the highest resulting quotients. It is widely considered the fairest common allocation method, neither systematically favouring large nor small parties.</p>
+    <p>Crucially, it produces a <strong>fixed</strong> number of seats. The total is always exactly 800. There are no overhang seats, no levelling seats, no post-election corrections.</p>
+
+    <div class="callout green">
+      <p><strong>Why not Mixed Member Proportional (MMP)?</strong> Germany's Bundestag swelled to 736 members after the 2021 election — 86 seats above its intended size — because MMP's "top-up" mechanism creates unpredictable overhang. New Zealand required repeated legislative patches to control the same problem. A fixed seat count is not a technicality; it is essential to stable parliamentary arithmetic. The 800 Plan has no top-up mechanism. The national seats do not correct for local seat outcomes. They simply add.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section" id="howitworks">
+    <p class="kicker">How the Cascade Default Works</p>
+    <h2>Most voters need not change a thing.</h2>
+    <p class="lede">The most important feature of the 800 Plan is what voters do not have to do. The national party vote flows automatically from the local vote via a simple three-level cascade.</p>
+
+    <div class="timeline">
+      <div class="tli">
+        <div class="tldot"></div>
+        <p class="tllabel">Level one — voter choice</p>
+        <p class="tltitle">If the voter marks the national section, that choice is used</p>
+        <p class="tldesc">Voters who want to actively back a different party nationally — or who simply want to make their national vote explicit — mark the optional party section of the ballot. This is the only level that requires any action from the voter.</p>
+      </div>
+      <div class="tli">
+        <div class="tldot"></div>
+        <p class="tllabel">Level two — candidate designation</p>
+        <p class="tltitle">If the voter left it blank, their vote flows to their candidate's designated party</p>
+        <p class="tldesc">When standing for election, every candidate registers a party designation with the Electoral Commission. For party candidates this will almost always be their own party. Independent candidates may name any registered party they choose — meaning no vote need be wasted on the national list.</p>
+      </div>
+      <div class="tli">
+        <div class="tldot"></div>
+        <p class="tllabel">Level three — party membership</p>
+        <p class="tltitle">If the candidate made no designation, their party membership is used</p>
+        <p class="tldesc">If a candidate registered no designation, the vote falls back to their party membership if they have one. Only if a candidate is a genuine independent with no party affiliation does the vote go unallocated nationally — an honest outcome for a voter who chose a candidate outside the party system.</p>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <p><strong>This is why the 800 Plan is nothing like the Alternative Vote.</strong> The AV's complexity was visible on the ballot — every voter had to rank candidates in sequence or their vote was incomplete. The cascade default here is entirely invisible to the voter. It is a back-end accounting rule. The ballot paper looks identical to what voters have always seen. No new behaviour is required of anyone who does not want to engage with it.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section" id="parties">
+    <p class="kicker">For Political Parties</p>
+    <h2>Default closed list. Open to those who choose otherwise.</h2>
+    <p class="lede">The legislation sets a simple default: parties submit an ordered closed list. The order is the party's to determine. No external mandate. No government interference in internal party affairs.</p>
+    <p>But the same legislation provides infrastructure for parties that wish to go further. Any party may choose to determine its list order through a membership election. The Electoral Commission runs the election on the party's behalf — as it would any other election — and certifies the result. The party sets its own rules: who votes, what ballot format, what eligibility criteria. The government's role is purely facilitative.</p>
+
+    <blockquote>
+      <p>A party that trusts its members to choose its national representatives is making a statement about what kind of party it is. The legislation simply makes that choice available to every party that wishes to take it.</p>
+      <cite>— proportional.uk</cite>
+    </blockquote>
+
+    <p>This is not a mandate for internal party democracy. It is an open door. Parties that walk through it will find that their members are engaged, their candidates are legitimate, and their opponents are left explaining why they chose to keep the door closed.</p>
+
+    <div class="callout">
+      <p><strong>Nothing in this proposal prevents a party from using a more expressive ballot format</strong> for its internal election — one that asks members to indicate support for multiple candidates rather than ranking them in sequence. Such formats have been used successfully in municipal elections in the United States, producing list orders that reflect genuine broad support rather than strategic voting within the membership.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section" id="picture">
+    <p class="kicker">The Bigger Picture</p>
+    <h2>A reform that creates conditions for further reform.</h2>
+    <p class="lede">The 800 Plan is not the end of the conversation about British democracy. It is the beginning of a different conversation — one that becomes possible only once some degree of proportionality is in place.</p>
+    <p>The current system produces single-party governments with commanding majorities on minority vote shares. Those governments have no incentive to change the system that produced them. Breaking that cycle, even partially, changes the political calculus. A Parliament in which 150 seats are allocated by national vote share is one in which parties with broad but dispersed support have a voice, coalitions must negotiate, and electoral reform is no longer against the institutional interests of every party that might enact it.</p>
+    <p>150 seats is a starting point, not a destination. What matters is that it is achievable, defensible, and creates momentum rather than exhausting it.</p>
+
+    <div class="timeline">
+      <div class="tli">
+        <div class="tldot"></div>
+        <p class="tllabel">Now</p>
+        <p class="tltitle">Parliament legislates 150 national seats</p>
+        <p class="tldesc">Straightforward legislation. No referendum required. No boundary changes. First elections under the 800 Plan at the next general election.</p>
+      </div>
+      <div class="tli">
+        <div class="tldot"></div>
+        <p class="tllabel">First election</p>
+        <p class="tltitle">National seats allocated; parties demonstrate list approaches</p>
+        <p class="tldesc">Voters see the national ballot in action. Parties that opened their lists demonstrate the value of member participation. Parties that did not face questions about why.</p>
+      </div>
+      <div class="tli">
+        <div class="tldot"></div>
+        <p class="tllabel">Subsequent Parliament</p>
+        <p class="tltitle">Conditions for deeper reform exist</p>
+        <p class="tldesc">With proportionality partially in place, the coalition for further reform is larger and institutional resistance is smaller. The conversation about the local ballot, the seat ratio, and further democratisation can proceed on firmer ground.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section" id="faq">
+    <p class="kicker">Common Questions</p>
+    <h2>Frequently asked questions</h2>
+
+    <details class="faq">
+      <summary>Do voters have to do anything differently?</summary>
+      <div class="faqbody">No — and this is the most important practical feature of the 800 Plan. Your local vote automatically flows to the national party list via a simple cascade. First, it goes to whatever party your local candidate designated when they stood. If they made no designation, it falls back to their party membership. Only if they are a genuine independent with no party affiliation does the vote go unallocated nationally. Voters who want to actively support a different party nationally simply mark the optional national section of the ballot. Everyone else ignores it entirely. The ballot paper looks the same. No new behaviour is required of anyone.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Why 150 seats? Why not more or less?</summary>
+      <div class="faqbody">150 national seats yields a total of exactly 800 — the same size as the House of Lords. It is very hard to argue that a Commons the same size as the existing upper chamber is bloated or radical. At 19% of the chamber, 150 seats also begins to meaningfully constrain the most extreme FPTP distortions rather than merely correcting at the margins. 100 is a viable conservative opening position and 200 is available for a bolder coalition — we model all three thresholds on plans.proportional.uk. But 150 is the number that threads the needle between analytical credibility and political achievability.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Is this proportional representation?</summary>
+      <div class="faqbody">Not fully. This proposal does not guarantee that seat shares will exactly match vote shares. It introduces a proportional element through the national seats while preserving the existing constituency system entirely. The technical term is Mixed Member Majoritarian — it differs from Mixed Member Proportional precisely because the national seats add to the total rather than correcting for local seat outcomes. Full proportionality may be a long-term goal for some reformers; the 800 Plan is designed to be achievable in the near term and to create conditions for further reform over time.</div>
+    </details>
+
+    <details class="faq">
+      <summary>Does this require a referendum?</summary>
+      <div class="faqbody">No. The 2011 AV referendum was held because the legislation specifically required one. There is no constitutional requirement for a referendum on electoral reform in the United Kingdom. Parliament may legislate changes to the voting system by ordinary majority. Whether a future government chooses to hold a referendum as a matter of political legitimacy is a separate question from whether one is legally required.</div>
+    </details>
+
+    <details class="faq">
+      <summary>What stops a party from gaming the list?</summary>
+      <div class="faqbody">The closed list default gives parties full control over their list order, which is intentional. This proposal does not mandate democratic internal processes — it makes them available and attractive. A party that places unpopular figures at the top of its national list will face political consequences. A party that opens its list to a membership election creates a mechanism that is difficult to reverse without appearing to suppress member voice. The competitive dynamic does more work than regulation would.</div>
+    </details>
+
+    <details class="faq">
+      <summary>What is Sainte-Laguë and why does it matter?</summary>
+      <div class="faqbody">Sainte-Laguë is a mathematical method for translating vote shares into seat counts, used in Germany, Norway, Sweden, New Zealand, and more than a dozen other established democracies. It is generally considered the most neutral of common allocation methods, neither systematically favouring large nor small parties. Its key property for the 800 Plan is that it produces a fixed, predetermined number of seats — no overhang, no post-election corrections, no uncertainty about the size of Parliament on the morning after polling day.</div>
+    </details>
+
+    <details class="faq">
+      <summary>What happens to votes for independent candidates?</summary>
+      <div class="faqbody">Independent candidates may designate any registered party to receive their voters' national list votes when they stand. This means a voter backing an independent can still have their national list vote count — for whichever party the independent chose to designate. If the independent made no designation and has no party membership, those national votes go unallocated. This is an honest outcome: a voter who chose a candidate genuinely outside the party system has expressed that preference clearly.</div>
+    </details>
+  </section>
+
+</main>
+
+<aside>
+  <div class="sidebar">
+    <div class="sbfeat">
+      <h4>Rate the proposals</h4>
+      <p>The 800 Plan is one of several reform proposals on plans.proportional.uk. Score proposals across dimensions like simplicity, political achievability, and cross-partisan appeal.</p>
+      <a href="#">Go to plans.proportional.uk →</a>
+    </div>
+    <div class="sbblock">
+      <h4>Key figures</h4>
+      <ul>
+        <li>650 existing seats — entirely unchanged</li>
+        <li>150 new national seats added</li>
+        <li>800 total — same size as the House of Lords</li>
+        <li>Most voters need not change how they vote</li>
+        <li>Sainte-Laguë — used in 12+ democracies</li>
+        <li>0 constituency boundaries changed</li>
+        <li>0 referendum required</li>
+      </ul>
+    </div>
+    <div class="sbblock">
+      <h4>Related proposals</h4>
+      <ul>
+        <li><a href="#">Approval voting for constituency seats</a></li>
+        <li><a href="#">Open list with member elections</a></li>
+        <li><a href="#">50/50 mixed member system</a></li>
+        <li><a href="#">Single Transferable Vote (STV)</a></li>
+        <li><a href="#">Full party list PR</a></li>
+      </ul>
+    </div>
+    <div class="sbblock">
+      <h4>International comparisons</h4>
+      <ul>
+        <li><strong>Germany:</strong> MMP — Bundestag reached 736 seats in 2021 due to overhang</li>
+        <li><strong>New Zealand:</strong> MMP — required multiple patches to control seat inflation</li>
+        <li><strong>Norway:</strong> Sainte-Laguë — fixed count, stable since 1953</li>
+        <li><strong>Sweden:</strong> Sainte-Laguë — among the world's most stable democracies</li>
+      </ul>
+    </div>
+  </div>
+</aside>
+</div>
+
+<footer class="footer">
+  <div class="footerw">
+    <div>
+      <h5>proportional.uk</h5>
+      <p>A civil society initiative supporting informed public debate about electoral reform in the United Kingdom. This site does not represent the position of any political party or registered campaign organisation.</p>
+    </div>
+    <div>
+      <h5>Proposals</h5>
+      <ul>
+        <li><a href="#">The 800 Plan</a></li>
+        <li><a href="#">Approval voting local</a></li>
+        <li><a href="#">Open list options</a></li>
+        <li><a href="#">Rate all proposals</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="#">How Sainte-Laguë works</a></li>
+        <li><a href="#">The 2011 AV referendum</a></li>
+        <li><a href="#">International comparisons</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footerbot">
+    <span>© 2026 proportional.uk — civil society initiative</span>
+    <span>Not a government publication</span>
+  </div>
+</footer>
+
+</body>
+</html>
