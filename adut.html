@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE AFFLECK-DAMON UNIFIED THEORY</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cork: #b8956a;
+    --cork-dark: #8c6d45;
+    --paper-cream: #f5f0e1;
+    --paper-aged: #e8dcc8;
+    --red-string: #c41e1e;
+    --stamp-red: #b22222;
+    --ink-black: #1a1a1a;
+    --pin-red: #cc2222;
+    --pin-yellow: #e6c619;
+    --pin-blue: #2255aa;
+    --classified: #8b0000;
+    --manila: #f2e2b6;
+    --highlight-yellow: rgba(255, 255, 0, 0.35);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cork);
+    background-image:
+      url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    min-height: 100vh;
+    font-family: 'Courier Prime', monospace;
+    color: var(--ink-black);
+    overflow-x: hidden;
+  }
+
+  /* Cork texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(160,120,60,0.3) 0%, transparent 70%),
+      radial-gradient(ellipse at 80% 20%, rgba(140,100,50,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 80%, rgba(180,140,80,0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .board {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    z-index: 1;
+  }
+
+  /* HEADER - stamped classified doc */
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .header-card {
+    background: var(--paper-cream);
+    display: inline-block;
+    padding: 40px 60px;
+    position: relative;
+    box-shadow: 4px 6px 20px rgba(0,0,0,0.35);
+    transform: rotate(-0.5deg);
+  }
+
+  .header-card::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 2px solid var(--classified);
+  }
+
+  .header-card h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    letter-spacing: 0.15em;
+    color: var(--ink-black);
+    line-height: 1.1;
+  }
+
+  .header-card .subtitle {
+    font-family: 'Special Elite', cursive;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    color: #555;
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .classified-stamp {
+    position: absolute;
+    top: -15px;
+    right: -20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--stamp-red);
+    border: 4px solid var(--stamp-red);
+    padding: 2px 18px;
+    transform: rotate(12deg);
+    opacity: 0.8;
+    letter-spacing: 0.2em;
+    text-shadow: 1px 1px 0 rgba(178,34,34,0.3);
+  }
+
+  .pin {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.4), inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.4);
+  }
+  .pin.red { background: radial-gradient(circle at 35% 35%, #ff4444, var(--pin-red), #881111); }
+  .pin.yellow { background: radial-gradient(circle at 35% 35%, #ffe44d, var(--pin-yellow), #b89e10); }
+  .pin.blue { background: radial-gradient(circle at 35% 35%, #5588dd, var(--pin-blue), #113377); }
+
+  .header .pin { top: -10px; left: 50%; transform: translateX(-50%); }
+
+  /* CARDS */
+  .card-wrapper {
+    position: relative;
+    margin-bottom: 50px;
+  }
+
+  .card {
+    background: var(--paper-cream);
+    padding: 35px 40px;
+    position: relative;
+    box-shadow: 3px 5px 15px rgba(0,0,0,0.3);
+    max-width: 750px;
+    line-height: 1.7;
+  }
+
+  .card.left { margin-right: auto; transform: rotate(-0.8deg); }
+  .card.right { margin-left: auto; transform: rotate(0.6deg); }
+  .card.center { margin: 0 auto; transform: rotate(-0.3deg); }
+  .card.tilt-more { transform: rotate(1.2deg); }
+  .card.tilt-neg { transform: rotate(-1.5deg); }
+
+  .card .pin { top: -8px; }
+  .card.left .pin { left: 30px; }
+  .card.right .pin { right: 30px; }
+  .card.center .pin { left: 50%; transform: translateX(-50%); }
+
+  .card-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--stamp-red);
+    opacity: 0.15;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .card h2 {
+    font-family: 'Special Elite', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: var(--ink-black);
+  }
+
+  .card .film-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    color: var(--classified);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #999;
+    padding-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    color: #2a2a2a;
+  }
+
+  .highlight {
+    background: var(--highlight-yellow);
+    padding: 1px 3px;
+  }
+
+  .redacted {
+    background: var(--ink-black);
+    color: var(--ink-black);
+    padding: 0 4px;
+    border-radius: 1px;
+    user-select: none;
+    cursor: pointer;
+    transition: background 0.5s;
+  }
+  .redacted:hover {
+    background: #333;
+    color: #ccc;
+  }
+
+  .handwriting {
+    font-family: 'Special Elite', cursive;
+    color: var(--stamp-red);
+    font-size: 0.9rem;
+    transform: rotate(-2deg);
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .handwriting.blue { color: #224488; }
+
+  /* RED STRING connector */
+  .red-string {
+    width: 3px;
+    height: 80px;
+    background: var(--red-string);
+    margin: -20px auto -20px;
+    position: relative;
+    z-index: 5;
+    opacity: 0.7;
+    box-shadow: 0 0 4px rgba(196,30,30,0.3);
+  }
+  .red-string.angled-left {
+    transform: rotate(-15deg);
+    margin-left: 30%;
+  }
+  .red-string.angled-right {
+    transform: rotate(15deg);
+    margin-left: 60%;
+  }
+
+  /* GAP card */
+  .gap-card {
+    background: var(--manila);
+    border: 2px dashed var(--classified);
+    text-align: center;
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    transform: rotate(0.5deg);
+    box-shadow: 3px 5px 15px rgba(0,0,0,0.25);
+    position: relative;
+  }
+
+  .gap-card .gap-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.3em;
+    color: var(--classified);
+    opacity: 0.6;
+  }
+
+  .gap-card .gap-sub {
+    font-family: 'Special Elite', cursive;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 8px;
+  }
+
+  /* FOOTER ENTITY */
+  .entity-card {
+    background: #1a1a1a;
+    color: var(--paper-cream);
+    padding: 50px;
+    max-width: 800px;
+    margin: 20px auto 0;
+    position: relative;
+    box-shadow: 5px 8px 25px rgba(0,0,0,0.5);
+    transform: rotate(0.3deg);
+    border: 1px solid #333;
+  }
+
+  .entity-card::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid #444;
+  }
+
+  .entity-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.25em;
+    color: var(--stamp-red);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .entity-card p {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 14px;
+  }
+
+  .entity-card .logo-text {
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Special Elite', cursive;
+    font-size: 0.85rem;
+    color: #777;
+    font-style: italic;
+  }
+
+  .rings {
+    text-align: center;
+    margin: 25px 0 10px;
+  }
+  .rings svg {
+    width: 100px;
+    height: 60px;
+  }
+
+  /* Tape effect */
+  .tape {
+    position: absolute;
+    width: 120px;
+    height: 28px;
+    background: rgba(255, 255, 220, 0.45);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .tape-tl { top: -10px; left: 20px; transform: rotate(-5deg); }
+  .tape-tr { top: -10px; right: 20px; transform: rotate(8deg); }
+  .tape-bl { bottom: -10px; left: 30px; transform: rotate(3deg); }
+
+  /* Coffee stain */
+  .coffee-stain {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(120, 80, 30, 0.12);
+    pointer-events: none;
+  }
+
+  /* Animations */
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-wrapper, .gap-card, .entity-card, .header {
+    animation: fadeSlideIn 0.6s ease-out both;
+  }
+  .card-wrapper:nth-child(2) { animation-delay: 0.1s; }
+  .card-wrapper:nth-child(3) { animation-delay: 0.15s; }
+  .card-wrapper:nth-child(4) { animation-delay: 0.2s; }
+  .card-wrapper:nth-child(5) { animation-delay: 0.25s; }
+  .card-wrapper:nth-child(6) { animation-delay: 0.3s; }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .card { padding: 25px 22px; }
+    .header-card { padding: 25px 30px; }
+    .classified-stamp { font-size: 1.5rem; top: -10px; right: -5px; }
+    .entity-card { padding: 30px 22px; }
+    .card.left, .card.right, .card.center { margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-card">
+      <div class="pin red"></div>
+      <div class="classified-stamp">CLASSIFIED</div>
+      <h1>THE AFFLECK–DAMON<br>UNIFIED THEORY</h1>
+      <div class="subtitle">Internal Document &mdash; Holden-McNamara Group &mdash; EYES ONLY</div>
+    </div>
+  </div>
+
+  <!-- SCHOOL TIES -->
+  <div class="card-wrapper">
+    <div class="card left">
+      <div class="pin yellow" style="left:30px"></div>
+      <div class="tape tape-tr"></div>
+      <div class="card-year">1992</div>
+      <h2>ITERATION: PREP SCHOOL</h2>
+      <div class="film-title">School Ties &bull; 1992</div>
+      <p>Two boys at an elite 1950s prep school. This is a <span class="highlight">feeder institution</span>. For what? We don't know yet. But the school's unnamed benefactors are running a long-term talent identification program.</p>
+      <p>Both boys wash out—one gets framed for cheating, the system discards them. They're <span class="highlight">memory-wiped</span> and dumped into working-class Boston.</p>
+      <span class="handwriting">^ first documented iteration? Or just first we found?</span>
+    </div>
+  </div>
+
+  <div class="red-string angled-right"></div>
+
+  <!-- GOOD WILL HUNTING -->
+  <div class="card-wrapper">
+    <div class="card right">
+      <div class="pin red" style="right:30px"></div>
+      <div class="coffee-stain" style="bottom:-20px; left:-15px;"></div>
+      <div class="card-year">1997</div>
+      <h2>ITERATION: SOUTHIE</h2>
+      <div class="film-title">Good Will Hunting &bull; 1997</div>
+      <p>Two guys in Southie. Best friends. One is suspiciously, almost <em>unnaturally</em> gifted at mathematics. Why? Because <span class="highlight">the wipe wasn't clean</span>. Will Hunting's brain is glitching—residual pattern recognition from a previous life is bleeding through as advanced math ability.</p>
+      <p>Chuckie (Affleck) doesn't have the glitch, but he <em>feels</em> something is wrong. That's why he gives the speech about hoping Will won't be there one day. He doesn't know why he says it. It's <em>instinct</em>.</p>
+      <p>The <span class="redacted">NSA</span> shows up wanting to recruit Will. This is not a coincidence. <span class="highlight">The program found him again.</span></p>
+      <p>Will "gets better" through therapy. He drives to California. He is never heard from again.</p>
+      <span class="handwriting blue">Confirmed: "Robin Williams" was a handler. —J.M.</span>
+    </div>
+  </div>
+
+  <div class="red-string angled-left"></div>
+
+  <!-- DOGMA -->
+  <div class="card-wrapper">
+    <div class="card left tilt-more">
+      <div class="pin blue" style="left:30px"></div>
+      <div class="tape tape-tl"></div>
+      <div class="card-year">1999</div>
+      <h2>ITERATION: CELESTIAL</h2>
+      <div class="film-title">Dogma &bull; 1999</div>
+      <p>Bartleby and Loki. Two angels banished from heaven, wandering Earth for millennia, stripped of their wings and memories of paradise. Sound familiar?</p>
+      <p>They've been <span class="highlight">doing this before</span>. The prep school. Boston. Those were just the latest iterations. These two souls have been entangled since before recorded history, and every time they get close to remembering what they actually are, <span class="highlight">the system resets them</span>.</p>
+      <p>Key detail: they try to re-enter heaven through a <em>loophole</em>—a Catholic church in New Jersey. The angels fail. God herself intervenes.</p>
+      <p>They're wiped again.</p>
+      <span class="handwriting">Alanis Morissette = system administrator???</span>
+    </div>
+  </div>
+
+  <div class="red-string"></div>
+
+  <!-- JAY AND SILENT BOB -->
+  <div class="card-wrapper">
+    <div class="card right tilt-neg">
+      <div class="pin yellow" style="right:30px"></div>
+      <div class="card-year">2001</div>
+      <h2>ITERATION: META-COLLAPSE</h2>
+      <div class="film-title">Jay and Silent Bob Strike Back &bull; 2001</div>
+      <p>Affleck and Damon appear <em>as themselves</em>—as Hollywood actors on the set of a Good Will Hunting sequel. Think about that.</p>
+      <p>After the angel reset, they've been re-inserted into a reality where their <span class="highlight">previous life has been fictionalized into a movie</span>. The system is now so sloppy, so stretched thin from running these two through cycle after cycle, that the seams are showing.</p>
+      <p>They're literally living inside a narrative <em>about</em> their own past life and don't notice.</p>
+      <p>This is the moment the theory goes from "fun" to <span class="highlight">"actually kind of unsettling."</span></p>
+      <p>And who witnesses all of this? Jay and Silent Bob—two guys who appear across <em>every</em> layer of this reality. They are the constants. The observers. <span class="highlight">They are the system's error-logging function given human form.</span></p>
+      <span class="handwriting blue">Kevin Smith = unwitting documentarian of the loop</span>
+    </div>
+  </div>
+
+  <div class="red-string"></div>
+
+  <!-- 800 YEAR GAP -->
+  <div class="gap-card">
+    <div class="pin red" style="top:-8px; left:50%; transform:translateX(-50%)"></div>
+    <div class="gap-text">[ 800-YEAR GAP ]</div>
+    <div class="gap-sub">The system isn't linear. It never was.<br>The loops don't go forward. They get <em>assigned</em>.</div>
+  </div>
+
+  <div class="red-string angled-right"></div>
+
+  <!-- THE LAST DUEL -->
+  <div class="card-wrapper">
+    <div class="card left">
+      <div class="pin blue" style="left:30px"></div>
+      <div class="tape tape-tr"></div>
+      <div class="card-year">2021</div>
+      <h2>ITERATION: PUNISHMENT</h2>
+      <div class="film-title">The Last Duel &bull; 2021</div>
+      <p>Medieval France. A knight and a count, bound together by oath, loyalty, and eventual betrayal over a horrific crime. The same two souls, thrown back to the 14th century.</p>
+      <p>Why so far back? This was a <span class="highlight">punishment loop</span>—the darkest, ugliest iteration, designed to see if the bond between the two souls would break under maximum moral stress.</p>
+      <p>It nearly does. One of them dies in combat.</p>
+      <p>Reset.</p>
+      <span class="handwriting">Most aggressive iteration we've catalogued. See file <span class="redacted">HMG-7741</span></span>
+    </div>
+  </div>
+
+  <div class="red-string angled-left"></div>
+
+  <!-- AIR -->
+  <div class="card-wrapper">
+    <div class="card center">
+      <div class="pin yellow" style="left:50%; transform:translateX(-50%)"></div>
+      <div class="coffee-stain" style="top:-25px; right:40px;"></div>
+      <div class="card-year">2023</div>
+      <h2>ITERATION: REST MODE</h2>
+      <div class="film-title">Air &bull; 2023</div>
+      <p>The 1980s. Nike. Two mid-level corporate guys trying to sign an unknown basketball player. This is the system in <span class="highlight">rest mode</span>. A cooldown loop. Low stakes. Nobody dies, nobody gets banished from heaven.</p>
+      <p>They just... sell shoes.</p>
+      <p>The system is tired. It's been running these two through trauma cycles since before the wheel was invented, and even cosmic bureaucracies need a breather.</p>
+      <p>But notice: the entire plot hinges on them <span class="highlight">recognizing greatness that nobody else can see</span>. That's the glitch again. The same pattern-recognition bleed that made Will Hunting solve equations on a hallway chalkboard is now manifesting as Sonny Vaccaro's inexplicable certainty about a teenage basketball player.</p>
+      <p>The source code is the same. <em>It's always been the same.</em></p>
+      <span class="handwriting blue">Cooldown confirmed. Next iteration ETA: <span class="redacted">2026-2027</span></span>
+    </div>
+  </div>
+
+  <div class="red-string"></div>
+
+  <!-- THE ENTITY -->
+  <div class="entity-card">
+    <div class="pin red" style="top:-8px; left:50%; transform:translateX(-50%)"></div>
+    <h2>THE HOLDEN-McNAMARA GROUP</h2>
+    <p>Named after their characters in <em>Chasing Amy</em> and <em>The Departed</em> respectively—solo missions, but that's a whole separate thread.</p>
+    <p>The administrative entity that manages the cycle. They are to the Affleck-Damon loop what the Tyrell Corporation is to replicants: the manufacturer, the quality control department, and the planned obsolescence team all in one.</p>
+    <p style="text-align:center; color: #888; letter-spacing:0.15em; margin: 25px 0;">Their logo, if you could see it, would be<br><strong style="color:#999;">two interlocking circles that never quite align.</strong></p>
+
+    <div class="rings">
+      <svg viewBox="0 0 100 60">
+        <circle cx="38" cy="30" r="22" fill="none" stroke="#c41e1e" stroke-width="1.5" opacity="0.6">
+          <animateTransform attributeName="transform" type="rotate" values="0 38 30;3 38 30;0 38 30;-2 38 30;0 38 30" dur="8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="62" cy="30" r="22" fill="none" stroke="#c41e1e" stroke-width="1.5" opacity="0.6">
+          <animateTransform attributeName="transform" type="rotate" values="0 62 30;-3 62 30;0 62 30;2 62 30;0 62 30" dur="8s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <p style="text-align:center; color:#666;">They have been operational since before language.</p>
+    <p style="text-align:center; color:#666;">They will outlast the sun.</p>
+    <p style="text-align:center; color:#888; margin-top:20px;">And they are <em>currently</em> deciding where to put these two next.</p>
+
+    <div class="logo-text">
+      Document recovered from <span class="redacted">SITE OMEGA</span> &mdash; Clearance Level 7 required<br>
+      If you are reading this without authorization, the loop has already found you.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
