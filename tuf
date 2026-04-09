@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Better Streets, Fairer Portland</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-green: #1a3a2a;
+    --forest: #2d5f3f;
+    --sage: #7a9e7e;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --terracotta: #c4654a;
+    --terracotta-light: #d4836d;
+    --gold: #d4a537;
+    --text-dark: #1a1a18;
+    --text-body: #3a3a36;
+    --text-muted: #6a6a62;
+    --divider: #e0dbd2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-body);
+    background: var(--warm-white);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--deep-green);
+    color: var(--cream);
+    padding: 80px 24px 90px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(122,158,126,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--sage));
+  }
+
+  .hero-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 56px);
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    line-height: 1.65;
+    color: rgba(245,240,232,0.8);
+    max-width: 620px;
+    font-weight: 300;
+  }
+
+  /* ─── NAV DOTS ─── */
+  .section-nav {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding: 32px 24px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--divider);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+
+  .section-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+
+  .section-nav a:hover {
+    color: var(--deep-green);
+    border-color: var(--sage);
+    background: rgba(122,158,126,0.08);
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 72px 24px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+
+  .section p {
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: var(--divider);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    background: var(--cream);
+    border-left: 3px solid var(--forest);
+    padding: 28px 32px;
+    margin: 32px 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .callout.warning {
+    border-left-color: var(--terracotta);
+    background: #fdf6f3;
+  }
+
+  .callout.gold {
+    border-left-color: var(--gold);
+    background: #fdf9ef;
+  }
+
+  .callout-title {
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+
+  .callout p {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  /* ─── PROPOSAL CARDS ─── */
+  .proposal-card {
+    background: white;
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 40px 36px;
+    margin: 36px 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  }
+
+  .proposal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .proposal-card.green::before { background: linear-gradient(90deg, var(--forest), var(--sage)); }
+  .proposal-card.terra::before { background: linear-gradient(90deg, var(--terracotta), var(--gold)); }
+
+  .proposal-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--sage);
+    opacity: 0.3;
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    line-height: 1;
+  }
+
+  .proposal-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+
+  .proposal-card .subtitle {
+    font-size: 15px;
+    color: var(--terracotta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .proposal-card p { font-size: 16px; }
+
+  /* ─── MATH BLOCKS ─── */
+  .math-block {
+    background: var(--deep-green);
+    color: var(--cream);
+    border-radius: 10px;
+    padding: 32px 36px;
+    margin: 32px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 2;
+    overflow-x: auto;
+  }
+
+  .math-block .label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .math-block .highlight { color: var(--gold); font-weight: 500; }
+  .math-block .dim { color: rgba(245,240,232,0.45); }
+  .math-block .accent { color: var(--terracotta-light); }
+
+  /* ─── COMPARISON TABLE ─── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 15px;
+  }
+
+  .compare-table th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--deep-green);
+  }
+
+  .compare-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+  }
+
+  .compare-table tr:last-child td {
+    border-bottom: none;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .compare-table .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+
+  .positive { color: var(--forest); font-weight: 600; }
+  .negative { color: var(--terracotta); font-weight: 600; }
+
+  /* ─── QUOTE ─── */
+  blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--forest);
+    border-left: 3px solid var(--gold);
+    padding: 20px 0 20px 28px;
+    margin: 36px 0;
+    line-height: 1.55;
+  }
+
+  blockquote cite {
+    display: block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── PRINCIPLE BLOCKS ─── */
+  .principle {
+    display: flex;
+    gap: 20px;
+    margin: 28px 0;
+    align-items: flex-start;
+  }
+
+  .principle-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--forest);
+  }
+
+  .principle-content h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+
+  .principle-content p {
+    font-size: 16px;
+    color: var(--text-body);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--deep-green);
+    color: rgba(245,240,232,0.6);
+    padding: 48px 24px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .footer strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 56px 20px 64px; }
+    .section { padding: 48px 20px; }
+    .proposal-card { padding: 28px 24px; }
+    .math-block { padding: 24px 20px; font-size: 12px; }
+    .callout { padding: 22px 20px; }
+    .section-nav { gap: 6px; padding: 16px 12px; }
+    .section-nav a { font-size: 11px; padding: 5px 10px; }
+    .compare-table { font-size: 13px; }
+    .compare-table th, .compare-table td { padding: 10px 8px; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-inner > * {
+    animation: fadeUp 0.7s ease-out both;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero-subtitle { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">A Policy Framework for Portland City Council</div>
+    <h1>Better Streets,<br><em>Fairer Portland</em></h1>
+    <p class="hero-subtitle">Two policies that fund transportation, price driving efficiently, and make Portland more equitable—without a single means test.</p>
+  </div>
+</header>
+
+<!-- ════════════ NAV ════════════ -->
+<nav class="section-nav">
+  <a href="#problem">The Problem</a>
+  <a href="#diagnosis">Diagnosis</a>
+  <a href="#proposals">Proposals</a>
+  <a href="#math">The Math</a>
+  <a href="#economics">Why It Works</a>
+  <a href="#faq">Objections</a>
+</nav>
+
+<!-- ════════════ THE PROBLEM ════════════ -->
+<section class="section" id="problem">
+  <div class="section-label">The Crisis</div>
+  <h2>Portland's streets are falling apart, and the current plan to fix them is a head tax</h2>
+
+  <p>PBOT faces a <strong>$6 billion</strong> maintenance backlog. Gas tax revenue is declining. The bureau can barely keep staff on payroll, let alone fill potholes. Everyone agrees something must be done.</p>
+
+  <p>The proposed Transportation Utility Fee would charge every single-family household $12/month and every apartment dweller $8.40/month—a flat per-unit charge regardless of income, car ownership, or how much you actually use the road network.</p>
+
+  <div class="callout warning">
+    <div class="callout-title">The core problem</div>
+    <p>A flat per-unit fee is a <strong>head tax</strong>. A single mother taking the bus pays the same as a two-car household. A studio apartment renter pays $8.40; a homeowner on a 10,000-square-foot lot pays $12. When the fee is measured per acre of land consumed, apartment dwellers pay <strong>up to 600% more</strong> than large-lot homeowners.</p>
+  </div>
+
+  <p>We've seen this movie before. The Portland Arts Tax—another flat head tax—has become an administrative nightmare with dismal collection rates and perpetual public resentment. The TUF as proposed risks the same fate, with the added problem of being economically distortionary.</p>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ DIAGNOSIS ════════════ -->
+<section class="section" id="diagnosis">
+  <div class="section-label">The Diagnosis</div>
+  <h2>Head taxes are bad policy. But so is trying to make the fee itself do redistributive work.</h2>
+
+  <p>Some proposals would scale the TUF by lot size, charging more for larger parcels. The instinct is right—large lots consume more public infrastructure. But there are two problems:</p>
+
+  <div class="principle">
+    <div class="principle-icon">1</div>
+    <div class="principle-content">
+      <h4>The market already prices density</h4>
+      <p>If you live in a 20-unit building, you're already paying roughly 1/20th the land cost of a single-family homeowner on the same parcel. The price system has already rewarded your efficient land use through lower housing costs. A density-scaled TUF double-counts that benefit.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-icon">2</div>
+    <div class="principle-content">
+      <h4>Lot size doesn't cause road damage</h4>
+      <p>A 10,000 sq ft lot doesn't generate twice the road wear of a 5,000 sq ft lot. <em>Driving</em> causes road damage—vehicle miles traveled, vehicle weight, tire type. A lot-size fee looks like an efficiency improvement, but it's pricing the wrong thing. It's addressing a cost-allocation problem, not correcting an externality.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-icon">3</div>
+    <div class="principle-content">
+      <h4>It's legally vulnerable</h4>
+      <p>Oregon's Measure 5/50 caps property taxes. A fee scaled to lot area is substantially correlated with land value—a plaintiff could argue it's a property tax with extra steps. Flat per-unit fees have survived legal challenge in 31 Oregon cities. Lot-area fees have not been tested.</p>
+    </div>
+  </div>
+
+  <blockquote>
+    The instrument of revenue collection and the instrument of redistribution should be separate. Collect efficiently. Redistribute universally.
+    <cite>— The foundational insight of optimal tax theory</cite>
+  </blockquote>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ THE TWO PROPOSALS ════════════ -->
+<section class="section" id="proposals">
+  <div class="section-label">The Proposals</div>
+  <h2>Two policies, two problems, zero means tests</h2>
+
+  <p>Instead of one fee trying to do everything—fund roads, price driving, and redistribute—we propose decomposing the problem into two clean instruments, each optimized for its purpose.</p>
+
+  <!-- POLICY 1 -->
+  <div class="proposal-card green">
+    <div class="proposal-number">01</div>
+    <h3>Price Parking, Not People</h3>
+    <div class="subtitle">The Efficiency Instrument</div>
+
+    <p>Dramatically expand demand-responsive parking pricing across Portland. This is the closest thing to congestion pricing the city can implement <em>today</em>, without state authorization.</p>
+
+    <p>Free on-street parking is a <strong>massive in-kind subsidy</strong> to car owners—and in-kind subsidies create deadweight loss by definition. When you give away a scarce public resource (street space) for free, you guarantee it will be misallocated. Demand-responsive pricing fixes this.</p>
+
+    <p>The late Donald Shoup—widely revered in urbanist and progressive policy circles—spent a career demonstrating that parking pricing is one of the most efficient and equitable transportation policies a city can adopt. Portland already uses demand-responsive meters in some districts. The proposal is simply to extend the principle citywide.</p>
+
+    <div class="callout">
+      <div class="callout-title">Why this is a near-perfect Pigouvian price</div>
+      <p>You are charging for the direct use of a specific piece of transportation infrastructure, in real time. The nexus is airtight—legally bulletproof. The supply of street space is fixed (perfectly inelastic), so the fee creates <strong>approximately zero deadweight loss</strong>. And because the fee falls only on those who choose to store a private vehicle in public space, it provides a powerful signal to shift to transit, biking, and walking.</p>
+    </div>
+
+    <p><strong>Crucially, this captures non-residents.</strong> Joe Cortright has documented that the majority of vehicle traffic damaging Portland streets originates outside the city. The TUF can never touch those drivers. Parking pricing can.</p>
+
+    <p>Additional measures within council authority: a per-delivery fee on e-commerce shipments (already floated by PBOT at 25–50¢/delivery, raising $5–9M/year) and a priced residential parking permit program scaled to the number of vehicles registered at each address.</p>
+  </div>
+
+  <!-- POLICY 2 -->
+  <div class="proposal-card terra">
+    <div class="proposal-number">02</div>
+    <h3>Flat Fee + Universal Credit</h3>
+    <div class="subtitle">The Revenue &amp; Equity Instrument</div>
+
+    <p>Keep the TUF as a flat per-unit fee—simple, legally tested, easy to administer. But set the rate somewhat higher than currently proposed, and use the additional revenue to fund a <strong>universal per-person annual credit</strong> paid to every Portland adult.</p>
+
+    <p>The credit is not means-tested. Everyone gets it. But because it's a fixed dollar amount, it's worth proportionally more to lower-income residents. Combined with the flat fee, the <strong>effective rate is automatically progressive</strong>—no eligibility determination, no bureaucratic apparatus, no arts-tax-style collection nightmare.</p>
+
+    <div class="callout gold">
+      <div class="callout-title">Implementation</div>
+      <p>The universal credit can be delivered through the same infrastructure the city already uses for the Arts Tax—the same database of Portland adult residents, the same payment mechanism. You don't touch the Arts Tax itself. You simply run a second program through the same pipe, in the opposite direction. The Arts Tax charges every adult $35/year. The universal credit <em>pays</em> every adult, say, $100/year. Net effect: Portlanders are $65/year ahead, the Arts Tax is functionally more than offset, and the system is progressive by construction.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ THE MATH ════════════ -->
+<section class="section" id="math">
+  <div class="section-label">The Numbers</div>
+  <h2>How the effective rate becomes progressive</h2>
+
+  <p>Consider a scenario where the TUF is set at $16/month for single-family homes and $11/month for apartments, with a $100/year universal credit to every adult.</p>
+
+  <div class="math-block">
+    <span class="label">Effective Annual Cost by Household Type</span>
+    <span class="dim">───────────────────────────────────────────</span>
+    <br>
+    <span class="accent">Low-income apartment renter (1 adult)</span>
+    <br>
+    &nbsp; Fee: $11 × 12 = <span class="highlight">$132</span>/yr
+    <br>
+    &nbsp; Credit: <span class="highlight">−$100</span>/yr
+    <br>
+    &nbsp; Net: <span class="highlight">$32/yr</span> <span class="dim">($2.67/mo)</span>
+    <br><br>
+    <span class="accent">Couple in apartment (2 adults)</span>
+    <br>
+    &nbsp; Fee: $11 × 12 = <span class="highlight">$132</span>/yr
+    <br>
+    &nbsp; Credit: <span class="highlight">−$200</span>/yr
+    <br>
+    &nbsp; Net: <span class="highlight">−$68/yr</span> <span class="dim">(net positive $5.67/mo)</span>
+    <br><br>
+    <span class="accent">Single-family homeowner (2 adults)</span>
+    <br>
+    &nbsp; Fee: $16 × 12 = <span class="highlight">$192</span>/yr
+    <br>
+    &nbsp; Credit: <span class="highlight">−$200</span>/yr
+    <br>
+    &nbsp; Net: <span class="highlight">−$8/yr</span> <span class="dim">(approximately break-even)</span>
+    <br><br>
+    <span class="accent">High-income homeowner, large lot (2 adults)</span>
+    <br>
+    &nbsp; Fee: $16 × 12 = <span class="highlight">$192</span>/yr
+    <br>
+    &nbsp; Parking costs: <span class="highlight">~$300–600</span>/yr <span class="dim">(2 vehicles)</span>
+    <br>
+    &nbsp; Credit: <span class="highlight">−$200</span>/yr
+    <br>
+    &nbsp; Net: <span class="highlight">$292–592/yr</span>
+    <br>
+    <span class="dim">───────────────────────────────────────────</span>
+  </div>
+
+  <p>The progressivity emerges from three forces working together: the flat credit is worth proportionally more at lower incomes, multi-adult households benefit more from the per-person credit, and the parking pricing falls exclusively on driving behavior.</p>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Household</th>
+        <th>Current TUF Proposal</th>
+        <th>This Framework</th>
+        <th>Difference</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Single renter, no car</td>
+        <td class="num">$101/yr</td>
+        <td class="num">$32/yr</td>
+        <td class="num positive">−$69</td>
+      </tr>
+      <tr>
+        <td>Couple, apartment, no car</td>
+        <td class="num">$101/yr</td>
+        <td class="num">−$68/yr</td>
+        <td class="num positive">−$169</td>
+      </tr>
+      <tr>
+        <td>Family, SFH, 1 car</td>
+        <td class="num">$144/yr</td>
+        <td class="num">~$142/yr</td>
+        <td class="num" style="color:var(--text-muted);">≈ same</td>
+      </tr>
+      <tr>
+        <td>Family, SFH, 2+ cars, large lot</td>
+        <td class="num">$144/yr</td>
+        <td class="num">$292–592/yr</td>
+        <td class="num negative">+$148–448</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The people who drive the most and consume the most public space pay the most. The people who drive least or not at all pay little or nothing—and may come out ahead. <strong>No one was means-tested.</strong></p>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ WHY IT WORKS ════════════ -->
+<section class="section" id="economics">
+  <div class="section-label">The Economics</div>
+  <h2>Why decoupling collection from redistribution is better for everyone</h2>
+
+  <p>The intuition that the tax itself should be progressive—that the instrument of extraction should do the redistributive work—is understandable. But it leads to worse outcomes for the very people it's trying to help. Here's why.</p>
+
+  <div class="principle">
+    <div class="principle-icon">A</div>
+    <div class="principle-content">
+      <h4>Means testing destroys value</h4>
+      <p>Every dollar spent determining who is "low income enough" to qualify for a TUF exemption is a dollar not spent filling potholes or helping that same person. Means testing creates bureaucratic overhead, stigma, enrollment barriers, and benefit cliffs. The Arts Tax's collection problems are a direct consequence of trying to means-test exemptions for a $35 charge. A universal credit eliminates all of this.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-icon">B</div>
+    <div class="principle-content">
+      <h4>Price signals should be clean</h4>
+      <p>When parking is free, every single person—rich, poor, car-free, three-car household—experiences the same price for street space: zero. That means the price conveys no information and changes no behavior. Demand-responsive pricing creates a truthful signal about the scarcity of public space. Carving out exemptions from that price for certain groups destroys the signal for those groups, reintroducing the inefficiency you were trying to fix.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-icon">C</div>
+    <div class="principle-content">
+      <h4>The universal credit handles equity automatically</h4>
+      <p>A low-income resident who occasionally drives and pays some parking fees receives the full $100 credit. The credit more than covers their parking costs in most cases—they face the price signal, adjust behavior, and come out ahead financially. A high-income resident who drives daily absorbs the parking costs easily and the credit barely registers. <strong>Same policy for everyone, progressive outcome.</strong></p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-icon">D</div>
+    <div class="principle-content">
+      <h4>It's more transparent, not less</h4>
+      <p>A density-scaled fee hides redistribution inside a formula that obscures who's subsidizing whom. The two-instrument approach is radically transparent: here is what you pay, here is what you receive back, here is the net. Every resident can see both numbers and judge for themselves whether the system is fair. For anyone who values democratic accountability, this is preferable.</p>
+    </div>
+  </div>
+
+  <blockquote>
+    In-kind subsidies—like free parking—are worth less to recipients than their cost to providers. That gap is pure waste. Pricing the resource and giving people cash lets them allocate according to their own needs.
+    <cite>— The core insight of Donald Shoup (1938–2024)</cite>
+  </blockquote>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ FAQ / OBJECTIONS ════════════ -->
+<section class="section" id="faq">
+  <div class="section-label">Addressing Concerns</div>
+  <h2>Doesn't this hurt people who have no choice but to drive?</h2>
+
+  <p>This is the most important objection, and the answer is: <em>that's what the universal credit is for.</em> A resident in outer East Portland with limited transit options who must drive to work will pay parking fees when they park in metered areas—but they receive the full universal credit. For most moderate-income households, the credit more than offsets the new parking costs. The framework doesn't assume everyone can stop driving. It just ensures that the <em>price signal</em> exists, while the <em>redistribution</em> cushions its impact on those with fewer choices.</p>
+
+  <h2 style="margin-top: 48px;">PBOT needs money <em>now</em>. Isn't this too complicated?</h2>
+
+  <p>The two policies operate on different timelines. The flat TUF can pass immediately—council has the authority, PBOT gets funded, the emergency is addressed. Expanded parking pricing and the universal credit can be developed in parallel and implemented over the following months. The urgent need for revenue is not a reason to lock in a bad fee structure permanently. Pass the simple flat TUF now; improve the system as soon as the parking and credit mechanisms are ready.</p>
+
+  <h2 style="margin-top: 48px;">Is the parking expansion politically feasible?</h2>
+
+  <p>Portland already has metered parking and demand-responsive pricing in several districts. This isn't a novel concept—it's extending an existing, accepted practice. The revenue goes directly to road maintenance that every resident wants. And the Shoup framework has broad support across the urbanist spectrum, from market urbanists to democratic socialists. Councilor Green is ideally positioned to champion this—reclaiming public space from private vehicles and redirecting the value back to the public is a message that resonates deeply with his base.</p>
+
+  <h2 style="margin-top: 48px;">What about the first-best policies we can't do?</h2>
+
+  <p>Let's name them honestly: a proper land value tax replacing Oregon's broken property tax system, a VMT charge weighted by vehicle weight, and a statewide universal basic income. All of these require state-level action. Portland's council should publicly advocate for Measure 5/50 reform and state VMT pricing—and should design the TUF and parking pricing to be <em>superseded</em> by those better instruments if and when they arrive. In the meantime, the framework proposed here is the best achievable second-best policy: it approximates the right price signals, achieves progressive redistribution, and stays within the city's legal authority.</p>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <p><strong>Better Streets, Fairer Portland</strong></p>
+  <p>A policy framework for Portland City Council &middot; April 2026</p>
+  <p style="margin-top: 16px; font-size: 13px; max-width: 520px; margin-left: auto; margin-right: auto;">Two instruments, each doing what it does best. Price driving efficiently. Redistribute universally. No means tests. No new bureaucracy. Better outcomes for everyone.</p>
+</footer>
+
+</body>
+</html>
