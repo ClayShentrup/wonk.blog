@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="doc-header container">
+  {% if page.kicker %}<p class="section-label">— {{ page.kicker }}</p>{% endif %}
+  <h1>{{ page.title }}</h1>
+  {% if page.subtitle %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
+</div>
+
+{{ content }}
+
+<div class="doc-footer">
+  <div class="container">
+    <p>clay shentrup{% if page.year %} · {{ page.year }}{% endif %}{% if page.contact_email %} · <a href="mailto:{{ page.contact_email }}">{{ page.contact_email }}</a>{% endif %}</p>
+    <p>{% unless page.hide_medium %}<a href="https://clayshentrup.medium.com" target="_blank">medium ↗</a>&nbsp;&nbsp;{% endunless %}<a href="/">← wonk.blog</a></p>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+title: wonk.blog
+tagline: clay shentrup — policy, elections, economics
+author: clay shentrup
+url: https://wonk.blog
+
+collections:
+  articles:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - .env
+  - node_modules
