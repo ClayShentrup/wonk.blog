@@ -1,0 +1,16 @@
+{% if page.url == '/' %}
+  <header class="site-strip">
+    <a href="/" class="wordmark">wonk.blog</a>
+    <nav>
+      <a href="#topics">topics</a>
+      <a href="#about">about</a>
+      <a href="https://www.electionbyjury.org" target="_blank">www.electionbyjury.org</a>
+      <a href="https://scorevoting.net" target="_blank">scorevoting.net</a>
+    </nav>
+  </header>
+{% else %}
+  <header class="site-strip">
+    <a href="/" class="wordmark">wonk.blog</a>
+    <a href="/" class="nav-back">{{ page.nav_back | default: '← all topics' }}</a>
+  </header>
+{% endif %}
