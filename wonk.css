@@ -773,6 +773,15 @@ footer .footer-links a:hover { color: var(--color-text); }
   border-right: var(--border-thin) solid var(--color-border);
 }
 
+.hero-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: var(--border-thin) solid var(--color-accent-border);
+  margin-bottom: 1.75rem;
+}
+
 .hero-eyebrow {
   font-family: var(--font-label);
   font-size: 0.68rem;
