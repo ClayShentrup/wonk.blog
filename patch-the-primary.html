@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patch the Primary — Fix California's Top-Two with Approval Voting</title>
+<meta name="description" content="A one-line fix to eliminate vote-splitting in California's top-two primary. Zero new hardware. Zero new software. Just better math.">
+<meta property="og:title" content="Patch the Primary">
+<meta property="og:description" content="A one-line fix to eliminate vote-splitting in California's top-two primary.">
+<meta property="og:image" content="https://patchtheprimary.com/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #162e56;
+    --gold: #c98a1a;
+    --gold-light: #e8a82a;
+    --gold-pale: #fdf3e0;
+    --cream: #f8f5f0;
+    --text: #1a1a2a;
+    --text-mid: #4a4a5a;
+    --text-light: #7a7a8a;
+    --border: rgba(13,31,60,0.12);
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .btn-nav {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    transition: background 0.2s !important;
+  }
+
+  .btn-nav:hover { background: var(--navy-mid) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,138,26,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,138,26,0.4);
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    line-height: 1.05;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.72);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-meta {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+
+  .hero-meta span {
+    display: inline-block;
+    margin: 0 0.6rem;
+  }
+
+  .hero-meta span::before {
+    content: '·';
+    margin-right: 1.2rem;
+  }
+
+  .hero-meta span:first-child::before { content: ''; margin: 0; }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.5);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.3);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: bounce 2s ease infinite;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    max-width: 680px;
+  }
+
+  /* ── PROBLEM ── */
+  .problem { background: var(--cream); }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .problem-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .problem-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .icon-red { background: #fdecea; color: #c0392b; }
+  .icon-gold { background: var(--gold-pale); color: var(--gold); }
+
+  .problem-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .problem-card p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--white); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .step {
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: rgba(201,138,26,0.2);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.6rem;
+  }
+
+  .step p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* ── BALLOT DEMO ── */
+  .ballot-demo {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .ballot-demo-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .label-bad { color: rgba(255,100,100,0.8); }
+  .label-good { color: rgba(201,168,42,0.9); }
+
+  .ballot {
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .ballot-title {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .ballot-candidate {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .ballot-candidate:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .check-box.checked {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .radio-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radio-box.selected::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,100,100,0.9);
+  }
+
+  .cand-name {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .cand-party {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.38);
+    margin-left: auto;
+  }
+
+  .ballot-result {
+    margin-top: 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .result-bad {
+    background: rgba(220,50,50,0.15);
+    color: rgba(255,140,130,0.9);
+    border: 1px solid rgba(220,50,50,0.25);
+  }
+
+  .result-good {
+    background: rgba(201,138,26,0.15);
+    color: rgba(230,190,80,0.95);
+    border: 1px solid rgba(201,138,26,0.3);
+  }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    background: var(--gold-pale);
+    border-top: 1px solid rgba(201,138,26,0.2);
+    border-bottom: 1px solid rgba(201,138,26,0.2);
+  }
+
+  .quote-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.4;
+    color: var(--navy);
+    font-style: italic;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  blockquote::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: rgba(201,138,26,0.25);
+    position: absolute;
+    top: -1.5rem;
+    left: -1rem;
+    font-family: 'DM Serif Display', serif;
+    line-height: 1;
+  }
+
+  .quote-attr {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .quote-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .quote-name {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.95rem;
+  }
+
+  .quote-title {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  /* ── WHY ── */
+  .why { background: var(--white); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .why-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+
+  .why-stat {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-card p {
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* ── JOIN ── */
+  .join { background: var(--navy); color: var(--white); }
+
+  .join .section-title { color: var(--white); }
+
+  .join-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+
+  .join-body {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .discord-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    transition: border-color 0.2s, color 0.2s;
+    margin-top: 1rem;
+  }
+
+  .discord-link:hover {
+    border-color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .form-panel {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 2.5rem;
+  }
+
+  .form-panel h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-panel p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.75rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .form-group input:focus {
+    border-color: rgba(201,138,26,0.6);
+  }
+
+  .form-group input[type="submit"] {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+
+  .form-group input[type="submit"]:hover {
+    background: var(--gold-light);
+  }
+
+  .form-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080f1d;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  footer p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .problem-grid, .steps, .why-grid, .join-grid { grid-template-columns: 1fr; }
+    .ballot-demo { grid-template-columns: 1fr; gap: 2rem; }
+    nav .nav-links { display: none; }
+    blockquote::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Patch the <span>Primary</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#why">Why It Matters</a></li>
+    <li><a href="#join" class="btn-nav">Get Involved</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">California 2028 Ballot Initiative</div>
+    <h1>Patch the<br><em>Primary.</em></h1>
+    <p class="hero-sub">A one-line fix to eliminate vote-splitting in California's top-two primary. Zero new hardware. Zero new software. Just better math.</p>
+    <div class="hero-meta">
+      <span>No new ballots</span>
+      <span>No new machines</span>
+      <span>No partisan retreat</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#join" class="btn-primary">Join the Campaign</a>
+      <a href="#how" class="btn-secondary">How It Works</a>
+    </div>
+  </div>
+  <div class="scroll-hint">↓ scroll</div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">The top-two primary was a good idea.<br>Vote-splitting is still killing it.</h2>
+    <p class="section-body">California's nonpartisan top-two primary opened every race to every voter. But when similar candidates run, their supporters divide—and the candidate with the widest genuine support can lose. Some want to repeal the whole system. We think that's the wrong answer.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-icon icon-red">✕</div>
+        <h3>The repeal initiative goes backward</h3>
+        <p>A new initiative wants to scrap the top-two entirely and return to closed partisan primaries—where only party members vote, and party bases, not all Californians, decide who advances. That means more polarization, not less.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon icon-gold">→</div>
+        <h3>Approval voting goes forward</h3>
+        <p>Instead of choosing one candidate and hoping for the best, voters check every candidate they genuinely support. The two with the most approval advance. No vote-splitting. No spoilers. No strategic voting required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">One change. Profound difference.</h2>
+    <p class="section-body">Approval voting changes a single word in how we count ballots. Instead of choosing one, you approve as many candidates as you genuinely like. The two most broadly supported advance to the general election.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Check every candidate you support</h3>
+        <p>No limit. No ranking. If you like three candidates, check three. If you like one, check one. You're always free to be honest.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Every check counts equally</h3>
+        <p>Supporting your second-choice candidate doesn't hurt your first. Supporting multiple Democrats doesn't help Republicans. Your full vote goes to everyone you approve.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>The two most supported advance</h3>
+        <p>Same top-two structure California already uses. Just better math behind it—so the candidates with the widest genuine support actually make it through.</p>
+      </div>
+    </div>
+
+    <div class="ballot-demo">
+      <div>
+        <div class="ballot-demo-label label-bad">Choose-one primary (current)</div>
+        <div class="ballot">
+          <div class="ballot-title">Governor — Primary Election · Vote for ONE</div>
+          <div class="ballot-candidate">
+            <div class="radio-box selected"></div>
+            <span class="cand-name">Candidate A</span>
+            <span class="cand-party">Democrat</span>
+          </div>
+          <div class="ballot-candidate">
+            <div class="radio-box"></div>
+            <span class="cand-name">Candidate B</span>
+            <span class="cand-party">Democrat</span>
+          </div>
+          <div class="ballot-candidate">
+            <div class="radio-box"></div>
+            <span class="cand-name">Candidate C</span>
+            <span class="cand-party">Democrat</span>
+          </div>
+          <div class="ballot-candidate">
+            <div class="radio-box"></div>
+            <span class="cand-name">Candidate D</span>
+            <span class="cand-party">Republican</span>
+          </div>
+        </div>
+        <div class="ballot-result result-bad">⚠ Democrats split 3 ways → Republican advances with 28%</div>
+      </div>
+
+      <div>
+        <div class="ballot-demo-label label-good">Approval voting primary (proposed)</div>
+        <div class="ballot">
+          <div class="ballot-title">Governor — Primary Election · Approve all you support</div>
+          <div class="ballot-candidate">
+            <div class="check-box checked">✓</div>
+            <span class="cand-name">Candidate A</span>
+            <span class="cand-party">Democrat</span>
+          </div>
+          <div class="ballot-candidate">
+            <div class="check-box checked">✓</div>
+            <span class="cand-name">Candidate B</span>
+            <span class="cand-party">Democrat</span>
+          </div>
+          <div class="ballot-candidate">
+            <div class="check-box"></div>
+            <span class="cand-name">Candidate C</span>
+            <span class="cand-party">Democrat</span>
+          </div>
+          <div class="ballot-candidate">
+            <div class="check-box"></div>
+            <span class="cand-name">Candidate D</span>
+            <span class="cand-party">Republican</span>
+          </div>
+        </div>
+        <div class="ballot-result result-good">✓ The two most broadly supported candidates advance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="container">
+    <div class="quote-inner">
+      <blockquote>
+        "The right way to fix California's primaries is to adopt approval voting. It's not by going back to the highly problematic partisan primary system."
+      </blockquote>
+      <div class="quote-attr">
+        <div class="quote-avatar">ME</div>
+        <div>
+          <div class="quote-name">Micah Erfan</div>
+          <div class="quote-title">Political Communicator &amp; Consultant · 1B+ views · UVA Law '28</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-label">Why It Matters</div>
+    <h2 class="section-title">Proven in the real world.</h2>
+    <p class="section-body">Approval voting isn't a theory. It's already running elections in American cities—with documented results.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-stat">63.5%</div>
+        <h4>Fargo, ND — 2018</h4>
+        <p>Voters adopted approval voting with a landslide majority. First U.S. city to use approval voting in a public election.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-stat">68%</div>
+        <h4>St. Louis, MO — 2020</h4>
+        <p>Passed with 68% of the vote. In the first approval voting election, the machine candidate—later found corrupt—lost to two consensus alternatives who would have split the vote under choose-one.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-stat">0</div>
+        <h4>New hardware required</h4>
+        <p>California's existing voting machines already support approval voting. No new equipment. No new software. No implementation cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <div class="container">
+    <div class="section-label" style="color: rgba(201,138,26,0.8);">Get Involved</div>
+    <h2 class="section-title">Help patch the primary.</h2>
+
+    <div class="join-grid">
+      <div>
+        <p class="join-body">We're building a coalition of voters, organizers, and donors committed to making California's primary system work the way it was intended. Whether you have five minutes or five thousand dollars, there's a role for you.</p>
+        <a href="https://discord.gg/AVq8cc5pu4" class="discord-link" target="_blank">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.25 1.2A14.9 14.9 0 0 0 11.57.06a.06.06 0 0 0-.06.03c-.16.28-.34.65-.46.93a13.74 13.74 0 0 0-4.1 0 9.5 9.5 0 0 0-.47-.93.06.06 0 0 0-.06-.03A14.86 14.86 0 0 0 2.74 1.2a.05.05 0 0 0-.03.02C.4 4.64-.24 7.97.07 11.25a.06.06 0 0 0 .02.04 14.96 14.96 0 0 0 4.49 2.27.06.06 0 0 0 .07-.02c.35-.47.66-.97.93-1.5a.06.06 0 0 0-.03-.08 9.85 9.85 0 0 1-1.41-.67.06.06 0 0 1-.01-.1c.1-.07.19-.15.28-.22a.06.06 0 0 1 .06-.01c2.96 1.35 6.16 1.35 9.08 0a.06.06 0 0 1 .06.01c.1.07.19.15.28.22a.06.06 0 0 1-.01.1c-.45.26-.92.48-1.4.67a.06.06 0 0 0-.04.08c.28.52.59 1.02.93 1.5a.06.06 0 0 0 .07.02 14.9 14.9 0 0 0 4.5-2.27.06.06 0 0 0 .02-.04c.37-3.83-.62-7.13-2.63-10.03a.05.05 0 0 0-.03-.02ZM6.01 9.25c-.88 0-1.61-.81-1.61-1.8s.71-1.8 1.61-1.8c.9 0 1.62.81 1.61 1.8 0 .99-.71 1.8-1.61 1.8Zm5.96 0c-.88 0-1.61-.81-1.61-1.8s.71-1.8 1.61-1.8c.9 0 1.62.81 1.61 1.8 0 .99-.7 1.8-1.61 1.8Z" fill="currentColor"/></svg>
+          Join our Discord
+        </a>
+      </div>
+
+      <div class="form-panel">
+        <h3>Stay in the loop</h3>
+        <p>Get updates as the campaign develops. No spam, ever.</p>
+        <form action="mailto:hi@patchtheprimary.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email address" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="zip" placeholder="ZIP code (optional)">
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Join the Campaign →">
+          </div>
+        </form>
+        <p class="form-note">We'll be in touch. No spam, ever. Or skip the form and email us directly at <a href="mailto:hi@patchtheprimary.com" style="color:rgba(255,255,255,0.5);">hi@patchtheprimary.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Patch the <span>Primary</span></div>
+  <p>
+    A California 2028 ballot initiative campaign.<br>
+    Supported by <a href="https://electionscience.org" target="_blank">Center for Election Science</a> ·
+    <a href="https://californiaapproves.org" target="_blank">California Approves</a> ·
+    <a href="https://equal.vote" target="_blank">Equal Vote Coalition</a>
+  </p>
+  <p style="margin-top:1.5rem;">
+    <a href="mailto:hi@patchtheprimary.com">hi@patchtheprimary.com</a>
+  </p>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.problem-card, .step, .why-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
