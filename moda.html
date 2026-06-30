@@ -3,621 +3,679 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Glickman Contract: Portland's Terms for the Moda Center Deal</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>Moda Center Deal — Ethics and Conduct Dossier</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1B3A5C; --blue: #2E75B6; --light-blue: #D5E8F0; --ice: #EEF5F9;
-    --red: #C0392B; --dark: #1a1a1a; --body: #333; --gray: #666;
-    --light-gray: #f7f7f7; --border: #ddd;
-    --serif: 'Source Serif 4', Georgia, serif;
-    --sans: 'DM Sans', -apple-system, sans-serif;
-    --mono: 'JetBrains Mono', monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{font-family:var(--serif);color:var(--body);line-height:1.7;font-size:17px;background:#fff;-webkit-font-smoothing:antialiased;}
+:root {
+  --navy: #1B3A5C; --blue: #2E75B6; --ice: #EEF5F9;
+  --red: #C0392B; --dark: #1a1a1a; --body: #2a2a2a;
+  --gray: #666; --light: #f8f8f6; --border: #ddd;
+  --gold: #8a6500; --gold-bg: #fffdf0;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--serif);color:var(--body);line-height:1.75;font-size:17px;background:#fff;}
 
-  .hero{background:var(--navy);color:#fff;padding:80px 40px 60px;position:relative;overflow:hidden;}
-  .hero::after{content:'';position:absolute;top:0;right:0;bottom:0;width:40%;background:linear-gradient(135deg,rgba(46,117,182,.15) 0%,transparent 70%);pointer-events:none;}
-  .hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
-  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4.5vw,42px);line-height:1.15;letter-spacing:-.5px;margin-bottom:20px;}
-  .hero .subtitle{font-family:var(--sans);font-size:16px;font-weight:400;color:rgba(255,255,255,.7);line-height:1.6;max-width:600px;margin-bottom:28px;}
-  .hero .meta{font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.5);letter-spacing:.5px;}
-  .hero .update-badge{display:inline-block;background:rgba(192,57,43,.8);color:#fff;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:14px;}
+.cover{background:var(--dark);color:#fff;padding:60px 40px 50px;border-bottom:4px solid var(--red);}
+.cover-label{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px;}
+.cover h1{font-family:var(--serif);font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.15;margin-bottom:14px;max-width:680px;}
+.cover .dek{font-size:16px;color:rgba(255,255,255,.6);max-width:600px;line-height:1.6;margin-bottom:24px;}
+.cover .meta{font-family:var(--sans);font-size:12px;color:rgba(255,255,255,.35);line-height:1.8;}
 
-  .container{max-width:780px;margin:0 auto;padding:0 40px;}
-  @media(max-width:600px){.container{padding:0 20px;}.hero{padding:50px 20px 40px;}}
+.toc-section{background:var(--ice);border-bottom:1px solid var(--border);padding:32px 40px;}
+.toc-section h2{font-family:var(--sans);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);margin-bottom:14px;}
+.toc-list{list-style:none;padding:0;columns:2;column-gap:40px;}
+@media(max-width:600px){.toc-list{columns:1;}}
+.toc-list li{font-family:var(--sans);font-size:14px;padding:4px 0;break-inside:avoid;}
+.toc-list a{color:var(--navy);text-decoration:none;border-bottom:1px solid transparent;}
+.toc-list a:hover{border-bottom-color:var(--blue);}
+.toc-list .cat{color:var(--gray);font-size:12px;margin-left:4px;}
 
-  .update-notice{background:#fdf2f0;border-left:4px solid var(--red);padding:18px 24px;margin:0;font-family:var(--sans);font-size:14px;line-height:1.6;color:#5a1a10;}
-  .update-notice strong{color:var(--red);}
+.container{max-width:760px;margin:0 auto;padding:0 40px;}
+@media(max-width:580px){.container{padding:0 20px;}.cover{padding:40px 20px;}.toc-section{padding:28px 20px;}}
 
-  .callout{background:var(--ice);border-left:4px solid var(--blue);padding:20px 24px;margin:32px 0;font-style:italic;font-size:16px;line-height:1.65;color:var(--navy);}
-  .callout.red{border-left-color:var(--red);background:#fdf2f0;color:#7a1a10;}
-  .callout.gold{border-left-color:#b8860b;background:#fffdf0;color:#5a4010;font-style:normal;}
+.chapter{padding:52px 0 0;}
+.chapter-header{border-bottom:2px solid var(--red);padding-bottom:10px;margin-bottom:28px;}
+.chapter-eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:6px;font-weight:600;}
+h2{font-family:var(--serif);font-size:clamp(20px,3.5vw,28px);font-weight:700;color:var(--dark);line-height:1.2;}
+h3{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--navy);margin:32px 0 10px;}
+p{margin-bottom:16px;font-size:16.5px;}
+p:last-child{margin-bottom:0;}
+strong{font-weight:600;color:var(--dark);}
+em{font-style:italic;}
+a{color:var(--blue);}
 
-  .section{padding:48px 0 0;}
-  .section+.section{border-top:1px solid var(--border);}
+.doc-box{background:var(--light);border-left:4px solid var(--gold);padding:16px 20px;margin:22px 0;font-size:14.5px;line-height:1.65;}
+.doc-box .doc-label{font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.doc-box .doc-text{font-style:italic;color:var(--dark);}
+.doc-box .doc-source{font-family:var(--sans);font-size:11.5px;color:var(--gray);margin-top:6px;}
 
-  h2{font-family:var(--serif);font-weight:700;font-size:26px;color:var(--navy);margin-bottom:20px;line-height:1.25;letter-spacing:-.3px;}
-  h3{font-family:var(--sans);font-weight:700;font-size:17px;color:var(--blue);margin:28px 0 10px;letter-spacing:-.2px;}
-  p{margin-bottom:16px;}
-  p:last-child{margin-bottom:0;}
-  strong{font-weight:600;color:var(--dark);}
-  em{font-style:italic;}
-  a{color:var(--blue);}
-  a:hover{color:var(--navy);}
+.flag-box{background:#fdf2f0;border-left:4px solid var(--red);padding:16px 20px;margin:22px 0;font-size:14.5px;line-height:1.65;}
+.flag-box .flag-label{font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
 
-  .table-wrap{margin:24px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:14px;line-height:1.5;}
-  thead th{background:var(--navy);color:#fff;font-weight:600;text-align:left;padding:10px 14px;font-size:13px;letter-spacing:.3px;white-space:nowrap;}
-  thead th:not(:first-child){text-align:center;}
-  tbody td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
-  tbody td:not(:first-child){text-align:center;}
-  tbody tr:nth-child(even){background:var(--light-gray);}
-  tbody tr:last-child td{border-bottom:none;}
-  tbody tr.total-row{background:var(--light-blue)!important;font-weight:600;}
-  tbody tr.new-row td{background:#fdf2f0!important;}
-  .table-note{font-family:var(--sans);font-size:12px;color:var(--gray);margin-top:8px;line-height:1.5;}
+.connection-box{background:var(--gold-bg);border:1px solid #d4b060;border-radius:4px;padding:16px 20px;margin:22px 0;font-size:14.5px;line-height:1.65;}
+.connection-box .conn-label{font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
 
-  .summary-section{background:var(--light-gray);border-top:3px solid var(--blue);padding:40px 0 48px;}
-  .summary-section h2{font-size:22px;margin-bottom:24px;}
-  .summary-section h3{font-size:15px;margin:20px 0 6px;}
-  .summary-section p{font-size:15px;line-height:1.6;margin-bottom:12px;}
+.player-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;}
+@media(max-width:520px){.player-grid{grid-template-columns:1fr;}}
+.player-card{background:var(--light);border:1px solid var(--border);padding:14px 16px;}
+.player-name{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.player-role{font-family:var(--sans);font-size:11px;color:var(--gray);margin-bottom:6px;}
+.player-note{font-size:13px;line-height:1.5;color:var(--body);}
 
-  .actions-list{list-style:none;padding:0;margin:12px 0;}
-  .actions-list li{font-family:var(--sans);font-size:14px;line-height:1.55;padding:6px 0 6px 24px;position:relative;}
-  .actions-list li::before{content:attr(data-num);position:absolute;left:0;font-weight:700;color:var(--blue);}
+.section-divider{height:1px;background:var(--border);margin:48px 0;}
+.legal-note{font-family:var(--sans);font-size:13px;color:var(--gray);font-style:italic;margin-top:8px;line-height:1.6;}
 
-  .divider{height:2px;background:linear-gradient(90deg,var(--blue),transparent);margin:48px 0;border:none;}
+footer{text-align:center;padding:40px;color:var(--gray);font-family:var(--sans);font-size:13px;border-top:1px solid var(--border);margin-top:60px;line-height:1.8;}
+footer a{color:var(--blue);}
 
-  .section-divider{height:1px;background:var(--border);margin:48px 0;}
-
-  .toc{padding:36px 0;border-bottom:1px solid var(--border);}
-  .toc h2{font-size:18px;margin-bottom:14px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:1px;font-family:var(--sans);font-size:12px;}
-  .toc ol{list-style:none;padding:0;columns:2;column-gap:32px;}
-  @media(max-width:600px){.toc ol{columns:1;}}
-  .toc li{font-family:var(--sans);font-size:14px;padding:4px 0;break-inside:avoid;}
-  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
-  .toc a:hover{border-bottom-color:var(--blue);}
-  .toc li.new-item a{color:var(--red);font-weight:600;}
-
-  .prr-box{background:var(--light-gray);border:1px solid var(--border);border-left:4px solid #b8860b;padding:16px 20px;margin:20px 0;font-family:var(--sans);font-size:14px;line-height:1.6;}
-  .prr-box .prr-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a6500;margin-bottom:6px;}
-  .prr-box .prr-quote{font-style:italic;color:var(--dark);}
-  .prr-box .prr-source{font-size:12px;color:var(--gray);margin-top:6px;}
-
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
-  @media(max-width:580px){.two-col{grid-template-columns:1fr;}}
-  .two-col .col{background:var(--ice);border:1px solid var(--border);padding:14px 18px;}
-  .two-col .col-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:8px;}
-  .two-col .col-body{font-size:15px;line-height:1.6;}
-
-  .footer{background:var(--navy);color:rgba(255,255,255,.5);padding:32px 40px;font-family:var(--sans);font-size:13px;text-align:center;line-height:1.6;}
-  .footer a{color:rgba(255,255,255,.7);}
-
-  @media print{.hero{padding:40px;}.section{page-break-inside:avoid;}body{font-size:11pt;}table{font-size:9pt;}}
+@media print{
+  .cover{padding:40px;background:#1B3A5C!important;-webkit-print-color-adjust:exact;}
+  .chapter{page-break-inside:avoid;}
+  body{font-size:11pt;}
+}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div class="update-badge">Updated May 2026</div>
-    <h1>The Glickman Contract</h1>
-    <p class="subtitle">Named for Dr. Robert Glickman, the Portland physician who negotiated the city&rsquo;s original $1 purchase of Moda Center. These are Portland&rsquo;s binding terms for the Moda Center renovation under SB 1501, with supporting analysis and public records findings through May 2026.</p>
-    <p class="meta">Prepared by Clay Shentrup &mdash; Original: March 2026 &mdash; Updated: May 2026 &mdash; <a href="https://wonk.blog" style="color:rgba(255,255,255,.6)">wonk.blog</a></p>
-  </div>
-</header>
-
-<div class="update-notice">
-  <strong>May 2026 Update:</strong> This document has been updated to incorporate public records obtained through April&ndash;May 2026. New findings include internal PCEF strategy documents showing the fund was already fully allocated before the city proposed using it; the mayor&rsquo;s different financial figures for Democratic vs. Republican legislators on the same day; a confirmed finding that Stafford Sports had no formal task order authorizing its SB 1501 work; the full Project Mt. Hood attendee list including a private citizen with no disclosed public role; documentation of a systematic gift-access campaign coordinated by Blazers lobbyists; and text messages confirming direct threats to councilors&rsquo; careers. These findings are integrated into <a href="#fullcourtpress">Section 3</a> and <a href="#leverage">Section 13</a>. The core financial analysis is unchanged.
+<div class="cover">
+  <div class="cover-label">Confidential Working Document — May 2026</div>
+  <h1>Moda Center Deal<br>Ethics & Conduct Dossier</h1>
+  <p class="dek">A documentary record of conduct that may constitute ethics violations, procurement irregularities, or misrepresentations to the public and legislators — compiled from public records requests filed March–May 2026. This document does not address the merits of the deal; it addresses how the deal was made.</p>
+  <p class="meta">
+    Compiled by Clay Shentrup, Portland District 3 &nbsp;|&nbsp; cshentrup@gmail.com &nbsp;|&nbsp; 415-295-2529<br>
+    wonk.blog/moda &nbsp;|&nbsp; SaveTheBlazers.com<br>
+    Sources: PRRs C454690, C454698, C454692, C454415, C443668, C449379, C454407, C454414
+  </p>
 </div>
 
-<!-- ═══ CONTRACT SUMMARY ═══ -->
-<section class="summary-section">
-  <div class="container">
-    <h2>The Deal</h2>
-
-    <h3>The council&rsquo;s vote IS the negotiation.</h3>
-    <p>Under SB 1501, the lease is between a <strong>state-controlled joint authority</strong> and the Blazers&mdash;not between Portland and the Blazers. The state put in $365M; the city put in ~$100M upfront. Once the city enters, it becomes a minority voice at someone else&rsquo;s table. The city&rsquo;s only leverage is the moment <em>before</em> it enters. Section 5(5) requires &ldquo;binding and substantial commitments&rdquo; from the city before bonds can issue. The conditions the city attaches to that commitment are the lease terms. After that, it&rsquo;s out of Portland&rsquo;s hands.</p>
-
-    <h3>Forget &ldquo;save the Blazers or lose them.&rdquo;</h3>
-    <p>The Blazers are staying. On March 30, the NBA Board of Governors unanimously approved the sale to Dundon&rsquo;s group&mdash;80.1% closing March 31 at a $4 billion valuation, the remaining 19.9% by September 2028 at $4.5 billion. On March 25, the Board voted to begin the formal expansion process for Las Vegas and Seattle&mdash;the only two credible relocation destinations. Both are now off the table. The last attempted relocation was rejected 22&ndash;8. Dundon accepted a 20-year lease with relocation penalties in SB 1501 itself. Portland-based co-owner Sheel Tyle told The Athletic: &ldquo;We are committed to Portland, 100 percent. Full stop.&rdquo; If that&rsquo;s true, binding lease terms should be straightforward to accept.</p>
-    <p><strong>The real question is not whether Dundon stays. It&rsquo;s whether he takes our deal or self-funds the renovation.</strong> If he self-funds, he borrows $600M at ~5.5% and pays about $50M/year in debt service, plus $15M/year in rent (Portland owns the building). Total cost: ~$65M/year. The Glickman Contract costs him $64M/year&mdash;$1M less than self-funding. He saves money. The state, city, and county earn a positive return.</p>
-
-    <h3>Component A: Fair Market Rent &mdash; $15M/year</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Term</th><th>Annual</th><th>Rationale</th></tr></thead>
-        <tbody>
-          <tr><td>2.1 &mdash; Base Rent</td><td style="text-align:left">$10.0M</td><td style="text-align:left">Raleigh: $4.5M in a market 1/3 Portland&rsquo;s size</td></tr>
-          <tr><td>2.2 &mdash; PILOTs</td><td style="text-align:left">$1.5M</td><td style="text-align:left">Standard in 9 of 12 comparable NBA deals</td></tr>
-          <tr><td>2.3 &mdash; Community Investment Fund</td><td style="text-align:left">$3.5M</td><td style="text-align:left">Rose Quarter / Albina community development</td></tr>
-          <tr class="total-row"><td>Subtotal A</td><td style="text-align:left">$15.0M</td><td style="text-align:left">Owed regardless of who renovates</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Component B: Capital Recovery &mdash; $49M/year</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Term</th><th>Annual</th><th>Rationale</th></tr></thead>
-        <tbody>
-          <tr><td>2.4 &mdash; Capital Recovery Payment</td><td style="text-align:left">$25.0M</td><td style="text-align:left">Fixed return on public capital, CPI-adjusted</td></tr>
-          <tr><td>2.5 &mdash; Naming Rights (65% to public)</td><td style="text-align:left">$10.0M floor</td><td style="text-align:left">NBA arenas: $10&ndash;20M/yr gross</td></tr>
-          <tr><td>2.6 &mdash; Non-Basketball Event Revenue (25%)</td><td style="text-align:left">$8.0M floor</td><td style="text-align:left">~270 events/yr; operator captures 100% today</td></tr>
-          <tr><td>2.7 &mdash; Revenue Sharing (8% above $150M)</td><td style="text-align:left">~$6.0M</td><td style="text-align:left">Captures renovation upside</td></tr>
-          <tr class="total-row"><td>Subtotal B</td><td style="text-align:left">$49.0M</td><td style="text-align:left">Return on $871M public investment</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-wrap" style="margin-top:20px;">
-      <table>
-        <thead><tr><th></th><th>Annual</th><th>20-Year Total</th><th>Comparison</th></tr></thead>
-        <tbody>
-          <tr class="total-row"><td><strong>TOTAL: The Glickman Contract</strong></td><td><strong>$64.0M</strong></td><td><strong>$1,280M</strong></td><td><strong>vs. $65M/yr to self-fund</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>What the public recovers</h3>
-    <div class="callout" style="margin-top:8px;margin-bottom:16px;">
-      <strong>Public invests $871M. Public recovers $1,280M. Net return: +$409M.</strong><br>
-      State invests $365M &rarr; recovers ~$537M. Net: +$172M.<br>
-      City invests $405M &rarr; recovers ~$595M. Net: +$190M.<br>
-      County invests $101M &rarr; recovers ~$148M. Net: +$47M.<br>
-      <em>Dundon saves $1M/year vs. self-funding. $20M over 20 years. That is his entire surplus.</em>
-    </div>
-
-    <h3>Protections</h3>
-    <p><strong>Cost verification:</strong> The $600M figure is independently verified before the commitment goes live. All overruns on Dundon. <strong>Community benefits:</strong> 10% affordable housing, PLA, 30% local hiring, 20% MWESB. <strong>Clawback:</strong> If the team leaves early, repayment of unamortized costs + $150M penalty, secured by a lien on the franchise. <strong>Competitive benchmark:</strong> At least one indicative bid from OVG/AEG/ASM Global, presented in public session, before any vote. <strong>Non-severability:</strong> All conditions or none. Waiver requires 8 of 12 votes. <strong>Full audit rights:</strong> Annual audited financials, event-by-event revenue, City Auditor access.</p>
-
-    <div class="callout" style="margin-top:20px;">
-      Andrew Zimbalist, the Robert A. Woods Professor of Economics at Smith College&mdash;author of 24 books on sports economics, NPR commentator, consultant to cities, teams, and leagues&mdash;reviewed this analysis and responded: <strong>&ldquo;Definitely seems that Portland is being too concessionary.&rdquo;</strong>
-    </div>
-
-    <h3>Download the model resolution</h3>
-    <p>The <a href="https://drive.google.com/file/d/1jlVs8rl3T1F38do1utrjgA9F5NIUaLGL/view">Glickman Contract (PDF)</a> is a model council resolution with the full legal language, WHEREAS clauses, section-by-section terms, and Exhibit A (the walkaway analysis). It is ready for a councilor&rsquo;s office to review and adapt.</p>
-  </div>
-</section>
-
-<div class="container" style="margin-top:40px;">
-  <div class="section-divider"></div>
-  <h2 style="text-align:center;color:var(--navy);margin:40px 0 16px;">Supporting Analysis</h2>
-  <p style="text-align:center;color:var(--gray);max-width:600px;margin:0 auto 40px;font-family:var(--sans);">Every number in the Glickman Contract is derived from the analysis below. The following sections provide the financial modeling, comparable deals, public records evidence, and game theory that support the terms above.</p>
+<div class="toc-section">
+  <h2>Contents</h2>
+  <ul class="toc-list">
+    <li><a href="#players">Key Players</a></li>
+    <li><a href="#gifts">1. The Gift Access Campaign</a> <span class="cat">Ethics/ORS 244</span></li>
+    <li><a href="#threats">2. Career Threats to Elected Officials</a> <span class="cat">Lobbying conduct</span></li>
+    <li><a href="#stafford">3. The Stafford Sports Contract</a> <span class="cat">Procurement/conflict</span></li>
+    <li><a href="#trip">4. The Charlotte/Raleigh Trip</a> <span class="cat">Official record vs. documents</span></li>
+    <li><a href="#mthood">5. Project Mt. Hood</a> <span class="cat">Private citizen in government meetings</span></li>
+    <li><a href="#pitchdeck">6. The Blazers Wrote the City's Pitch</a> <span class="cat">Information manipulation</span></li>
+    <li><a href="#pcef">7. The PCEF Misrepresentation</a> <span class="cat">Public misrepresentation</span></li>
+    <li><a href="#numbers">8. Two Different Numbers, Same Day</a> <span class="cat">Legislative misrepresentation</span></li>
+    <li><a href="#silver">10. The Silver Visit</a> <span class="cat">New — PRR C454416</span></li>
+    <li><a href="#playoff">11. Playoff Tickets & Dundon Meeting</a> <span class="cat">New — Apr 26, 2026</span></li>
+    <li><a href="#fca">12. The Withheld Cost Assessment</a> <span class="cat">New — PRR C462239</span></li>
+    <li><a href="#nda">13. The 2022 Confidentiality Agreement</a> <span class="cat">New — PRR C467662</span></li>
+    <li><a href="#connections">9. Pattern and Connections</a></li>
+  </ul>
 </div>
 
-<!-- TOC -->
 <div class="container">
-  <nav class="toc">
-    <h2>Contents</h2>
-    <ol>
-      <li><a href="#overview">1. Overview</a></li>
-      <li><a href="#background">2. Background and Key Facts</a></li>
-      <li><a href="#fullcourtpress">3. The Full Court Press</a></li>
-      <li><a href="#impact">4. Decomposing the $670M Impact Claim</a></li>
-      <li><a href="#right">5. What the Deal Gets Right</a></li>
-      <li><a href="#npv">6. What the City Is Leaving on the Table</a></li>
-      <li><a href="#appreciation">7. Franchise Value and Appreciation</a></li>
-      <li><a href="#raleigh">8. The Raleigh Precedent and Comparable Deals</a></li>
-      <li><a href="#district">9. The District Tax Capture</a></li>
-      <li><a href="#payoff">10. Dundon&rsquo;s Payoff Matrix</a></li>
-      <li><a href="#dundon-profile">11. Understanding the Man Across the Table</a></li>
-      <li><a href="#recommendations">12. Recommendations</a></li>
-      <li><a href="#leverage">13. The City&rsquo;s Leverage Under SB 1501</a></li>
-      <li><a href="#rosequarter">14. District 2 and the Rose Quarter</a></li>
-      <li><a href="#appendix">Appendix: Cash-Equivalent Flexibility</a></li>
-      <li><a href="#playbook">15. The Playbook</a></li>
-      <li><a href="#citizens-assembly">16. Citizens&rsquo; Assembly</a></li>
-      <li><a href="#conclusion">17. Conclusion</a></li>
-    </ol>
-  </nav>
 
-  <!-- 1. OVERVIEW -->
-  <div class="section" id="overview">
-    <h2>1. Overview</h2>
-    <p>Oregon&rsquo;s SB 1501 authorizes $365 million in state bonds (with total debt service of $531&ndash;$623 million over 20 years) to renovate the Moda Center. Combined with the City of Portland&rsquo;s roughly $400 million commitment and Multnomah County&rsquo;s $88 million pledge, the total public investment exceeds $1 billion in nominal terms. Tom Dundon, who is acquiring the Portland Trail Blazers for $4.25 billion, is not expected to contribute any private capital toward the renovation.</p>
-    <p>The bill passed the Oregon Senate 24&ndash;6 on March 4, 2026, and the House 42&ndash;14 on March 6, 2026. The critical question now falls to the City of Portland: <strong>how does the city, as the owner of the Moda Center, negotiate its $400 million contribution and the lease terms on a building it owns?</strong></p>
-    <p>This report presents three findings. First, the claimed $670 million in annual economic impact substantially overstates the net benefit to Portland and Oregon. The actual net new economic activity attributable to the renovation subsidy&mdash;as opposed to the Blazers&rsquo; presence, which would exist regardless of who funds the renovation&mdash;is far smaller. Second, the renovation is profitable for Dundon even if he pays for it entirely himself; every public dollar is pure surplus transferred to the ownership group, and the relocation threat is not credible. Third, several elements of the deal are genuinely reasonable, including the 20-year lease, cost overrun protections, and the state&rsquo;s co-ownership stake.</p>
-    <p>The report concludes with a hierarchy of outcomes: the economically rational first-best outcome is that the city contributes nothing and lets Dundon invest in his own asset; the second-best is that the city contributes with strong lease terms that recover a meaningful share of the investment; and the worst outcome for residents is the current trajectory&mdash;$400 million with no terms.</p>
-    <p><strong>Update (May 2026):</strong> Public records obtained through April&ndash;May 2026 have materially strengthened the case that the city entered the negotiation without adequate independent analysis and with its advisory process compromised. The core financial analysis in this report is unchanged, but Section 3 has been substantially expanded to incorporate documentary evidence from public records requests.</p>
+<!-- ═══ PLAYERS ═══ -->
+<div class="chapter" id="players">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Cast of Characters</div>
+    <h2>Key Players</h2>
   </div>
-
-  <!-- 2. BACKGROUND -->
-  <div class="section" id="background">
-    <h2>2. Background and Key Facts</h2>
-    <p>In 2024, the City of Portland purchased the Moda Center from the Paul Allen estate for $1 (plus $7.13 million for the underlying land). Portland now owns the building, the surrounding parking garages, and the Veterans Memorial Coliseum. The Blazers retain operational control under a bridge lease running through 2030, with a five-year extension option to 2035.</p>
-    <p>Tom Dundon, a Dallas-based billionaire who owns the NHL&rsquo;s Carolina Hurricanes, reached a purchase agreement for the Blazers in September 2025. On March 30, 2026, the NBA Board of Governors unanimously approved the sale. The first tranche (80.1% at a $4 billion valuation) closed March 31; the remaining 19.9% closes by September 2028 at a $4.5 billion valuation.</p>
-    <p>The Moda Center, opened in 1995, is the oldest NBA arena that has never undergone a major renovation.</p>
-
-    <h3>Timeline of key events (reconstructed from public records):</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Date</th><th style="text-align:left">Event</th><th style="text-align:left">Source</th></tr></thead>
-        <tbody>
-          <tr><td>Jul 2025</td><td style="text-align:left">Mayor Wilson and Gov. Kotek send joint letter to NBA Commissioner Silver pledging renovation funding&mdash;before Dundon&rsquo;s purchase is announced.</td><td style="text-align:left">OPB</td></tr>
-          <tr><td>Sep 2025</td><td style="text-align:left">Dundon&rsquo;s group announces agreement to buy Blazers for $4.25B.</td><td style="text-align:left">ESPN/OPB</td></tr>
-          <tr><td>Oct 22, 2025</td><td style="text-align:left">Deputy City Administrator Oliveira sets up weekly &ldquo;Project Mt. Hood&rdquo; meetings. Calendar invite lists Blazers executives, lobbyist Dan Jarman, and private citizen Joth Ricci as required attendees alongside city staff. Governor&rsquo;s office and County also included.</td><td style="text-align:left">PRR C454415</td></tr>
-          <tr><td>Nov 3, 2025</td><td style="text-align:left">Project Mt. Hood meetings begin, running every Monday through at least February 2026.</td><td style="text-align:left">PRR C454415</td></tr>
-          <tr><td>Dec 2&ndash;5, 2025</td><td style="text-align:left">City pays for staff trip to Charlotte and Raleigh with Blazers executives and Stafford advisor Hirsh. Visits only 100% publicly funded arenas. Trip itinerary&rsquo;s stated purpose: &ldquo;strengthening key relationships prior to closing of the Blazers pending sale.&rdquo; Blazers staff listed as Confirmed participants in the original itinerary&mdash;not optional add-ons as the city would later claim.</td><td style="text-align:left">PRR C454407; NC_TRIP_ITINERARY_12-2025_FINAL.pdf</td></tr>
-          <tr><td>Jan 15, 2026</td><td style="text-align:left">Coghlan distributes the Blazers&rsquo; own &ldquo;Rip City Runs Deep&rdquo; advocacy toolkit at a meeting with state legislators and city officials&mdash;circulating the Blazers&rsquo; marketing materials as if they were independent analysis.</td><td style="text-align:left">PRR C443668</td></tr>
-          <tr><td>Jan 16, 2026</td><td style="text-align:left">PCEF committee members site visit to Moda Center. Framed internally as an &ldquo;awareness&rdquo; visit at the request of City leadership&mdash;not a formal endorsement.</td><td style="text-align:left">PRR C443668</td></tr>
-          <tr><td>Jan 21, 2026</td><td style="text-align:left">Barrett&rsquo;s &ldquo;Market Comps.pdf&rdquo; circulated, excluding Golden State, Clippers, Seattle, Sacramento, and Milwaukee. Lisle suggests Milwaukee/Sacramento; Barrett rejects them same day, citing his own public-side record in those cities.</td><td style="text-align:left">KGW records p. 81&ndash;82</td></tr>
-          <tr><td>Feb 5, 2026</td><td style="text-align:left">Wilson lobbies legislators at the Oregon Capitol. Internal talking points document shows he presented different city financial commitment figures to Democratic and Republican legislators&mdash;&ldquo;over $365M&rdquo; for Democrats, &ldquo;over $260M&rdquo; for Republicans&mdash;a $105M structural gap&mdash;on the same day in the same building.</td><td style="text-align:left">PRR C443668</td></tr>
-          <tr><td>Feb&ndash;Mar 2026</td><td style="text-align:left">Blazers lobbyists privately tell at least four councilors their political careers would suffer if the team leaves. Threats delivered in private meetings, never in public testimony.</td><td style="text-align:left">PRR C454690; OPB Mar 12</td></tr>
-          <tr><td>Mar 4&ndash;6, 2026</td><td style="text-align:left">SB 1501 passes Senate 24&ndash;6 and House 42&ndash;14.</td><td style="text-align:left">Legislative record</td></tr>
-          <tr><td>Mar 25, 2026</td><td style="text-align:left">NBA Board of Governors votes to begin formal expansion for Las Vegas and Seattle. ProPublica/OPB publishes internal emails on Dundon&rsquo;s Santander subprime lending practices; Oregon AG called them &ldquo;predatory.&rdquo;</td><td style="text-align:left">ESPN; ProPublica/OPB</td></tr>
-          <tr><td>Mar 30&ndash;31, 2026</td><td style="text-align:left">NBA approves Dundon sale. OregonLive reveals Project Mt. Hood. PRR C449379 (Stafford contract) delivered.</td><td style="text-align:left">NBA.com; OregonLive; PRR C449379</td></tr>
-          <tr><td>Apr 8, 2026</td><td style="text-align:left">Wilson press conference: admits $600M renovation cost is &ldquo;less than $600 million&rdquo; and &ldquo;a placeholder number.&rdquo; Confirms PCEF as city&rsquo;s funding source. Says Dundon contributes $0. When asked about leverage: &ldquo;That&rsquo;s just reality.&rdquo;</td><td style="text-align:left">Portland Business Journal; Portland Mercury</td></tr>
-          <tr class="new-row"><td>Apr 22, 2026</td><td style="text-align:left">PRR C454407 response: city confirms it organized the Charlotte/Raleigh trip and paid for all staff and Hirsh. States Blazers reps &ldquo;paid their own travel costs&rdquo; and were invited &ldquo;if interested&rdquo;&mdash;contradicting the original itinerary which listed them as Confirmed from the start.</td><td style="text-align:left">PRR C454407</td></tr>
-          <tr class="new-row"><td>Apr 24, 2026</td><td style="text-align:left">PRR C449379 Part 6 delivered: 670 pages of Stafford Sports invoices and time sheets showing $200K+ in work on SB 1501 with no formal task order authorizing it.</td><td style="text-align:left">PRR C449379 Part 6</td></tr>
-          <tr class="new-row"><td>Apr&ndash;May 2026</td><td style="text-align:left">PRR C454414 (Stafford task orders beyond TO1) closed: No Applicable Records Available. City&rsquo;s official position is that no task order beyond the original $15,750 bridge lease task order exists. PRR C443668 delivered: internal PCEF strategy documents and mayor&rsquo;s different legislative talking points. PRR C454415 (Joth Ricci / Project Mt. Hood): full calendar invite confirming Ricci as required attendee. PRR C454690 (lobbyist threats) and PRR C454698 (gift campaign): emails, texts, and OGEC correspondence documenting systematic access campaign.</td><td style="text-align:left">PRRs C454414, C443668, C454415, C454690, C454698</td></tr>
-          <tr><td>Summer 2026</td><td style="text-align:left"><strong>Upcoming:</strong> City council votes on lease terms and funding sources. PCEF and Prosper Portland boards must vote first.</td><td style="text-align:left">OPB</td></tr>
-        </tbody>
-      </table>
+  <div class="player-grid">
+    <div class="player-card">
+      <div class="player-name">Dan Jarman</div>
+      <div class="player-role">Crosswater Strategies — Blazers lobbyist</div>
+      <div class="player-note">Registered lobbyist for Trail Blazers. Obtained pre-inauguration OGEC advice letter. Ran the gift access campaign. Delivered career threats to councilors. Required attendee at Project Mt. Hood.</div>
     </div>
-
-    <p>Two details from this timeline deserve emphasis. First, the combined public commitments total approximately $871 million (state $365M + city $405M + county $101M) against a stated renovation cost of $600 million&mdash;a figure the mayor himself has called a &ldquo;placeholder.&rdquo; The public is committing $271 million more than the renovation requires, with no explanation for the gap. Second, the public records obtained in April and May 2026 document in detail how the information environment was shaped before any public deliberation occurred.</p>
-    <p class="table-note">Sources: Legislative Fiscal Office; OPB reporting (March 12, 2026); KGW records request; SB 1501 text; PRRs C454407, C443668, C454415, C454690, C454698, C449379.</p>
-  </div>
-
-  <!-- 3. FULL COURT PRESS -->
-  <div class="section" id="fullcourtpress">
-    <h2>3. The Full Court Press</h2>
-    <p>The public case for the Moda Center deal was not assembled through independent analysis or adversarial negotiation. It was the product of a coordinated campaign&mdash;involving the Blazers&rsquo; ownership group, their lobbyists, their consultants, sympathetic elected officials, and one of the most powerful corporate executives in the state&mdash;that manufactured urgency, controlled the information environment, and marginalized dissent. Understanding how that campaign worked is essential to evaluating the terms it produced. The April&ndash;May 2026 public records requests have substantially deepened that picture.</p>
-
-    <h3>The pitch deck that sold the deal was prepared by the buyer.</h3>
-    <p>In January 2026, the Blazers&rsquo; own consultant, Dan Barrett of CAA Icon, prepared the financial pitch deck that legislators relied on to justify public funding. Barrett had previously served as lead negotiator <em>for the public</em> in the Sacramento and Milwaukee arena deals, where he secured roughly 50% private contributions. In Portland, now representing the Blazers, he excluded both of those deals&mdash;along with Golden State (100% private), the Clippers (100% private), and Seattle (100% private)&mdash;from his comparable set. The resulting &ldquo;average of 90% public&rdquo; statistic was accurate only because the sample was constructed to produce it.</p>
-    <p>When city staffer Karl Lisle suggested adding Milwaukee and Sacramento, Barrett rejected both on the same day, writing: &ldquo;As the lead negotiator for the public sector in both Sacramento and Milwaukee, I can say that the market has clearly changed and these comparables are dated.&rdquo; He then asked city staff to &ldquo;support the position&rdquo;&mdash;on an email CC&rsquo;ing the city&rsquo;s own advisor Carl Hirsh, the Blazers&rsquo; president, the Blazers&rsquo; SVP, a Blazers lobbyist, and an NBA official. Barrett invoked his record of protecting the public in other cities to argue against protecting the public in Portland.</p>
-    <p>On January 15, 2026, Aisling Coghlan (the mayor&rsquo;s chief of staff) distributed the Blazers&rsquo; own &ldquo;Rip City Runs Deep&rdquo; advocacy toolkit at a meeting with state legislators and city officials. The document&mdash;prepared by Rip City Management&mdash;contained the same cherry-picked comparables and the $670M economic impact figure. The city circulated the Blazers&rsquo; marketing materials as though they were independent analysis. (Source: PRR C443668.)</p>
-
-    <h3>The city was shown only what the Blazers wanted it to see.</h3>
-    <p>In December 2025, city staff took a city-paid three-day trip to Charlotte and Raleigh with Blazers representatives and Stafford Sports advisor Carl Hirsh. They toured exclusively 100% publicly funded arenas, dined with Charlotte officials, and attended a Hurricanes game. They did not visit Milwaukee, Sacramento, Seattle, or any arena where private capital contributed meaningfully to the renovation.</p>
-    <p>The city&rsquo;s official response to PRR C454407 (April 2026) stated that it organized the trip independently and that Blazers reps were invited &ldquo;if interested, at their own cost.&rdquo; The original trip itinerary directly contradicts this.</p>
-    <div class="prr-box">
-      <div class="prr-label">NC_TRIP_ITINERARY_12-2025_FINAL.pdf &mdash; Stated business purpose</div>
-      <div class="prr-quote">&ldquo;Develop relationships with private operators and public owners of facilities, learn about experiences of Raleigh&rsquo;s arena owners working with Tom Dundon&rsquo;s ownership group on lease extension negotiations&hellip; strengthening key relationships prior to closing of the Blazers pending sale.&rdquo;</div>
-      <div class="prr-source">Blazers staff (Loomis, Stangel Tassin, Mastroieni, Boyle, Barrett) are listed as &ldquo;Confirmed&rdquo; participants in the original itinerary&mdash;not optional add-ons. The city paid for all staff and Hirsh travel. Hirsh flew first class and billed the city for an economy ticket.</div>
+    <div class="player-card">
+      <div class="player-name">Ryann Gleason</div>
+      <div class="player-role">CFM Advocates — Blazers lobbyist</div>
+      <div class="player-note">Co-ran the suite ticket access campaign alongside Jarman. Sent the AAPI Night and Women's History Night invitations to councilors.</div>
     </div>
-    <p>The trip&rsquo;s stated purpose was not to learn about the range of deal structures. It was to build relationships before the Dundon purchase closed, using only publicly funded arenas as reference points. The city paid for it.</p>
-
-    <h3>The city&rsquo;s PCEF funding source was already fully committed to other programs.</h3>
-    <p>When Mayor Wilson proposed using $75 million from the Portland Clean Energy Fund for Moda Center, he framed it as though PCEF had available capacity. Internal city documents obtained in PRR C443668 show the city knew otherwise.</p>
-    <div class="prr-box">
-      <div class="prr-label">PRR C443668 &mdash; Internal city Q&amp;A prepared for reporters, February 2026</div>
-      <div class="prr-quote">&ldquo;All current and forecasted PCEF funds are allocated through the Climate Investment Plan through June 30, 2029. Because all PCEF resources are already allocated in the current CIP through June 30, 2029, commitments in the current CIP would need to be modified in order for PCEF funds to support the Moda renovation effort.&rdquo;</div>
-      <div class="prr-source">PCEF balance at start of fiscal year: $739,542,176&mdash;all already committed to existing climate programs.</div>
+    <div class="player-card">
+      <div class="player-name">Natalie King</div>
+      <div class="player-role">Trail Blazers SVP Communications</div>
+      <div class="player-note">CC'd on July 2025 tour/lunch invitations to District 3 councilors. Sent the February 2026 thank-you to Pirtle-Guiney after SB 1501 support letter. Required attendee at Project Mt. Hood.</div>
     </div>
-    <p>Using PCEF for Moda requires canceling or deferring existing climate commitments&mdash;not drawing from surplus. The city knew this while publicly describing PCEF as a potential funding source. Councilor Clark subsequently told constituents the PCEF committee had endorsed Moda as &ldquo;a good use of funds.&rdquo; The same records show only an &ldquo;awareness&rdquo; site visit occurred on January 16&mdash;no formal determination was ever made. Councilor Novick has said flatly he will not vote for PCEF use, making this a live obstacle for the city&rsquo;s $405M commitment.</p>
-
-    <h3>The mayor described the city&rsquo;s financial commitment differently to different legislative audiences on the same day.</h3>
-    <p>On February 9, 2026, Mayor Wilson went to the Oregon Capitol to lobby for SB 1501. His office prepared separate talking points for Democratic and Republican legislators. PRR C443668 produced both sets. They contain structurally different descriptions of the city&rsquo;s financial commitment:</p>
-    <div class="two-col">
-      <div class="col">
-        <div class="col-label">Talking points for Democrats</div>
-        <div class="col-body">City plan of <strong>&ldquo;over $365M&rdquo;</strong> with <strong>$125M upfront</strong> plus an average of <strong>$12M per year</strong> over twenty years.</div>
-      </div>
-      <div class="col">
-        <div class="col-label">Talking points for Republicans</div>
-        <div class="col-body">City plan of <strong>&ldquo;over $260M&rdquo;</strong> with <strong>$175M upfront</strong> and an average of <strong>$18M per year</strong> for twenty years.</div>
-      </div>
+    <div class="player-card">
+      <div class="player-name">Charles Boyle</div>
+      <div class="player-role">Trail Blazers Director of Public Affairs</div>
+      <div class="player-note">Coordinated scheduling for councilor tours/lunches. Sent the Pup City dog walk invitation to Novick — an additional access cultivation attempt.</div>
     </div>
-    <p>These are not rounding differences. The Democrat version is $105 million larger than the Republican version. Both were used in the same building on the same day. The public figure ultimately became $405M&mdash;a third number different from both. This demonstrates that the figures circulated during the legislative process were being used as persuasion tools calibrated to audience, not as financial facts derived from actual deal terms. It also raises the question of which figure, if any, reflects what the city actually intends to commit.</p>
-
-    <h3>Project Mt. Hood included a private citizen with no disclosed public role as a required attendee.</h3>
-    <p>OregonLive reported in March 2026 that city officials had held weekly &ldquo;Project Mt. Hood&rdquo; meetings since November 2025. PRR C454415 subsequently produced the original calendar invite, which reveals the full attendee list.</p>
-    <div class="prr-box">
-      <div class="prr-label">PRR C454415 &mdash; Project Mt. Hood calendar invite, October 22, 2025</div>
-      <div class="prr-quote">Required attendees: Donnie Oliveira (city deputy administrator), Jonas Biery (city CFO), Raihana Ansary (deputy chief of staff), Karl Lisle (Spectator Venues), Dan Jarman (Blazers lobbyist, Crosswater Strategies), Natalie King (Blazers SVP), Dewayne Hankins (Blazers president), Dan Barrett (Blazers negotiator, CAA Icon), <strong>Joth Ricci (private citizen, jothricci@gmail.com)</strong>. Also included: Vince Porter (Governor&rsquo;s office), Julia Brim-Edwards (Multnomah County). Optional: Aisling Coghlan (mayor&rsquo;s chief of staff), Michael Jordan.</div>
-      <div class="prr-source">Ricci&mdash;former Dutch Bros CEO and founder of Rip City Forever, the pro-deal advocacy group&mdash;forwarded this invite to city officials himself and is listed as a required attendee, not an observer.</div>
+    <div class="player-card">
+      <div class="player-name">Dan Barrett</div>
+      <div class="player-role">CAA Icon — Blazers lead negotiator</div>
+      <div class="player-note">Previously lead negotiator for the public in Sacramento and Milwaukee. Prepared cherry-picked market comparables used by legislators. Rejected city staffer's suggestions to include more balanced data. Required attendee at Project Mt. Hood.</div>
     </div>
-    <p>The entity seeking $871 million was in the room designing the pitch, every Monday for months, alongside a private citizen with no disclosed public role. At no point did anyone in those meetings commission an independent analysis of what the market would pay for the right to operate this building.</p>
-
-    <h3>The relocation threat was delivered privately and is not credible on its merits.</h3>
-    <p>Between February and March 2026, Blazers lobbyists told at least four Portland city council members that their political careers would suffer if the team left Portland. These threats were delivered in private meetings, never in public testimony where they could be challenged or denied on the record.</p>
-    <div class="prr-box">
-      <div class="prr-label">PRR C454690 &mdash; Text messages, Councilor Tiffany Koyama Lane, March 2026</div>
-      <div class="prr-quote">&ldquo;Lobbyists for the Portland Trail Blazers have made it clear that elected officials will be blamed if the team leaves Portland.&rdquo;</div>
+    <div class="player-card">
+      <div class="player-name">Carl Hirsh</div>
+      <div class="player-role">Stafford Sports — City's financial advisor</div>
+      <div class="player-note">City's conflicted financial advisor. Previous work for "Moda Center (Trail Blazers)." Attended NC trip (first class, billed as economy). In regular contact with Barrett throughout negotiation. No conflict disclosure in any document.</div>
     </div>
-    <p>OPB reported on March 12, 2026 that at least four councilors received similar messages. Neither the Blazers nor their lobbyists denied the accounts. These are the same lobbyists who were simultaneously running the suite ticket access campaign described below. The combination&mdash;gifts that create access and goodwill, followed by private threats when a vote approaches&mdash;is a textbook influence operation. The financial analysis in Section 10 demonstrates why the underlying threat is not credible: relocation requires 23 of 30 NBA governors to approve, the last attempt was rejected 22&ndash;8, and both viable destination cities (Las Vegas and Seattle) are now in the expansion process.</p>
-
-    <h3>A coordinated gift-access campaign preceded the SB 1501 support letter.</h3>
-    <p>Beginning before the new Portland City Council was even sworn in, Blazers lobbyists Ryann Gleason (CFM Advocates) and Dan Jarman (Crosswater Strategies) ran a coordinated access campaign documented in PRR C454698 and PRR C454690.</p>
-    <p>In November 2024, Jarman obtained OGEC Advice No. 24-537I specifically to pre-authorize giving suite tickets to newly elected councilors before their inauguration. The OGEC found that pre-inauguration electeds are not &ldquo;public officials&rdquo; under ORS Chapter 244, meaning the $50/year gift limit does not apply. The Blazers timed the introductory event to exploit this window.</p>
-    <p>Subsequent events included: AAPI Night in January 2025 (Koyama Lane and Kanal, suite tickets); Women&rsquo;s History Night in March 2025 (city councilors, Oregon state legislators including BOLI Commissioner Christina Stephenson, and Multnomah County Commissioner, all invited with complimentary suite access); private tour-and-lunch invitations to Mayor Wilson and councilors Pirtle-Guiney, Ryan, and Kanal in July 2025, explicitly to brief them on ECOnorthwest&rsquo;s economic impact study; and in February 2026, a thank-you email from Blazers SVP Natalie King to Pirtle-Guiney&rsquo;s office specifically for her letter of support for SB 1501, with a request for a follow-up meeting.</p>
-    <p>One episode illustrates the ethical complexity. When Pirtle-Guiney&rsquo;s office asked to bring her daughter as a complimentary guest to Women&rsquo;s History Night, the City Attorney&rsquo;s office ruled that city administrative rules are stricter than state ethics law: &ldquo;While state law allows acceptance of the gift of entertainment for a relative, city administrative rules do not.&rdquo; Pirtle-Guiney&rsquo;s own staff then asked to &ldquo;bypass the attorney check-in.&rdquo; She ultimately paid $120 for her daughter&rsquo;s ticket.</p>
-    <div class="callout gold">
-      <strong>Outstanding question:</strong> Were all gifts from the Blazers to Portland officials properly disclosed on required ethics filings? No OGEC disclosure filings for this campaign have appeared in any public records response to date. The December 2025 City Attorney intervention&mdash;stopping ticket-giving to officials&rsquo; relatives&mdash;implicitly acknowledges that earlier rounds of gifts were at minimum legally ambiguous.
+    <div class="player-card">
+      <div class="player-name">Joth Ricci</div>
+      <div class="player-role">Private citizen — Rip City Forever</div>
+      <div class="player-note">Former Dutch Bros CEO. Founder of Rip City Forever, the pro-deal advocacy group. Required attendee at weekly Project Mt. Hood planning meetings alongside city officials and Blazers executives. No disclosed public role.</div>
     </div>
-
-    <h3>The commissioner came to town; Nike&rsquo;s CEO applied private pressure.</h3>
-    <p>On March 13, 2026&mdash;one week after SB 1501 passed&mdash;NBA Commissioner Adam Silver visited Portland. He called the Blazers &ldquo;part of the fabric of this town&rdquo; and revealed that Nike founder Phil Knight had personally called him to keep the team. Silver notably rejected the small-market framing that deal proponents had relied on, calling Portland &ldquo;very much a midsize US city&rdquo;&mdash;undermining the argument that Portland cannot extract private capital because of its market size. He did not say a word about the financial terms.</p>
-    <p>In October 2025, on the same day Mayor Wilson had breakfast with Dundon, he emailed Nike CEO Elliott Hill. Hill responded: &ldquo;We all need to do what we can to keep the Trailblazers in Portland. Losing them will be disastrous.&rdquo; Nike is Portland&rsquo;s most powerful corporate institution. Its CEO applying pressure without offering any private capital contribution is not a neutral observation.</p>
-
-    <h3>No one at the table was hired to ask the right question.</h3>
-    <p>The city&rsquo;s full advisory team for the deal consists of Stafford Sports on financials, Steve Janik (Ball Janik LLP) on legal, and Management Partners (Baker Tilly) on budget integration. All three were scoped to execute the deal within the SB 1501 framework. None were asked whether a competitive RFP might produce better outcomes for Portland. Stafford previously did business planning for the Moda Center on behalf of the Trail Blazers&mdash;and now advises the city in negotiations against them, behind an attorney-client privilege shield that prevents the public from seeing any of their work. The detailed Stafford conflict and a newly discovered procurement irregularity are addressed in Section 13.</p>
-    <p>The entity seeking the subsidy designed the pitch, selected the comparable deals, controlled which cities were visited, imposed the timeline, applied private threats to elected officials, deployed the NBA commissioner for a public appearance, enlisted the state&rsquo;s most powerful CEO, ran a systematic gift-access campaign documented in public records, and hired the consultant team that advises the city. At no point in this process did anyone with decision-making authority ask: what would the market pay for the right to operate this building?</p>
-  </div>
-
-  <!-- 4. ECONOMIC IMPACT -->
-  <div class="section" id="impact">
-    <h2>4. Decomposing the $670 Million Impact Claim</h2>
-    <p>Proponents of SB 1501 cite $670 million in annual regional economic activity generated by the Moda Center and Trail Blazers. This figure is a gross economic activity estimate, not a net economic impact measure. The distinction matters enormously for evaluating whether the public investment generates a positive return.</p>
-
-    <h3>Three adjustments are necessary:</h3>
-    <p><strong>Substitution effects.</strong> Most spending at Blazers games and arena events comes from Portland-area residents who would spend that money on other local entertainment if the Blazers did not exist. The Brookings Institution, the St. Louis Federal Reserve, and the National Bureau of Economic Research have all concluded that stadium-related spending largely substitutes for other local spending rather than creating net new economic activity. A 2017 survey by the University of Chicago&rsquo;s Booth School found that 83% of a panel of eminent economists agreed that stadium subsidies are unlikely to generate benefits exceeding their costs.</p>
-    <p><strong>Revenue leakage.</strong> A substantial share of Blazers-related revenue leaves the Portland metropolitan area. NBA player salaries totaled approximately $170&ndash;190 million in the 2024&ndash;25 season. Many players maintain primary residences outside Oregon and spend a significant portion of their income out of state.</p>
-    <p><strong>The renovation question vs. the existence question.</strong> The $670 million figure reflects the economic activity of the Blazers&rsquo; <em>presence</em> in Portland. But the relevant question for evaluating SB 1501 is whether the <em>public subsidy for the renovation</em> generates a positive return. If Dundon funded the renovation privately, the economic activity would be identical.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Component</th><th style="text-align:left">Estimate</th><th style="text-align:left">Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Gross annual activity (claimed)</td><td style="text-align:left">$670M</td><td style="text-align:left">Blazers + ECOnorthwest estimate</td></tr>
-          <tr><td>Less: substitution (local spending redirected)</td><td style="text-align:left">&minus;$400 to &minus;$535M</td><td style="text-align:left">Academic consensus: 60&ndash;80% of gross is substituted</td></tr>
-          <tr><td>Less: leakage (player salaries, NBA office)</td><td style="text-align:left">&minus;$70 to &minus;$100M</td><td style="text-align:left">Non-local spending by high-income earners</td></tr>
-          <tr class="total-row"><td>Net new local activity</td><td style="text-align:left">$35 to $200M</td><td style="text-align:left">Wide range reflects methodological uncertainty</td></tr>
-          <tr><td>Implied net tax revenue (~12%)</td><td style="text-align:left">$4 to $24M/yr</td><td style="text-align:left">On the net new activity only</td></tr>
-        </tbody>
-      </table>
+    <div class="player-card">
+      <div class="player-name">Aisling Coghlan</div>
+      <div class="player-role">Mayor's Chief of Staff</div>
+      <div class="player-note">Ran Project Mt. Hood. Distributed the Blazers' own advocacy toolkit to legislators on January 15, 2026 as if it were independent analysis.</div>
     </div>
-    <p class="table-note">Note: These estimates draw on methodologies from Noll &amp; Zimbalist (Brookings, 1997), Coates &amp; Humphreys (2008), and Bradbury, Coates &amp; Humphreys (2023).</p>
-    <p>The bottom line: the Blazers&rsquo; presence in Portland almost certainly generates positive net economic value, including intangible civic and cultural benefits. But the $670 million headline figure does not represent the return on a renovation subsidy. The renovation subsidy does not generate the $670M&mdash;the team&rsquo;s <em>presence</em> does, and that presence would exist regardless of who funds the building upgrades.</p>
-  </div>
-
-  <!-- 5. WHAT DEAL GETS RIGHT -->
-  <div class="section" id="right">
-    <h2>5. What the Deal Gets Right</h2>
-    <p>An honest analysis must acknowledge the elements of SB 1501 that are reasonable:</p>
-    <p><strong>The 20-year lease.</strong> Requiring the Blazers to commit to a 20-year lease is a meaningful protection. It is shorter than some comparable deals (Milwaukee got 30 years, Oklahoma City got 25), but it provides a real floor of certainty for the public investment. Combined with the relocation penalty for outstanding bond debt, this substantially reduces the risk of a team departure during the bond repayment period.</p>
-    <p><strong>Cost overrun protections.</strong> The provision making the Blazers responsible for cost overruns is genuinely important. Construction cost escalation is one of the most common ways public stadium costs exceed projections. This protection shifts that risk to the private operator, where it belongs.</p>
-    <p><strong>State co-ownership.</strong> The joint authority structure, in which the state takes an ownership interest alongside the city, is a reasonable framework for a multi-jurisdictional investment.</p>
-    <p><strong>The tax-recapture concept itself.</strong> Redirecting taxes generated by arena activity back into arena maintenance is a logically coherent funding mechanism. The concern is about the <em>scope</em> of the capture (expanding beyond arena operations to a full district) and the <em>absence of reciprocal protections</em> for the public.</p>
-  </div>
-
-  <!-- 6. NPV -->
-  <div class="section" id="npv">
-    <h2>6. What the City Is Leaving on the Table: A Net Present Value Analysis</h2>
-    <p>Portland owns the Moda Center. This is not a grant application&mdash;it is a landlord negotiating the terms under which a private operator uses a public building. Standard landlord economics, informed by comparable arena deals across the NBA, suggest the city is forgoing significant recoverable value.</p>
-    <p>The following analysis uses a 4.0% discount rate, which approximates the current yield on 20-year AAA municipal bonds (3.78% as of March 2026) with a modest risk premium. All figures are present values over a 20-year horizon unless otherwise noted. The annuity factor at 4.0% over 20 years is 13.59.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Revenue Stream</th><th>Annual $</th><th>20-Yr NPV (@ 4.0%)</th><th style="text-align:left">Precedent / Basis</th></tr></thead>
-        <tbody>
-          <tr><td>Rent</td><td>$4.0&ndash;5.0M</td><td>$54&ndash;68M</td><td style="text-align:left">Raleigh: $4.5&ndash;5.5M/yr; 9 of 12 recent NBA deals include rent</td></tr>
-          <tr><td>Naming rights (50/50 split)</td><td>$2.5&ndash;4.0M</td><td>$34&ndash;54M</td><td style="text-align:left">Building owner controls naming rights</td></tr>
-          <tr><td>PILOT (property tax equivalency)</td><td>$1.2M</td><td>$16M</td><td style="text-align:left">Standard in comparable cities</td></tr>
-          <tr><td>Revenue participation (4% gross)</td><td>$3.0&ndash;5.0M</td><td>$41&ndash;68M</td><td style="text-align:left">Standard lease term on publicly owned commercial property</td></tr>
-          <tr class="total-row"><td>TOTAL (annual / NPV)</td><td>$10.7&ndash;15.2M</td><td>$145&ndash;$206M</td><td style="text-align:left"></td></tr>
-        </tbody>
-      </table>
+    <div class="player-card">
+      <div class="player-name">Donnie Oliveira</div>
+      <div class="player-role">City Deputy Administrator</div>
+      <div class="player-note">Set up and organized Project Mt. Hood meetings starting October 22, 2025.</div>
     </div>
-    <p class="table-note">Discount rate: 4.0% (20-year AAA muni yield of 3.78% + risk premium). Annuity factor: 13.59 over 20 years.</p>
-    <p>Under the current deal, the city captures none of these revenue streams. Under the terms modeled above, the city would recover $145&ndash;$206 million in present value over 20 years&mdash;offsetting 47&ndash;66% of the city&rsquo;s investment through direct, contractually enforceable cash flows, before considering any appreciation rights or development revenue.</p>
-  </div>
-
-  <!-- 7. APPRECIATION -->
-  <div class="section" id="appreciation">
-    <h2>7. Franchise Value and Appreciation</h2>
-    <p>NBA franchise values have grown at extraordinary rates. The average NBA franchise value increased from $634 million in 2014 to $5.52 billion in 2026&mdash;a compound annual growth rate of approximately 20%. The new $76 billion media rights deal (2.6x the previous contract) provides a strong floor for continued appreciation.</p>
-    <p>Dundon&rsquo;s own track record illustrates the point. He purchased a majority stake in the Carolina Hurricanes in 2018 at a valuation of $425 million. On March 6, 2026, Sportico reported that Dundon sold a 12.5% minority stake at a valuation of $2.66 billion&mdash;a 6.25x return and ~30% CAGR over seven years. He received $300 million in public arena funding in Raleigh and captured 100% of the resulting appreciation. Portland is being asked to repeat this pattern at double the public investment.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Appreciation Rate</th><th>Value in Year 20</th><th>Appreciation Above Purchase</th><th>8% Public Participation Right</th></tr></thead>
-        <tbody>
-          <tr><td>6% (conservative)</td><td>$13.6B</td><td>$9.4B</td><td>$750M</td></tr>
-          <tr><td>8% (moderate)</td><td>$19.8B</td><td>$15.5B</td><td>$1.24B</td></tr>
-          <tr><td>10% (recent trend)</td><td>$28.6B</td><td>$24.3B</td><td>$1.95B</td></tr>
-        </tbody>
-      </table>
+    <div class="player-card">
+      <div class="player-name">Karl Lisle</div>
+      <div class="player-role">City Spectator Venues Program Manager</div>
+      <div class="player-note">City staffer who pushed back — suggested more balanced market comparables (Milwaukee, Sacramento). Was overruled by Barrett, the Blazers' negotiator.</div>
     </div>
-    <p>Even at the most pessimistic reasonable assumption&mdash;5% annual appreciation&mdash;the franchise goes from $4.25 billion to approximately $11.3 billion over 20 years. Walking away from a $4.25 billion asset over standard lease terms of $10&ndash;15 million per year remains irrational at any positive appreciation rate.</p>
-  </div>
-
-  <!-- 8. RALEIGH -->
-  <div class="section" id="raleigh">
-    <h2>8. The Raleigh Precedent and Comparable Deals</h2>
-    <p>Tom Dundon&rsquo;s 2023 arena deal in Raleigh for the Carolina Hurricanes provides the most directly relevant comparison, because it involves the same owner, a similar structure, and was negotiated by the same consultant&mdash;Dan Barrett of CAA Icon&mdash;who now represents the Blazers in Portland. In Raleigh, Barrett represented the public. He secured significant protections.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Term</th><th style="text-align:left">Raleigh (2023)</th><th style="text-align:left">Portland (2026)</th></tr></thead>
-        <tbody>
-          <tr><td>Public arena funding</td><td style="text-align:left">$300M</td><td style="text-align:left">$600M+</td></tr>
-          <tr><td>Negotiator for public</td><td style="text-align:left">Barrett (CAA Icon), binding authority</td><td style="text-align:left">Hirsh (Stafford Sports), advisory, non-binding</td></tr>
-          <tr><td>Annual rent to public</td><td style="text-align:left">$4.5&ndash;5.5M/yr</td><td style="text-align:left">$0</td></tr>
-          <tr><td>Ground lease payments</td><td style="text-align:left">6% of FMV</td><td style="text-align:left">None</td></tr>
-          <tr><td>PILOT payments</td><td style="text-align:left">Yes</td><td style="text-align:left">None</td></tr>
-          <tr><td>Affordable housing requirement</td><td style="text-align:left">10%</td><td style="text-align:left">None</td></tr>
-        </tbody>
-      </table>
+    <div class="player-card">
+      <div class="player-name">Elana Pirtle-Guiney</div>
+      <div class="player-role">Portland City Councilor, District 2</div>
+      <div class="player-note">Received Women's History Night suite access. Child ticket dispute (staff tried to "bypass attorney check-in"). Signed SB 1501 support letter. Received thank-you from Blazers SVP.</div>
     </div>
-    <p>Oregon is investing double what Raleigh did and receiving fewer protections than Barrett himself negotiated on the public&rsquo;s behalf in North Carolina. This gap is not explained by market differences&mdash;Portland is a larger market than Raleigh and owns its arena outright.</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>City / Team</th><th>Public %</th><th>Private %</th><th style="text-align:left">Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Golden State Warriors</td><td>0%</td><td>100%</td><td style="text-align:left">$1.4B, entirely private</td></tr>
-          <tr><td>LA Clippers</td><td>0%</td><td>100%</td><td style="text-align:left">$2.0B, entirely private</td></tr>
-          <tr><td>Seattle (Climate Pledge Arena)</td><td>0%</td><td>100%</td><td style="text-align:left">$1.15B, entirely private</td></tr>
-          <tr><td>Sacramento Kings</td><td>~48%</td><td>~52%</td><td style="text-align:left">Smaller market than Portland; active relocation threat at time</td></tr>
-          <tr><td>Milwaukee Bucks</td><td>~48%</td><td>~52%</td><td style="text-align:left">Includes community investment fund</td></tr>
-          <tr><td>Indianapolis Pacers</td><td>82%</td><td>18%</td><td style="text-align:left">Includes ongoing capex commitments</td></tr>
-          <tr><td>Charlotte Hornets</td><td>100%</td><td>0%</td><td style="text-align:left">$308M; excludes ongoing capex obligations</td></tr>
-          <tr><td>Oklahoma City Thunder</td><td>95%</td><td>5%</td><td style="text-align:left">$50M private contribution was a first for OKC</td></tr>
-          <tr><td>San Antonio Spurs</td><td>63%</td><td>37%</td><td style="text-align:left">$860M public; significant private contribution</td></tr>
-          <tr class="total-row"><td>Portland Trail Blazers</td><td>100%</td><td>0%</td><td style="text-align:left">No rent, no PILOTs, no terms; Barrett&rsquo;s own Raleigh deal excluded from comps</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="table-note">Note: The CAA Icon pitch deck obtained by KGW cited only Salt Lake City, Memphis, Charlotte, Oklahoma City, Indianapolis, and San Antonio. It omitted Golden State, LA Clippers, Seattle, Sacramento, and Raleigh. This table includes the full picture.</p>
-    <p>Portland is the only deal in the last decade that combines 100% public arena funding with zero private capital and no lease terms. Even Raleigh&mdash;also 100% publicly funded for the arena&mdash;secured rent, PILOTs, a ground lease, and affordable housing requirements. Sacramento, a smaller market that faced an <em>active</em> relocation threat, still required 52% private capital.</p>
-  </div>
-
-  <!-- 9. DISTRICT -->
-  <div class="section" id="district">
-    <h2>9. The District Tax Capture: A Scaling Concern</h2>
-    <p>The SB 1501 amendment creates a &ldquo;sports and entertainment district&rdquo; with boundaries defined by a map drawn by the Blazers&rsquo; management company. Under Section 4(1)(a), wage withholdings from every employer in the district are redirected from the General Fund to the Arena Fund.</p>
-    <p>Today this captures mostly arena operations. But the mechanism is designed to scale. As commercial development fills the district, each new business becomes an &ldquo;operating organization&rdquo; whose employee income taxes are diverted. The Legislative Fiscal Office estimates the current diversion at approximately $38 million per year. If the district develops as intended, this figure will grow substantially.</p>
-    <p>The economic logic: the public pays for the anchor asset (the renovated arena) that makes surrounding land valuable. The owner develops the land privately. The taxes generated by that private development service the public debt that created the opportunity. The owner keeps every dollar of development profit. The public captures none of the land value increase it created&mdash;and loses an expanding share of General Fund revenue for the life of the deal.</p>
-    <p>An important caveat from Sacramento: Dan Barrett also negotiated a similar development deal on behalf of the city of Sacramento. District revenues there have twice failed to meet bond obligations, compelling the city to access its general fund. District-anchored development is not a guaranteed revenue engine.</p>
-  </div>
-
-  <!-- 10. PAYOFF MATRIX -->
-  <div class="section" id="payoff">
-    <h2>10. Dundon&rsquo;s Payoff Matrix: How Much Leverage Does Portland Actually Have?</h2>
-    <p>Standard negotiation theory holds that the surplus from any deal should be divided based on each side&rsquo;s alternatives&mdash;not based on who asks more loudly. If Dundon&rsquo;s alternatives are poor, the public can claim a much larger share of the surplus than the current deal reflects.</p>
-
-    <h3>What the renovation is worth to Dundon:</h3>
-    <p>The renovation directly increases Dundon&rsquo;s franchise value in two ways. First, it adds an estimated $30&ndash;50 million per year in new revenue from premium seating, modernized suites, enhanced naming rights, and expanded event hosting. At the NBA&rsquo;s current median revenue multiple of roughly 13&ndash;15x, this revenue uplift translates to $400&ndash;750 million in additional franchise value. Second, a renovated building removes the risk of an NBA mandate to relocate&mdash;a risk that would cap the franchise&rsquo;s value and complicate any future sale.</p>
-
-    <h3>What Dundon&rsquo;s alternatives actually are:</h3>
-    <p><strong>Self-fund the renovation:</strong> Dundon borrows $600M at ~5.5% and pays ~$50M/year in debt service. Plus he owes Portland ~$15M/year in market rent (Portland owns the building regardless). Total cost: ~$65M/year. The Glickman Contract costs him $64M/year&mdash;$1M less. He saves money by taking the public deal on reasonable terms rather than refusing it.</p>
-    <p><strong>Relocate:</strong> Requires 23 of 30 NBA governors to approve. Las Vegas and Seattle are now in the expansion process&mdash;the two viable destination cities are gone. Last relocation attempt was rejected 22&ndash;8. Dundon would forfeit relocation penalties built into the SB 1501 lease, pay hundreds of millions in league fees, and give up a $4.25 billion asset in a market where Portland currently has 100% retention of the economic relationship.</p>
-    <p><strong>Walk away from the purchase:</strong> The purchase agreement was signed in September 2025 and closed March 31, 2026. There is nothing to walk away from.</p>
-    <p>The payoff matrix is unambiguous: the city has all the leverage. Every element of the Glickman Contract costs Dundon less than his self-funding alternative, every departure scenario costs him more than staying, and his franchise appreciates at 10&ndash;20% per year regardless.</p>
-  </div>
-
-  <!-- 11. DUNDON PROFILE -->
-  <div class="section" id="dundon-profile">
-    <h2>11. Understanding the Man Across the Table</h2>
-    <p>On March 25, 2026, ProPublica and OPB published internal emails showing that Dundon, as CEO of Santander Consumer USA, personally ordered the company to stop requiring proof of income on car loans in 2013. His chief risk and compliance officer flagged potential federal law violations in writing. Dundon proceeded.</p>
-    <p>Oregon&rsquo;s attorney general characterized the resulting lending practices as &ldquo;predatory and harmful.&rdquo; Thirty-three states settled with Santander for $550 million. Dundon left with a $700 million separation package, which he used to purchase the NHL&rsquo;s Carolina Hurricanes and now the Trail Blazers.</p>
-    <p>Oregon AG Dan Rayfield is separately investigating Exeter Finance&mdash;another subprime auto lender where Dundon is chairman and investor, staffed with former Santander executives.</p>
-    <p>This history is relevant not because it determines the terms of the deal, but because it characterizes how Dundon approaches negotiation. His response on his first day as owner when asked why he won&rsquo;t commit private capital like other owners did: <strong>&ldquo;In Portland?&rdquo;</strong> He believes Portland will accept terms no other city would. The Glickman Contract is the answer.</p>
-    <p>A counterargument frequently raised is that Dundon paid a premium for the Blazers specifically because he expected public arena funding&mdash;that the $4.25 billion price already priced in the public subsidy, and demanding terms now is &ldquo;changing the deal.&rdquo; Three points undermine this argument. First, the premium was his risk, not the city&rsquo;s obligation. Sophisticated investors price political risk into acquisitions constantly. Second, the purchase is already closed&mdash;it is a sunk cost and does not affect future incentives. What keeps Dundon at the table is the enormous forward-looking value of the asset. Third, his own Hurricanes transaction shows the pattern: pay a price that assumes public support, receive the support, capture 100% of the resulting appreciation, then argue the next city owes the same. Portland should decline to complete the pattern.</p>
-  </div>
-
-  <!-- 12. RECOMMENDATIONS -->
-  <div class="section" id="recommendations">
-    <h2>12. Recommendations for the City&rsquo;s Negotiating Position</h2>
-    <p>These are listed in order of economic rationality:</p>
-
-    <h3>First-best: The city commits the minimum and extracts the maximum.</h3>
-    <p>The principle that should govern the city&rsquo;s approach: <strong>Dundon should receive zero net public subsidy.</strong> Every dollar of public money that flows to his benefit should come back through lease terms, concessions, or direct cash payments. The city should commit the minimum amount DAS will accept as &ldquo;binding and substantial&rdquo;&mdash;likely $75&ndash;125 million&mdash;and attach binding conditions: rent, PILOTs, naming rights participation, revenue sharing, affordable housing, project labor agreements. Every concession can be structured as a cash equivalent: &ldquo;provide this concession, or pay the city the same amount in cash.&rdquo; The target is 100% recovery of the city&rsquo;s contribution.</p>
-
-    <h3>Hierarchy of recommended conditions:</h3>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Priority</th><th style="text-align:left">Condition</th><th style="text-align:left">Rationale</th></tr></thead>
-        <tbody>
-          <tr><td>1 (Essential)</td><td style="text-align:left">Require fair market rent of $10&ndash;15M/year</td><td style="text-align:left">Portland owns the building. Standard landlord economics.</td></tr>
-          <tr><td>2 (Essential)</td><td style="text-align:left">Require competitive bidding before committing city funds</td><td style="text-align:left">One bid from OVG/AEG/ASM Global establishes the market price and negotiating floor.</td></tr>
-          <tr><td>3 (Essential)</td><td style="text-align:left">Require PILOT payments of $1.2M/year</td><td style="text-align:left">Standard in comparable cities; 9 of 12 recent deals include PILOTs.</td></tr>
-          <tr><td>4 (Important)</td><td style="text-align:left">Capture 50&ndash;65% of naming rights revenue</td><td style="text-align:left">City owns the building. City controls naming rights. Landlord economics.</td></tr>
-          <tr><td>5 (Important)</td><td style="text-align:left">Set city terms publicly before committing city funds</td><td style="text-align:left">Pre-commitment is a negotiating strategy, not a threat. It creates certainty.</td></tr>
-          <tr><td>6 (Important)</td><td style="text-align:left">Require independent cost verification before any vote</td><td style="text-align:left">The mayor has called $600M a placeholder. The public should know the real number before committing $871M.</td></tr>
-          <tr><td>7 (Aspirational)</td><td style="text-align:left">Negotiate franchise appreciation right (triggered only on sale)</td><td style="text-align:left">Novel but logically sound. Lower priority due to lack of precedent.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>Worst outcome: The city contributes $400 million with no lease terms.</h3>
-    <p>This is the current trajectory. Under the deal as structured, the city commits $400 million in public money and receives no rent, no naming rights revenue, no PILOT payments, and no revenue participation. The city&rsquo;s $400 million buys nothing except the continued presence of a team whose owner would keep it in Portland anyway because leaving is more expensive than staying. This transfers roughly $145&ndash;206 million in present value from Portland&rsquo;s residents to the ownership group.</p>
-    <p>The council is not obligated to accept this outcome. No vote has been taken on the city&rsquo;s contribution. Every dollar the city contributes and every lease term the city negotiates is within the council&rsquo;s authority to decide.</p>
-  </div>
-
-  <!-- 13. LEVERAGE -->
-  <div class="section" id="leverage">
-    <h2>13. The City&rsquo;s Leverage Under SB 1501</h2>
-    <p>A common concern among council members is that demanding lease terms could jeopardize the state&rsquo;s $365 million in bond funding. This concern is understandable but misplaced.</p>
-
-    <h3>How the money actually flows:</h3>
-    <p>SB 1501 creates a mechanism for the state to issue up to $365 million in bonds, repaid by diverting income taxes from Rose Quarter employers. Section 5(5) states that no bonds may be issued unless DAS determines that Portland and Multnomah County have made &ldquo;binding and substantial commitments to finance construction, renovation, maintenance and deferred maintenance of the Moda Center.&rdquo; The key words are &ldquo;binding and substantial.&rdquo; The bill does not define &ldquo;substantial.&rdquo; It does not specify a dollar amount. And critically, it says nothing about the commitment being unconditional.</p>
-    <p>A council vote to commit $120 million with lease terms attached is exactly as &ldquo;binding and substantial&rdquo; as a $120 million commitment without them. DAS has no basis under the statute to reject a commitment because it includes standard commercial lease provisions. Attaching conditions makes the commitment smarter. It does not make it less substantial.</p>
-
-    <h3>Co-ownership dilution:</h3>
-    <p>Section 5(2)(a) requires the state to take &ldquo;an ownership interest in the Moda Center that the department determines is greater than a nominal interest.&rdquo; Portland currently owns the Moda Center outright. After this deal, it will not. The city is not receiving $365 million in free improvements to its building. It is giving up partial ownership in exchange. This co-ownership dilution, combined with the revenue flow analysis above, means the city&rsquo;s contribution only makes financial sense if lease terms ensure Portland captures a share of the value the renovated building generates.</p>
-
-    <h3>The negotiator gap&mdash;and what public records now reveal about its depth.</h3>
-    <p>The city has engaged Stafford Sports, LLC as its financial advisor. Public records obtained on March 31, 2026 (<a href="https://drive.google.com/file/d/1zz-UNHUPtnR8YoaOxCD4SCbj9Q8C7fnb/view">Contract No. 30007849</a>) revealed several significant features of this engagement, and subsequent public records requests have deepened those concerns materially.</p>
-    <p><strong>The conflict of interest.</strong> Stafford Sports&rsquo; own website lists prior work on &ldquo;Moda Center (Trail Blazers).&rdquo; The city hired the Blazers&rsquo; former consultant to advise Portland in a negotiation against the Blazers about the same building. No conflict-of-interest disclosure or waiver appears in any released document.</p>
-    <p><strong>The attorney-privilege shield.</strong> The contract is structured as a &ldquo;City Attorney Consultant Contract,&rdquo; designating all work product as attorney work product. Every piece of analysis Stafford has produced&mdash;financial models, deal memos, negotiating recommendations&mdash;is shielded from public records requests. The public is paying for this advice and cannot see any of it.</p>
-    <p><strong>The task order gap.</strong> The contract was originally scoped in June 2021 for a single task: the bridge lease extension, at a task order value of $15,750 against the contract&rsquo;s $250,000 budget. Part 6 of the Stafford records (670 pages of invoices and time sheets delivered April 2026) documents Carl and Andrew Hirsh billing for work on SB 1501, the Charlotte/Raleigh trip, joint meetings with Blazers staff, and reviewing the bill&rsquo;s draft during the legislative vote&mdash;hundreds of thousands of dollars of work. A public records request for additional task orders (PRR C454414) was answered in April 2026 with: <strong>Closed&mdash;No Applicable Records Available.</strong> The city&rsquo;s official position is that no task order beyond the original $15,750 bridge lease task order exists.</p>
-    <div class="callout red">
-      <strong>This creates an unresolved procurement question:</strong> Either the expanded scope was performed with no formal task order amendment&mdash;a violation of standard procurement practice for a contract of this nature&mdash;or a task order exists that the city is not acknowledging. Neither answer is consistent with the standard of independent, conflict-free advisory work the city represents Stafford as providing. Before the council votes on any commitment, it should demand a complete accounting of Stafford&rsquo;s scope, authorization, and work product.
-    </div>
-    <p><strong>Additional billing irregularity.</strong> Carl Hirsh flew first class on the December 2025 Charlotte/Raleigh trip and billed the city for an economy ticket. This specific discrepancy was documented in Part 6 of the Stafford time sheets.</p>
-    <p><strong>Redacted scope and rate.</strong> Both the main contract&rsquo;s scope section and Exhibit A&rsquo;s scope section are fully redacted. The hourly rate is redacted. The council approved an $871M financial commitment with its financial advisor&rsquo;s scope of work invisible to the public.</p>
-
-    <h3>The competitive lease alternative:</h3>
-    <p>Portland can issue a request for proposals for a master lease on the Moda Center. Arena operators (OVG, AEG, ASM Global) would bid competitively. Dundon can bid too. The competitive process forces bidders to reveal their true valuations. The city does not have to guess what the building is worth. If Dundon&rsquo;s bid reflects the true value of the building, he wins. If it doesn&rsquo;t, someone else wins and the city collects regardless. Seattle proved this works at $1.15 billion in private renovation funding.</p>
-    <p>This does not require rejecting SB 1501. The state money is real, and the city should pursue it. But the competitive bid is the city&rsquo;s permanent fallback&mdash;and its existence is what makes the SB 1501 negotiation work in Portland&rsquo;s favor. The city&rsquo;s credible message to any counterpart should be: &ldquo;We prefer the SB 1501 path with these binding conditions. If those conditions cannot be met, we issue an RFP and let the market work.&rdquo;</p>
-
-    <h3>The three-way dependency:</h3>
-    <p>SB 1501&rsquo;s bond repayment mechanism is funded by diverted income taxes from Rose Quarter employers. The Blazers are those employers. No Blazers means no tax revenue, no bond repayment, and no bonds issued. The entire legal architecture presupposes the Blazers as the tenant. This means no party can walk away without the structure collapsing&mdash;and collapse is worse for Dundon than for anyone else, since he is the one holding a $4.25 billion asset in a building that would then need renovation at his sole expense.</p>
-    <p>This three-way dependency is precisely why all parties should welcome strong lease terms. Nobody is going to torpedo a deal worth hundreds of millions over standard commercial provisions. The interdependence protects the deal. What it does not protect is the status quo of no terms&mdash;because the city is the one party that can condition its participation, and without the city&rsquo;s participation, nothing else works.</p>
-  </div>
-
-  <!-- 14. ROSE QUARTER -->
-  <div class="section" id="rosequarter">
-    <h2>14. District 2 and the Rose Quarter</h2>
-    <p>The Rose Quarter sits entirely within City Council District 2. The councilors representing District 2&mdash;Pirtle-Guiney, Ryan, Kanal, and Dunphy&mdash;have the most direct constituent interest in both the renovation&rsquo;s success and the terms attached to it. They also have the most political exposure: the Blazers&rsquo; lobbyists specifically targeted District 2 councilors with suite ticket access and private briefings (documented in PRR C454698), and at least some District 2 councilors were among those who received career-threat messages from Blazers lobbyists (PRR C454690).</p>
-    <p>The council members representing District 2 are not obligated to accept the Blazers&rsquo; framing. Their constituents in the Rose Quarter and Lower Albina neighborhoods have a direct interest in the community investment fund component of the Glickman Contract ($3.5M/year for neighborhood development). They also have a direct interest in the affordable housing requirement, the project labor agreement, and the MWESB targets. The renovation will employ construction workers who live in these neighborhoods. The terms of the deal determine how much of that value flows back into the community.</p>
-  </div>
-
-  <!-- APPENDIX -->
-  <div class="section" id="appendix">
-    <h2>Appendix: Cash-Equivalent Flexibility</h2>
-    <p>Each term in the Glickman Contract can be structured as a cash equivalent: &ldquo;provide this concession, or pay the city the same amount in cash.&rdquo; This framing transforms every lease term into a measurable financial commitment, makes trades between concessions explicit and auditable, and prevents the common negotiating tactic of conceding one term while obscuring its value against gains elsewhere.</p>
-    <p>For example: if the city&rsquo;s base rent demand is $10 million per year and the operator offers instead to fund $100 million in upfront capital improvements, the city can evaluate that trade explicitly against the 20-year NPV of the rent stream ($136 million at 4%). The cash-equivalent structure means there are no hidden subsidies and no ambiguous in-kind contributions. Every element of the deal has a dollar value. This is how sophisticated private-sector negotiations work. There is no reason the public side should negotiate with less rigor.</p>
-  </div>
-
-  <!-- 15. PLAYBOOK -->
-  <div class="section" id="playbook">
-    <h2>15. The Playbook: How Markets Solve This Problem</h2>
-    <p>Everything in this report reduces to a simple insight: there is one right way to structure this deal, and it requires no guesswork, no political courage, and no faith in the other side&rsquo;s goodwill. The market does the work.</p>
-
-    <h3>Step 1: Let competitive bidding reveal the true price.</h3>
-    <p>Portland owns the Moda Center. It should lease the building the way any rational owner leases a valuable asset: through competitive bidding. Issue a request for proposals. Invite arena operators (OVG, AEG, ASM Global, and others) to bid on a master lease with the right to sublease to the Blazers. Dundon can bid too. The competitive process forces bidders to reveal their true valuations. The city does not have to guess what the building is worth. If structured as a sealed-bid auction with a second-price payment rule, bidders are incentivized to bid their true valuations. The market tells the city the price.</p>
-
-    <h3>Step 2: Name the Blazers discount explicitly.</h3>
-    <p>Portland values having the Blazers. That value is real. But it should not be hidden. The city should put a number on it&mdash;an explicit, bounded, publicly stated &ldquo;positive externality discount&rdquo; that reflects what keeping the Blazers in Portland is worth above and beyond market rent. This is a well-established mechanism known as a bidder preference auction, used routinely in government procurement to give domestic manufacturers a defined preference over foreign bidders. The public discount is explicit, bounded, and justified. It is not a blank check.</p>
-
-    <h3>Step 3: Structure every concession as a cash equivalent.</h3>
-    <p>For every term the city might concede, calculate its present value and state it explicitly. Waiving rent for one year costs the city $10&ndash;15 million in present value. Accepting a below-market naming rights split costs the city the difference between market rate and the agreed rate, discounted over 20 years. This is how sophisticated private-sector negotiations work. There is no reason the public side should negotiate with less flexibility.</p>
-
-    <h3>Step 4: Recognize the two separate negotiations.</h3>
-    <p>Portland is not in one negotiation. It is in two. The first is with potential lessees&mdash;solved by competitive bidding. The second is with the state, through the joint authority created by SB 1501. For Portland to come out net positive from the SB 1501 path, Portland must extract more value from the joint authority than it puts in. The competitive lease path provides the benchmark for that demonstration. Any SB 1501 arrangement that produces less value for Portland than the competitive lease alternative is, by definition, a bad deal for Portland&mdash;regardless of how much state money is involved.</p>
-  </div>
-
-  <!-- 16. CITIZENS' ASSEMBLY -->
-  <div class="section" id="citizens-assembly">
-    <h2>16. Bridging the Gap: A Citizens&rsquo; Assembly on Lease Terms</h2>
-    <p>The financial analysis in this report is clear. The comparable deals are clear. The payoff matrix is clear. But none of that matters if council members face overwhelming political pressure from constituents who have not seen the numbers and believe the Blazers will leave if the city asks for rent. As the real-time public discourse demonstrated, the majority of engaged Portlanders do not know the city owns the building, do not know Dundon contributes $0, and are arguing based on relocation fears that collapse on contact with the data. That information gap is the single biggest obstacle to a fair deal.</p>
-    <p>A Citizens&rsquo; Assembly can close it. The proposal: convene a Citizens&rsquo; Assembly specifically to evaluate the <em>terms</em> of the Moda Center lease. Not whether the deal should happen&mdash;the deal is happening. Not whether the Blazers should stay&mdash;they are staying. The panel&rsquo;s sole question is: given that the city is contributing public money, what lease terms should be attached?</p>
-    <p>This solves three problems simultaneously. First, it gives council members political cover. The demand for fair terms becomes a citizens&rsquo; recommendation, not an individual politician&rsquo;s position. Second, it creates preemptive negotiating leverage. The moment the Blazers&rsquo; side learns that an informed panel is going to scrutinize the terms publicly, they rationally improve their offer before the finding is published. Third, it transforms the information environment. Twenty-four people who start the process with the same misconceptions as the general public will&mdash;after two weeks with the payoff matrix, the Raleigh comparison, and testimony from both sides&mdash;arrive at conclusions grounded in the actual data.</p>
-    <p>The panel can be selected using publicly verifiable randomization. The process is transparent, auditable, and uncorruptible.</p>
-    <div class="callout">
-      If the Blazers oppose an informed panel examining their lease terms, that tells the public everything it needs to know about whether those terms can survive scrutiny.
+    <div class="player-card">
+      <div class="player-name">Tiffany Koyama Lane</div>
+      <div class="player-role">Portland City Councilor, District 1</div>
+      <div class="player-note">Received AAPI Night suite tickets (pre-inauguration). Confirmed in texts that lobbyists threatened councilors' careers. Only councilor who did not sign February 26 SB 1501 support letter.</div>
     </div>
   </div>
-
-  <!-- 17. CONCLUSION -->
-  <div class="section" id="conclusion">
-    <h2>17. Conclusion</h2>
-    <p>The Trail Blazers should stay in Portland. The Moda Center should be renovated. These conclusions are not in question.</p>
-    <p>The question is whether the city uses its ownership&mdash;the most valuable asset at the table&mdash;to secure a fair return, or whether it hands over a commitment with no return. The tools are simple: competitive bidding to reveal the true market price, an explicit discount for the civic value of the Blazers, and a clear-eyed assessment of whether the SB 1501 path is better for Portland than the market alternative. If the answer is yes, the city enters the joint authority with binding lease conditions attached. If the answer is no, the city auctions the lease and lets the market work.</p>
-    <p>What the city cannot afford to do is contribute without conditions, without competitive price discovery, and without an explicit accounting of the public value at stake. That is the worst outcome for residents, and it is the outcome currently on the table.</p>
-    <p>The April&ndash;May 2026 public records have made this clearer, not less clear. The city&rsquo;s financial advisor had no formal authorization for most of its work and has an unresolved conflict of interest. The city&rsquo;s designated PCEF funding source was already fully committed to other programs. The mayor described his own financial commitment differently to different audiences on the same day. The Blazers&rsquo; lobbying operation ran a systematic gift-access campaign followed by private threats to councilors&rsquo; careers. None of this is an argument against keeping the Blazers. All of it is an argument for the city to use the leverage it has.</p>
-    <p>The council has the authority and the leverage to demand better. Whether it uses that leverage is the only remaining question.</p>
-
-    <hr class="divider">
-    <p class="table-note" style="font-style:italic;">Clay Shentrup is a Portland-based policy analyst with expertise in welfare economics, tax policy, and institutional design. He is co-founder of the Center for Election Science and co-founder of Election by Jury.</p>
-    <p class="table-note">Contact: <a href="https://wonk.blog">wonk.blog</a> &nbsp;|&nbsp; <a href="https://savetheblazers.com">savetheblazers.com</a> &nbsp;|&nbsp; <a href="mailto:cshentrup@gmail.com">cshentrup@gmail.com</a></p>
-  </div>
-
-  <div style="height:60px;"></div>
 </div>
 
-<footer class="footer">
-  <p>The Moda Center Deal: A Financial Framework for Portland&rsquo;s Negotiating Position</p>
-  <p>Clay Shentrup &mdash; Original: March 2026 &mdash; Updated: May 2026 &mdash; <a href="https://wonk.blog">wonk.blog</a></p>
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 1: GIFTS ═══ -->
+<div class="chapter" id="gifts">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 1 — Potential Ethics Violations</div>
+    <h2>The Gift Access Campaign</h2>
+  </div>
+
+  <p>Beginning before the new Portland City Council was sworn in, Blazers lobbyists Dan Jarman (Crosswater Strategies) and Ryann Gleason (CFM Advocates) ran a systematic sequence of gifts and access events targeting councilors who would vote on $871 million in public funds. The campaign is documented in PRRs C454690, C454698, and C454692.</p>
+
+  <h3>The pre-inauguration timing exploit</h3>
+  <p>On November 26, 2024, Jarman obtained OGEC Advice No. 24-537I — a formal letter from the Oregon Government Ethics Commission confirming that newly elected councilors who had not yet been inaugurated are not "public officials" under ORS Chapter 244. This meant the $50/year gift limit did not apply to them before they took office.</p>
+  <p>The Blazers then timed their introductory game event to January 11, 2025 — nine days after inauguration — and extended suite tickets to Councilors Koyama Lane and Kanal. The pre-clearance letter was obtained specifically to establish cover for this event. The sequence — obtain ethics opinion, time event to exploit the window, extend gifts — is documented and deliberate.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">OGEC Advice No. 24-537I — November 26, 2024 (PRR C454698)</div>
+    <div class="doc-text">Confirmed pre-inauguration electeds are not "public officials" under ORS Ch. 244, meaning gift limits do not apply before swearing-in.</div>
+    <div class="doc-source">Obtained by Dan Jarman, Crosswater Strategies, on behalf of Trail Blazers.</div>
+  </div>
+
+  <h3>Post-inauguration gifts — where ORS Chapter 244 applies</h3>
+  <p>After the councilors were sworn in, the $50/year gift limit applied. The following events occurred after inauguration:</p>
+
+  <p><strong>Women's History Night (March 16, 2025).</strong> Gleason and Jarman sent invitations to Councilors Pirtle-Guiney, Avalos, and Morillo offering complimentary suite access at Moda Center. The same invitation went to Oregon state legislators and BOLI Commissioner Christina Stephenson. Suite access — including tickets, food, beverage, and parking — has a market value significantly exceeding $50 per recipient. The question for OGEC is whether required disclosures were filed under ORS 244.060.</p>
+
+  <p><strong>The child ticket dispute (March 2025).</strong> When Pirtle-Guiney's office asked to bring her daughter as a complimentary guest to Women's History Night, the City Attorney's office ruled that city administrative rules are stricter than state law.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">City Attorney ruling — March 2025 (PRR C454698)</div>
+    <div class="doc-text">"While state law allows acceptance of the gift of entertainment for a relative, city administrative rules do not."</div>
+    <div class="doc-source">Pirtle-Guiney's own staff then asked to "bypass the attorney check-in." She ultimately paid $120 for her daughter's ticket. The Blazers had cited OGEC Advice No. 24-537I to push back against the ruling.</div>
+  </div>
+
+  <p><strong>July 2025 tour and lunch.</strong> Jarman invited Councilors Morillo, Novick, and Koyama Lane — in a single coordinated email — to lunch at Moda Center with a tour of summer construction, explicitly to brief them on the ECOnorthwest economic impact study. Councilor Morillo's aide confirmed attendance and asked whether a staffer could be brought along. Councilor Novick's aide replied: "Councilor Novick would love to attend!" The invitation was CC'd to Natalie King and Dewayne Hankins. A private lunch and tour at a venue whose management is lobbying for $871 million in public funds has value exceeding $50 per person.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Jarman to Morillo, Novick, Koyama Lane — July 9, 2025 (PRR C454692)</div>
+    <div class="doc-text">"I'm reaching out on behalf of the Portland Trail Blazers to invite you to lunch at Moda Center, for a tour of summer construction underway and to answer questions you might have about the City's partnership with the Blazers... ECOnorthwest completed a new economic impact study for the Trail Blazers and the Rose Quarter, and we can brief you on that new data as well."</div>
+    <div class="doc-source">CC'd: Charles Boyle and Natalie King (Trail Blazers); Alex Browne (District 3 scheduler).</div>
+  </div>
+
+  <p><strong>Additional access cultivation — Novick.</strong> On July 22, 2025, Charles Boyle (Blazers Director of Public Affairs) separately invited Novick and his dog "Barley" to a dog walk charity event at the Rose Quarter. Novick declined (already booked). The same email thread confirmed the earlier tour/lunch was already scheduled. This was a secondary access touch — a casual, low-stakes event designed to build personal rapport alongside the formal briefing.</p>
+
+  <p><strong>The thank-you loop closes (February 2026).</strong> After Pirtle-Guiney signed a letter of support for SB 1501, Blazers SVP Natalie King emailed her office specifically to thank her for the support and request a follow-up meeting. The access pipeline ran directly from gift events to a favorable political outcome.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Outstanding Ethics Question</div>
+    No OGEC disclosure filings for any of the post-inauguration gift events (Women's History Night March 2025, July 2025 tour/lunch) have appeared in any public records response. If disclosures were filed, they have not been produced; if they were not filed, the question is whether ORS 244.060 was violated.
+  </div>
+
+  <p class="legal-note">Relevant law: ORS 244.060 (public official gift limits and disclosure); ORS 244.040 (prohibited gifts); Portland City Code Title 2, Chapter 2.10 (City Ethics Code — stricter gift limits than state law).</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 2: THREATS ═══ -->
+<div class="chapter" id="threats">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 2 — Lobbying Conduct</div>
+    <h2>Career Threats to Elected Officials</h2>
+  </div>
+
+  <p>Between February and March 2026, Blazers lobbyists told at least four Portland city council members that their political careers would suffer if the team left Portland. The threats were delivered in private — never in public testimony where they could be denied or challenged on the record.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Text messages — Councilor Tiffany Koyama Lane (PRR C454690)</div>
+    <div class="doc-text">"Lobbyists for the Portland Trail Blazers have made it clear that elected officials will be blamed if the team leaves Portland."</div>
+    <div class="doc-source">Koyama Lane was the only councilor who did not sign the February 26, 2026 letter endorsing SB 1501. OPB reported March 12, 2026 that at least four councilors received similar messages.</div>
+  </div>
+
+  <p>Neither the Trail Blazers nor their lobbyists denied the accounts when OPB published them on March 12, 2026. The threats are consistent with the broader pattern: the same lobbyists running the suite ticket access campaign (building goodwill) were also delivering private career warnings (applying pressure). Access cultivation and pressure tactics operated in parallel, from the same team, toward the same vote.</p>
+
+  <div class="connection-box">
+    <div class="conn-label">Connection</div>
+    Jarman and Gleason — who extended suite tickets, tours, and lunches — are the same lobbyists who delivered career threats. The gifts preceded the threats by months. This is the structure of a coordinated influence operation: access and goodwill first, leverage later.
+  </div>
+
+  <p class="legal-note">Relevant consideration: Oregon's lobbying statutes (ORS Chapter 171) prohibit threatening conduct toward legislators. Whether these communications constitute actionable threats under state law is a question for the AG's office. City of Portland lobbyist registration and conduct rules may also apply.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 3: STAFFORD ═══ -->
+<div class="chapter" id="stafford">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 3 — Procurement Irregularity / Conflict of Interest</div>
+    <h2>The Stafford Sports Contract</h2>
+  </div>
+
+  <p>The city's financial advisor on the Moda Center deal is Stafford Sports, LLC, engaged under Contract No. 30007849. Public records requests C449379 and C454414 have produced a record with four distinct irregularities.</p>
+
+  <h3>1. Work performed with no authorizing task order</h3>
+  <p>The contract's only formal task order — Task Order 1 — was valued at $15,750 for the 2021 bridge lease extension. That is the only scope of work with a formal authorization on record.</p>
+  <p>Part 6 of the Stafford time sheets (670 pages, delivered April 24, 2026, PRR C449379) documents Carl and Andrew Hirsh billing for: drafting and reviewing SB 1501 during the 2026 legislative session; attending joint planning meetings with Blazers executives; the December 2025 Charlotte/Raleigh trip; and reviewing the SB 1501 bill draft during the legislative vote. None of this falls within the scope of Task Order 1.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">PRR C454414 — Request for additional task orders, April 2026</div>
+    <div class="doc-text">Status: Closed — No Applicable Records Available.</div>
+    <div class="doc-source">The city's official position is that no task order beyond TO1 ($15,750) exists — despite hundreds of thousands of dollars in documented billings for SB 1501 work.</div>
+  </div>
+
+  <p>City systems analyst Bryce Henry, in his April 29, 2026 PRR response, added an unprompted observation: "it did seem like there were invoices being submitted fairly regularly for this agreement," and suggested periodically submitting new requests for them. This is a city staff member informally acknowledging regular billing with no traceable authorization.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Procurement Question</div>
+    Under ORS Chapter 279 (Oregon Public Contracting Code), public contracts and scope amendments must follow prescribed procedures. Work performed outside authorized scope without a formal amendment may constitute a violation. Either a task order exists and was not produced in response to PRR C454414, or hundreds of thousands of dollars of work was performed with no authorizing document.
+  </div>
+
+  <h3>2. Undisclosed conflict of interest</h3>
+  <p>Stafford Sports' own website lists prior business planning work for "Moda Center (Trail Blazers)." The city hired the Blazers' former consultant — without competitive bidding — to advise Portland in a negotiation against the Blazers about the same building. No conflict-of-interest disclosure or waiver appears in any released document. The contract's scope section is fully redacted, preventing any verification of the nature or extent of the prior relationship.</p>
+
+  <h3>3. Privilege shield over financial analysis</h3>
+  <p>The engagement is structured as a "City Attorney Consultant Contract," designating all Stafford work product as attorney work product. Every financial model, deal memo, and negotiating recommendation is shielded from public records requests. Portland is committing $871 million based on analysis its residents cannot see. This structure was a deliberate choice — standard consulting contracts do not carry this shield.</p>
+
+  <h3>4. Billing irregularity</h3>
+  <p>Carl Hirsh flew first class on the December 2025 Charlotte/Raleigh trip — a city-paid trip — and billed the city for an economy ticket. This specific discrepancy is documented in the Part 6 time sheets.</p>
+
+  <p class="legal-note">Relevant law: ORS Chapter 279 (Public Contracting Code); City of Portland Procurement Rules; Portland City Code Title 5 (Financial Administration).</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 4: NC TRIP ═══ -->
+<div class="chapter" id="trip">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 4 — Official Record vs. Documentary Record</div>
+    <h2>The Charlotte/Raleigh Trip</h2>
+  </div>
+
+  <p>In December 2025, city staff flew to Charlotte and Raleigh on a city-paid trip accompanied by Blazers executives and Stafford advisor Carl Hirsh. They visited exclusively 100% publicly funded arenas. They did not visit Milwaukee, Sacramento, or Seattle — markets where private capital contributed to renovations.</p>
+
+  <p>The city's official response to PRR C454407 (April 2026) described the trip as city-organized and stated that Blazers reps were "invited to participate if interested, at their own cost."</p>
+
+  <p>The actual trip itinerary (NC_TRIP_ITINERARY_12-2025_FINAL.pdf) directly contradicts this.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">NC_TRIP_ITINERARY_12-2025_FINAL.pdf — Stated business purpose</div>
+    <div class="doc-text">"Develop relationships with private operators and public owners of facilities, learn about experiences of Raleigh's arena owners working with Tom Dundon's ownership group on lease extension negotiations… strengthening key relationships prior to closing of the Blazers pending sale."</div>
+    <div class="doc-source">Blazers staff — Joe Loomis, Alli Stangel Tassin, Sarah Mastroieni, Charles Boyle, and Dan Barrett — are listed as "Confirmed" participants in the original itinerary. They were not optional add-ons invited after the fact.</div>
+  </div>
+
+  <div class="flag-box">
+    <div class="flag-label">Document Contradiction</div>
+    The city's official PRR response says Blazers representatives participated voluntarily at their own cost. The original itinerary shows them as confirmed participants from the start. The trip's stated purpose — "strengthening key relationships prior to closing of the Blazers pending sale" — is not a description of an independent city learning trip. It is a description of joint relationship-building with the incoming ownership group, on the public dime.
+  </div>
+
+  <p>The itinerary's selective site selection — visiting only 100% publicly funded arenas, never privately funded ones — also bears on the market comparables issue. The same Blazers-favorable sample that appeared in the legislative pitch deck was baked into the trip's design from the start.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 5: MT. HOOD ═══ -->
+<div class="chapter" id="mthood">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 5 — Private Citizen in Government Planning Meetings</div>
+    <h2>Project Mt. Hood</h2>
+  </div>
+
+  <p>Beginning November 3, 2025, city officials held weekly Monday planning meetings under the codename "Project Mt. Hood." OregonLive first reported these meetings in March 2026. PRR C454415 produced the original calendar invite, which shows the full attendee list.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">PRR C454415 — Project Mt. Hood calendar invite, created October 22, 2025</div>
+    <div class="doc-text">Required attendees: Donnie Oliveira (city deputy administrator), Jonas Biery (city CFO), Raihana Ansary (deputy chief of staff), Karl Lisle (Spectator Venues), Dan Jarman (Blazers lobbyist, Crosswater Strategies), Natalie King (Blazers SVP), Dewayne Hankins (Blazers president), Dan Barrett (Blazers negotiator, CAA Icon), Joth Ricci (private citizen, jothricci@gmail.com). Also included: Vince Porter (Governor's office), Julia Brim-Edwards (Multnomah County). Optional: Aisling Coghlan, Michael Jordan.</div>
+    <div class="doc-source">The invite was forwarded to city officials by Ricci himself.</div>
+  </div>
+
+  <p>Joth Ricci is a private citizen — former Dutch Bros CEO and founder of Rip City Forever, the pro-deal advocacy group. He has no city appointment, no disclosed contract, and no formal public role. He is listed not as a guest or observer but as a required attendee, on equal footing with the city CFO and deputy administrator. He is also the person who forwarded the calendar invite to city officials.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Conduct Question</div>
+    What authority did a private citizen have to be a required participant in confidential government planning meetings about an $871 million public commitment? What information was shared with him, and under what disclosure obligations did he operate? The meetings ran every Monday from November 3, 2025 through at least February 2026 — the same period during which the deal's terms were being developed.
+  </div>
+
+  <div class="connection-box">
+    <div class="conn-label">Connection</div>
+    Ricci's Rip City Forever organization was simultaneously running a public advocacy campaign for the deal while Ricci himself participated in confidential government planning meetings. The boundary between private advocacy and government decision-making was not maintained.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 6: PITCH DECK ═══ -->
+<div class="chapter" id="pitchdeck">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 6 — Information Manipulation</div>
+    <h2>The Blazers Wrote the City's Legislative Pitch</h2>
+  </div>
+
+  <p>In January 2026, Dan Barrett of CAA Icon — the Blazers' lead negotiator — prepared the financial comparable analysis that legislators and the city used to justify public funding. Barrett previously served as the lead negotiator for the public in both Sacramento and Milwaukee, where he secured roughly 50% private contributions from team ownership. In Portland, representing the Blazers, he prepared a pitch deck that excluded those deals along with every other deal that would have made 90% public funding look unusual.</p>
+
+  <p>When city staffer Karl Lisle suggested adding Milwaukee and Sacramento, Barrett rejected both the same day.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Barrett to Lisle — January 21, 2026 (KGW records)</div>
+    <div class="doc-text">"As the lead negotiator for the public sector in both Sacramento and Milwaukee, I can say that the market has clearly changed and these comparables are dated. We hope that you will support the position as we work toward getting approvals."</div>
+    <div class="doc-source">This email was CC'd to: Carl Hirsh (city's advisor), Dewayne Hankins (Blazers president), Natalie King (Blazers SVP), Dan Jarman (Blazers lobbyist), and an NBA official.</div>
+  </div>
+
+  <p>Barrett asked city staff to "support the position" — on an email that included the Blazers' entire team. The city's financial advisor (Hirsh) was CC'd and raised no objection.</p>
+
+  <p>The next day, Coghlan distributed the Blazers' own "Rip City Runs Deep" advocacy toolkit to state legislators at a meeting on January 15, 2026 — the same document that contained the cherry-picked comparables and the $670M economic impact figure. The city circulated the Blazers' marketing materials as though they were independent government analysis.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Conduct Question</div>
+    City staff distributed advocacy materials prepared by the party seeking $871 million in public funds as if they were independent government analysis. The city's own financial advisor was present on the email chain where the Blazers' negotiator asked city staff to "support the position." No independent analysis was ever commissioned or made public.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 7: PCEF ═══ -->
+<div class="chapter" id="pcef">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 7 — Public Misrepresentation</div>
+    <h2>The PCEF Misrepresentation</h2>
+  </div>
+
+  <p>Mayor Wilson publicly proposed using $75 million from the Portland Clean Energy Fund (PCEF) to help fund the Moda Center renovation. PCEF is a voter-approved fund dedicated to climate investments in frontline communities — not a general discretionary fund. The city framed PCEF as a potential funding source available for this purpose. Internal documents obtained in PRR C443668 show the city knew this was not accurate.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">PRR C443668 — Internal city Q&amp;A prepared for reporters, February 2026</div>
+    <div class="doc-text">"All current and forecasted PCEF funds are allocated through the Climate Investment Plan through June 30, 2029. Because all PCEF resources are already allocated in the current CIP through June 30, 2029, commitments in the current CIP would need to be modified in order for PCEF funds to support the Moda renovation effort."</div>
+    <div class="doc-source">PCEF balance at start of fiscal year: $739,542,176 — all already committed to existing climate programs.</div>
+  </div>
+
+  <p>The city internally acknowledged that PCEF use would require canceling or deferring existing climate commitments — then publicly described PCEF as a funding source that "could potentially" support the renovation, without disclosing that existing commitments would have to be cut.</p>
+
+  <p>Separately, Councilor Clark told constituents that the PCEF committee had said Moda was "a good use of funds." The same records document only an "awareness" site visit by committee members on January 16, 2026 — arranged at the request of city leadership, not initiated by the committee. No formal determination was ever made.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Misrepresentation</div>
+    Two separate misrepresentations: (1) the city publicly offered PCEF as a funding source while internally knowing it was fully committed and could only be redirected by canceling existing programs; (2) a councilor told constituents the PCEF committee endorsed Moda when internal records show no such endorsement occurred.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 8: NUMBERS ═══ -->
+<div class="chapter" id="numbers">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 8 — Legislative Misrepresentation</div>
+    <h2>Two Different Numbers, Same Day</h2>
+  </div>
+
+  <p>On February 9, 2026, Mayor Wilson went to the Oregon Capitol to lobby for SB 1501. His office prepared separate talking points for Democratic and Republican legislator meetings. PRR C443668 produced both sets. They contain structurally different descriptions of the city's financial commitment — presented to different audiences in the same building on the same day.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Wilson talking points for Democrats — February 9, 2026 (PRR C443668)</div>
+    <div class="doc-text">City plan of "over $365M" with $125M upfront plus an average of $12M per year over twenty years.</div>
+  </div>
+
+  <div class="doc-box">
+    <div class="doc-label">Wilson talking points for Republicans — February 9, 2026 (PRR C443668)</div>
+    <div class="doc-text">City plan of "over $260M" with $175M upfront and an average of $18M per year for twenty years.</div>
+  </div>
+
+  <p>These are not rounding differences or presentation variations. The Democrat version is $105 million larger than the Republican version. They have different upfront amounts, different annual amounts, and different totals. The public figure that ultimately became the city's stated commitment — $405 million — is a third number, different from both versions used that day.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Legislative Misrepresentation</div>
+    Legislators voting on SB 1501 received different factual claims about the city's commitment depending on their party affiliation. The figures were not derived from actual deal terms — they were persuasion tools calibrated to the audience. This raises the question of whether the legislature was given accurate information about the city's financial commitment when it voted 42–14 to pass SB 1501.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 10: SILVER VISIT ═══ -->
+<div class="chapter" id="silver">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 10 — New Finding, PRR C454416</div>
+    <h2>The Silver Visit: A Post-Passage Victory Celebration</h2>
+  </div>
+
+  <p>On March 13, 2026 — one week after SB 1501 passed the Oregon legislature — NBA Commissioner Adam Silver visited Portland for a private reception at Moda Center, organized by the Trail Blazers. The city's own event memo, produced in PRR C454416, states the desired outcome was to <em>"Celebrate the recent passage of SB 1501 that directs $356 million for the Moda Center renovation."</em> This was not a neutral community visit. It was a victory lap hosted by the Blazers for the officials who had just delivered the bill.</p>
+
+  <h3>The reception guest list</h3>
+  <p>The full attendee list, from the event memo, includes:</p>
+
+  <div class="doc-box">
+    <div class="doc-label">March 13 Blazers Reception — Confirmed Attendee List (PRR C454416_000249)</div>
+    <div class="doc-text">
+      Commissioner Adam Silver (NBA); Joe Maczko and Sal LaRocca (NBA executives); Dewayne Hankins (Blazers); Vince Porter (Governor's Deputy Chief of Staff); <strong>Oregon First Lady Aimee Kotek-Wilson</strong>; <strong>Secretary of State Tobias Read</strong>; <strong>Senate President Rob Wagner</strong>; <strong>Senate Majority Leader Kayse Jama</strong>; <strong>House Majority Leader Ben Bowman</strong>; Representatives Tawna Sanchez and Lamar Wise; City Council Vice President Olivia Clark; <strong>Councilor Elana Pirtle-Guiney</strong>; <strong>Councilor Sameer Kanal</strong>; Multnomah County Chair Jessica Vega Pederson; County Commissioner Shannon Singleton; Jon Isaacs (Portland Metro Chamber); Jim Etzel (Sport Oregon); Megan Conway (Travel Portland); Dr. William Johnson (Moda Health); John O'Leary (Daimler Truck North America CEO); <strong>Elliot Hill (Nike CEO)</strong>; <strong>Amy Montagne (Nike President)</strong>; <strong>Larry Miller (Jordan Brand President)</strong>; Andrew and Lindsay Kagawa Colas (Colas Construction).
+    </div>
+    <div class="doc-source">The Senate President, Senate Majority Leader, House Majority Leader, Oregon First Lady, Secretary of State, and Nike's CEO, President, and Jordan Brand President were all in the same room — one week after the vote.</div>
+  </div>
+
+  <h3>Nike's presence was more coordinated than previously known</h3>
+  <p>Prior reporting had noted that Nike founder Phil Knight personally called Commissioner Silver to advocate for the deal, and that Nike CEO Elliot Hill had emailed Mayor Wilson urging him to keep the Blazers. The C454416 records show that Hill attended the post-passage reception alongside Nike President Amy Montagne and Jordan Brand President Larry Miller. Nike's full Portland corporate leadership was present at the same event as the legislators who had just voted for the bill and the city councilors who would still need to vote on the city's $405 million commitment.</p>
+
+  <h3>Ryann Gleason was coordinating the councilor invitations</h3>
+  <p>The invitation from Natalie King (Blazers SVP) to District 2 councilors Pirtle-Guiney, Kanal, and Ryan was sent March 10, 2026. The email headers show Ryann Gleason (CFM Advocates — the gift campaign lobbyist) was CC'd on the councilor response threads. The same lobbyist running the AAPI Night and Women's History Night suite ticket campaign was directly involved in routing the Silver reception invitations to councilors.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Natalie King to District 2 councilor offices — March 10, 2026 (PRR C454416)</div>
+    <div class="doc-text">"I am reaching out now to invite Councilor Pirtle-Guiney, Councilor Kanal and Councilor Ryan to a small reception with NBA Commissioner Adam Silver this Friday at 5:30pm at Moda Center... If Councilor Pirtle-Guiney would like to stay for the game, she is invited to join our Women's History Night Celebration."</div>
+    <div class="doc-source">CC'd on response threads: Charles Boyle (Blazers Director of Public Affairs) and Ryann Gleason (CFM Advocates). The Silver reception and Women's History Night were being offered as a bundle to Pirtle-Guiney specifically.</div>
+  </div>
+
+  <h3>The Silver visit was also a pre-passage lobbying tool</h3>
+  <p>On February 2, 2026 — while SB 1501 was still moving through the legislature — the mayor's office urgently scheduled a three-way call between Mayor Wilson, Governor Kotek, and Commissioner Silver. The scheduling emails (marked "Importance: High") show Coghlan and the Governor's scheduler working to find a 20-minute window the following day. The commissioner was being used as a lobbying asset before the vote as well as a celebration asset after it.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">What This Shows</div>
+    The Silver visit was not a spontaneous expression of league support. It was a coordinated event organized by the Blazers, attended by Nike's full Portland corporate leadership, and explicitly framed in city documents as a celebration of SB 1501's passage. The same lobbying operation that ran the suite ticket access campaign routed the councilor invitations. Pirtle-Guiney — who later signed the SB 1501 support letter and received the Natalie King thank-you email — was offered both the Silver reception and Women's History Night in the same invitation.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 11: PLAYOFF TICKETS ═══ -->
+<div class="chapter" id="playoff">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 11 — New Finding, April 26, 2026</div>
+    <h2>Playoff Tickets and a Private Dundon Meeting</h2>
+  </div>
+
+  <p>On April 26, 2026 — while the city council's vote on $405 million in public funding remained pending — Councilors Elana Pirtle-Guiney, Sameer Kanal, and Dan Ryan attended a Trail Blazers playoff game at the invitation of the team and met privately with owner Tom Dundon. The event was reported by Willamette Week on April 30, 2026.</p>
+
+  <p>The tickets were in Section 218, lower bowl — a section that regularly sells for over $200 per seat in the regular season and significantly more in the playoffs. Pirtle-Guiney's spokeswoman confirmed the councilors accepted the tickets under the "ceremonial purpose" exemption — they helped pass a basketball onto the court before tip-off.</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Willamette Week — April 30, 2026 (Sophie Peel)</div>
+    <div class="doc-text">"Three Portland city councilors attended the Trail Blazers' April 26 playoff game after being offered free tickets by the NBA team... All three councilors say the team's new majority owner, Texas billionaire investor Tom Dundon, invited them to meet him. All three accepted the offer."</div>
+    <div class="doc-source">Tickets in Section 218, lower bowl. The Blazers did not respond to a request for comment.</div>
+  </div>
+
+  <p>Pirtle-Guiney's spokeswoman said the councilor "emphasized with him the critical importance of lease negotiations striking a good deal for Portlanders." That a sitting councilor is conducting substantive lease negotiation discussions in the context of a comped ticket event — while the vote is pending — is itself notable.</p>
+
+  <h3>This is the fifth documented access event</h3>
+
+  <div class="doc-box">
+    <div class="doc-label">The Full Access Sequence — November 2024 to April 2026</div>
+    <div class="doc-text"><strong>Nov 2024:</strong> Jarman obtains OGEC Advice No. 24-537I to pre-authorize pre-inauguration tickets. (PRR C454698)<br><br><strong>Jan 11, 2025:</strong> AAPI Heritage Night — Koyama Lane and Kanal, complimentary suite access. (PRR C454690)<br><br><strong>Mar 16, 2025:</strong> Women's History Night — Pirtle-Guiney, Avalos, Morillo, complimentary suite access; City Attorney intervenes on child ticket. (PRR C454698)<br><br><strong>Jul 2025:</strong> Private tour and lunch — Morillo, Novick, Koyama Lane briefed on ECOnorthwest study. Novick's aide: "Councilor Novick would love to attend!" (PRR C454692)<br><br><strong>Feb 2026:</strong> King thanks Pirtle-Guiney for SB 1501 support letter; requests follow-up meeting. (PRR C454698)<br><br><strong>Apr 26, 2026:</strong> Playoff tickets, Section 218, $200+ per seat; private meeting with Tom Dundon. (Willamette Week, April 30, 2026)</div>
+    <div class="doc-source">The councilors who received gifts in early events — Pirtle-Guiney, Kanal — are the same ones attending the playoff game and meeting Dundon as the vote approaches.</div>
+  </div>
+
+  <div class="flag-box">
+    <div class="flag-label">Ethics Question</div>
+    The ceremonial exemption invoked may be technically valid. However, whether it was properly applied — and whether the private meeting with Dundon constitutes a separate reportable benefit — is a question for OGEC.
+  </div>
+
+  <div class="connection-box">
+    <div class="conn-label">Connection</div>
+    Pirtle-Guiney and Kanal appear in the documented record at AAPI Heritage Night, Women's History Night, and the April 26 playoff game — three separate access events over 15 months, all from the same lobbying operation, all while the same vote was pending.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 12: FCA ═══ -->
+<div class="chapter" id="fca">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 12 — New Finding, PRR C462239 — June 1, 2026</div>
+    <h2>The Withheld Cost Assessment</h2>
+  </div>
+
+  <p>In May 2024 — eighteen months before SB 1501 passed and a full year before any public deliberation — the City of Portland commissioned an independent Facility Condition Assessment of the Moda Center and Garden Garage from Venue Solutions Group (VSG), a national sports facility consulting firm. The 121-page report, dated May 14, 2024, was produced in response to PRR C462239 filed June 1, 2026. It was never disclosed to the public, the city council, or the Oregon legislature during the SB 1501 debate.</p>
+
+  <h3>What the assessment found</h3>
+  <p>VSG and a team of national consultants conducted an on-site review on March 18–19, 2024, and developed a 20-year capital expenditure plan covering all building systems. The Recap sheet of the accompanying Excel model (Moda_Center_FCA_Cap_Ex_5-14-24.xlsx) shows the following totals:</p>
+
+  <div class="doc-box">
+    <div class="doc-label">VSG 20-Year Capital Plan — Moda Center & Garden Garage (in 2024 dollars)</div>
+    <div class="doc-text">
+      Architecture &amp; Interiors: $293,466,208<br>
+      MEP &amp; Fire Protection: $74,757,511<br>
+      Technology: $75,708,497<br>
+      Food &amp; Beverage and Retail: $36,404,993<br>
+      Vertical Transportation: $11,485,955<br>
+      Structure: $8,339,510<br>
+      Roof &amp; Envelope: $4,715,248<br>
+      <strong>Total 20-Year Capital Need: $504,877,921</strong>
+    </div>
+    <div class="doc-source">Venue Solutions Group, Facility Condition Assessment — DRAFT, May 14, 2024. Commissioned by the City of Portland. Produced in PRR C462239, June 1, 2026.</div>
+  </div>
+
+  <h3>The scope distinction — in the city's own words</h3>
+  <p>An internal city memo from Karl Lisle (Spectator Venues Program Manager) to Donnie Oliveira, dated June 3, 2026 — the same day The Oregonian first reported the FCA's existence — provides the city's own analysis of the document. The memo is candid about what the FCA does and does not measure, and it is fair to quote it directly: the FCA "looks only at what investments would be necessary to maintain the building in its current configuration in good working order for 20 years. It does not contemplate the transformative renovation that is being proposed publicly by the Blazers."</p>
+
+  <p>The memo states it is "not appropriate to directly compare FCA cost estimates with the potential cost of the proposed major renovation," because the renovation would include amenities and expansions not contemplated in the FCA. This is a legitimate distinction, and any fair characterization of the FCA must acknowledge it: the $505M is the cost to keep the existing building operational for 20 years, not the cost of the proposed renovation.</p>
+
+  <h3>What the city's own memo documents</h3>
+  <p>The same memo performs its own breakdown of the $505M figure, and the results are notable:</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Karl Lisle to Donnie Oliveira — June 3, 2026 (Summary Memo, FCA Analysis)</div>
+    <div class="doc-text">
+      <strong>$505M</strong> — Full 20-year FCA capital plan.<br>
+      <strong>$482M</strong> — After removing the videoboard ($14M, already completed in 2025) and the decommissioned ice plant/floor ($9M, no longer needed). This is the cost "to sustain current operations and events."<br>
+      <strong>$402M</strong> — After further removing all items the memo links specifically to Blazers/NBA activity (locker rooms, team store, family room, media room, courtside club, broadcast and production suites, sports lighting). <strong>An $80M reduction.</strong>
+    </div>
+    <div class="doc-source">The city's own analysis documents that roughly $80M of the capital plan is tied specifically to the NBA tenant's needs — not to the building's basic operation.</div>
+  </div>
+
+  <h3>The enforceable "first-class" obligation</h3>
+  <p>The memo also confirms a fact directly relevant to who should pay for these improvements. Under the Arena Ground Lease (Section 10.2), Rip City Management was contractually obligated to maintain and improve Moda Center to a "first-class" standard at its own expense. This obligation was carried forward into the 2024 Bridge Agreement and the Arena Operating Lease (Section 10.2), and "Rip City Rising assumed all these obligations at closing of the transaction in March of 2026."</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Summary Memo — First-Class Venue Requirement</div>
+    <div class="doc-text">The memo states the city "has successfully enforced this provision" in the past — even through bankruptcy claims brought by RCM's predecessor — and that the city "potentially may be able to recuperate some of the FCA's deferred maintenance costs if the NBA team were to leave the Moda Center."</div>
+    <div class="doc-source">The tenant already carries an enforceable obligation to maintain the building to a first-class standard at its own cost. The public financing deal does not appear to account for this existing obligation.</div>
+  </div>
+
+  <div class="flag-box">
+    <div class="flag-label">What This Establishes</div>
+    Three things are now documented in the city's own records: (1) The city had an independent $505M capital assessment in May 2024, eighteen months before SB 1501 passed. (2) Roughly $80M of that figure is tied specifically to NBA-tenant needs rather than basic building operation. (3) The tenant carries an enforceable contractual obligation to maintain the building to a first-class standard at its own expense. None of these facts was surfaced in public deliberation until a reporter forced the FCA into view on June 3, 2026 — at which point the city produced its explanatory memo the same day.
+  </div>
+
+  <div class="connection-box">
+    <div class="conn-label">Connection</div>
+    The honest version of this finding is not "the renovation only costs $505M." It is that the city possessed independent analysis showing the building's actual 20-year capital needs, that the analysis identified ~$80M in NBA-specific costs, and that an enforceable first-class obligation already requires the tenant to fund maintenance — yet the public deliberation proceeded on a $600M figure originating with the Blazers' own consultants, with none of this context disclosed until a reporter obtained the underlying document.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 13: NDA ═══ -->
+<div class="chapter" id="nda">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 13 — New Finding, PRR C467662</div>
+    <h2>The 2022 Confidentiality Agreement: Where the Information Control Began</h2>
+  </div>
+
+  <p>The information-control pattern documented throughout this dossier — the withheld cost assessment, the privilege shield over the Stafford work product, the closed-door briefings, the "trade secret" designations — has an origin point. On February 22, 2022, the City of Portland signed a Non-Disclosure Agreement with Rip City Management LLC and Trail Blazers Inc. The agreement was produced in response to PRR C467662 in June 2026. It predates the city's August 2024 acquisition of the Moda Center by more than two years, and predates SB 1501 by nearly four.</p>
+
+  <h3>A one-way agreement, not a mutual one</h3>
+  <p>This is not a standard mutual NDA in which two parties protect each other's information. It runs in one direction: the city agreed to protect the Blazers' information. The recitals, signed by the city, are notable for what the city conceded:</p>
+
+  <div class="doc-box">
+    <div class="doc-label">Non-Disclosure Agreement — Recitals D, E, G (February 22, 2022)</div>
+    <div class="doc-text">
+      (D) "The City acknowledges that RCM/TBI is under no obligation to provide the Confidential Information and the Confidential Information is being voluntarily provided to the City."<br><br>
+      (E) "The City acknowledges that the disclosure of the Confidential Information would harm the public interest by, inter alia, interfering with negotiation of the Project Agreements and operation of the Facilities."<br><br>
+      (G) The information "is also a trade secret as defined in ORS 646.461(4), the disclosure of which would harm RCM/TBI's interests."
+    </div>
+    <div class="doc-source">Signed for the City by Tom Rinehart, Chief Administrative Officer. Signed for RCM/TBI by Chris Oxley, SVP. Approved as to form by Kenneth A. McGair, Senior Deputy City Attorney.</div>
+  </div>
+
+  <p>The significance is in Recital E. The city — a public body, the owner of the building — contractually agreed in 2022 that disclosing the Blazers' information to the public "would harm the public interest." A public entity accepted, as a premise of the negotiation, that keeping information from its own residents serves them. Every downstream act of information control inherited this framing.</p>
+
+  <h3>The scope covers the entire district</h3>
+  <p>The agreement's "Confidential Information" is not limited to the arena. Recital A defines the covered "Facilities" as the entire Rose Quarter campus: the Moda Center, Veterans Memorial Coliseum, One Center Court, all four parking structures (East, West, Annex, and Garden Garages), the Entertainment Complex Phase II Lot, the Benton Lot surface parking, and related undeveloped land. The confidentiality framework was established for the whole district that SB 1501 would later monetize.</p>
+
+  <div class="flag-box">
+    <div class="flag-label">Why This Matters</div>
+    Signing an NDA is not itself improper. What this document establishes is the starting point of the information asymmetry documented throughout this dossier. As early as 2022, the city had agreed that the Blazers' information was a trade secret whose disclosure would "harm the public interest." That premise shaped everything that followed: the closed-door legislative briefings, the FCA that was never disclosed, the Stafford contract structured to shield all work product behind attorney-client privilege, and the redactions across the public records. The public was negotiating from behind a veil the city had agreed to maintain four years before the public process began.
+  </div>
+
+  <div class="connection-box">
+    <div class="conn-label">The McGair Throughline</div>
+    Senior Deputy City Attorney Kenneth A. McGair approved the 2022 NDA "as to form." He is also the contract project manager and designated "Monitoring Attorney" on the Stafford Sports engagement (Chapter 3), the structure that shields the city's financial advisory work product from public disclosure. The same attorney is the consistent legal hand behind both the original confidentiality framework and the privilege structure that kept the city's own analysis out of public view.
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══ CHAPTER 9: CONNECTIONS ═══ -->
+<div class="chapter" id="connections">
+  <div class="chapter-header">
+    <div class="chapter-eyebrow">Chapter 9 — Pattern Analysis</div>
+    <h2>Connections and Pattern</h2>
+  </div>
+
+  <p>Each finding in this document is independently documented. Taken together, they describe a coherent pattern rather than a series of isolated incidents.</p>
+
+  <h3>The access-to-influence pipeline</h3>
+  <p>The gift campaign began before councilors were sworn in — timed to exploit an ethics exemption Jarman had pre-cleared with OGEC. It continued with suite tickets and arena access events. It included private briefings on the Blazers' own economic impact study. It culminated in a thank-you email from the Blazers SVP to the councilor who signed the SB 1501 support letter. The sequence runs from first contact to favorable political outcome, with each step documented in the public record.</p>
+
+  <h3>The information environment was controlled at every stage</h3>
+  <p>The market comparables were prepared by the Blazers' negotiator and stripped of unfavorable data points. The site visit was to cities with only publicly funded arenas. The Blazers' own advocacy toolkit was distributed by the mayor's chief of staff as government analysis. The city's financial advisor had a prior relationship with the Blazers and operated behind a privilege shield. At no point did anyone with decision-making authority commission an independent analysis of what the market would pay for the right to operate a building Portland owns.</p>
+
+  <h3>The same people appear across multiple findings</h3>
+  <p>Dan Jarman obtained the OGEC pre-clearance letter, organized the gift events, delivered the career threats, and was a required attendee at Project Mt. Hood. Natalie King was CC'd on the tour/lunch invitations, sent the SB 1501 thank-you email, and was a required attendee at Project Mt. Hood. Dan Barrett prepared the cherry-picked pitch deck, rejected better comparables, asked city staff to "support the position," and was a required attendee at Project Mt. Hood. Carl Hirsh (city's advisor) was CC'd on Barrett's email asking for support and traveled alongside Blazers executives on the city-paid trip.</p>
+
+  <h3>The structural capture point</h3>
+  <p>The City Attorney — appointed by and serving at the pleasure of the mayor — is simultaneously the office that: structured the Stafford contract to shield its work product from public view; provided legal guidance on the Blazers' gift campaign; and will interpret the city's legal obligations under SB 1501. The mayor is the primary political sponsor of the deal. There is no independent ethics oversight mechanism for the mayor's own conduct. This is not a personnel problem. It is a structural design problem that the Moda case has made concrete.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="container" style="padding-bottom:20px;">
+  <p style="font-family:var(--sans);font-size:13px;color:var(--gray);line-height:1.8;">
+    <strong>Document sources:</strong> All findings in this document are based on records produced by the City of Portland in response to public records requests filed under ORS 192.311–192.431. The complete set of source documents is available at: <a href="https://drive.google.com/drive/folders/1s7kmVQZXGNOCC7_jC-urwn4s5VIfw01P">this public folder</a>.
+  </p>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  Moda Center Ethics & Conduct Dossier &nbsp;|&nbsp; Compiled by Clay Shentrup, Portland District 3 &nbsp;|&nbsp; May 2026<br>
+  <a href="https://wonk.blog/moda">wonk.blog/moda</a> &nbsp;|&nbsp; <a href="https://savetheblazers.com">SaveTheBlazers.com</a> &nbsp;|&nbsp; cshentrup@gmail.com
 </footer>
 
 </body>
