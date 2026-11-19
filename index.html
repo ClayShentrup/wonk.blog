@@ -71,6 +71,7 @@ title: 'wonk.blog'
   <div class="essays-list">
     {% assign sorted_articles = site.articles | sort: 'index_title' %}
     {% for article in sorted_articles %}
+      {% if article.unlisted %}{% continue %}{% endif %}
       <a href="{{ article.url | relative_url }}" class="essay-item">
         {% if article.tag %}<span class="essay-tag">{{ article.tag }}</span>{% endif %}
         <span class="essay-title">{{ article.index_title | default: article.title }}</span>
